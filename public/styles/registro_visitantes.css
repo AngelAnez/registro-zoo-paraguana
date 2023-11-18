@@ -1,0 +1,209 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Menú Lateral */
+
+.menu-header{
+    height: 10vh;
+    user-select: none;
+    padding: 0rem 0.5rem 0rem 0.5rem;
+}
+
+.menu-header img{
+    pointer-events: none;
+    height: 8vh;
+}
+
+.menu-header h5{
+    font-size: 1.3rem;
+}
+
+.menu-list{
+    list-style: none;
+    padding: 0;
+    margin-top: 0.5rem;
+    user-select: none;
+}
+
+.options-menu{
+    padding: 0.7rem 0rem 0.7rem 0rem; 
+    display: flex; 
+    gap: 0.8rem;
+    border-radius: 20px;
+    color: black;
+    align-items: center;
+}
+.options-menu:hover{
+    background-color: #167346;
+    transition: 0.3s;
+}
+
+.options-menu-icon{
+    width: 15%;
+    pointer-events: none;
+    margin-left: 0.2rem;
+}
+
+.options-menu-link{
+    text-decoration: none;
+    color: white;
+    width: 80%;
+    font-size: 1rem;
+}
+
+.options-menu-link:hover{
+    color: rgb(189, 189, 189);
+}
+
+.social-media{
+    display: flex;
+    list-style: none;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    height: 10vh;
+    margin: 0;
+}
+
+.social-media-img{
+    width: 3vw;
+    height: 6vh;
+    cursor: pointer; /* Cambia el cursor a una mano señalando */
+    transition: 0.3s;
+}
+
+.social-media-img:hover{
+    width: 4vw;
+    height: 8vh;
+}
+
+/* Encabezado */
+
+.header-list{
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    user-select: none;
+}
+
+.header-list-option{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.header-list-option img{
+    pointer-events: none;
+}
+
+.header-list-option h6{
+    font-size: 1.1rem;
+    margin: 0;
+    font-weight: bold;
+    padding-left: 0.5rem;
+}
+
+#dolar_today{
+    color: #14b868;
+}
+
+.user-name{
+    padding: 0rem 1rem 0rem 0rem;
+    text-decoration: none;
+    color: black;
+}
+
+.user-name:hover{
+    color: rgb(87, 87, 87);
+}
+
+/* Menú de Pasos*/
+
+.steps-menu{
+    user-select: none;
+}
+
+.circle_steps{
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    border-radius: 50%; 
+    background-color: transparent; 
+    height: 50%; 
+    width: 20%;
+    border: 1px solid white;
+    color: white;
+}
+
+.circle_steps_on{
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    border-radius: 50%; 
+    background-color: rgb(255, 255, 255); 
+    height: 50%; 
+    width: 20%;
+}
+
+/* Cantidad de Visitantes */
+
+.step-title{
+    user-select: none;
+}
+
+.step-info{
+    user-select: none;
+}
+
+.visit_img{
+    width: 6vw; 
+    height: 12vh; 
+    margin-right: 0.5rem;
+    pointer-events: none;
+    user-select: none;
+}
+
+.visit_text{
+    font-size: 0.9rem;
+    padding-bottom: 0.5rem;
+    user-select: none;
+    font-weight: bold;
+}
+
+.visit_input{
+    width: 80%; 
+    border-color: black;
+    text-align: center;
+}
+
+.validando{
+    visibility: hidden;
+}
+
+.validacion-erronea{
+    color: #dc3545;
+    visibility: visible;
+}
+
+.factura_campo{
+    font-weight: bold;
+    user-select: none;
+}
+
+.factura_datos{
+    user-select: none;
+}
+
+.factura_monto{
+    color: #198754;
+    font-weight: bold;
+}

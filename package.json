@@ -1,0 +1,24 @@
+{
+  "name": "registro_zoo",
+  "version": "0.0.1",
+  "description": "Sistema de Registro de Visitas del Zoo Paraguaná",
+  "main": "./script/main.js",
+  "type": "module",
+  "scripts": {
+    "start": "node script/app.js",
+    "dev": "nodemon script/app.js"
+  },
+  "keywords": [
+    "Registro",
+    "Zoologico"
+  ],
+  "author": "Angel Añez",
+  "license": "ISC",
+  "dependencies": {
+    "consulta-dolar-venezuela": "^1.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "serve": "^14.2.1"
+  }
+}
