@@ -4,20 +4,6 @@ const ninos_in_dolars = 1;
 const adults_in_dolars = 2;
 const elders_in_dolars = 1;
 
-const bolivars_per_dolar = 34.5;
-
-/* const { getMonitor} = require("consulta-dolar-venezuela");
-
-getMonitor("bcv","price")
-  .then((result) => {
-    console.log(result);
-})
-  .catch((error) => {
-    console.log(error)
-  }) */
-
-
-
 /* Variables */
 
 let ninos = document.getElementById("cant_nino");
@@ -35,10 +21,19 @@ let validation_2 = document.getElementById("payment_validation");
 let represent_name = document.getElementById("nombre_representante");
 let represent_phone = document.getElementById("telefono_representante");
 
+let dolar_today = document.getElementById("dolar_today");
+
 /* Funciones */
 
-let dolar_today = document.getElementById("dolar_today");
-dolar_today.innerHTML = bolivars_per_dolar + " Bs.";
+async function monitorDolar(){
+  const data = await fetch("/dolar")
+  const valor_dolar = await data.json()
+  dolar_today.innerHTML = valor_dolar + " Bs.";
+  dolar_today.value = parseFloat(valor_dolar)
+  return parseInt(valor_dolar)
+}
+
+monitorDolar();
 
 /* Cambio de Pasos y Estilos de Validaciones */
 
@@ -104,7 +99,9 @@ function totalFamily() {
     valor_de_ninos * ninos_in_dolars +
     valor_de_adults * adults_in_dolars +
     valor_de_elders * elders_in_dolars;
-  bolivars.value = dolars.value * bolivars_per_dolar;
+  bolivars.value = dolars.value * dolar_today.value;
+
+  bolivars.value = parseFloat(bolivars.value).toFixed(2)
 
   dolars.value += "$";
   bolivars.value += " Bs.";

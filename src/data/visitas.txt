@@ -1,0 +1,10 @@
+Niños: 2, Adultos: 2, Adultos Mayores: 3, Total: 7. Monto en Dólares: 9$, Monto en Bolívares: 310.5 Bs., Método de Pago: Efectivo, Moneda: Bolivar, Representante: Yoel Ramirez, Teléfono: +5761329756421
+Niños: 5, Adultos: 3, Adultos Mayores: 1, Total: 9. Monto en Dólares: 12$, Monto en Bolívares: 414 Bs., Método de Pago: Transferencia, Referencia: 123456789, Representante: Chiave, Teléfono: +58416781243
+Niños: 14, Adultos: 6, Adultos Mayores: 0, Total: 20. Monto en Dólares: 26$, Monto en Bolívares: 897 Bs., Método de Pago: Pago Móvil, Referencia: 256461761542, Representante: Escuela Nicolás Curiel Coutinho, Teléfono: 02694231231
+Niños: 300, Adultos: 5, Adultos Mayores: 12, Total: 317. Monto en Dólares: 322$, Monto en Bolívares: 11109 Bs., Método de Pago: Pago Móvil, Referencia: 1414612461264412, Representante: Todos los niños de Punto Fijo, Teléfono: 0
+Niños: 1, Adultos: 1, Adultos Mayores: 1, Total: 3. Monto en Dólares: 4$, Monto en Bolívares: 143.76 Bs., Método de Pago: Transferencia, Referencia: 424142, Representante: Angel, Teléfono: 12313185
+Niños: 1, Adultos: 1, Adultos Mayores: 1, Total: 3. Monto en Dólares: 4$, Monto en Bolívares: 143.76 Bs., Método de Pago: Transferencia, Referencia: 1212121, Representante: Juan Medina, Teléfono: 02423164521
+Niños: 1, Adultos: 1, Adultos Mayores: 1, Total: 3. Monto en Dólares: 4$, Monto en Bolívares: 143.76 Bs., Método de Pago: Transferencia, Referencia: 1111, Representante: edfsdaf, Teléfono: 1212
+Niños: 1, Adultos: 1, Adultos Mayores: 1, Total: 3. Monto en Dólares: 4$, Monto en Bolívares: 143.76 Bs., Método de Pago: Transferencia, Referencia: 12121, Representante: dsasdf, Teléfono: 212
+Niños: 1, Adultos: 2, Adultos Mayores: 4, Total: 7. Monto en Dólares: 9$, Monto en Bolívares: 324.72 Bs., Método de Pago: Transferencia, Referencia: 1212424, Representante: Aguacate, Teléfono: +58264972531
+Niños: 2, Adultos: 4, Adultos Mayores: 3, Total: 9. Monto en Dólares: 13$, Monto en Bolívares: 469.04 Bs., Método de Pago: Efectivo, Moneda: Dolar, Representante: Pepito, Teléfono: +59123512731303581

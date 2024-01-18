@@ -1,74 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="styles/registro_visitantes.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <title>Registro de Visitantes</title>
-    <script defer src="../src/main.js"></script>
-</head>
+<%- include('partials/head', {title : "Registro de Visitantes"}); %>
 <body style="background-color: rgb(234, 243, 250); display: flex;">
 
-    <!-- Menu Lateral -->
-    <nav class="container-fluid text-white col-2 d-flex flex-column justify-content-between" style="background-color:#198754; border-right: 1px solid black; height: 100vh; box-shadow: rgb(148, 148, 148) 1px 1px 8px 1px;" id="side_bar">
-        <section>
-            <section class="row d-flex align-items-center menu-header">
-                <img class="col-3 p-0" src="/assets/img/pata-blanca.png">
-                <h5 class="col-9 p-0 m-0" style="text-align: center;">Zoo Paraguaná</h5>  
-            </section>
-            <hr class="solid" style="margin: 0 auto;">
-            <section>
-                <ul class="menu-list">
-                    <li class="options-menu">
-                        <img src="/assets/img/inicio.png" class="options-menu-icon">
-                        <a class="options-menu-link" href="">Inicio</a>
-                    </li>
-                    <li class="options-menu">
-                        <img src="/assets/img/registrar.png" class="options-menu-icon">
-                        <a class="options-menu-link" href="">Registrar Visitantes</a>
-                    </li>
-                    <li class="options-menu">
-                        <img src="/assets/img/historial.png" class="options-menu-icon">
-                        <a class="options-menu-link" href="">Historial Diario</a>
-                    </li>
-                    <li class="options-menu">
-                        <img src="/assets/img/ajustes.png" class="options-menu-icon">
-                        <a class="options-menu-link" href="">Ajustes</a>
-                    </li>
-                </ul>
-            </section>
-        </section>
-        <section>
-            <hr class="solid" style="margin: 0 auto;">
-            <ul class="social-media">
-                <li>
-                    <a href="https://www.facebook.com/zooparaguana" target="_blank"><img class="social-media-img" src="/assets/img/facebook.png" alt="facebook"></a>
-                </li>
-                <li>
-                    <a href="https://www.instagram.com/mizooparaguana/" target="_blank"><img class="social-media-img" src="/assets/img/instagram.png" alt="instagram"></a>
-                </li>
-            </ul>
-        </section>
-    </nav>
-
-    <main class="container-fluid row d-flex p-0 m-0" style="height: 100vh;">
-
+    <!-- Menu Lateral y Main-->
+    <%- include('partials/sidebar'); %>
+    <main class="container-fluid row d-flex p-0 m-0" style="height: 100vh;">   
         <!-- Encabezado -->
-        <header class="container-fluid col-12" style="background-color: rgb(255, 255, 255); height: 10vh; box-shadow: rgb(216, 216, 216) 1px 2px 2px 1px;">
-            <ul class="header-list row">
-                <li class="col-3 header-list-option">
-                    <img class="col-2 tasa-dolar-img" src="/assets/img/dolar_2.png">
-                    <h6>Tasa del Día: <span id="dolar_today"></span></h6>
-                </li>
-                <li class="col-3 header-list-option text-end justify-content-end">
-                    <a id="user-name" href="" class="user-name">Rafael Rodríguez</a>
-                    <img id="user-img" class="col-2" src="/assets/img/rafa.png">
-                </li>
-            </ul>
-        </header>    
+        <%- include('partials/header'); %>
 
-        <form id="form_register" name="form_register" class="col-12" style="height: 90vh; display: flex; align-items: center;">
+        <form method="post" id="form_register" name="form_register" class="col-12" style="height: 90vh; display: flex; align-items: center;">
             <article class="container-fluid row d-flex justify-content-center">
 
                 <!-- Pasos -->
@@ -115,7 +54,7 @@
                     </section>
                     <label for="cant_nino" class="col-5 d-flex align-items-center mt-1">
                         <figure class="col-5 m-0">
-                            <img class="visit_img" src="/assets/img/child.png" alt="child">
+                            <img class="visit_img" src="./public/assets/img/child.png" alt="child">
                         </figure>
                         <div class="col-7 text-start">
                             <span class="visit_text">Niños</span>
@@ -125,7 +64,7 @@
         
                     <label for="cant_adult" class="offset-1 col-5 d-flex align-items-center mt-1">
                         <figure class="col-5 m-0">
-                            <img class="visit_img" src="/assets/img/adults.png" alt="adult">
+                            <img class="visit_img" src="./public/assets/img/adults.png" alt="adult">
                         </figure>
                         <div class="col-7 text-start">
                             <span class="visit_text">Adultos</span>
@@ -135,7 +74,7 @@
         
                     <label for="cant_mayores" class="col-5 d-flex align-items-center mt-4">
                         <figure class="col-5 m-0">
-                            <img class="visit_img" src="/assets/img/older.png" alt="older">
+                            <img class="visit_img" src="./public/assets/img/older.png" alt="older">
                         </figure>
                         <div class="col-7 text-start">
                             <span class="visit_text">Adultos Mayores</span>
@@ -145,7 +84,7 @@
 
                     <label for="total_family" class="offset-1 col-5 d-flex align-items-center mt-4">
                         <figure class="col-5 m-0">
-                            <img class="visit_img" src="/assets/img/family.png" alt="older">
+                            <img class="visit_img" src="./public/assets/img/family.png" alt="older">
                         </figure>
                         <div class="col-7 text-start">
                             <span class="visit_text">Total</span>
@@ -168,7 +107,7 @@
                     </section>
                     <label for="monto_dolares" class="col-5 d-flex align-items-center mt-1">
                         <figure class="col-5 m-0">
-                            <img class="visit_img" src="/assets/img/united-states.png" alt="Monto en Dólares">
+                            <img class="visit_img" src="./public/assets/img/united-states.png" alt="Monto en Dólares">
                         </figure>
                         <div class="col-7 text-start">
                             <span class="visit_text">Monto en Dolares</span>
@@ -178,7 +117,7 @@
         
                     <label for="monto_bolivares" class="offset-1 col-5 d-flex align-items-center mt-1">
                         <figure class="col-5 m-0">
-                            <img class="visit_img" src="/assets/img/venezuela.png" alt="adult">
+                            <img class="visit_img" src="./public/assets/img/venezuela.png" alt="adult">
                         </figure>
                         <div class="col-7 text-start">
                             <span class="visit_text">Monto en Bolívares</span>
@@ -188,7 +127,7 @@
         
                     <label for="cant_mayores" class="col-5 d-flex align-items-center mt-4">
                         <figure class="col-5 m-0">
-                            <img class="visit_img" src="/assets/img/pay-method.png" alt="adult">
+                            <img class="visit_img" src="./public/assets/img/pay-method.png" alt="adult">
                         </figure>
                         <div class="col-7 text-start">
                             <span class="visit_text">Método de Pago</span>
@@ -221,7 +160,7 @@
                     </section>
                     <label for="nombre_representante" class="offset-2 col-6 d-flex align-items-center mt-1">
                         <figure class="col-4 m-0">
-                            <img class="visit_img" src="/assets/img/representante.png" alt="represent_name">
+                            <img class="visit_img" src="./public/assets/img/representante.png" alt="represent_name">
                         </figure>
                         <div class="col-8 text-start">
                             <span class="visit_text">Nombre</span>
@@ -231,7 +170,7 @@
         
                     <label for="telefono_representante" class="offset-2 col-6 d-flex align-items-center mt-4">
                         <figure class="col-4 m-0">
-                            <img class="visit_img" src="/assets/img/telephone.png" alt="represent_phone">
+                            <img class="visit_img" src="./public/assets/img/telephone.png" alt="represent_phone">
                         </figure>
                         <div class="col-8 text-start">
                             <span class="visit_text">Teléfono</span>
@@ -291,15 +230,6 @@
 
             </article>
         </form>
-    </main>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-  </body>
-</body>
-</html>
-
-
-<!-- href="https://www.flaticon.com/free-icons/elderly" title="elderly icons">Elderly icons created by Freepik - Flaticon
-href="https://www.flaticon.com/free-icons/pay" title="pay icons">Pay icons created by Freepik - Flaticon
-target="_blank" href="https://icons8.com/icon/KuMeS_0MIZWz/calendario-de-beb%C3%A9">Baby Calendar</> icon by < target="_blank" href="https://icons8.com">Icons8
-href="https://www.flaticon.com/free-icons/smartphone" title="smartphone icons">Smartphone icons created by Freepik - Flaticon -->
+    </main> 
+    <%- include('partials/foot'); %>
+    
