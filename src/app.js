@@ -27,9 +27,9 @@ app.use(RegistroRoutes)
 app.use(HistorialRoutes)
 app.use(AjustesRoutes)
 
-app.use("/public", express.static(path.join(__dirname, "public")))
+/* Archivos Estáticos*/
 
-/* Funciones extra */
+app.use("/public", express.static(path.join(__dirname, "public")))
 
 app.listen(app.get("port"))
 console.log(`Server on port ${app.get("port")}`)

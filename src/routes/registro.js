@@ -1,4 +1,6 @@
 const {Router} = require("express")
+const path = require("path")
+const fs = require("fs")
 
 const router = Router()
 
@@ -10,6 +12,8 @@ router.post("/registro", (req, res) => {
     newVisit(req.body)
     res.render("registro")
 })
+
+const dirApp = path.normalize(__dirname + path.sep + "..")
 
 function newVisit (data){
     const {cant_nino, cant_adult, cant_mayores, total_family, monto_dolares, monto_bolivares, metodo_pago, info_payment_method, nombre_representante, telefono_representante} = data
@@ -23,7 +27,7 @@ function newVisit (data){
     }
     contenido += `, Representante: ${nombre_representante}, Teléfono: ${telefono_representante}\n`
 
-    fs.writeFile(path.join(__dirname, "./data/visitas.txt"), contenido,{flag: "a"}, (err) => {
+    fs.writeFile(path.join(dirApp, "/data/visitas.txt"), contenido,{flag: "a"}, (err) => {
         if (err){
             console.log(err)
         }
