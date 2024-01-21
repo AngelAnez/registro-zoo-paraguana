@@ -54,7 +54,7 @@
                     </section>
                     <label for="cant_nino" class="col-5 d-flex align-items-center mt-1">
                         <figure class="col-5 m-0">
-                            <img class="visit_img" src="./public/assets/img/child.png" alt="child">
+                            <img class="visit_img" src="./public/assets/img/child.webp" alt="child">
                         </figure>
                         <div class="col-7 text-start">
                             <span class="visit_text">Niños</span>
@@ -64,7 +64,7 @@
         
                     <label for="cant_adult" class="offset-1 col-5 d-flex align-items-center mt-1">
                         <figure class="col-5 m-0">
-                            <img class="visit_img" src="./public/assets/img/adults.png" alt="adult">
+                            <img class="visit_img" src="./public/assets/img/adults.webp" alt="adult">
                         </figure>
                         <div class="col-7 text-start">
                             <span class="visit_text">Adultos</span>
@@ -74,7 +74,7 @@
         
                     <label for="cant_mayores" class="col-5 d-flex align-items-center mt-4">
                         <figure class="col-5 m-0">
-                            <img class="visit_img" src="./public/assets/img/older.png" alt="older">
+                            <img class="visit_img" src="./public/assets/img/older.webp" alt="older">
                         </figure>
                         <div class="col-7 text-start">
                             <span class="visit_text">Adultos Mayores</span>
@@ -84,7 +84,7 @@
 
                     <label for="total_family" class="offset-1 col-5 d-flex align-items-center mt-4">
                         <figure class="col-5 m-0">
-                            <img class="visit_img" src="./public/assets/img/family.png" alt="older">
+                            <img class="visit_img" src="./public/assets/img/family.webp" alt="older">
                         </figure>
                         <div class="col-7 text-start">
                             <span class="visit_text">Total</span>
@@ -107,7 +107,7 @@
                     </section>
                     <label for="monto_dolares" class="col-5 d-flex align-items-center mt-1">
                         <figure class="col-5 m-0">
-                            <img class="visit_img" src="./public/assets/img/united-states.png" alt="Monto en Dólares">
+                            <img class="visit_img" src="./public/assets/img/united-states.webp" alt="Monto en Dólares">
                         </figure>
                         <div class="col-7 text-start">
                             <span class="visit_text">Monto en Dolares</span>
@@ -117,7 +117,7 @@
         
                     <label for="monto_bolivares" class="offset-1 col-5 d-flex align-items-center mt-1">
                         <figure class="col-5 m-0">
-                            <img class="visit_img" src="./public/assets/img/venezuela.png" alt="adult">
+                            <img class="visit_img" src="./public/assets/img/venezuela.webp" alt="adult">
                         </figure>
                         <div class="col-7 text-start">
                             <span class="visit_text">Monto en Bolívares</span>
@@ -127,7 +127,7 @@
         
                     <label for="cant_mayores" class="col-5 d-flex align-items-center mt-4">
                         <figure class="col-5 m-0">
-                            <img class="visit_img" src="./public/assets/img/pay-method.png" alt="adult">
+                            <img class="visit_img" src="./public/assets/img/pay-method.webp" alt="adult">
                         </figure>
                         <div class="col-7 text-start">
                             <span class="visit_text">Método de Pago</span>
@@ -160,7 +160,7 @@
                     </section>
                     <label for="nombre_representante" class="offset-2 col-6 d-flex align-items-center mt-1">
                         <figure class="col-4 m-0">
-                            <img class="visit_img" src="./public/assets/img/representante.png" alt="represent_name">
+                            <img class="visit_img" src="./public/assets/img/representante.webp" alt="represent_name">
                         </figure>
                         <div class="col-8 text-start">
                             <span class="visit_text">Nombre</span>
@@ -170,7 +170,7 @@
         
                     <label for="telefono_representante" class="offset-2 col-6 d-flex align-items-center mt-4">
                         <figure class="col-4 m-0">
-                            <img class="visit_img" src="./public/assets/img/telephone.png" alt="represent_phone">
+                            <img class="visit_img" src="./public/assets/img/telephone.webp" alt="represent_phone">
                         </figure>
                         <div class="col-8 text-start">
                             <span class="visit_text">Teléfono</span>
@@ -207,13 +207,15 @@
 
                     <section class="col-4 d-flex flex-column">
                         <span class="factura_datos" id="factura_fecha"></span>
+                        <input type="text" name="date" class="d-none" id="dateInput">
                         <span class="factura_datos" id="factura_hora"></span>
+                        <input type="text" name="time" class="d-none" id="timeInput">
                         <span class="factura_datos" id="factura_nino"></span>
                         <span class="factura_datos" id="factura_adult"></span>
                         <span class="factura_datos" id="factura_elder"></span>
                         <span class="factura_datos" id="factura_represent"></span>
-                        <span class="factura_datos" id="factura_metodo">Transferencia</span>
-                        <span class="factura_datos" id="factura_info_extra">12348597</span>
+                        <span class="factura_datos" id="factura_metodo"></span>
+                        <span class="factura_datos" id="factura_info_extra"></span>
                         <span class="factura_datos factura_monto" id="factura_monto"></span>
                     </section>
 
@@ -224,7 +226,6 @@
                             <button type="submit" onclick="change_step(1)" class="btn btn-success" style= "width: 15%; padding: 6px; font-weight: bold;">Finalizar</button>
                         </div>
                     </section>
-
                     
                 </article>      
 

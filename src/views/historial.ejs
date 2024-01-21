@@ -3,11 +3,171 @@
 
     <!-- Menu Lateral y Main-->
     <%- include('partials/sidebar'); %>
-    <main class="container-fluid row d-flex p-0 m-0" style="height: 100vh;">
+    <main class="container row d-flex flex-column p-0 m-0 gap-3" style="height: 100vh;">
         <!-- Encabezado -->
         <%- include('partials/header'); %>
         
-        <h2>Historial</h2>
+        <h2 class="text-center">Historial</h2>
+        <section class="container p-4 table-responsive">
+            <table class="table text-center table-hover table-sm table-rounded rounded-2 overflow-hidden">
+                <thead class="table-success">
+                  <tr>
+                    <% if (sort == "date" && order == "asc"){ %>
+                    <th scope="col"><a href="/historial?sort=date&order=dec" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Fecha de cada Visita (Orden Ascendente)">Fecha &uarr;</a></th>
+                    <% } else if (sort == "date" && order == "dec"){ %>
+                    <th scope="col"><a href="/historial?sort=date&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Fecha de cada Visita (Orden Descendente)">Fecha &darr;</a></th>
+                    <% } else { %>
+                    <th scope="col" ><a href="/historial?sort=date&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Fecha de cada Visita">Fecha</a></th>
+                    <% } %>
+
+                    <% if (sort == "time" && order == "asc"){ %>
+                    <th scope="col"><a href="/historial?sort=time&order=dec" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Hora de Llegada de cada Visita (Orden Ascendente)">Hora &uarr; </a></th>
+                    <% } else if (sort == "time" && order == "dec"){ %>
+                    <th scope="col"><a href="/historial?sort=time&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Hora de Llegada de cada Visita (Orden Descendente)">Hora &darr;</a></th>
+                    <% } else { %>
+                    <th scope="col"><a href="/historial?sort=time&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Hora de Llegada de cada Visita">Hora</a></th>
+                    <% } %>
+
+                    <% if (sort == "child" && order == "asc"){ %>
+                    <th scope="col"><a href="/historial?sort=child&order=dec" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Niños por Visita (Orden Ascendente)">Niños &uarr;</a></th>
+                    <% } else if (sort == "child" && order == "dec"){ %>
+                    <th scope="col"><a href="/historial?sort=child&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Niños por Visita (Orden Descendente)">Niños &darr;</a></th>
+                    <% } else { %>
+                    <th scope="col"><a href="/historial?sort=child&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Niños por Visita">Niños</a></th>
+                    <% } %>
+
+                    <% if (sort == "adult" && order == "asc"){ %>
+                    <th scope="col"><a href="/historial?sort=adult&order=dec" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Adultos por Visita (Orden Ascendente)">Adultos &uarr;</a></th>
+                    <% } else if (sort == "adult" && order == "dec"){ %>
+                    <th scope="col"><a href="/historial?sort=adult&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Adultos por Visita (Orden Descendente)">Adultos &darr;</a></th>
+                    <% } else { %>
+                    <th scope="col"><a href="/historial?sort=adult&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Adultos por Visita">Adultos</a></th>
+                    <% } %>
+
+                    <% if (sort == "older" && order == "asc"){ %>
+                        <th scope="col"><a href="/historial?sort=older&order=dec" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Adultos Mayores por Visita (Orden Ascendente)">Adultos M. &uarr;</a></th>
+                    <% } else if (sort == "older" && order == "dec"){ %>
+                        <th scope="col"><a href="/historial?sort=older&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Adultos Mayores por Visita (Orden Descendente)">Adultos M. &darr;</a></th>
+                    <% } else { %>
+                        <th scope="col"><a href="/historial?sort=older&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Adultos Mayores por Visita">Adultos M.</a></th>
+                    <% } %>
+
+                    <% if (sort == "method" && order == "asc"){ %>
+                        <th scope="col"><a href="/historial?sort=method&order=dec" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Método de Pago Utilizado (Orden Ascendente)">Método de Pago &uarr;</a></th>
+                    <% } else if (sort == "method" && order == "dec"){ %>
+                        <th scope="col"><a href="/historial?sort=method&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Método de Pago Utilizado (Orden Descendente)">Método de Pago &darr;</a></th>
+                    <% } else { %>
+                        <th scope="col"><a href="/historial?sort=method&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Método de Pago Utilizado">Método de Pago</a></th>
+                    <% } %>
+
+                    <% if (sort == "bolivares" && order == "asc"){ %>
+                        <th scope="col"><a href="/historial?sort=bolivares&order=dec" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Monto Total en Bolivares (Orden Ascendente)">Monto (Bs.) &uarr;</a></th>
+                    <% } else if (sort == "bolivares" && order == "dec"){ %>
+                        <th scope="col"><a href="/historial?sort=bolivares&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Monto Total en Bolivares (Orden Descendente)">Monto (Bs.) &darr;</a></th>
+                    <% } else { %>
+                        <th scope="col"><a href="/historial?sort=bolivares&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Monto Total en Bolivares">Monto (Bs.)</a></th>
+                    <% } %>
+
+                    <% if (sort == "dolar" && order == "asc"){ %>
+                        <th scope="col"><a href="/historial?sort=dolar&order=dec" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Monto Total en Dólares (Orden Ascendente)">Monto ($) &uarr;</a></th>
+                    <% } else if (sort == "dolar" && order == "dec"){ %>
+                        <th scope="col"><a href="/historial?sort=dolar&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Monto Total en Dólares (Orden Descendente)">Monto ($) &darr;</a></th>
+                    <% } else { %>
+                        <th scope="col"><a href="/historial?sort=dolar&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Monto Total en Dólares">Monto ($)</a></th>
+                    <% } %>
+                  </tr>
+                </thead>
+                <tbody>
+                    <% visitsData.forEach((visit, index) => { %>
+                    <tr class="user-select-none" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modalVisit<%=index %>">
+                        <td><%= visit.date %></td>
+                        <td><%= visit.time %></td>
+                        <td><%= visit.child %></td>
+                        <td><%= visit.adult %></td>
+                        <td><%= visit.older %></td>
+                        <td><%= visit.method %></td>
+                        <td><%= visit.bolivares %></td>
+                        <td><%= visit.dolar %></td>
+                    </tr>
+                    <div class="modal fade" id="modalVisit<%=index %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header text-bg-success">
+                              <h1 class="modal-title fs-5" id="modalLabel<%=index %>">Información de la Visita</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body d-flex">
+                                <% if (visit.method == "Efectivo") { %>
+                                    <% methodInfoType = "Moneda:" %>
+                                <% } else { %>
+                                    <% methodInfoType = "Nro de Referencia:" %>
+                                <% } %>
+                                <section class="offset-2 col-4 d-flex flex-column">
+                                    <label class="factura_campo">Representante:</label>
+                                    <label class="factura_campo">Teléfono:</label>
+                                    <hr class="solid mt-2 mb-2">
+                                    <label class="factura_campo">Niños:</label>
+                                    <label class="factura_campo">Adultos:</label>
+                                    <label class="factura_campo">Adultos Mayores:</label>
+                                    <hr class="solid mt-2 mb-2">
+                                    <label class="factura_campo">Monto (Bs.):</label>
+                                    <label class="factura_campo">Monto ($):</label>
+                                    <label class="factura_campo">Método de Pago:</label>
+                                    <label class="factura_campo"><%=methodInfoType %></label>
+                                    <hr class="solid mt-2 mb-2">
+                                    <label class="factura_campo">Fecha:</label>
+                                    <label class="factura_campo">Hora:</label>
+                                </section>
+            
+                                <section class="col-4 d-flex flex-column">
+                                    <span class="factura_datos text-center"><%= visit.name %></span>
+                                    <span class="factura_datos text-center"><%= visit.telephone %></span>
+                                    <hr class="solid mt-2 mb-2">
+                                    <span class="factura_datos text-center"><%= visit.child %></span>
+                                    <span class="factura_datos text-center"><%= visit.adult %></span>
+                                    <span class="factura_datos text-center"><%= visit.older %></span>
+                                    <hr class="solid mt-2 mb-2">
+                                    <span class="factura_datos text-center"><%= visit.bolivares %></span>
+                                    <span class="factura_datos text-center"><%= visit.dolar %></span>
+                                    <span class="factura_datos text-center"><%= visit.method %></span>
+                                    <span class="factura_datos text-center"><%= visit.infoMethod %></span>
+                                    <hr class="solid mt-2 mb-2">
+                                    <span class="factura_datos text-center"><%= visit.date %></span>
+                                    <span class="factura_datos text-center"><%= visit.time %></span>
+                                </section>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-success">Save changes</button>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    
+                    <% }) %>
+                </tbody>
+              </table>
+        </section>
+
+        <% if (pag == 10){ %>
+            <% prevPag = 1 %>
+        <% } else { %>
+            <% prevPag = (pag/10)-1 %>
+        <% } %>
+        <ul class="pagination d-flex justify-content-center">
+            <li class="page-item">
+              <a class="page-link" href="/historial?pag=<%=prevPag%>" aria-label="Previous">
+                <span aria-hidden="true" class="text-success fw-bold">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link text-success fw-bold" href="/historial">1</a></li>
+            <li class="page-item"><a class="page-link text-success fw-bold" href="/historial?pag=2">2</a></li>
+            <li class="page-item"><a class="page-link text-success fw-bold" href="/historial?pag=3">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="/historial?pag=<%=(pag/10)+1%>" aria-label="Next">
+                <span aria-hidden="true" class="text-success fw-bold">&raquo;</span>
+              </a>
+            </li>
 
     </main> 
         <%- include('partials/foot'); %>

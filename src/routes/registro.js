@@ -16,9 +16,10 @@ router.post("/registro", (req, res) => {
 const dirApp = path.normalize(__dirname + path.sep + "..")
 
 function newVisit (data){
-    const {cant_nino, cant_adult, cant_mayores, total_family, monto_dolares, monto_bolivares, metodo_pago, info_payment_method, nombre_representante, telefono_representante} = data
+    console.log(data)
+    const {cant_nino, cant_adult, cant_mayores, total_family, monto_dolares, monto_bolivares, metodo_pago, info_payment_method, nombre_representante, telefono_representante, date, time} = data
 
-    let contenido = `Niños: ${cant_nino}, Adultos: ${cant_adult}, Adultos Mayores: ${cant_mayores}, Total: ${total_family}. Monto en Dólares: ${monto_dolares}, Monto en Bolívares: ${monto_bolivares}, Método de Pago: ${metodo_pago}`
+    let contenido = `Fecha: ${date}, Hora: ${time}, Niños: ${cant_nino != "" ? cant_nino : 0}, Adultos: ${cant_adult != "" ? cant_adult : 0}, Adultos Mayores: ${cant_mayores != "" ? cant_mayores : 0}, Total: ${total_family}, Monto en Dólares: ${monto_dolares.replace("$","")}, Monto en Bolívares: ${monto_bolivares.replace(" Bs.","")}, Método de Pago: ${metodo_pago}`
 
     if (metodo_pago === "Efectivo"){
         contenido += `, Moneda: ${info_payment_method}`

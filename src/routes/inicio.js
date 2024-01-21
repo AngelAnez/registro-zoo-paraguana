@@ -8,8 +8,19 @@ router.get("/inicio", (req, res) => {
 })
 
 router.get("/dolar", async (req, res) => {
-    const bcv = await bcvDolar()
-    res.send(bcv._dolar)
+    // Consulta a la BDD
+    const customDolar = false
+    if (!customDolar){
+        try {
+            const bcv = await bcvDolar()
+            return res.send(bcv._dolar)
+        } catch (error) {
+            console.log("Ha ocurrido un error de conexión")
+        }
+    }
+    // Consulta a la BDD
+    const defaultDolar = "12"
+    res.send(defaultDolar)
 })
 
 module.exports = router
