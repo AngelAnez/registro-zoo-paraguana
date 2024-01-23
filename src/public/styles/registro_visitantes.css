@@ -37,14 +37,16 @@
     align-items: center;
 }
 .options-menu:hover{
-    background-color: #167346;
+    opacity: 40%;
     transition: 0.3s;
 }
 
 .options-menu-icon{
     width: 15%;
+    height: 15%;
     pointer-events: none;
     margin-left: 0.2rem;
+    color: white;
 }
 
 .options-menu-link{
@@ -52,10 +54,6 @@
     color: white;
     width: 80%;
     font-size: 1rem;
-}
-
-.options-menu-link:hover{
-    color: rgb(189, 189, 189);
 }
 
 .social-media{
@@ -74,6 +72,7 @@
     height: 6vh;
     cursor: pointer; /* Cambia el cursor a una mano señalando */
     transition: 0.3s;
+    color: white;
 }
 
 .social-media-img:hover{

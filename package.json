@@ -2,7 +2,7 @@
   "name": "registro_zoo",
   "version": "0.0.6",
   "description": "Sistema de Registro de Visitas del Zoo Paraguaná",
-  "main": "./src/app.js",
+  "source": "./src/app.js",
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js"

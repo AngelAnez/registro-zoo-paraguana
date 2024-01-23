@@ -6,6 +6,7 @@ const InicioRoutes = require("./routes/inicio.js")
 const PerfilRoutes = require("./routes/perfil.js")
 const RegistroRoutes = require("./routes/registro.js")
 const HistorialRoutes = require("./routes/historial.js")
+const EstadisticasRoutes = require("./routes/estadisticas.js")
 const AjustesRoutes = require("./routes/ajustes.js")
 
 const app = express()
@@ -25,6 +26,7 @@ app.use(InicioRoutes)
 app.use(PerfilRoutes)
 app.use(RegistroRoutes)
 app.use(HistorialRoutes)
+app.use(EstadisticasRoutes)
 app.use(AjustesRoutes)
 
 /* Archivos Estáticos*/

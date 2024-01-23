@@ -8,6 +8,9 @@
         <%- include('partials/header'); %>
 
         <form method="post" id="form_register" name="form_register" class="col-12" style="height: 90vh; display: flex; align-items: center;">
+            <!-- Evita que se envíe el Formulario con ENTER -->
+            <button type="submit" disabled class="none" aria-hidden="true"></button> 
+
             <article class="container-fluid row d-flex justify-content-center">
 
                 <!-- Pasos -->
@@ -232,5 +235,8 @@
             </article>
         </form>
     </main> 
-    <%- include('partials/foot'); %>
+
+    <%- include('partials/toast'); %>
+
+    <%- include('partials/foot', {v: v}); %>
     

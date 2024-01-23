@@ -13,67 +13,67 @@
                 <thead class="table-success">
                   <tr>
                     <% if (sort == "date" && order == "asc"){ %>
-                    <th scope="col"><a href="/historial?sort=date&order=dec" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Fecha de cada Visita (Orden Ascendente)">Fecha &uarr;</a></th>
+                    <th scope="col"><a href="/historial?sort=date&order=dec&pag=<%=pag%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Fecha de cada Visita (Orden Ascendente)">Fecha &uarr;</a></th>
                     <% } else if (sort == "date" && order == "dec"){ %>
-                    <th scope="col"><a href="/historial?sort=date&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Fecha de cada Visita (Orden Descendente)">Fecha &darr;</a></th>
+                    <th scope="col"><a href="/historial?sort=date&order=asc&pag=<%=pag%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Fecha de cada Visita (Orden Descendente)">Fecha &darr;</a></th>
                     <% } else { %>
-                    <th scope="col" ><a href="/historial?sort=date&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Fecha de cada Visita">Fecha</a></th>
+                    <th scope="col" ><a href="/historial?sort=date&order=asc&pag=<%=pag%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Fecha de cada Visita">Fecha</a></th>
                     <% } %>
 
                     <% if (sort == "time" && order == "asc"){ %>
-                    <th scope="col"><a href="/historial?sort=time&order=dec" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Hora de Llegada de cada Visita (Orden Ascendente)">Hora &uarr; </a></th>
+                    <th scope="col"><a href="/historial?sort=time&order=dec&pag=<%=pag%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Hora de Llegada de cada Visita (Orden Ascendente)">Hora &uarr; </a></th>
                     <% } else if (sort == "time" && order == "dec"){ %>
-                    <th scope="col"><a href="/historial?sort=time&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Hora de Llegada de cada Visita (Orden Descendente)">Hora &darr;</a></th>
+                    <th scope="col"><a href="/historial?sort=time&order=asc&pag=<%=pag%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Hora de Llegada de cada Visita (Orden Descendente)">Hora &darr;</a></th>
                     <% } else { %>
-                    <th scope="col"><a href="/historial?sort=time&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Hora de Llegada de cada Visita">Hora</a></th>
+                    <th scope="col"><a href="/historial?sort=time&order=asc&pag=<%=pag%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Hora de Llegada de cada Visita">Hora</a></th>
                     <% } %>
 
                     <% if (sort == "child" && order == "asc"){ %>
-                    <th scope="col"><a href="/historial?sort=child&order=dec" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Niños por Visita (Orden Ascendente)">Niños &uarr;</a></th>
+                    <th scope="col"><a href="/historial?sort=child&order=dec&pag=<%=pag%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Niños por Visita (Orden Ascendente)">Niños &uarr;</a></th>
                     <% } else if (sort == "child" && order == "dec"){ %>
-                    <th scope="col"><a href="/historial?sort=child&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Niños por Visita (Orden Descendente)">Niños &darr;</a></th>
+                    <th scope="col"><a href="/historial?sort=child&order=asc&pag=<%=pag%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Niños por Visita (Orden Descendente)">Niños &darr;</a></th>
                     <% } else { %>
-                    <th scope="col"><a href="/historial?sort=child&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Niños por Visita">Niños</a></th>
+                    <th scope="col"><a href="/historial?sort=child&order=asc&pag=<%=pag%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Niños por Visita">Niños</a></th>
                     <% } %>
 
                     <% if (sort == "adult" && order == "asc"){ %>
-                    <th scope="col"><a href="/historial?sort=adult&order=dec" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Adultos por Visita (Orden Ascendente)">Adultos &uarr;</a></th>
+                    <th scope="col"><a href="/historial?sort=adult&order=dec&pag=<%=pag%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Adultos por Visita (Orden Ascendente)">Adultos &uarr;</a></th>
                     <% } else if (sort == "adult" && order == "dec"){ %>
-                    <th scope="col"><a href="/historial?sort=adult&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Adultos por Visita (Orden Descendente)">Adultos &darr;</a></th>
+                    <th scope="col"><a href="/historial?sort=adult&order=asc&pag=<%=pag%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Adultos por Visita (Orden Descendente)">Adultos &darr;</a></th>
                     <% } else { %>
-                    <th scope="col"><a href="/historial?sort=adult&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Adultos por Visita">Adultos</a></th>
+                    <th scope="col"><a href="/historial?sort=adult&order=asc&pag=<%=pag%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Adultos por Visita">Adultos</a></th>
                     <% } %>
 
                     <% if (sort == "older" && order == "asc"){ %>
-                        <th scope="col"><a href="/historial?sort=older&order=dec" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Adultos Mayores por Visita (Orden Ascendente)">Adultos M. &uarr;</a></th>
+                        <th scope="col"><a href="/historial?sort=older&order=dec&pag=<%=pag%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Adultos Mayores por Visita (Orden Ascendente)">Adultos M. &uarr;</a></th>
                     <% } else if (sort == "older" && order == "dec"){ %>
-                        <th scope="col"><a href="/historial?sort=older&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Adultos Mayores por Visita (Orden Descendente)">Adultos M. &darr;</a></th>
+                        <th scope="col"><a href="/historial?sort=older&order=asc&pag=<%=pag%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Adultos Mayores por Visita (Orden Descendente)">Adultos M. &darr;</a></th>
                     <% } else { %>
-                        <th scope="col"><a href="/historial?sort=older&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Adultos Mayores por Visita">Adultos M.</a></th>
+                        <th scope="col"><a href="/historial?sort=older&order=asc&pag=<%=pag%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad de Adultos Mayores por Visita">Adultos M.</a></th>
                     <% } %>
 
                     <% if (sort == "method" && order == "asc"){ %>
-                        <th scope="col"><a href="/historial?sort=method&order=dec" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Método de Pago Utilizado (Orden Ascendente)">Método de Pago &uarr;</a></th>
+                        <th scope="col"><a href="/historial?sort=method&order=dec&pag=<%=pag%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Método de Pago Utilizado (Orden Ascendente)">Método de Pago &uarr;</a></th>
                     <% } else if (sort == "method" && order == "dec"){ %>
-                        <th scope="col"><a href="/historial?sort=method&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Método de Pago Utilizado (Orden Descendente)">Método de Pago &darr;</a></th>
+                        <th scope="col"><a href="/historial?sort=method&order=asc&pag=<%=pag%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Método de Pago Utilizado (Orden Descendente)">Método de Pago &darr;</a></th>
                     <% } else { %>
-                        <th scope="col"><a href="/historial?sort=method&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Método de Pago Utilizado">Método de Pago</a></th>
+                        <th scope="col"><a href="/historial?sort=method&order=asc&pag=<%=pag%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Método de Pago Utilizado">Método de Pago</a></th>
                     <% } %>
 
                     <% if (sort == "bolivares" && order == "asc"){ %>
-                        <th scope="col"><a href="/historial?sort=bolivares&order=dec" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Monto Total en Bolivares (Orden Ascendente)">Monto (Bs.) &uarr;</a></th>
+                        <th scope="col"><a href="/historial?sort=bolivares&order=dec&pag=<%=pag%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Monto Total en Bolivares (Orden Ascendente)">Monto (Bs.) &uarr;</a></th>
                     <% } else if (sort == "bolivares" && order == "dec"){ %>
-                        <th scope="col"><a href="/historial?sort=bolivares&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Monto Total en Bolivares (Orden Descendente)">Monto (Bs.) &darr;</a></th>
+                        <th scope="col"><a href="/historial?sort=bolivares&order=asc&pag=<%=pag%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Monto Total en Bolivares (Orden Descendente)">Monto (Bs.) &darr;</a></th>
                     <% } else { %>
-                        <th scope="col"><a href="/historial?sort=bolivares&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Monto Total en Bolivares">Monto (Bs.)</a></th>
+                        <th scope="col"><a href="/historial?sort=bolivares&order=asc&pag=<%=pag%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Monto Total en Bolivares">Monto (Bs.)</a></th>
                     <% } %>
 
                     <% if (sort == "dolar" && order == "asc"){ %>
-                        <th scope="col"><a href="/historial?sort=dolar&order=dec" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Monto Total en Dólares (Orden Ascendente)">Monto ($) &uarr;</a></th>
+                        <th scope="col"><a href="/historial?sort=dolar&order=dec&pag=<%=pag%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Monto Total en Dólares (Orden Ascendente)">Monto ($) &uarr;</a></th>
                     <% } else if (sort == "dolar" && order == "dec"){ %>
-                        <th scope="col"><a href="/historial?sort=dolar&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Monto Total en Dólares (Orden Descendente)">Monto ($) &darr;</a></th>
+                        <th scope="col"><a href="/historial?sort=dolar&order=asc&pag=<%=pag%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Monto Total en Dólares (Orden Descendente)">Monto ($) &darr;</a></th>
                     <% } else { %>
-                        <th scope="col"><a href="/historial?sort=dolar&order=asc" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Monto Total en Dólares">Monto ($)</a></th>
+                        <th scope="col"><a href="/historial?sort=dolar&order=asc&pag=<%=pag%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Monto Total en Dólares">Monto ($)</a></th>
                     <% } %>
                   </tr>
                 </thead>
@@ -149,10 +149,10 @@
               </table>
         </section>
 
-        <% if (pag == 10){ %>
+        <% if (pag == 1){ %>
             <% prevPag = 1 %>
         <% } else { %>
-            <% prevPag = (pag/10)-1 %>
+            <% prevPag = pag-1 %>
         <% } %>
         <ul class="pagination d-flex justify-content-center">
             <li class="page-item">
@@ -164,10 +164,10 @@
             <li class="page-item"><a class="page-link text-success fw-bold" href="/historial?pag=2">2</a></li>
             <li class="page-item"><a class="page-link text-success fw-bold" href="/historial?pag=3">3</a></li>
             <li class="page-item">
-              <a class="page-link" href="/historial?pag=<%=(pag/10)+1%>" aria-label="Next">
+              <a class="page-link" href="/historial?pag=<%=pag+1%>" aria-label="Next">
                 <span aria-hidden="true" class="text-success fw-bold">&raquo;</span>
               </a>
             </li>
 
     </main> 
-        <%- include('partials/foot'); %>
+        <%- include('partials/foot', {v: false}); %>

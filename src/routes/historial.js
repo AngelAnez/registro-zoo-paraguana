@@ -17,7 +17,7 @@ router.get("/historial", (req, res) => {
     const visitsData = showVisits(pag, sort, order)
     res.render("historial", {
         visitsData,
-        pag,
+        pag: pag/10,
         sort,
         order
     })
@@ -30,30 +30,8 @@ function showVisits(pag, sort, order){
         encoding: "utf-8"
     })    
     let visits = data.split("\n").filter(e => e != "").reverse()
-    visits = visits.filter((e, index) => {
-        if (index > pag-11 && index < pag){
-            return e
-        }
-    })
     visits = visits.map(visit => {
-        let visitInfo = visit.split(", ").map(info => {
-            info = info.split(": ")
-            return info[1]
-        })
-        return {
-            date: visitInfo[0],
-            time: visitInfo[1],
-            child: visitInfo[2],
-            adult: visitInfo[3],
-            older: visitInfo[4],
-            total: visitInfo[5],
-            dolar: visitInfo[6],
-            bolivares: visitInfo[7],
-            method: visitInfo[8],
-            infoMethod: visitInfo[9],
-            name: visitInfo[10],
-            telephone: visitInfo[11]
-        }
+        return JSON.parse(visit)
     })
     if (sort != "" && order != ""){
         if (order == "dec"){
@@ -95,6 +73,12 @@ function showVisits(pag, sort, order){
             })
         }
     }
+    visits = visits.filter((e, index) => {
+        if (index > pag-11 && index < pag){
+            return e
+        }
+    })
+    console.log(visits)
     return visits
 }
 
