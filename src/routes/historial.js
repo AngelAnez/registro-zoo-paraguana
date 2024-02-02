@@ -7,6 +7,7 @@ router.get("/historial", (req, res) => {
     let pag = 10
     let sort = "" // Puede ser cualquier propiedad de las visitas
     let order = "" // Puede ser asc o dec
+    let searchFilter = ""
     if (req.query.pag){
         pag = parseInt(req.query.pag)*10
     }
@@ -14,30 +15,45 @@ router.get("/historial", (req, res) => {
         sort = req.query.sort
         order = req.query.order
     }
-    const visitsData = showVisits(pag, sort, order)
+    if (req.query.filter){
+        searchFilter = req.query.filter.replaceAll(/[^a-zA-Z0-9áéíóúÁÉÍÓÚÑñ/.: ]+/g , "").toLowerCase()
+    }
+    const {visits, total} = showVisits(pag, sort, order, searchFilter)
     res.render("historial", {
-        visitsData,
+        visits,
+        total,
         pag: pag/10,
         sort,
-        order
+        order,
+        searchFilter
     })
 })
 
 const dirApp = path.normalize(__dirname + path.sep + "..")
 
-function showVisits(pag, sort, order){
+function showVisits(pag, sort, order, searchFilter){
     const data = fs.readFileSync(path.join(dirApp, "/data/visitas.txt"),{
         encoding: "utf-8"
     })    
-    let visits = data.split("\n").filter(e => e != "").reverse()
-    visits = visits.map(visit => {
+    let visits = data.split("\n").filter(e => e != "").reverse().map(visit => {
         return JSON.parse(visit)
     })
+
+    if (searchFilter != ""){
+        visits = visits.filter(visit => {
+            return Object.values(visit).join("").toLowerCase().includes(searchFilter)
+        })
+    }   
+
+    let totalData = visits.length
     if (sort != "" && order != ""){
         if (order == "dec"){
             visits.sort((a,b) => {
                 if (a[sort].includes(":")){
                     return comparingTime(a[sort],b[sort],order)
+                } 
+                if (a[sort].includes("/")){
+                    return comparingDate(a[sort],b[sort],order)
                 } 
                 if (a[sort].includes("i")){
                     if (a[sort] > b[sort]) {
@@ -58,6 +74,9 @@ function showVisits(pag, sort, order){
                 if (a[sort].includes(":")){
                     return comparingTime(a[sort],b[sort],order)
                 } 
+                if (a[sort].includes("/")){
+                    return comparingDate(a[sort],b[sort],order)
+                }
                 if (a[sort].includes("i")){
                     if (a[sort] > b[sort]) {
                         return 1;
@@ -78,27 +97,38 @@ function showVisits(pag, sort, order){
             return e
         }
     })
-    console.log(visits)
-    return visits
+    return {visits, total: totalData}
 }
 
 function comparingTime (a,b,order){
     let hours = [a, b]
     hours = hours.map(hour => {
         hour = hour.split(":")
-        hour[1].includes("pm") && (hour[0] = parseInt(hour[0]) + 12)
+        if (hour[1].includes("pm") && hour[0] != "12"){
+            hour[0] = parseInt(hour[0]) + 12
+        }
         hour[1] = hour[1].replaceAll(/ [a|p]m/g, "")
         hour[1] = parseInt(hour[1])
         hour = (hour[0] * 3600 + hour[1] * 60)
         return hour
     })
-    if (order === "dec"){
-        return hours[1] - hours[0]
+    return order === "asc" ? hours[0] - hours[1] : hours[1] - hours[0]
+}
+
+function comparingDate (a,b,order){
+    let dates = [a, b]
+    dates = dates.map(date => {
+        date = date.split("/")
+        return {day: date[0], month: date[1], year: date[2]}
+    })
+
+    if (dates[0].year != dates[1].year){
+        return order === "asc" ? dates[0].year - dates[1].year : dates[1].year - dates[0].year
     }
-    if (order == "asc"){
-        return hours[0] - hours[1]
-    }
-    
+    if (dates[0].month != dates[1].month){
+        return order === "asc" ? dates[0].month - dates[1].month : dates[1].month - dates[0].month
+    }            
+    return order === "asc" ? dates[0].day - dates[1].day : dates[1].day - dates[0].day
 }
 
 module.exports = router

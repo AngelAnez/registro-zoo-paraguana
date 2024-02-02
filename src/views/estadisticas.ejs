@@ -3,11 +3,74 @@
 
     <!-- Menu Lateral y Main-->
     <%- include('partials/sidebar'); %>
-    <main class="container-fluid row d-flex p-0 m-0" style="height: 100vh;">
+    <main class="container-fluid row d-flex p-0 m-0 vh-100">
         <!-- Encabezado -->
         <%- include('partials/header'); %>
         
-        <h2>Estadísticas</h2>
+        <article class="container" style="height: 90vh;">
+            <section class="row mb-4">
+                <div class="offset-1 col-3 px-3 py-4">
+                    <div class="bg-light-subtle rounded-4 shadow px-1 pt-2 pb-3 d-flex justify-content-between align-items-center">
+                        <label class="d-flex flex-column align-items-center w-50 text-center">
+                            <p class="text-primary fs-2 m-0 fw-semibold"><%= child+adult+older %></p>
+                            <small class="text-secondary">Visitantes</small>
+                        </label>
+                        <figure class="text-secondary d-flex justify-content-center w-50 mb-0">
+                            <i class="w-50 h-50" data-lucide="users" alt="visitantes-icon"></i>
+                        </figure>
+                    </div>
+                </div>
+                <div class="offset-1 col-3 px-3 py-4">
+                    <div class="bg-light-subtle rounded-4 shadow px-1 pt-2 pb-3 d-flex justify-content-between align-items-center">
+                        <label class="d-flex flex-column align-items-center w-50 text-center">
+                            <p class="text-primary fs-2 m-0 fw-semibold"><%= incomeBs %></p>
+                            <small class="text-secondary">Ingresos (Bs.)</small>
+                        </label>
+                        <figure class="text-secondary d-flex justify-content-center w-50 mb-0">
+                            <i class="w-50 h-50" data-lucide="circle-dollar-sign" alt="circle-dolar-icon"></i>
+                        </figure>
+                    </div>
+                </div>
+                <div class="col-3 px-3 py-4">
+                    <div class="bg-light-subtle rounded-4 shadow px-1 pt-2 pb-3 d-flex justify-content-between align-items-center">
+                        <label class="d-flex flex-column align-items-center w-50 text-center">
+                            <p class="text-primary fs-2 m-0 fw-semibold"><%= incomeDolar %></p>
+                            <small class="text-secondary">Ingresos ($)</small>
+                        </label>
+                        <figure class="text-secondary d-flex justify-content-center w-50 mb-0">
+                            <i class="w-50 h-50" data-lucide="circle-dollar-sign" alt="circle-dolar-icon"></i>
+                        </figure>
+                    </div>
+                </div>
+            </section>
+            <section class="row">
+                <figure class="offset-1 col-3 bg-light-subtle rounded-4 shadow">
+                    <div class="chart-container d-flex justify-content-center" style="position: relative;">
+                        <canvas id="dailyChart"></canvas>
+                    </div>
+                </figure>
+                <figure class="offset-1 col-6 bg-light-subtle rounded-4 shadow">
+                    <div class="chart-container d-flex justify-content-center" style="position: relative;">
+                        <canvas id="monthChart"></canvas>
+                    </div>
+                </figure>
+            </section>
+
+            <ul class="d-none">
+                <li id="childValue" value="<%= child %>"></li>
+                <li id="adultValue" value="<%= adult %>"></li>
+                <li id="olderValue" value="<%= older %>"></li>
+                <li id="monthlyIncomeValue"><%= monthlyIncome %></li>
+            </ul>
+
+
+        </article>
+
+
+
 
     </main>
-        <%- include('partials/foot', {v: false}); %>
+    <script src="./public/plugins/chartjs/chart.min.js"></script>
+    <script src="./public/js/graficas.js"></script>
+    <%- include('partials/scripts', {v: false})%>
+    <%- include('partials/foot'); %>
