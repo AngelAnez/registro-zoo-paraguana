@@ -11,7 +11,7 @@
             <section class="row mb-4">
                 <div class="offset-1 col-3 px-3 py-4">
                     <div class="bg-light-subtle rounded-4 shadow px-1 pt-2 pb-3 d-flex justify-content-between align-items-center">
-                        <label class="d-flex flex-column align-items-center w-50 text-center">
+                        <label class="d-flex flex-column align-items-center w-50 text-center ms-3">
                             <p class="text-primary fs-2 m-0 fw-semibold"><%= child+adult+older %></p>
                             <small class="text-secondary">Visitantes</small>
                         </label>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="offset-1 col-3 px-3 py-4">
                     <div class="bg-light-subtle rounded-4 shadow px-1 pt-2 pb-3 d-flex justify-content-between align-items-center">
-                        <label class="d-flex flex-column align-items-center w-50 text-center">
+                        <label class="d-flex flex-column align-items-center w-50 text-center ms-3 ">
                             <p class="text-primary fs-2 m-0 fw-semibold"><%= incomeBs %></p>
                             <small class="text-secondary">Ingresos (Bs.)</small>
                         </label>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-3 px-3 py-4">
                     <div class="bg-light-subtle rounded-4 shadow px-1 pt-2 pb-3 d-flex justify-content-between align-items-center">
-                        <label class="d-flex flex-column align-items-center w-50 text-center">
+                        <label class="d-flex flex-column align-items-center w-50 text-center ms-3">
                             <p class="text-primary fs-2 m-0 fw-semibold"><%= incomeDolar %></p>
                             <small class="text-secondary">Ingresos ($)</small>
                         </label>
@@ -45,13 +45,15 @@
             </section>
             <section class="row">
                 <figure class="offset-1 col-3 bg-light-subtle rounded-4 shadow">
-                    <div class="chart-container d-flex justify-content-center" style="position: relative;">
-                        <canvas id="dailyChart"></canvas>
+                    <h6 class="text-secondary-emphasis text-center fw-bold py-1">Cantidad de Personas según su Edad</h6>
+                    <div class="chart-container d-flex justify-content-center align-items-center" style="position: relative;">
+                        <canvas id="dailyChart" aria-label="dailyChart" role="img"></canvas>
                     </div>
                 </figure>
                 <figure class="offset-1 col-6 bg-light-subtle rounded-4 shadow">
+                    <h6 class="text-secondary-emphasis text-center fw-bold py-1">Ingresos en Bolívares por Mes</h6>
                     <div class="chart-container d-flex justify-content-center" style="position: relative;">
-                        <canvas id="monthChart"></canvas>
+                        <canvas id="monthChart" aria-label="monthChart" role="img"></canvas>
                     </div>
                 </figure>
             </section>

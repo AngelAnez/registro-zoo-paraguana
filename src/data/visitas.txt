@@ -35,3 +35,6 @@
 {"date":"02/02/2024","time":"6:39 pm","child":"1","adult":"0","older":"0","total":"1","dolar":"1","bolivares":"36.29","method":"Efectivo","infoMethod":"Bolivar","name":"Pepito Martinez","telephone":"04267779944"}
 {"date":"02/02/2024","time":"7:06 pm","child":"12","adult":"5","older":"4","total":"21","dolar":"26","bolivares":"943.54","method":"Transferencia","infoMethod":"7716","name":"Juan Medina","telephone":"04148859457"}
 {"date":"02/02/2024","time":"7:08 pm","child":"50","adult":"10","older":"3","total":"63","dolar":"73","bolivares":"2649.17","method":"Pago Móvil","infoMethod":"2164","name":"Escuela Don José","telephone":"02694684495"}
+{"date":"03/02/2024","time":"12:04 pm","child":"3","adult":"0","older":"2","total":"5","dolar":"5","bolivares":"181.45","method":"Transferencia","infoMethod":"7542","name":"Samil Guevara","telephone":"04121645161"}
+{"date":"03/02/2024","time":"12:25 pm","child":"10","adult":"2","older":"3","total":"15","dolar":"17","bolivares":"616.93","method":"Pago Móvil","infoMethod":"4612","name":"Escuela Amiguitos del Señor","telephone":"02693516151"}
+{"date":"03/02/2024","time":"12:45 pm","child":"567","adult":"331","older":"50","total":"948","dolar":"1279","bolivares":"46414.91","method":"Transferencia","infoMethod":"1234","name":"Ecofest 2024","telephone":"0"}

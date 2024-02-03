@@ -16,6 +16,14 @@ new Chart(dailyChart, {
           data: [child, adult, older],
         }
       ]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+          position: 'bottom'
+      }
+    }
   }
 });
 
@@ -29,5 +37,13 @@ new Chart(monthChart, {
           data: monthlyIncome,
         }
       ]
+  },
+  options: {
+    resposive: true,
+    plugins: {
+      legend: {
+          position: 'bottom'
+      }
+    }
   }
 });

@@ -17,9 +17,9 @@ router.get("/estadisticas", (req, res) => {
     }
     let date = req.query.date ?? `${day}/${month}/${year}`
 
-    let {childStats, adultStats, olderStats, bs, dolar} = showStats(date, year)
+    let {childStats, adultStats, olderStats, bs, dolar, yearIncome} = showStats(date, year)
 
-    let monthlyIncome = [bs]
+    let monthlyIncome = yearIncome
 
     let child = childStats ?? 0
     let adult = adultStats ?? 0
@@ -48,6 +48,16 @@ function showStats(date, year){
     })
 
     visits = visits.filter(visit => {
+        return Object.values(visit).join("").toLowerCase().includes("/" + year)
+    })
+
+    let yearIncome = visits.reduce((acc, val) => {
+        let month = parseInt(val.date.split("/")[1])
+        acc[month-1]+= parseInt(val.bolivares)
+        return acc
+    }, [0,0,0,0,0,0,0,0,0,0,0,0])
+
+    visits = visits.filter(visit => {
         return Object.values(visit).join("").toLowerCase().includes(date)
     })
     
@@ -56,7 +66,7 @@ function showStats(date, year){
             acc.child += parseInt(val.child)
             acc.adult += parseInt(val.adult)
             acc.older += parseInt(val.older)
-            acc.bolivares += parseInt(val.bolivares)
+            acc.bolivares += parseFloat(val.bolivares)
             acc.dolar += parseInt(val.dolar)
 
             return acc
@@ -65,7 +75,7 @@ function showStats(date, year){
 
         let {child, adult, older, bolivares, dolar} = dateStats
 
-        return {childStats: child, adultStats: adult, olderStats: older, bs: bolivares, dolar}
+        return {childStats: child, adultStats: adult, olderStats: older, bs: parseFloat(bolivares).toFixed(2), dolar, yearIncome}
 
     } else {
         return {}
