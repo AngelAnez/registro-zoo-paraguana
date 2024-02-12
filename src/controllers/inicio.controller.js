@@ -1,13 +1,10 @@
-const { Router } = require("express")
-const {bcvDolar} = require("bcv-divisas")
+import { bcvDolar } from "bcv-divisas"
 
-const router = Router()
-
-router.get("/inicio", (req, res) => {
+export const renderInicio = (req, res) => {
     res.render("inicio")
-})
+}
 
-router.get("/dolar", async (req, res) => {
+export const getDolarValue = async (req, res) => {
     // Consulta a la BDD
     const customDolar = false
     if (!customDolar){
@@ -21,6 +18,4 @@ router.get("/dolar", async (req, res) => {
     // Consulta a la BDD
     const defaultDolar = "12"
     res.send(defaultDolar)
-})
-
-module.exports = router
+}

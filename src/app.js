@@ -1,19 +1,20 @@
-const express = require("express")
-const path = require("path")
-require("ejs")
+import express from "express"
+import path from "path"
+import "ejs"
+import { DIR_APP } from "./global.js"
 
-const InicioRoutes = require("./routes/inicio.js")
-const PerfilRoutes = require("./routes/perfil.js")
-const RegistroRoutes = require("./routes/registro.js")
-const HistorialRoutes = require("./routes/historial.js")
-const EstadisticasRoutes = require("./routes/estadisticas.js")
-const AjustesRoutes = require("./routes/ajustes.js")
+import InicioRoutes from "./routes/inicio.routes.js"
+import PerfilRoutes from "./routes/perfil.routes.js"
+import RegistroRoutes from "./routes/registro.routes.js"
+import HistorialRoutes from "./routes/historial.routes.js"
+import EstadisticasRoutes from "./routes/estadisticas.routes.js"
+import AjustesRoutes from "./routes/ajustes.routes.js"
 
 const app = express()
 
 app.set("port", 8040)
 app.set("view engine", "ejs")
-app.set("views", path.join(__dirname, "views"))
+app.set("views", path.join(DIR_APP, "views"))
 
 /* Middlewares para formateo de datos*/ 
 
@@ -31,7 +32,7 @@ app.use(AjustesRoutes)
 
 /* Archivos Estáticos*/
 
-app.use("/public", express.static(path.join(__dirname, "public")))
+app.use("/public", express.static(path.join(DIR_APP, "public")))
 
 app.listen(app.get("port"))
 console.log(`Server on port ${app.get("port")}`)

@@ -1,9 +1,8 @@
-const { Router } = require("express")
-const path = require("path")
-const fs = require("fs")
-const router = Router()
+import path from "path"
+import fs from "fs"
+import { DIR_APP } from "../global.js";
 
-router.get("/historial", (req, res) => {
+export const renderHistorial = (req, res) => {
     let pag = 10
     let sort = "" // Puede ser cualquier propiedad de las visitas
     let order = "" // Puede ser asc o dec
@@ -27,12 +26,10 @@ router.get("/historial", (req, res) => {
         order,
         searchFilter
     })
-})
+}
 
-const dirApp = path.normalize(__dirname + path.sep + "..")
-
-function showVisits(pag, sort, order, searchFilter){
-    const data = fs.readFileSync(path.join(dirApp, "/data/visitas.txt"),{
+const showVisits = (pag, sort, order, searchFilter) => {
+    const data = fs.readFileSync(path.join(DIR_APP, "/data/visitas.txt"),{
         encoding: "utf-8"
     })    
     let visits = data.split("\n").filter(e => e != "").reverse().map(visit => {
@@ -130,5 +127,3 @@ function comparingDate (a,b,order){
     }            
     return order === "asc" ? dates[0].day - dates[1].day : dates[1].day - dates[0].day
 }
-
-module.exports = router
