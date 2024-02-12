@@ -3,6 +3,7 @@ import path from "path"
 import "ejs"
 import { DIR_APP } from "./global.js"
 
+import LoginRoutes from "./routes/login.routes.js"
 import InicioRoutes from "./routes/inicio.routes.js"
 import PerfilRoutes from "./routes/perfil.routes.js"
 import RegistroRoutes from "./routes/registro.routes.js"
@@ -23,6 +24,7 @@ app.use(express.urlencoded({extended: true}));
 
 /* Rutas del Servidor */
 
+app.use(LoginRoutes)
 app.use(InicioRoutes)
 app.use(PerfilRoutes)
 app.use(RegistroRoutes)
@@ -33,6 +35,9 @@ app.use(AjustesRoutes)
 /* Archivos Estáticos*/
 
 app.use("/public", express.static(path.join(DIR_APP, "public")))
+app.use((req, res, next) => {
+    res.redirect("/login")
+})
 
 app.listen(app.get("port"))
 console.log(`Server on port ${app.get("port")}`)
