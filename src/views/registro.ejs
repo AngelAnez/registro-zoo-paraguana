@@ -5,7 +5,7 @@
     <%- include('partials/sidebar'); %>
     <main class="container-fluid row d-flex p-0 m-0" style="height: 100vh;">   
         <!-- Encabezado -->
-        <%- include('partials/header'); %>
+        <%- include('partials/header', {username: username}); %>
 
         <form method="post" id="form_register" name="form_register" class="col-12" style="height: 90vh; display: flex; align-items: center;">
             <!-- Evita que se envíe el Formulario con ENTER -->

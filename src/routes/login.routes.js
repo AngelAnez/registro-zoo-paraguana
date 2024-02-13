@@ -1,11 +1,10 @@
 import { Router } from "express";
-import { renderLogin, verifyUser } from "../controllers/login.controller.js";
-import { renderRegistro } from "../controllers/registro.controller.js";
+import { activeSession, renderLogin, verifyUser } from "../controllers/login.controller.js";
 
 const router = Router()
 
-router.get("/login", renderLogin)
+router.get("/login", activeSession, renderLogin)
 
-router.post("/login", verifyUser)
+router.post("/login", verifyUser, router.get("/login", renderLogin))
 
 export default router

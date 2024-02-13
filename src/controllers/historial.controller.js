@@ -3,6 +3,7 @@ import fs from "fs"
 import { DIR_APP } from "../global.js";
 
 export const renderHistorial = (req, res) => {
+    const user = JSON.parse(fs.readFileSync(path.join(DIR_APP, "/data/userSession.txt"), {encoding: "utf-8"}))
     let pag = 10
     let sort = "" // Puede ser cualquier propiedad de las visitas
     let order = "" // Puede ser asc o dec
@@ -19,6 +20,7 @@ export const renderHistorial = (req, res) => {
     }
     const {visits, total} = showVisits(pag, sort, order, searchFilter)
     res.render("historial", {
+        username: user.username,
         visits,
         total,
         pag: pag/10,

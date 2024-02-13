@@ -1,7 +1,13 @@
 import { bcvDolar } from "bcv-divisas"
+import fs from "fs";
+import path from "path";
+import { DIR_APP } from "../global.js";
 
 export const renderInicio = (req, res) => {
-    res.render("inicio")
+    const user = JSON.parse(fs.readFileSync(path.join(DIR_APP, "/data/userSession.txt"), {encoding: "utf-8"}))
+    res.render("inicio", {
+        username: user.username
+    })
 }
 
 export const getDolarValue = async (req, res) => {

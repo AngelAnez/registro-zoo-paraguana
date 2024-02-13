@@ -38,3 +38,4 @@
 {"date":"03/02/2024","time":"12:04 pm","child":"3","adult":"0","older":"2","total":"5","dolar":"5","bolivares":"181.45","method":"Transferencia","infoMethod":"7542","name":"Samil Guevara","telephone":"04121645161"}
 {"date":"03/02/2024","time":"12:25 pm","child":"10","adult":"2","older":"3","total":"15","dolar":"17","bolivares":"616.93","method":"Pago Móvil","infoMethod":"4612","name":"Escuela Amiguitos del Señor","telephone":"02693516151"}
 {"date":"03/02/2024","time":"12:45 pm","child":"567","adult":"331","older":"50","total":"948","dolar":"1279","bolivares":"46414.91","method":"Transferencia","infoMethod":"1234","name":"Ecofest 2024","telephone":"0"}
+{"date":"12/02/2024","time":"7:30 pm","child":"12","adult":"1","older":"1","total":"14","dolar":"15","bolivares":"544.80","method":"Transferencia","infoMethod":"4224","name":"Hice el Login","telephone":"1212121212121"}

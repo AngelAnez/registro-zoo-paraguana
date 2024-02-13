@@ -3,7 +3,8 @@ import fs from "fs"
 import { DIR_APP } from "../global.js";
 
 export const renderRegistro = (req, res) => {
-    newVisitAdded(res, false)
+    const user = JSON.parse(fs.readFileSync(path.join(DIR_APP, "/data/userSession.txt"), {encoding: "utf-8"}))
+    newVisitAdded(res, false, user.username)
 }
 
 export const addNewVisit = (req, res) => {
@@ -38,8 +39,8 @@ export const addNewVisit = (req, res) => {
     newVisitAdded(res, true)
 }
 
-const newVisitAdded = (res, hasNewVisit) => {
+const newVisitAdded = (res, hasNewVisit, username) => {
     res.render("registro", {
-        hasNewVisit
+        hasNewVisit, username
     })
 }

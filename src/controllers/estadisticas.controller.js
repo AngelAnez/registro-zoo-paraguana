@@ -1,40 +1,49 @@
-import path from "path"
-import fs from "fs"
+import path from "path";
+import fs from "fs";
 import { DIR_APP } from "../global.js";
 
 export const renderEstadisticas = (req, res) => {
-    let createDate = new Date()
-    let day = createDate.getDate();
-    let month = createDate.getMonth() + 1;
-    let year = createDate.getFullYear();
-    
-    if (day < 10){
-        day = "0" + day
-    }
-    if (month < 10){
-        month = "0" + month
-    }
-    let date = req.query.date ?? `${day}/${month}/${year}`
-
-    let {childStats, adultStats, olderStats, bs, dolar, yearIncome} = showStats(date, year)
-
-    let monthlyIncome = yearIncome
-
-    let child = childStats ?? 0
-    let adult = adultStats ?? 0
-    let older = olderStats ?? 0
-    let incomeBs = bs ?? 0
-    let incomeDolar = dolar ?? 0
-
-    res.render("estadisticas", {
-        child,
-        adult,
-        older,
-        incomeBs,
-        incomeDolar,
-        monthlyIncome
+  const user = JSON.parse(
+    fs.readFileSync(path.join(DIR_APP, "/data/userSession.txt"), {
+      encoding: "utf-8",
     })
-}
+  );
+  let createDate = new Date();
+  let day = createDate.getDate();
+  let month = createDate.getMonth() + 1;
+  let year = createDate.getFullYear();
+
+  if (day < 10) {
+    day = "0" + day;
+  }
+  if (month < 10) {
+    month = "0" + month;
+  }
+  let date = req.query.date ?? `${day}/${month}/${year}`;
+
+  let { childStats, adultStats, olderStats, bs, dolar, yearIncome } = showStats(
+    date,
+    year
+  );
+
+  let monthlyIncome = yearIncome;
+
+  let child = childStats ?? 0;
+  let adult = adultStats ?? 0;
+  let older = olderStats ?? 0;
+  let incomeBs = bs ?? 0;
+  let incomeDolar = dolar ?? 0;
+
+  res.render("estadisticas", {
+    username: user.username,
+    child,
+    adult,
+    older,
+    incomeBs,
+    incomeDolar,
+    monthlyIncome,
+  });
+};
 
 const showStats = (date, year) => {
   const data = fs.readFileSync(path.join(DIR_APP, "/data/visitas.txt"), {

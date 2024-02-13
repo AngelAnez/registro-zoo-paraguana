@@ -18,8 +18,12 @@
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 </script>
 
-
-
 <script src="
 https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js
 "></script>
+
+<script> // Evita que los usuarios puedan retroceder con el navegador
+  if (history.forward(1)){
+    location.replace(history.forward(1))
+  }
+</script>
