@@ -1,244 +1,53 @@
-<%- include('partials/head', {title : "Registro de Visitantes", js : "main.js"}); %>
-<body style="background-color: rgb(234, 243, 250); display: flex;">
-
-    <!-- Menu Lateral y Main-->
-    <%- include('partials/sidebar'); %>
-    <main class="container-fluid row d-flex p-0 m-0" style="height: 100vh;">   
-        <!-- Encabezado -->
-        <%- include('partials/header', {username: username}); %>
-
-        <form method="post" id="form_register" name="form_register" class="col-12" style="height: 90vh; display: flex; align-items: center;">
-            <!-- Evita que se envíe el Formulario con ENTER -->
-            <button type="submit" disabled class="none" aria-hidden="true"></button> 
-
-            <article class="container-fluid row d-flex justify-content-center">
-
-                <!-- Pasos -->
-                <aside class="col-2 p-0 d-flex flex-column steps-menu" style="border: 1px solid black; border-right: 1px solid transparent; border-top-left-radius: 10px; border-bottom-left-radius: 10px; background-color:#198754;">
-                    <section class="col-12 d-flex align-items-center mt-5" style="height: 10vh; padding-left: 1rem;">
-                        <div id = "step_1_circle" class="circle_steps_on">
-                            <small>1</small>
-                        </div>
-                        <div class="text-white" style="margin-left: 1rem;">
-                            Visitantes
-                        </div>
-                    </section>
-                    <section class="col-12 d-flex align-items-center" style="height: 10vh; padding-left: 1rem;">
-                        <div id = "step_2_circle" class="circle_steps">
-                            <small>2</small>
-                        </div>
-                        <div class="text-white" style="margin-left: 1rem;">
-                            Pago
-                        </div>
-                    </section>
-                    <section class="col-12 d-flex align-items-center" style="height: 10vh; padding-left: 1rem;">
-                        <div id = "step_3_circle" class="circle_steps">
-                            <small>3</small>
-                        </div>
-                        <div class="text-white" style="margin-left: 1rem;">
-                            Representante
-                        </div>
-                    </section>
-                    <section class="col-12 d-flex align-items-center" style="height: 10vh; padding-left: 1rem;">
-                        <div id = "step_4_circle" class="circle_steps">
-                            <small>4</small>
-                        </div>
-                        <div class="text-white" style="margin-left: 1rem;">
-                            Confirmación
-                        </div>
-                    </section>
-                </aside>
-
-                <!-- Paso 1: Cantidad de Visitantes -->
-                <article id="registrar_visitantes_paso_1" class="col-7 row text-center p-0 m-0" style="border-bottom-right-radius: 10px; border-top-right-radius: 10px; border: 1px solid black; background-color: white; box-shadow: 4px 0px 20px -5px;">
-                    <section class="col-11 text-start m-3" style="border-top-right-radius: 10px;">
-                        <h2 class="step-title">Visitantes</h2>
-                        <p class="step-info">Ingrese la cantidad de visitantes de acuerdo a su rango de edad.</p>
-                    </section>
-                    <label for="cant_nino" class="col-5 d-flex align-items-center mt-1">
-                        <figure class="col-5 m-0">
-                            <img class="visit_img" src="./public/assets/img/child.webp" alt="child">
-                        </figure>
-                        <div class="col-7 text-start">
-                            <span class="visit_text">Niños</span>
-                            <input type="number" class="form-control p-0" id="cant_nino" autocomplete="off" oninput="totalFamily()" style="text-align: center; margin-top: 0.4rem;" name="cant_nino" min="0"/>
-                        </div>
-                    </label>
+<%- include('partials/head', {title : "Registro", css : "login-registro.css", js : "login.js"}); %>
+<body
+  style="
+    background-image: url(../public/assets/img/zoo-entry.jpeg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    " class="vh-100"
+>
+<main class="h-100 w-100 d-flex align-items-center justify-content-center" style="background-color: rgba(0, 0, 0, 0.315);">
+    <section class="text-bg-light rounded-2 shadow w-25">
         
-                    <label for="cant_adult" class="offset-1 col-5 d-flex align-items-center mt-1">
-                        <figure class="col-5 m-0">
-                            <img class="visit_img" src="./public/assets/img/adults.webp" alt="adult">
-                        </figure>
-                        <div class="col-7 text-start">
-                            <span class="visit_text">Adultos</span>
-                            <input type="number" class="form-control p-0" id="cant_adult" autocomplete="off" oninput="totalFamily()" style="text-align: center; margin-top: 0.4rem;" name="cant_adult" min="0"/>
-                        </div>
-                    </label>
-        
-                    <label for="cant_mayores" class="col-5 d-flex align-items-center mt-4">
-                        <figure class="col-5 m-0">
-                            <img class="visit_img" src="./public/assets/img/older.webp" alt="older">
-                        </figure>
-                        <div class="col-7 text-start">
-                            <span class="visit_text">Adultos Mayores</span>
-                            <input type="number" class="form-control p-0" id="cant_mayores" autocomplete="off" oninput="totalFamily()" style="text-align: center; margin-top: 0.4rem;" name="cant_mayores" min="0"/>
-                        </div>
-                    </label>
+        <form class="row g-0 py-2 has-validation" method="post" action="/registro">
+            <h4 class="offset-1 col-10 px-0 py-2 user-select-none">Registrar Usuario</h4>
+            <section class="offset-1 col-10 px-0 py-2">
+              <label for="firstNameRegistro" class="form-label user-select-none">Nombre</label>
+              <input type="text" class="form-control w-100" id="firstNameRegistro" name="firstname" required autocomplete="off">
+            </section>
+            <section class="offset-1 col-10 px-0 py-2">
+              <label for="lastnameRegistro" class="form-label user-select-none">Apellido</label>
+              <input type="text" class="form-control w-100" id="lastnameRegistro" name="lastname" required autocomplete="off">
+            </section>
+            <section class="offset-1 col-10 px-0 py-2">
+              <label for="usernameRegistro" class="form-label user-select-none">Nombre de Usuario</label>
+              <input type="text" class="form-control w-100" id="usernameRegistro" name="username" required autocomplete="off">
+            </section>
+            <section class="offset-1 col-10 px-0 py-2 ">
+              <label for="passwordRegistro" class="form-label user-select-none">Contraseña</label>
+              <div class="d-flex align-items-center justify-content-between position-relative">
+                <input type="password" class="form-control w-100 pe-5" id="passwordRegistro" name="password" required autocomplete="off">
+                <i data-lucide="eye" class="passwordIconContainer position-absolute end-0 mx-3" id="passwordHideIcon" onclick="hidePassword('passwordRegistro')"></i>
+              </div>
+            </section>
+            <section class="offset-1 col-10 px-0 py-2">
+              <label for="emailRegistro" class="form-label user-select-none">Correo Electrónico</label>
+              <input type="email" class="form-control w-100" id="emailRegistro" name="email" required autocomplete="off">
+            </section>
+            <section class="offset-1 col-10 px-0 py-2">
+              <button class="btn btn-success" type="submit">Registrarse</button>
+            </section>
+            <section class="offset-1 col-10 px-0 py-2">
+                <p class="user-select-none">¿Ya tienes una cuenta? <a href="/login">Inicia Sesión</a></p>
+            </section>
+          </form>
+    </section>
+</main>
 
-                    <label for="total_family" class="offset-1 col-5 d-flex align-items-center mt-4">
-                        <figure class="col-5 m-0">
-                            <img class="visit_img" src="./public/assets/img/family.webp" alt="older">
-                        </figure>
-                        <div class="col-7 text-start">
-                            <span class="visit_text">Total</span>
-                            <input type="text" class="form-control p-0" readonly id="total_family" value=0 style="text-align: center; margin-top: 0.4rem;" name="total_family" required/>
-                        </div>
-                    </label>
-                    <section class="row text-center mt-1 mb-4">
-                        <p id="validacion_paso_1" class="validando" style="padding: 1rem;">Complete los campos requeridos.</p>
-                        <div class="col-12">
-                            <button type="button" onclick="validacion_paso_1()" class="btn btn-success" style= "width: 15%; padding: 6px; font-weight: bold;">Siguiente</button>
-                        </div>
-                    </section>
-                </article>
 
-                <!-- Paso 2: Datos de Pago -->
-                <article id="registrar_visitantes_paso_2" class="col-7 row text-center p-0 m-0" style="display: none; border-bottom-right-radius: 10px; border-top-right-radius: 10px; border: 1px solid black; background-color: white; box-shadow: 4px 0px 20px -5px; font-size: 1rem;">
-                    <section class="col-11 text-start m-3" style="border-top-right-radius: 10px;">
-                        <h2 class="step-title">Pago</h2>
-                        <p class="step-info">Ingrese los datos de pago.</p>
-                    </section>
-                    <label for="monto_dolares" class="col-5 d-flex align-items-center mt-1">
-                        <figure class="col-5 m-0">
-                            <img class="visit_img" src="./public/assets/img/united-states.webp" alt="Monto en Dólares">
-                        </figure>
-                        <div class="col-7 text-start">
-                            <span class="visit_text">Monto en Dolares</span>
-                            <input readonly type="text" id="monto_dolares" class="form-control p-0 text-center" name="monto_dolares" style="margin-top: 0.4rem;"/>
-                        </div>
-                    </label>
-        
-                    <label for="monto_bolivares" class="offset-1 col-5 d-flex align-items-center mt-1">
-                        <figure class="col-5 m-0">
-                            <img class="visit_img" src="./public/assets/img/venezuela.webp" alt="adult">
-                        </figure>
-                        <div class="col-7 text-start">
-                            <span class="visit_text">Monto en Bolívares</span>
-                            <input readonly type="text" id="monto_bolivares" class="form-control p-0 text-center" name="monto_bolivares" style="margin-top: 0.4rem;"/>
-                        </div>
-                    </label>
-        
-                    <label for="cant_mayores" class="col-5 d-flex align-items-center mt-4">
-                        <figure class="col-5 m-0">
-                            <img class="visit_img" src="./public/assets/img/pay-method.webp" alt="adult">
-                        </figure>
-                        <div class="col-7 text-start">
-                            <span class="visit_text">Método de Pago</span>
-                            <select name="metodo_pago" id="metodo_pago" class="form-select" style="padding-left: 0.4rem; padding-top: 0; padding-bottom: 0; margin-top: 0.4rem;" onchange="payment_method()">
-                                <option selected disabled></option>
-                                <option>Transferencia</option>
-                                <option>Pago Móvil</option>
-                                <option>Efectivo</option>
-                            </select>
-                        </div>
-                    </label>
 
-                    <label for="info_payment_method" id="info_payment_method" class="offset-2 col-5 d-flex align-items-center mt-4">
-                    </label>
 
-                    <section class="row text-center mt-1 mb-4">
-                        <p id="validacion_paso_2" class="validando" style="padding: 1rem;">Complete los campos requeridos.</p>
-                        <div class="col-12 d-flex justify-content-center" style="gap: 2rem;">
-                            <button type="button" onclick="change_step(1)" class="btn btn-secondary" style= "width: 15%; padding: 6px; font-weight: bold;">Atrás</button>
-                            <button type="button" onclick="validacion_paso_2()" class="btn btn-success" style= "width: 15%; padding: 6px; font-weight: bold;">Siguiente</button>
-                        </div>
-                    </section>
-                </article>
-
-                <!-- Paso 3: Datos del Representante -->
-                <article id="registrar_visitantes_paso_3" class="col-7 row text-center p-0 m-0" style="display: none; border-bottom-right-radius: 10px; border-top-right-radius: 10px; border: 1px solid black; background-color: white; box-shadow: 4px 0px 20px -5px;">
-                    <section class="col-11 text-start m-3" style="border-top-right-radius: 10px;">
-                        <h2 class="step-title">Representante</h2>
-                        <p class="step-info">Ingrese los datos del representante de la visita.</p>
-                    </section>
-                    <label for="nombre_representante" class="offset-2 col-6 d-flex align-items-center mt-1">
-                        <figure class="col-4 m-0">
-                            <img class="visit_img" src="./public/assets/img/representante.webp" alt="represent_name">
-                        </figure>
-                        <div class="col-8 text-start">
-                            <span class="visit_text">Nombre</span>
-                            <input type="tel" class="form-control p-0" id="nombre_representante" autocomplete="off" style="text-align: center; margin-top: 0.4rem;" name="nombre_representante" oninput="clean_validation(3,true,represent_name);"/>
-                        </div>
-                    </label>
-        
-                    <label for="telefono_representante" class="offset-2 col-6 d-flex align-items-center mt-4">
-                        <figure class="col-4 m-0">
-                            <img class="visit_img" src="./public/assets/img/telephone.webp" alt="represent_phone">
-                        </figure>
-                        <div class="col-8 text-start">
-                            <span class="visit_text">Teléfono</span>
-                            <input type="text" class="form-control p-0" id="telefono_representante" autocomplete="off" style="text-align: center; margin-top: 0.4rem;" name="telefono_representante" oninput="clean_validation(3,true,represent_phone);"/>
-                        </div>
-                    </label>
-                    <section class="row text-center mt-1 mb-4">
-                        <p id="validacion_paso_3" class="validando" style="padding: 1rem;">Complete los campos requeridos.</p>
-                        <div class="col-12 d-flex justify-content-center" style="gap: 2rem;">
-                            <button type="button" onclick="change_step(2)" class="btn btn-secondary" style= "width: 15%; padding: 6px; font-weight: bold;">Atrás</button>
-                            <button type="button" onclick="validacion_paso_3()" class="btn btn-success" style= "width: 15%; padding: 6px; font-weight: bold;">Siguiente</button>
-                        </div>
-                    </section>
-                </article>
-
-                <!-- Paso 4: Confirmación -->
-                <section id="registrar_visitantes_paso_4" class="col-7 row text-center p-0 m-0" style="display: none; border-bottom-right-radius: 10px; border-top-right-radius: 10px; border: 1px solid black; background-color: white; box-shadow: 4px 0px 20px -5px;">
-                    <section class="col-11 text-start m-3" style="border-top-right-radius: 10px;">
-                        <h2 class="step-title">Confirmación</h2>
-                        <p class="step-info">Verifique los datos ingresados.</p>
-                    </section>
-
-                    <section class="offset-2 col-4 d-flex flex-column">
-                        <label class="factura_campo">Fecha:</label>
-                        <label class="factura_campo">Hora:</label>
-                        <label class="factura_campo">Niños:</label>
-                        <label class="factura_campo">Adultos:</label>
-                        <label class="factura_campo">Adultos Mayores:</label>
-                        <label class="factura_campo">Representante:</label>
-                        <label class="factura_campo">Método de Pago:</label>
-                        <label class="factura_campo" id="factura_extra">Número de Referencia:</label>
-                        <label class="factura_campo">Monto:</label>
-                    </section>
-
-                    <section class="col-4 d-flex flex-column">
-                        <span class="factura_datos" id="factura_fecha"></span>
-                        <input type="text" name="date" class="d-none" id="dateInput">
-                        <span class="factura_datos" id="factura_hora"></span>
-                        <input type="text" name="time" class="d-none" id="timeInput">
-                        <span class="factura_datos" id="factura_nino"></span>
-                        <span class="factura_datos" id="factura_adult"></span>
-                        <span class="factura_datos" id="factura_elder"></span>
-                        <span class="factura_datos" id="factura_represent"></span>
-                        <span class="factura_datos" id="factura_metodo"></span>
-                        <span class="factura_datos" id="factura_info_extra"></span>
-                        <span class="factura_datos factura_monto" id="factura_monto"></span>
-                    </section>
-
-                    <section class="row text-center mt-1 mb-4">
-                        <p id="validacion_paso_3" class="validando" style="padding: 1rem;">Complete los campos requeridos.</p>
-                        <div class="col-12 d-flex justify-content-center" style="gap: 2rem;">
-                            <button type="button" onclick="change_step(3)" class="btn btn-secondary" style= "width: 15%; padding: 6px; font-weight: bold;">Atrás</button>
-                            <button type="submit" onclick="change_step(1)" class="btn btn-success" style= "width: 15%; padding: 6px; font-weight: bold;">Finalizar</button>
-                        </div>
-                    </section>
-                    
-                </article>      
-
-            </article>
-        </form>
-    </main> 
-
-    <%- include('partials/toast'); %>
-
-    <%- include('partials/scripts', {hasNewVisit: hasNewVisit})%>
-
-    <%- include('partials/foot'); %>
-    
+  <%- include('partials/scripts', {hasNewVisit: false})%> <%-
+  include('partials/foot'); %>
+</body>

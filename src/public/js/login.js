@@ -1,6 +1,7 @@
-const passwordLogin = document.getElementById("passwordLogin")
 
-const hidePassword = () => {
+
+const hidePassword = (id) => {
+    const passwordLogin = document.getElementById(id)
     let passwordHideIcon = document.getElementById("passwordHideIcon")
 
     if (passwordHideIcon.getAttribute("data-lucide") === "eye"){
@@ -18,4 +19,5 @@ const resetValidators = () => {
     document.getElementById("usernameLogin").classList.remove("is-invalid")
     document.getElementById("passwordLogin").classList.remove("is-invalid")
     document.getElementById("invalidUserText").classList.remove("is-invalid")
+    document.getElementById("passwordHideIcon").classList.remove("visually-hidden")
 }

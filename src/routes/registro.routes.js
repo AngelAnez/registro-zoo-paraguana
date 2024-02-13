@@ -1,11 +1,9 @@
-import { Router } from "express"
-import { renderRegistro, addNewVisit } from "../controllers/registro.controller.js";
-import { userConnected } from "../middlewares/userConnected.js";
+import { Router } from "express";
+import { renderRegistro } from "../controllers/registro.controller.js";
+import { activeSession } from "../middlewares/activeSession.js";
 
 const router = Router()
 
-router.get("/registro", userConnected, renderRegistro)
-
-router.post("/registro", userConnected, addNewVisit)
+router.get("/registro", activeSession, renderRegistro)
 
 export default router

@@ -1,4 +1,4 @@
-<%- include('partials/head', {title : "Login", js : "login.js"}); %>
+<%- include('partials/head', {title : "Login", css : "login-registro.css", js : "login.js"}); %>
 <body
   style="
     background-image: url(../public/assets/img/zoo-entry.jpeg);
@@ -18,9 +18,9 @@
             </div>
             <div class="offset-1 col-10 px-0 py-2 ">
               <label for="passwordLogin" class="form-label user-select-none">Contraseña</label>
-              <div class="d-flex align-items-center justify-content-between">
-                <input type="password" class="form-control w-100 <% if (invalidUser) { %> is-invalid <% } %>" id="passwordLogin" name="password" oninput="resetValidators()" required autocomplete="off">
-                <span data-lucide="eye" class="w-auto px-2" id="passwordHideIcon" onclick="hidePassword()"></span>
+              <div class="d-flex align-items-center justify-content-between position-relative">
+                <input type="password" class="form-control w-100 pe-5 <% if (invalidUser) { %> is-invalid <% } %>" id="passwordLogin" name="password" oninput="resetValidators()" required autocomplete="off">
+                <i data-lucide="eye" class="passwordIconContainer position-absolute end-0 mx-3 <% if (invalidUser) { %> visually-hidden <% } %>" id="passwordHideIcon" onclick="hidePassword('passwordLogin')"></i>
               </div>
             <div id="invalidUserText" class="<% if (invalidUser) { %> is-invalid <% } %>" aria-describedby="validationLoginFeedback"></div>
             <div id="validationLoginFeedback" class="invalid-feedback user-select-none">

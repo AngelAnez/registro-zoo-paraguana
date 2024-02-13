@@ -1,9 +1,8 @@
-import fs from "fs";
-import path from "path";
-import { DIR_APP } from "../global.js";
+import { getUserSession } from "../models/userSession.js";
 
 export const userConnected = (req, res, next) => {
-    if (fs.readFileSync(path.join(DIR_APP, "/data/userSession.txt")).length == 0){
+    const data = getUserSession()
+    if (JSON.stringify(data) === "{}"){
         console.log("Un usuario sin autorización ha intentado acceder a " + req.path)
         return res.redirect("/login")
     }

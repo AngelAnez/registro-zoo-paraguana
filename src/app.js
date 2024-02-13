@@ -4,9 +4,10 @@ import "ejs"
 import { DIR_APP } from "./global.js"
 
 import LoginRoutes from "./routes/login.routes.js"
+import RegistroRoutes from "./routes/registro.routes.js"
 import InicioRoutes from "./routes/inicio.routes.js"
 import PerfilRoutes from "./routes/perfil.routes.js"
-import RegistroRoutes from "./routes/registro.routes.js"
+import VisitantesRoutes from "./routes/visitantes.routes.js"
 import HistorialRoutes from "./routes/historial.routes.js"
 import EstadisticasRoutes from "./routes/estadisticas.routes.js"
 import AjustesRoutes from "./routes/ajustes.routes.js"
@@ -25,9 +26,10 @@ app.use(express.urlencoded({extended: true}));
 /* Rutas del Servidor */
 
 app.use(LoginRoutes)
+app.use(RegistroRoutes)
 app.use(InicioRoutes)
 app.use(PerfilRoutes)
-app.use(RegistroRoutes)
+app.use(VisitantesRoutes)
 app.use(HistorialRoutes)
 app.use(EstadisticasRoutes)
 app.use(AjustesRoutes)
