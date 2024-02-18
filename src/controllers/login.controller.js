@@ -1,32 +1,33 @@
-import fs from "fs";
-import path from "path";
-import { DIR_APP } from "../global.js";
+import { getUsers } from "../models/users.js";
+import { postUserSession } from "../models/userSession.js";
 
 export const renderLogin = (req, res) => {
-    res.render("login", {
-        invalidUser: false
-    })
-}
+  res.render("login", {
+    invalidUser: false,
+  });
+};
 
 export const verifyUser = (req, res) => {
-    const {username, password} = req.body
+  const { username, password } = req.body;
 
-    const data = fs.readFileSync(path.join(DIR_APP,"/data/users.txt"), {encoding: "utf-8"})
+  const data = getUsers();
 
-    let userValidated = data.split("\n").filter(e => e != "").find(user => {
-        user = JSON.parse(user)
-        if (user.username === username && user.password === password){
-            return user
-        }
-    })
+  let userValidated = data
+    .split("\n")
+    .filter((e) => e != "")
+    .find((user) => {
+      user = JSON.parse(user);
+      if (user.username === username && user.password === password) {
+        return user;
+      }
+    });
 
-    if (userValidated) {
-        fs.writeFileSync(path.join(DIR_APP,"/data/userSession.txt"), userValidated)
-        res.redirect("/registro")
-    } else{
-        res.render("login", {
-            invalidUser: true
-        })
-    }
-
-}
+  if (userValidated) {
+    postUserSession(userValidated);
+    res.redirect("/registro");
+  } else {
+    res.render("login", {
+      invalidUser: true,
+    });
+  }
+};

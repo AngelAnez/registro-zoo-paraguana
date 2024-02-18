@@ -1,3 +1,3 @@
 export const renderPerfil = (req, res) => {
-    res.render("perfil")
-}
+  res.render("perfil");
+};

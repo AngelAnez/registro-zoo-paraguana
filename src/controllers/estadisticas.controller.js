@@ -1,25 +1,11 @@
-import path from "path";
-import fs from "fs";
-import { DIR_APP } from "../global.js";
+import { getUserSession } from "../models/userSession.js";
+import { getTodayDate } from "../middlewares/todayDate.js";
+import { getVisits } from "../models/visits.js";
 
 export const renderEstadisticas = (req, res) => {
-  const user = JSON.parse(
-    fs.readFileSync(path.join(DIR_APP, "/data/userSession.txt"), {
-      encoding: "utf-8",
-    })
-  );
-  let createDate = new Date();
-  let day = createDate.getDate();
-  let month = createDate.getMonth() + 1;
-  let year = createDate.getFullYear();
-
-  if (day < 10) {
-    day = "0" + day;
-  }
-  if (month < 10) {
-    month = "0" + month;
-  }
-  let date = req.query.date ?? `${day}/${month}/${year}`;
+  const user = getUserSession();
+  let date = req.query.date ?? getTodayDate();
+  let year = date.split("/")[2];
 
   let { childStats, adultStats, olderStats, bs, dolar, yearIncome } = showStats(
     date,
@@ -46,9 +32,7 @@ export const renderEstadisticas = (req, res) => {
 };
 
 const showStats = (date, year) => {
-  const data = fs.readFileSync(path.join(DIR_APP, "/data/visitas.txt"), {
-    encoding: "utf-8",
-  });
+  const data = getVisits();
   let visits = data
     .split("\n")
     .filter((e) => e != "")

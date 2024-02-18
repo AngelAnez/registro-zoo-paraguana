@@ -1,5 +1,5 @@
 export const renderRegistro = (req, res) => {
-    res.render("registro", {
-        invalidUser: false
-    })
-}
+  res.render("registro", {
+    invalidUser: false,
+  });
+};

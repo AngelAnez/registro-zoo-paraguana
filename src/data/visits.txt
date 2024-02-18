@@ -39,3 +39,6 @@
 {"date":"03/02/2024","time":"12:25 pm","child":"10","adult":"2","older":"3","total":"15","dolar":"17","bolivares":"616.93","method":"Pago Móvil","infoMethod":"4612","name":"Escuela Amiguitos del Señor","telephone":"02693516151"}
 {"date":"03/02/2024","time":"12:45 pm","child":"567","adult":"331","older":"50","total":"948","dolar":"1279","bolivares":"46414.91","method":"Transferencia","infoMethod":"1234","name":"Ecofest 2024","telephone":"0"}
 {"date":"12/02/2024","time":"7:30 pm","child":"12","adult":"1","older":"1","total":"14","dolar":"15","bolivares":"544.80","method":"Transferencia","infoMethod":"4224","name":"Hice el Login","telephone":"1212121212121"}
+{"date":"13/02/2024","time":"7:04 pm","child":"5","adult":"2","older":"1","total":"8","dolar":"10","bolivares":"363.20","method":"Efectivo","infoMethod":"Dolar","name":"El Día","telephone":"1322021"}
+{"date":"17/02/2024","time":"11:18 pm","child":"3","adult":"0","older":"5","total":"8","dolar":"8","bolivares":"290.72","method":"Transferencia","infoMethod":"424242","name":"Probando Modelos","telephone":"11112222211122"}
+{"date":"18/02/2024","time":"1:34 pm","child":"2","adult":"2","older":"2","total":"6","dolar":"8","bolivares":"290.72","method":"Pago Móvil","infoMethod":"1241","name":"Probando Script","telephone":"11114457575"}
