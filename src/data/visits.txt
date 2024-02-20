@@ -44,3 +44,7 @@
 {"date":"18/02/2024","time":"1:34 pm","child":"2","adult":"2","older":"2","total":"6","dolar":"8","bolivares":"290.72","method":"Pago Móvil","infoMethod":"1241","name":"Probando Script","telephone":"11114457575"}
 {"date":"20/02/2024","time":"12:06 pm","child":"2","adult":"2","older":"2","total":"6","dolar":"8","bolivares":"289.92","method":"Pago Móvil","infoMethod":"2","name":"dydfhdfh","telephone":"12"}
 {"date":"20/02/2024","time":"2:00 pm","child":"3","adult":"1","older":"4","total":"8","dolar":"9","bolivares":"326.16","method":"Transferencia","infoMethod":"121212","name":"Ta lita la pagina de ajustes","telephone":"121212121212"}
+{"date":"20/02/2024","time":"4:04 pm","child":"1","adult":"1","older":"1","total":"3","dolar":"4","bolivares":"145.20","method":"Pago Móvil","infoMethod":"12121","name":"Probando nuevas alertas","telephone":"454545454"}
+{"date":"20/02/2024","time":"4:13 pm","child":"2","adult":"2","older":"1","total":"5","dolar":"7","bolivares":"254.10","method":"Efectivo","infoMethod":"Dolar","name":"Probando Mejoras en Visitas","telephone":"454545454"}
+{"date":"20/02/2024","time":"4:13 pm","child":"2","adult":"1","older":"2","total":"5","dolar":"6","bolivares":"217.80","method":"Efectivo","infoMethod":"Bolivar","name":"Prueba Visitantesss","telephone":"4"}
+{"date":"20/02/2024","time":"4:26 pm","child":"2","adult":"2","older":"1","total":"5","dolar":"7","bolivares":"254.10","method":"Transferencia","infoMethod":"47","name":"Probando Alertas","telephone":"42"}

@@ -1,10 +1,10 @@
 import { Router } from "express"
-import { renderVisitantes, addNewVisit } from "../controllers/visitantes.controller.js";
+import { getVisitantes, addNewVisit } from "../controllers/visitantes.controller.js";
 import { userConnected } from "../middlewares/userConnected.js";
 
 const router = Router()
 
-router.get("/visitantes", userConnected, renderVisitantes)
+router.get("/visitantes", userConnected, getVisitantes)
 
 router.post("/visitantes", userConnected, addNewVisit)
 

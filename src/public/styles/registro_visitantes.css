@@ -126,10 +126,6 @@
 
 /* Menú de Pasos*/
 
-.steps-menu{
-    user-select: none;
-}
-
 .circle_steps{
     display: flex; 
     justify-content: center; 
@@ -150,6 +146,7 @@
     background-color: rgb(255, 255, 255); 
     height: 50%; 
     width: 20%;
+    color: black;
 }
 
 /* Cantidad de Visitantes */

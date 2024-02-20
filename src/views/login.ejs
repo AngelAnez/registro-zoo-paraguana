@@ -1,45 +1,82 @@
-<%- include('partials/head', {title : "Login", css : "login-registro.css", js : "login.js"}); %>
+<%- include('partials/head', {title : "Login", css : "login-registro.css", js
+:"login.js"}); %>
 <body
   style="
     background-image: url(../public/assets/img/zoo-entry.jpeg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    " class="vh-100"
+  "
+  class="vh-100"
 >
-<main class="h-100 w-100 d-flex align-items-center justify-content-center" style="background-color: rgba(0, 0, 0, 0.315);">
+  <main
+    class="h-100 w-100 d-flex align-items-center justify-content-center"
+    style="background-color: rgba(0, 0, 0, 0.315)"
+  >
     <section class="text-bg-light rounded-2 shadow w-25">
-        
-        <form class="row g-0 py-2 has-validation" method="post" action="/login">
-            <h4 class="offset-1 col-10 px-0 py-2 user-select-none">Inicio de Sesión</h4>
-            <div class="offset-1 col-10 px-0 py-2">
-              <label for="usernameLogin" class="form-label user-select-none">Nombre de Usuario</label>
-              <input type="text" class="form-control w-100 <% if (invalidUser) { %> is-invalid <% } %>" id="usernameLogin" name="username" oninput="resetValidators()" required autocomplete="off">
-            </div>
-            <div class="offset-1 col-10 px-0 py-2 ">
-              <label for="passwordLogin" class="form-label user-select-none">Contraseña</label>
-              <div class="d-flex align-items-center justify-content-between position-relative">
-                <input type="password" class="form-control w-100 pe-5 <% if (invalidUser) { %> is-invalid <% } %>" id="passwordLogin" name="password" oninput="resetValidators()" required autocomplete="off">
-                <i data-lucide="eye" class="passwordIconContainer position-absolute end-0 mx-3 <% if (invalidUser) { %> visually-hidden <% } %>" id="passwordHideIcon" onclick="hidePassword('passwordLogin')"></i>
-              </div>
-            <div id="invalidUserText" class="<% if (invalidUser) { %> is-invalid <% } %>" aria-describedby="validationLoginFeedback"></div>
-            <div id="validationLoginFeedback" class="invalid-feedback user-select-none">
-                El nombre de usuario o la contraseña son incorrectos.
-            </div>
-            </div>
-            <div class="offset-1 col-10 px-0 py-2">
-              <button class="btn btn-success" type="submit">Iniciar Sesión</button>
-            </div>
-            <div class="offset-1 col-10 px-0 py-2">
-                <p class="user-select-none">¿No tienes una cuenta? <a href="/registro">Regístrate</a></p>
-            </div>
-          </form>
+      <form class="row g-0 py-2 has-validation" method="post" action="/login">
+        <h4 class="offset-1 col-10 px-0 py-2 user-select-none">
+          Inicio de Sesión
+        </h4>
+        <div class="offset-1 col-10 px-0 py-2">
+          <label for="usernameLogin" class="form-label user-select-none"
+            >Nombre de Usuario</label
+          >
+          <input
+            type="text"
+            class="form-control w-100 <% if (invalidUser) { %> is-invalid <% } %>"
+            id="usernameLogin"
+            name="username"
+            oninput="resetValidators()"
+            required
+            autocomplete="off"
+          />
+        </div>
+        <div class="offset-1 col-10 px-0 py-2">
+          <label for="passwordLogin" class="form-label user-select-none"
+            >Contraseña</label
+          >
+          <div
+            class="d-flex align-items-center justify-content-between position-relative"
+          >
+            <input
+              type="password"
+              class="form-control w-100 pe-5 <% if (invalidUser) { %> is-invalid <% } %>"
+              id="passwordLogin"
+              name="password"
+              oninput="resetValidators()"
+              required
+              autocomplete="off"
+            />
+            <i
+              data-lucide="eye"
+              class="passwordIconContainer position-absolute end-0 mx-3 <% if (invalidUser) { %> visually-hidden <% } %>"
+              id="passwordHideIcon"
+              onclick="hidePassword('passwordLogin')"
+            ></i>
+          </div>
+          <div
+            id="invalidUserText"
+            class="<% if (invalidUser) { %> is-invalid <% } %>"
+            aria-describedby="validationLoginFeedback"
+          ></div>
+          <div
+            id="validationLoginFeedback"
+            class="invalid-feedback user-select-none"
+          >
+            El nombre de usuario o la contraseña son incorrectos.
+          </div>
+        </div>
+        <div class="offset-1 col-10 px-0 py-2">
+          <button class="btn btn-success" type="submit">Iniciar Sesión</button>
+        </div>
+        <div class="offset-1 col-10 px-0 py-2">
+          <p class="user-select-none">
+            ¿No tienes una cuenta? <a href="/registro">Regístrate</a>
+          </p>
+        </div>
+      </form>
     </section>
-</main>
-
-
-
-
-  <%- include('partials/scripts', {hasNewVisit: false})%> <%-
-  include('partials/foot'); %>
+  </main>
+  <%- include('partials/scripts')%> <%- include('partials/foot'); %>
 </body>

@@ -1,12 +1,36 @@
-<header class="container-fluid col-12" style="background-color: rgb(255, 255, 255); height: 10vh; box-shadow: rgb(216, 216, 216) 1px 2px 2px 1px;">
-    <ul class="header-list row">
-        <li class="col-3 header-list-option">
-            <img class="col-2 tasa-dolar-img" src="./public/assets/img/dolar.webp" alt="dolar-icon">
-            <h6>Tasa del Día: <span id="dolar_today" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Precio del Dolar en Bolívares"></span></h6>
-        </li>
-        <li class="col-3 header-list-option text-end justify-content-end">
-            <a id="user-name" href="/perfil" class="user-name"><%= username %></a>
-            <img id="user-img" class="col-2" src="./public/assets/img/rafa.webp" alt="profile-icon">
-        </li>
-    </ul>
-</header> 
+<header
+  class="container-fluid col-12"
+  style="
+    background-color: rgb(255, 255, 255);
+    height: 10vh;
+    box-shadow: rgb(216, 216, 216) 1px 2px 2px 1px;
+  "
+>
+  <ul class="header-list row">
+    <li class="col-3 header-list-option">
+      <img
+        class="col-2 tasa-dolar-img"
+        src="./public/assets/img/dolar.webp"
+        alt="dolar-icon"
+      />
+      <h6>
+        Tasa del Día:
+        <span
+          id="dolar_today"
+          data-bs-toggle="tooltip"
+          data-bs-placement="right"
+          data-bs-title="Precio del Dolar en Bolívares"
+        ></span>
+      </h6>
+    </li>
+    <li class="col-3 header-list-option text-end justify-content-end">
+      <a id="user-name" href="/perfil" class="user-name"><%= username %></a>
+      <img
+        id="user-img"
+        class="col-2"
+        src="./public/assets/img/rafa.webp"
+        alt="profile-icon"
+      />
+    </li>
+  </ul>
+</header>

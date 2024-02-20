@@ -14,38 +14,22 @@
             <article class="container-fluid row d-flex justify-content-center">
 
                 <!-- Pasos -->
-                <aside class="col-2 p-0 d-flex flex-column steps-menu" style="border: 1px solid black; border-right: 1px solid transparent; border-top-left-radius: 10px; border-bottom-left-radius: 10px; background-color:#198754;">
-                    <section class="col-12 d-flex align-items-center mt-5" style="height: 10vh; padding-left: 1rem;">
-                        <div id = "step_1_circle" class="circle_steps_on">
-                            <small>1</small>
-                        </div>
-                        <div class="text-white" style="margin-left: 1rem;">
-                            Visitantes
-                        </div>
+                <aside class="col-2 container-fluid m-0 pb-5 px-0 d-flex flex-column justify-content-center text-bg-success user-select-none border-black rounded-start-4 gap-4">
+                    <section class="d-flex ps-3 justify-content-start align-items-center gap-2">
+                        <small id="step_1_circle" class="d-flex align-items-center justify-content-center text-bg-light border border-white rounded-circle px-3 py-2">1</small>
+                        <p class="text-white p-0 d-flex align-items-center mb-0">Visitantes</p>
                     </section>
-                    <section class="col-12 d-flex align-items-center" style="height: 10vh; padding-left: 1rem;">
-                        <div id = "step_2_circle" class="circle_steps">
-                            <small>2</small>
-                        </div>
-                        <div class="text-white" style="margin-left: 1rem;">
-                            Pago
-                        </div>
+                    <section class="d-flex ps-3 justify-content-start align-items-center gap-2">
+                        <small id="step_2_circle" class="d-flex align-items-center justify-content-center text-bg-success border border-white rounded-circle px-3 py-2">2</small>
+                        <p class="text-white p-0 d-flex align-items-center mb-0">Pago</p>
                     </section>
-                    <section class="col-12 d-flex align-items-center" style="height: 10vh; padding-left: 1rem;">
-                        <div id = "step_3_circle" class="circle_steps">
-                            <small>3</small>
-                        </div>
-                        <div class="text-white" style="margin-left: 1rem;">
-                            Representante
-                        </div>
+                    <section class="d-flex ps-3 justify-content-start align-items-center gap-2">
+                        <small id="step_3_circle" class="d-flex align-items-center justify-content-center text-bg-success border border-white rounded-circle px-3 py-2">3</small>
+                        <p class="text-white p-0 d-flex align-items-center mb-0">Representante</p>
                     </section>
-                    <section class="col-12 d-flex align-items-center" style="height: 10vh; padding-left: 1rem;">
-                        <div id = "step_4_circle" class="circle_steps">
-                            <small>4</small>
-                        </div>
-                        <div class="text-white" style="margin-left: 1rem;">
-                            Confirmación
-                        </div>
+                    <section class="d-flex ps-3 justify-content-start align-items-center gap-2">
+                        <small id="step_4_circle" class="d-flex align-items-center justify-content-center text-bg-success border border-white rounded-circle px-3 py-2">4</small>
+                        <p class="text-white p-0 d-flex align-items-center mb-0">Confirmación</p>
                     </section>
                 </aside>
 
@@ -236,9 +220,10 @@
         </form>
     </main> 
 
-    <%- include('partials/alert'); %>
+    <%- include('partials/scripts')%>
 
-    <%- include('partials/scripts', {showAlert: hasNewVisit})%>
-
-    <%- include('partials/foot'); %>
+    <%- include('partials/alert', {messageAlert, typeAlert}); %>    
+    <%- include('partials/alertScript.ejs', {showAlert})%>
+    
+<%- include('partials/foot'); %>
     

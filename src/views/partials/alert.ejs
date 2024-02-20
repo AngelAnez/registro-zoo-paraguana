@@ -1,12 +1,21 @@
-<div class="toast-container position-fixed bottom-0 end-0 p-3">
-    <div id="visitFormAlert" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-      <section class="toast-header text-bg-<%=typeAlert%> user-select-none">
-        <img data-lucide="paw-print" class="me-2" alt="alert-icon">
-        <strong class="me-auto">Zoológico Paraguaná</strong>
-        <button type="button" data-bs-dismiss="toast" aria-label="Close" data-lucide="x"></button>
-      </section>
-      <section class="toast-body user-select-none">
-        <%= messageAlert %>
-      </section>
-    </d>
-</div>
+<article class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div
+    id="alertInfo"
+    class="toast"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
+    <section class="toast-header text-bg-<%=typeAlert%> user-select-none">
+      <img data-lucide="paw-print" class="me-2" alt="alert-icon" />
+      <strong class="me-auto">Zoológico Paraguaná</strong>
+      <button
+        type="button"
+        data-bs-dismiss="toast"
+        aria-label="Close"
+        data-lucide="x"
+      ></button>
+    </section>
+    <section class="toast-body user-select-none"><%= messageAlert %></section>
+  </div>
+</article>

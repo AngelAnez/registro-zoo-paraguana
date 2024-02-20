@@ -1,9 +1,19 @@
 import { getUserSession } from "../models/userSession.js";
 import { postVisits } from "../models/visits.js";
 
-export const renderVisitantes = (req, res) => {
+export const getVisitantes = (req, res) => {
+  renderVisitantes(res, { showAlert: false, messageAlert: "", typeAlert: "" });
+};
+
+export const renderVisitantes = (res, alert) => {
   const user = getUserSession();
-  newVisitAdded(res, false, user.username);
+  const { showAlert, messageAlert, typeAlert } = alert;
+  res.render("visitantes", {
+    username: user.username,
+    showAlert,
+    messageAlert,
+    typeAlert
+  });
 };
 
 export const addNewVisit = (req, res) => {
@@ -37,16 +47,12 @@ export const addNewVisit = (req, res) => {
     telephone: telefono_representante,
   };
 
-  contenido = JSON.stringify(contenido);
-  contenido += "\n";
+  contenido = JSON.stringify(contenido) + "\n";
   postVisits(contenido);
 
-  newVisitAdded(res, true);
-};
-
-const newVisitAdded = (res, hasNewVisit, username) => {
-  res.render("visitantes", {
-    hasNewVisit,
-    username,
+  renderVisitantes(res, {
+    showAlert: true,
+    messageAlert: "Los visitantes han sido guardados exitosamente",
+    typeAlert: "success",
   });
 };
