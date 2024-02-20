@@ -42,3 +42,5 @@
 {"date":"13/02/2024","time":"7:04 pm","child":"5","adult":"2","older":"1","total":"8","dolar":"10","bolivares":"363.20","method":"Efectivo","infoMethod":"Dolar","name":"El Día","telephone":"1322021"}
 {"date":"17/02/2024","time":"11:18 pm","child":"3","adult":"0","older":"5","total":"8","dolar":"8","bolivares":"290.72","method":"Transferencia","infoMethod":"424242","name":"Probando Modelos","telephone":"11112222211122"}
 {"date":"18/02/2024","time":"1:34 pm","child":"2","adult":"2","older":"2","total":"6","dolar":"8","bolivares":"290.72","method":"Pago Móvil","infoMethod":"1241","name":"Probando Script","telephone":"11114457575"}
+{"date":"20/02/2024","time":"12:06 pm","child":"2","adult":"2","older":"2","total":"6","dolar":"8","bolivares":"289.92","method":"Pago Móvil","infoMethod":"2","name":"dydfhdfh","telephone":"12"}
+{"date":"20/02/2024","time":"2:00 pm","child":"3","adult":"1","older":"4","total":"8","dolar":"9","bolivares":"326.16","method":"Transferencia","infoMethod":"121212","name":"Ta lita la pagina de ajustes","telephone":"121212121212"}

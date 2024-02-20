@@ -11,56 +11,72 @@
             <section class="border-bottom w-100 text-center text-bg-success rounded-top-3 py-1">
                 <h2 class="user-select-none">Ajustes Generales</h2>
             </section>
-            <form class="w-100">
+            <form class="w-100" method="post">
                 <section class="d-flex flex-column justify-content-center align-items-center w-100">
                     <ul class="w-100 p-2 d-flex flex-column gap-1">
                         <li class="container row">
-                            <p class="offset-1 col-6 p-0 fw-bold my-2 user-select-none">Buscar el valor del dólar en el BCV</p>
+                            <section class="offset-1 col-6 p-0 fw-bold my-2 user-select-none">
+                                <label for="internetDolarValue">Buscar el valor del dólar en el BCV</label>
+                            </section>
                             <section class="col-5 my-2 px-2">
-                                <input class="form-check m-0" type="checkbox" name="internetDolarValue" id="internetDolarValue">
+                                <input class="form-check m-0" type="checkbox" name="internetDolarValue" id="internetDolarValue" 
+                                <% if (internetDolarValue == "on") { %>
+                                    checked
+                                <% } %> 
+                                >
                                 <sub class="user-select-none lh-base">Determina si se desea buscar por internet la tasa actual del dolar en el BCV</sub>
                             </section>
                         </li>
                         <li class="container row">
-                            <p class="offset-1 col-6 p-0 fw-bold my-2 user-select-none">Valor del dólar</p>
+                            <section class="offset-1 col-6 p-0 fw-bold my-2 user-select-none">
+                                <label for="defaultDolarValue">Valor del dólar</label>
+                            </section>
                             <section class="col-5 my-2 px-2 d-flex flex-column gap-2">
                                 <div class="w-75 position-relative">
-                                    <input class="form-text w-75 text-dark ps-1 ps-1" type="number" min="1" step="any" required name="defaultDolarValue" id="defaultDolarValue">
-                                    <span class="position-absolute end-25 ms-1 mt-1">Bs.</span>
+                                    <input class="form-text w-75 text-dark ps-1 ps-1" type="number" min="1" step="any" required name="defaultDolarValue" id="defaultDolarValue" value="<%=defaultDolarValue%>">
+                                    <span class="position-absolute end-25 ms-1 mt-1 user-select-none">Bs.</span>
                                 </div>
                                 <sub class="user-select-none lh-base">Valor del dólar en bolívares que toma el sistema por defecto</sub>
                             </section>
                         </li>
+                          
                         <li class="container row">
-                            <p class="offset-1 col-6 p-0 fw-bold my-2 user-select-none">Entrada de Niños (2 - 9 años)</p>
+                            <section class="offset-1 col-6 p-0 fw-bold my-2 user-select-none">
+                                <label for="childTicketPrice">Entrada de Niños (2 - 9 años)</label>
+                            </section>
                             <section class="col-5 my-2 px-2 d-flex flex-column gap-2 position-relative">
                                 <div class="w-75 position-relative">
-                                    <input class="form-text w-75 text-dark ps-1" type="number" min="1" step="any" required name="childTicketPrice" id="childTicketPrice">
-                                    <span class="position-absolute end-25 ms-1 mt-1">$</span>
+                                    <input class="form-text w-75 text-dark ps-1" type="number" min="1" step="any" required name="childTicketPrice" id="childTicketPrice" value="<%=childTicketPrice%>">
+                                    <span class="position-absolute end-25 ms-1 mt-1 user-select-none">$</span>
                                 </div>
                                 <sub class="user-select-none lh-base">Valor de la entrada de cada niño en dólares</sub>
                             </section>
                         </li>
                         <li class="container row">
-                            <p class="offset-1 col-6 p-0 fw-bold my-2 user-select-none">Entrada de Adultos (12 - 60 años)</p>
+                            <section class="offset-1 col-6 p-0 fw-bold my-2 user-select-none">
+                                <label for="adultTicketPrice">Entrada de Adultos (12 - 60 años)</label>
+                            </section>
                             <section class="col-5 my-2 px-2 d-flex flex-column gap-2 position-relative">
                                 <div class="w-75 position-relative">
-                                    <input class="form-text w-75 text-dark ps-1" type="number" min="1" step="any" required name="adultTicketPrice" id="adultTicketPrice">
-                                    <span class="position-absolute end-25 ms-1 mt-1">$</span>
+                                    <input class="form-text w-75 text-dark ps-1" type="number" min="1" step="any" required name="adultTicketPrice" id="adultTicketPrice" value="<%=adultTicketPrice%>">
+                                    <span class="position-absolute end-25 ms-1 mt-1 user-select-none">$</span>
                                 </div>
                                 <sub class="user-select-none lh-base">Valor de la entrada de cada adulto en dólares</sub>
                             </section>
                         </li>
                         <li class="container row">
-                            <p class="offset-1 col-6 p-0 fw-bold my-2 user-select-none">Entrada de Adultos Mayores (Mayores de 60 años)</p>
+                            <section class="offset-1 col-6 p-0 fw-bold my-2 user-select-none">
+                                <label for="olderTicketPrice">Entrada de Adultos Mayores (Mayores de 60 años)</label>
+                            </section>
                             <section class="col-5 my-2 px-2 d-flex flex-column gap-2 position-relative">
                                 <div class="w-75 position-relative">
-                                    <input class="form-text w-75 text-dark ps-1" type="number" min="1" step="any" required name="olderTicketPrice" id="olderTicketPrice">
-                                    <span class="position-absolute end-25 ms-1 mt-1">$</span>
+                                    <input class="form-text w-75 text-dark ps-1" type="number" min="1" step="any" required name="olderTicketPrice" id="olderTicketPrice" value="<%=olderTicketPrice%>">
+                                    <span class="position-absolute end-25 ms-1 mt-1 user-select-none">$</span>
                                 </div>
                                 <sub class="user-select-none lh-base">Valor de la entrada de cada adulto mayor en dólares</sub>
                             </section>
                         </li>
+                        
                     </ul>
                     <button class="btn btn-success mb-3">Guardar Cambios</button>
                 </section>
@@ -70,5 +86,8 @@
         </article>
 
     </main>
-    <%- include('partials/scripts', {hasNewVisit: false})%>
+
+    <%- include('partials/alert', {messageAlert, typeAlert}); %>
+
+    <%- include('partials/scripts', {showAlert})%>
         <%- include('partials/foot'); %>

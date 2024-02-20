@@ -236,9 +236,9 @@
         </form>
     </main> 
 
-    <%- include('partials/toast'); %>
+    <%- include('partials/alert'); %>
 
-    <%- include('partials/scripts', {hasNewVisit: hasNewVisit})%>
+    <%- include('partials/scripts', {showAlert: hasNewVisit})%>
 
     <%- include('partials/foot'); %>
     
