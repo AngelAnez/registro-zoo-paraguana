@@ -1,6 +1,7 @@
 <%- include('partials/head', {title : "Ajustes", css :
 "registro_visitantes.css", js : "main.js"}); %>
-<body style="background-color: rgb(234, 243, 250); display: flex">
+<body class="d-flex bg-body-secondary">
+
   <!-- Menu Lateral y Main-->
   <%- include('partials/sidebar'); %>
   <main
@@ -16,7 +17,7 @@
       <section
         class="border-bottom w-100 text-center text-bg-success rounded-top-3 py-1"
       >
-        <h2 class="user-select-none">Ajustes Generales</h2>
+        <h3 class="user-select-none">Ajustes Generales</h3>
       </section>
       <form class="w-100" method="post">
         <section
@@ -164,7 +165,7 @@
     </article>
   </main>
 
-  <%- include('partials/alert', {messageAlert, typeAlert}); %> <%-
-  include('partials/scripts')%> <%- include('partials/alertScript.ejs',
-  {showAlert})%> <%- include('partials/foot'); %>
-</body>
+  <%- include('partials/alert', {messageAlert, typeAlert}); %> 
+  <%- include('partials/scripts') %> 
+  <%- include('partials/alertScript.ejs', {showAlert})%>
+<%- include('partials/foot'); %>

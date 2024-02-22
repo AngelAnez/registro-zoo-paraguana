@@ -48,3 +48,9 @@
 {"date":"20/02/2024","time":"4:13 pm","child":"2","adult":"2","older":"1","total":"5","dolar":"7","bolivares":"254.10","method":"Efectivo","infoMethod":"Dolar","name":"Probando Mejoras en Visitas","telephone":"454545454"}
 {"date":"20/02/2024","time":"4:13 pm","child":"2","adult":"1","older":"2","total":"5","dolar":"6","bolivares":"217.80","method":"Efectivo","infoMethod":"Bolivar","name":"Prueba Visitantesss","telephone":"4"}
 {"date":"20/02/2024","time":"4:26 pm","child":"2","adult":"2","older":"1","total":"5","dolar":"7","bolivares":"254.10","method":"Transferencia","infoMethod":"47","name":"Probando Alertas","telephone":"42"}
+{"date":"21/02/2024","time":"12:37 pm","child":"0","adult":"0","older":"2","total":"2","dolar":"2","bolivares":"72.60","method":"Transferencia","infoMethod":"1212","name":"Probando cambiecitos en Ids","telephone":"42424"}
+{"date":"21/02/2024","time":"12:39 pm","child":"0","adult":"0","older":"1","total":"1","dolar":"1","bolivares":"36.30","method":"Transferencia","infoMethod":"1","name":"Una abuelita","telephone":"1"}
+{"date":"21/02/2024","time":"12:41 pm","child":"1","adult":"0","older":"1","total":"2","dolar":"2","bolivares":"72.60","method":"Transferencia","infoMethod":"2","name":"Aguacate","telephone":"2"}
+{"date":"21/02/2024","time":"12:41 pm","child":"2","adult":"0","older":"2","total":"4","dolar":"4","bolivares":"145.20","method":"Transferencia","infoMethod":"12","name":"Mi Mouse no tiene bateria","telephone":"12"}
+{"date":"21/02/2024","time":"12:43 pm","child":"2","adult":"0","older":"34","total":"36","dolar":"36","bolivares":"1306.80","method":"Pago Móvil","infoMethod":"4242","name":"Invasion Senil","telephone":"343434343"}
+{"date":"21/02/2024","time":"12:45 pm","child":"2","adult":"0","older":"3","total":"5","dolar":"5","bolivares":"181.50","method":"Transferencia","infoMethod":"7","name":"Mas ancianos","telephone":"4"}

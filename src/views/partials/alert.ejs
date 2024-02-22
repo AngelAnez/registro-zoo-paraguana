@@ -6,7 +6,7 @@
     aria-live="assertive"
     aria-atomic="true"
   >
-    <section class="toast-header text-bg-<%=typeAlert%> user-select-none">
+    <section id="alertHeader" class="toast-header text-bg-<%=typeAlert%> user-select-none">
       <img data-lucide="paw-print" class="me-2" alt="alert-icon" />
       <strong class="me-auto">Zoológico Paraguaná</strong>
       <button
@@ -16,6 +16,6 @@
         data-lucide="x"
       ></button>
     </section>
-    <section class="toast-body user-select-none"><%= messageAlert %></section>
+    <section id="alertMessage" class="toast-body user-select-none"><%= messageAlert %></section>
   </div>
 </article>
