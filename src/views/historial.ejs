@@ -1,4 +1,4 @@
-<%- include('partials/head', {title : "Historial", css : "registro_visitantes.css", js : "main.js"}); %>
+<%- include('partials/head', {title : "Historial", css : "", js : ""}); %>
 <body class="d-flex bg-body-secondary">
   <!-- Menu Lateral y Main-->
   <%- include('partials/sidebar'); %>
@@ -326,12 +326,12 @@
           >
             <td><%= visit.date %></td>
             <td><%= visit.time %></td>
-            <td><%= visit.child %></td>
-            <td><%= visit.adult %></td>
-            <td><%= visit.older %></td>
-            <td><%= visit.method %></td>
-            <td><%= visit.bolivares %></td>
-            <td><%= visit.dolar %></td>
+            <td><%= visit.childrenNumber %></td>
+            <td><%= visit.adultsNumber %></td>
+            <td><%= visit.seniorsNumber %></td>
+            <td><%= visit.paymentMethod %></td>
+            <td><%= visit.totalBolivars %></td>
+            <td><%= visit.totalDolars %></td>
           </tr>
           <div
             class="modal fade"
@@ -354,7 +354,7 @@
                   ></button>
                 </div>
                 <div class="modal-body d-flex">
-                  <% if (visit.method == "Efectivo") { %> 
+                  <% if (visit.paymentMethod == "Efectivo") { %> 
                   <% methodInfoType = "Moneda:" %> 
                   <% } else { %> 
                   <% methodInfoType = "Nro de Referencia:" %> 
@@ -378,33 +378,33 @@
 
                   <section class="col-4 d-flex flex-column">
                     <span class="factura_datos text-center"
-                      ><%= visit.name %></span
+                      ><%= visit.representativeName %></span
                     >
                     <span class="factura_datos text-center"
-                      ><%= visit.telephone %></span
-                    >
-                    <hr class="solid mt-2 mb-2" />
-                    <span class="factura_datos text-center"
-                      ><%= visit.child %></span
-                    >
-                    <span class="factura_datos text-center"
-                      ><%= visit.adult %></span
-                    >
-                    <span class="factura_datos text-center"
-                      ><%= visit.older %></span
+                      ><%= visit.representativePhone %></span
                     >
                     <hr class="solid mt-2 mb-2" />
                     <span class="factura_datos text-center"
-                      ><%= visit.bolivares %></span
+                      ><%= visit.childrenNumber %></span
                     >
                     <span class="factura_datos text-center"
-                      ><%= visit.dolar %></span
+                      ><%= visit.adultsNumber %></span
                     >
                     <span class="factura_datos text-center"
-                      ><%= visit.method %></span
+                      ><%= visit.seniorsNumber %></span
+                    >
+                    <hr class="solid mt-2 mb-2" />
+                    <span class="factura_datos text-center"
+                      ><%= visit.totalBolivars %></span
                     >
                     <span class="factura_datos text-center"
-                      ><%= visit.infoMethod %></span
+                      ><%= visit.totalDolars %></span
+                    >
+                    <span class="factura_datos text-center"
+                      ><%= visit.paymentMethod%></span
+                    >
+                    <span class="factura_datos text-center"
+                      ><%= visit.extraInfoPayment %></span
                     >
                     <hr class="solid mt-2 mb-2" />
                     <span class="factura_datos text-center"

@@ -4,8 +4,6 @@
     box-sizing: border-box;
 }
 
-/* Menú Lateral */
-
 .menu-header{
     height: 10vh;
     user-select: none;
@@ -77,78 +75,4 @@
 
 .social-media-img:hover{
    opacity: 70%;
-}
-
-/* Encabezado */
-
-.header-list{
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-    user-select: none;
-}
-
-.header-list-option{
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding: 0;
-}
-
-.header-list-option img{
-    pointer-events: none;
-}
-
-.header-list-option h6{
-    font-size: 1.1rem;
-    margin: 0;
-    font-weight: bold;
-    padding-left: 0.5rem;
-}
-
-#dolar_today{
-    color: #008000;
-}
-
-.user-name{
-    padding: 0rem 1rem 0rem 0rem;
-    text-decoration: none;
-    color: black;
-}
-
-.user-name:hover{
-    color: rgb(87, 87, 87);
-}
-
-/* Cantidad de Visitantes */
-
-.visit_img{
-    width: 6vw; 
-    height: 12vh; 
-    pointer-events: none;
-    user-select: none;
-}
-
-.visit_input{
-    width: 80%; 
-    border-color: black;
-    text-align: center;
-}
-
-.factura_campo{
-    font-weight: bold;
-    user-select: none;
-}
-
-.factura_datos{
-    user-select: none;
-}
-
-.factura_monto{
-    color: #198754;
-    font-weight: bold;
 }

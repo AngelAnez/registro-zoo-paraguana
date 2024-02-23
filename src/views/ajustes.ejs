@@ -1,5 +1,5 @@
 <%- include('partials/head', {title : "Ajustes", css :
-"registro_visitantes.css", js : "main.js"}); %>
+"registro_visitantes.css", js : ""}); %>
 <body class="d-flex bg-body-secondary">
 
   <!-- Menu Lateral y Main-->
@@ -70,7 +70,7 @@
 
             <li class="container row">
               <section class="offset-1 col-6 p-0 fw-bold my-2 user-select-none">
-                <label for="childTicketPrice"
+                <label for="childrenTicketPrice"
                   >Entrada de Niños (2 - 9 años)</label
                 >
               </section>
@@ -84,9 +84,9 @@
                     min="1"
                     step="any"
                     required
-                    name="childTicketPrice"
-                    id="childTicketPrice"
-                    value="<%=childTicketPrice%>"
+                    name="childrenTicketPrice"
+                    id="childrenTicketPrice"
+                    value="<%=childrenTicketPrice%>"
                   />
                   <span
                     class="position-absolute end-25 ms-1 mt-1 user-select-none"
@@ -100,7 +100,7 @@
             </li>
             <li class="container row">
               <section class="offset-1 col-6 p-0 fw-bold my-2 user-select-none">
-                <label for="adultTicketPrice"
+                <label for="adultsTicketPrice"
                   >Entrada de Adultos (12 - 60 años)</label
                 >
               </section>
@@ -114,9 +114,9 @@
                     min="1"
                     step="any"
                     required
-                    name="adultTicketPrice"
-                    id="adultTicketPrice"
-                    value="<%=adultTicketPrice%>"
+                    name="adultsTicketPrice"
+                    id="adultsTicketPrice"
+                    value="<%=adultsTicketPrice%>"
                   />
                   <span
                     class="position-absolute end-25 ms-1 mt-1 user-select-none"
@@ -130,7 +130,7 @@
             </li>
             <li class="container row">
               <section class="offset-1 col-6 p-0 fw-bold my-2 user-select-none">
-                <label for="olderTicketPrice"
+                <label for="seniorsTicketPrice"
                   >Entrada de Adultos Mayores (Mayores de 60 años)</label
                 >
               </section>
@@ -144,9 +144,9 @@
                     min="1"
                     step="any"
                     required
-                    name="olderTicketPrice"
-                    id="olderTicketPrice"
-                    value="<%=olderTicketPrice%>"
+                    name="seniorsTicketPrice"
+                    id="seniorsTicketPrice"
+                    value="<%=seniorsTicketPrice%>"
                   />
                   <span
                     class="position-absolute end-25 ms-1 mt-1 user-select-none"

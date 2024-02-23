@@ -7,24 +7,24 @@ export const renderEstadisticas = (req, res) => {
   let date = req.query.date ?? getTodayDate();
   let year = date.split("/")[2];
 
-  let { childStats, adultStats, olderStats, bs, dolar, yearIncome } = showStats(
+  let { childrenStats, adultsStats, seniorsStats, totalBolivars, totalDolars, yearIncome } = showStats(
     date,
     year
   );
 
   let monthlyIncome = yearIncome;
 
-  let child = childStats ?? 0;
-  let adult = adultStats ?? 0;
-  let older = olderStats ?? 0;
-  let incomeBs = bs ?? 0;
-  let incomeDolar = dolar ?? 0;
+  let child = childrenStats ?? 0;
+  let adult = adultsStats ?? 0;
+  let senior = seniorsStats ?? 0;
+  let incomeBs = totalBolivars ?? 0;
+  let incomeDolar = totalDolars ?? 0;
 
   res.render("estadisticas", {
     username: user.username,
     child,
     adult,
-    older,
+    senior,
     incomeBs,
     incomeDolar,
     monthlyIncome,
@@ -51,7 +51,7 @@ const showStats = (date, year) => {
   let yearIncome = visits.reduce(
     (acc, val) => {
       let month = parseInt(val.date.split("/")[1]);
-      acc[month - 1] += parseInt(val.bolivares);
+      acc[month - 1] += parseInt(val.totalBolivars);
       return acc;
     },
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -64,25 +64,25 @@ const showStats = (date, year) => {
   if (visits.length > 0) {
     let dateStats = visits.reduce(
       (acc, val) => {
-        acc.child += parseInt(val.child);
-        acc.adult += parseInt(val.adult);
-        acc.older += parseInt(val.older);
-        acc.bolivares += parseFloat(val.bolivares);
-        acc.dolar += parseInt(val.dolar);
+        acc.childrenNumber += parseInt(val.childrenNumber);
+        acc.adultsNumber += parseInt(val.adultsNumber);
+        acc.seniorsNumber += parseInt(val.seniorsNumber);
+        acc.totalBolivars += parseFloat(val.totalBolivars);
+        acc.totalDolars += parseInt(val.totalDolars);
 
         return acc;
       },
-      { child: 0, adult: 0, older: 0, bolivares: 0, dolar: 0 }
+      { childrenNumber: 0, adultsNumber: 0, seniorsNumber: 0, totalBolivars: 0, totalDolars: 0 }
     );
 
-    let { child, adult, older, bolivares, dolar } = dateStats;
+    let { childrenNumber, adultsNumber, seniorsNumber, totalBolivars, totalDolars } = dateStats;
 
     return {
-      childStats: child,
-      adultStats: adult,
-      olderStats: older,
-      bs: parseFloat(bolivares).toFixed(2),
-      dolar,
+      childrenStats: childrenNumber,
+      adultsStats: adultsNumber,
+      seniorsStats: seniorsNumber,
+      totalBolivars: parseFloat(totalBolivars).toFixed(2),
+      totalDolars,
       yearIncome,
     };
   } else {

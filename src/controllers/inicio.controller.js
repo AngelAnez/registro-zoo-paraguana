@@ -1,5 +1,6 @@
 import { bcvDolar } from "bcv-divisas";
 import { getUserSession } from "../models/userSession.js";
+import { getConfig } from "../models/config.js";
 
 export const renderInicio = (req, res) => {
   const {username} = getUserSession();
@@ -9,9 +10,9 @@ export const renderInicio = (req, res) => {
 };
 
 export const getDolarValue = async (req, res) => {
-  // Consulta a la BDD
-  const customDolar = false;
-  if (!customDolar) {
+  const {defaultDolarValue, internetDolarValue} = getConfig()
+  const internetDolar = internetDolarValue;
+  if (internetDolar == "on") {
     try {
       const bcv = await bcvDolar();
       return res.send(bcv._dolar);
@@ -19,7 +20,6 @@ export const getDolarValue = async (req, res) => {
       console.log("Ha ocurrido un error de conexión");
     }
   }
-  // Consulta a la BDD
-  const defaultDolar = "12";
-  res.send(defaultDolar);
+  const defaultDolar = defaultDolarValue;
+  res.send(defaultDolar); 
 };

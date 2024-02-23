@@ -1,5 +1,5 @@
 <%- include('partials/head', {title : "Estadísticas", css :
-"registro_visitantes.css", js : "main.js"}); %>
+"", js : ""}); %>
 <body class="d-flex bg-body-secondary">
   <!-- Menu Lateral y Main-->
   <%- include('partials/sidebar'); %>
@@ -17,7 +17,7 @@
               class="d-flex flex-column align-items-center w-50 text-center ms-3"
             >
               <p class="text-primary fs-2 m-0 fw-semibold">
-                <%= child+adult+older %>
+                <%= child+adult+senior %>
               </p>
               <small class="text-secondary">Visitantes</small>
             </label>
@@ -103,9 +103,9 @@
       </section>
 
       <ul class="d-none">
-        <li id="childValue" value="<%= child %>"></li>
-        <li id="adultValue" value="<%= adult %>"></li>
-        <li id="olderValue" value="<%= older %>"></li>
+        <li id="childrenValue" value="<%= child %>"></li>
+        <li id="adultsValue" value="<%= adult %>"></li>
+        <li id="seniorsValue" value="<%= senior %>"></li>
         <li id="monthlyIncomeValue"><%= monthlyIncome %></li>
       </ul>
     </article>

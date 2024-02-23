@@ -1,1 +1,1 @@
-{"internetDolarValue":"off","defaultDolarValue":"37","childTicketPrice":"1.50","adultTicketPrice":"22","olderTicketPrice":"1"}
+{"internetDolarValue":"on","defaultDolarValue":"40","childrenTicketPrice":"1","adultsTicketPrice":"1","seniorsTicketPrice":"1"}

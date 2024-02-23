@@ -1,4 +1,4 @@
-<%- include('partials/head', {title : "Visitantes", css : "registro_visitantes.css", js : "main.js"}); %>
+<%- include('partials/head', {title : "Visitantes", css : "visitantes.css", js : "visitantes.js"}); %>
 <body class="d-flex bg-body-secondary">
 
     <!-- Menu Lateral y Main-->
@@ -23,81 +23,10 @@
                 <%- include('partials/newVisitsStep2.ejs')%>
 
                 <!-- Paso 3: Datos del Representante -->
-                <article id="addNewVisitStep3" class="d-none col-7 row text-center p-0 m-0" style=" border-bottom-right-radius: 10px; border-top-right-radius: 10px; border: 1px solid black; background-color: white; box-shadow: 4px 0px 20px -5px;">
-                    <section class="col-11 text-start m-3" style="border-top-right-radius: 10px;">
-                        <h2 class="user-select-none">Representante</h2>
-                        <p class="user-select-none">Ingrese los datos del representante de la visita.</p>
-                    </section>
-                    <label for="nombre_representante" class="offset-2 col-6 d-flex align-items-center mt-1">
-                        <figure class="col-4 m-0">
-                            <img class="visit_img" src="./public/assets/img/representante.webp" alt="represent_name">
-                        </figure>
-                        <div class="col-8 text-start">
-                            <span class="visit_text">Nombre</span>
-                            <input type="tel" class="form-control p-0" id="nombre_representante" autocomplete="off" style="text-align: center; margin-top: 0.4rem;" name="nombre_representante" oninput="clean_validation(3,true,represent_name);"/>
-                        </div>
-                    </label>
-        
-                    <label for="telefono_representante" class="offset-2 col-6 d-flex align-items-center mt-4">
-                        <figure class="col-4 m-0">
-                            <img class="visit_img" src="./public/assets/img/telephone.webp" alt="represent_phone">
-                        </figure>
-                        <div class="col-8 text-start">
-                            <span class="visit_text">Teléfono</span>
-                            <input type="text" class="form-control p-0" id="telefono_representante" autocomplete="off" style="text-align: center; margin-top: 0.4rem;" name="telefono_representante" oninput="clean_validation(3,true,represent_phone);"/>
-                        </div>
-                    </label>
-                    <section class="row text-center mt-1 mb-4">
-                        <p id="validacion_paso_3" class="validando" style="padding: 1rem;">Complete los campos requeridos.</p>
-                        <div class="col-12 d-flex justify-content-center" style="gap: 2rem;">
-                            <button type="button" onclick="changeStep(2)" class="btn btn-secondary" style= "width: 15%; padding: 6px; font-weight: bold;">Atrás</button>
-                            <button type="button" onclick="validacion_paso_3()" class="btn btn-success" style= "width: 15%; padding: 6px; font-weight: bold;">Siguiente</button>
-                        </div>
-                    </section>
-                </article>
+                <%- include('partials/newVisitsStep3.ejs')%>
 
                 <!-- Paso 4: Confirmación -->
-                <section id="addNewVisitStep4" class="d-none col-7 row text-center p-0 m-0" style=" border-bottom-right-radius: 10px; border-top-right-radius: 10px; border: 1px solid black; background-color: white; box-shadow: 4px 0px 20px -5px;">
-                    <section class="col-11 text-start m-3" style="border-top-right-radius: 10px;">
-                        <h2 class="user-select-none">Confirmación</h2>
-                        <p class="user-select-none">Verifique los datos ingresados.</p>
-                    </section>
-
-                    <section class="offset-2 col-4 d-flex flex-column">
-                        <label class="factura_campo">Fecha:</label>
-                        <label class="factura_campo">Hora:</label>
-                        <label class="factura_campo">Niños:</label>
-                        <label class="factura_campo">Adultos:</label>
-                        <label class="factura_campo">Adultos Mayores:</label>
-                        <label class="factura_campo">Representante:</label>
-                        <label class="factura_campo">Método de Pago:</label>
-                        <label class="factura_campo" id="factura_extra">Número de Referencia:</label>
-                        <label class="factura_campo">Monto:</label>
-                    </section>
-
-                    <section class="col-4 d-flex flex-column">
-                        <span class="factura_datos" id="factura_fecha"></span>
-                        <input type="text" name="date" class="d-none" id="dateInput">
-                        <span class="factura_datos" id="factura_hora"></span>
-                        <input type="text" name="time" class="d-none" id="timeInput">
-                        <span class="factura_datos" id="factura_nino"></span>
-                        <span class="factura_datos" id="factura_adult"></span>
-                        <span class="factura_datos" id="factura_elder"></span>
-                        <span class="factura_datos" id="factura_represent"></span>
-                        <span class="factura_datos" id="factura_metodo"></span>
-                        <span class="factura_datos" id="factura_info_extra"></span>
-                        <span class="factura_datos factura_monto" id="factura_monto"></span>
-                    </section>
-
-                    <section class="row text-center mt-1 mb-4">
-                        <p id="validacion_paso_3" class="validando" style="padding: 1rem;">Complete los campos requeridos.</p>
-                        <div class="col-12 d-flex justify-content-center" style="gap: 2rem;">
-                            <button type="button" onclick="changeStep(3)" class="btn btn-secondary" style= "width: 15%; padding: 6px; font-weight: bold;">Atrás</button>
-                            <button type="submit" onclick="changeStep(1)" class="btn btn-success" style= "width: 15%; padding: 6px; font-weight: bold;">Finalizar</button>
-                        </div>
-                    </section>
-                    
-                </article>      
+                <%- include('partials/newVisitsStep4.ejs')%>
 
             </article>
         </form>

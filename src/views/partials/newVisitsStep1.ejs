@@ -7,20 +7,20 @@
     <section class="row gy-3">
         <label for="childrenNumber" class="col-5 d-flex align-items-center ms-2 p-0 gap-3">
             <figure class="m-0 p-0">
-                <img class="visit_img" src="./public/assets/img/children.webp" alt="childrenImg">
+                <img class="w-100 user-select-none" src="./public/assets/img/children.webp" alt="childrenImg">
             </figure>
             <div class="col-7 text-start d-flex flex-column gap-2">
-                <span class="fw-bold user-select-none">Niños</span>
+                <span id="childrenTicket" class="fw-bold user-select-none" value="<%=childrenTicketPrice%>">Niños</span>
                 <input type="number" class="form-control p-0 text-center" id="childrenNumber" autocomplete="off" oninput="changeFamilyNumber()" name="childrenNumber" min="0"/>
             </div>
         </label>
         
         <label for="adultsNumber" class="offset-1 col-5 d-flex align-items-center p-0 gap-3">
             <figure class="m-0 p-0">
-                <img class="visit_img" src="./public/assets/img/adults.webp" alt="adultsImg">
+                <img class="w-100 user-select-none" src="./public/assets/img/adults.webp" alt="adultsImg">
             </figure>
             <div class="col-7 text-start d-flex flex-column gap-2">
-                <span class="fw-bold user-select-none">Adultos</span>
+                <span id="adultsTicket" class="fw-bold user-select-none" value="<%=adultsTicketPrice%>">Adultos</span>
                 <input type="number" class="form-control p-0 text-center" id="adultsNumber" autocomplete="off" oninput="changeFamilyNumber()" name="adultsNumber" min="0"/>
             </div>
         </label>
@@ -29,17 +29,17 @@
     <section class="row gy-3">
         <label for="seniorsNumber" class="col-5 d-flex align-items-center ms-2 p-0 gap-3">
             <figure class="m-0 p-0">
-                <img class="visit_img" src="./public/assets/img/seniors.webp" alt="seniorsImg">
+                <img class="w-100 user-select-none" src="./public/assets/img/seniors.webp" alt="seniorsImg">
             </figure>
             <div class="col-7 text-start d-flex flex-column gap-2">
-                <span class="fw-bold user-select-none">Adultos Mayores</span>
+                <span id="seniorsTicket" class="fw-bold user-select-none" value="<%=seniorsTicketPrice%>">Adultos Mayores</span>
                 <input type="number" class="form-control p-0 text-center" id="seniorsNumber" autocomplete="off" oninput="changeFamilyNumber()" name="seniorsNumber" min="0"/>
             </div>
         </label>
 
         <label for="totalFamily" class="offset-1 col-5 d-flex align-items-center p-0 gap-3">
             <figure class="m-0 p-0">
-                <img class="visit_img" src="./public/assets/img/family.webp" alt="familyImg">
+                <img class="w-100 user-select-none" src="./public/assets/img/family.webp" alt="familyImg">
             </figure>
             <div class="col-7 text-start d-flex flex-column gap-2">
                 <span class="fw-bold user-select-none">Total</span>

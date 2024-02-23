@@ -1,0 +1,42 @@
+<article id="addNewVisitStep4" class="d-none col-7 row ps-3 pe-0 m-0 bg-white shadow rounded-end-4">
+    <section class="col-12 text-start mt-3 px-2 user-select-none">
+        <h3>Confirmación</h3>
+        <p class="m-0">Verifique los datos ingresados.</p>
+    </section>
+
+    <section class="row col-12 mt-3 px-2 user-select-none">
+        <label class="offset-2 col-4 fw-bold p-0">Fecha:</label>
+        <span class="col-6 p-0" id="dateInvoice"></span>
+        <input type="text" name="date" class="d-none" id="dateInput">
+
+        <label class="offset-2 col-4 fw-bold p-0">Hora:</label>
+        <span class="col-6 p-0" id="timeInvoice"></span>
+        <input type="text" name="time" class="d-none" id="timeInput">
+
+        <label class="offset-2 col-4 fw-bold p-0">Niños:</label>
+        <span class="col-6 p-0" id="childrenInvoice"></span>
+
+        <label class="offset-2 col-4 fw-bold p-0">Adultos:</label>
+        <span class="col-6 p-0" id="adultsInvoice"></span>
+
+        <label class="offset-2 col-4 fw-bold p-0">Adultos Mayores:</label>
+        <span class="col-6 p-0" id="seniorsInvoice"></span>
+
+        <label class="offset-2 col-4 fw-bold p-0">Representante:</label>
+        <span class="col-6 p-0" id="representativeInvoice"></span>
+
+        <label class="offset-2 col-4 fw-bold p-0">Método de Pago:</label>
+        <span class="col-6 p-0" id="methodInvoice"></span>
+
+        <label class="offset-2 col-4 fw-bold p-0" id="extraInfoTitle">Número de Referencia:</label>
+        <span class="col-6 p-0" id="extraInfoInvoice"></span>
+
+        <label class="offset-2 col-4 fw-bold p-0">Monto:</label>
+        <span class="col-6 p-0 text-success fw-bold" id="totalInvoice"></span>
+    </section>
+
+    <section class="row text-center mt-5 mb-4 d-flex justify-content-center align-items-center gap-4">
+        <button type="button" onclick="changeStep(3)" class="btn btn-secondary col-2 p-1">Atrás</button>
+        <button type="submit" class="btn btn-success col-2 p-1">Finalizar</button>
+    </section>
+</article> 

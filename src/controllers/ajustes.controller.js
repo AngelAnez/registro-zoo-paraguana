@@ -10,9 +10,9 @@ export const renderAjustes = (res, alert) => {
   const {
     internetDolarValue,
     defaultDolarValue,
-    childTicketPrice,
-    adultTicketPrice,
-    olderTicketPrice,
+    childrenTicketPrice,
+    adultsTicketPrice,
+    seniorsTicketPrice,
   } = getConfig();
 
   const {showAlert, messageAlert, typeAlert} = alert
@@ -21,9 +21,9 @@ export const renderAjustes = (res, alert) => {
     username: user.username,
     internetDolarValue,
     defaultDolarValue,
-    childTicketPrice,
-    adultTicketPrice,
-    olderTicketPrice,
+    childrenTicketPrice,
+    adultsTicketPrice,
+    seniorsTicketPrice,
     showAlert,
     messageAlert,
     typeAlert
@@ -32,19 +32,12 @@ export const renderAjustes = (res, alert) => {
 
 export const changeConfig = (req, res) => {
   const {
-    internetDolarValue,
-    defaultDolarValue,
-    childTicketPrice,
-    adultTicketPrice,
-    olderTicketPrice,
+    internetDolarValue
   } = req.body;
 
   let configData = {
+    ...req.body,
     internetDolarValue: internetDolarValue ?? "off",
-    defaultDolarValue,
-    childTicketPrice,
-    adultTicketPrice,
-    olderTicketPrice,
   };
 
   const internetDolarRegex = /^(on|off)$/;
@@ -58,15 +51,15 @@ export const changeConfig = (req, res) => {
     return renderAjustes(res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
   }
 
-  if (!numberRegex.test(configData.childTicketPrice)) {
+  if (!numberRegex.test(configData.childrenTicketPrice)) {
     return renderAjustes(res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
   }
 
-  if (!numberRegex.test(configData.adultTicketPrice)) {
+  if (!numberRegex.test(configData.adultsTicketPrice)) {
     return renderAjustes(res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
   }
 
-  if (!numberRegex.test(configData.olderTicketPrice)) {
+  if (!numberRegex.test(configData.seniorsTicketPrice)) {
     return renderAjustes(res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
   }
 

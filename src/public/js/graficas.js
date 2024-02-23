@@ -1,9 +1,9 @@
 const dailyChart = document.getElementById('dailyChart');
 const monthChart = document.getElementById('monthChart');
 
-const child = document.getElementById("childValue").value
-const adult = document.getElementById("adultValue").value
-const older = document.getElementById("olderValue").value
+const children = document.getElementById("childrenValue").value
+const adults = document.getElementById("adultsValue").value
+const seniors = document.getElementById("seniorsValue").value
 const monthlyIncome = document.getElementById("monthlyIncomeValue").innerText.split(",")
 
 new Chart(dailyChart, {
@@ -13,7 +13,7 @@ new Chart(dailyChart, {
     datasets: [
         {
           label: 'Cantidad',
-          data: [child, adult, older],
+          data: [children, adults, seniors],
         }
       ]
   },
