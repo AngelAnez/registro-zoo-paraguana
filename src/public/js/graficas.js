@@ -18,6 +18,7 @@ new Chart(dailyChart, {
       ]
   },
   options: {
+    resposive: true,
     maintainAspectRatio: false,
     plugins: {
       legend: {

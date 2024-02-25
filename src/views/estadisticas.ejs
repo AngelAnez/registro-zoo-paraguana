@@ -1,23 +1,19 @@
 <%- include('partials/head', {title : "Estadísticas", css :
-"", js : ""}); %>
+"estadisticas.css", js : ""}); %>
 <body class="d-flex bg-body-secondary">
   <!-- Menu Lateral y Main-->
   <%- include('partials/sidebar'); %>
-  <main class="container-fluid row d-flex p-0 m-0 vh-100">
+  <main class="container-fluid d-flex flex-column gap-2 p-0 m-0 vh-100">
     <!-- Encabezado -->
     <%- include('partials/header'); %>
 
-    <article class="container" style="height: 90vh">
-      <section class="row mb-4">
+    <article class="container">
+      <section class="row mb-2">
         <div class="offset-1 col-3 px-3 py-4">
-          <div
-            class="bg-light-subtle rounded-4 shadow px-1 pt-2 pb-3 d-flex justify-content-between align-items-center"
-          >
-            <label
-              class="d-flex flex-column align-items-center w-50 text-center ms-3"
-            >
+          <div class="bg-light-subtle rounded-4 shadow px-1 pt-2 pb-3 d-flex justify-content-between align-items-center">
+            <label class="d-flex flex-column align-items-center w-50 text-center ms-3">
               <p class="text-primary fs-2 m-0 fw-semibold">
-                <%= child+adult+senior %>
+                <%= childrenNumber+adultsNumber+seniorsNumber %>
               </p>
               <small class="text-secondary">Visitantes</small>
             </label>
@@ -39,7 +35,7 @@
             <label
               class="d-flex flex-column align-items-center w-50 text-center ms-3"
             >
-              <p class="text-primary fs-2 m-0 fw-semibold"><%= incomeBs %></p>
+              <p class="text-primary fs-2 m-0 fw-semibold"><%= totalBolivars %></p>
               <small class="text-secondary">Ingresos (Bs.)</small>
             </label>
             <figure
@@ -61,7 +57,7 @@
               class="d-flex flex-column align-items-center w-50 text-center ms-3"
             >
               <p class="text-primary fs-2 m-0 fw-semibold">
-                <%= incomeDolar %>
+                <%= totalDolars %>
               </p>
               <small class="text-secondary">Ingresos ($)</small>
             </label>
@@ -78,18 +74,15 @@
         </div>
       </section>
       <section class="row">
-        <figure class="offset-1 col-3 bg-light-subtle rounded-4 shadow">
+        <figure class="offset-1 col-4 bg-light-subtle rounded-4 shadow h-100 py-2">
           <h6 class="text-secondary-emphasis text-center fw-bold py-1">
             Cantidad de Personas según su Edad
           </h6>
-          <div
-            class="chart-container d-flex justify-content-center align-items-center"
-            style="position: relative"
-          >
+          <div class="chartContainer">
             <canvas id="dailyChart" aria-label="dailyChart" role="img"></canvas>
           </div>
         </figure>
-        <figure class="offset-1 col-6 bg-light-subtle rounded-4 shadow">
+        <figure class="offset-1 col-5 bg-light-subtle rounded-4 shadow">
           <h6 class="text-secondary-emphasis text-center fw-bold py-1">
             Ingresos en Bolívares por Mes
           </h6>
@@ -103,11 +96,31 @@
       </section>
 
       <ul class="d-none">
-        <li id="childrenValue" value="<%= child %>"></li>
-        <li id="adultsValue" value="<%= adult %>"></li>
-        <li id="seniorsValue" value="<%= senior %>"></li>
-        <li id="monthlyIncomeValue"><%= monthlyIncome %></li>
+        <li id="childrenValue" value="<%= childrenNumber %>"></li>
+        <li id="adultsValue" value="<%= adultsNumber %>"></li>
+        <li id="seniorsValue" value="<%= seniorsNumber %>"></li>
+        <li id="monthlyIncomeValue"><%= yearIncome %></li>
       </ul>
+
+      <form method="post" class="d-flex justify-content-center align-items-center gap-4 mt-4">
+        <section class="bg-light-subtle rounded-4 shadow py-2 d-flex justify-content-around align-items-center w-75">
+          <h6 class="m-0"> Seleccionar Período: </h6>
+          <section class="d-flex gap-4">
+            <section class="d-flex align-items-center justify-content-center gap-3">
+              <label for="startDate">Desde</label>
+              <input id="startDate" class="form-control w-75" type="date" value="<%=startDate%>" max="<%=today%>" name="startDate">
+            </section>
+  
+            <section class="d-flex align-items-center justify-content-center gap-3">
+              <label for="endDate">Hasta</label>
+              <input id="endDate" class="form-control w-75" type="date" value="<%=endDate%>" max="<%=today%>" name="endDate">
+            </section>
+            
+          </section>
+        </section>
+        <button class="btn btn-success shadow me-3" type="submit">Buscar</button>
+      </form>
+
     </article>
   </main>
   <script src="./public/plugins/chartjs/chart.min.js"></script>
