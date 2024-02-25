@@ -19,7 +19,7 @@ export const renderEstadisticas = (res, startDate, endDate) => {
   startDate = startDate.split("/").reverse().join("-")
   endDate = endDate.split("/").reverse().join("-")
 
-  let { childrenNumber, adultsNumber, seniorsNumber, totalBolivars, totalDolars, yearIncome } = showStats(
+  const { childrenNumber, adultsNumber, seniorsNumber, totalBolivars, totalDolars, cashBolivars, cashDolars, eMoneyBolivars } = getVisitStats(
     startDate,
     endDate
   );
@@ -31,17 +31,17 @@ export const renderEstadisticas = (res, startDate, endDate) => {
     seniorsNumber,
     totalBolivars,
     totalDolars,
-    yearIncome,
+    cashBolivars,
+    cashDolars,
+    eMoneyBolivars,
     startDate,
     endDate,
     today
   });
 };
 
-const showStats = (startDate, endDate) => {
+const getVisitStats = (startDate, endDate) => {
   const data = getVisits();
-
-  let yearIncome = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
   let visits = data
   .split("\n")
@@ -51,8 +51,8 @@ const showStats = (startDate, endDate) => {
     return JSON.parse(visit);
   });
 
-  let actualDate = new Date(startDate + 'T00:00:00')
-  const endIn = new Date(endDate + 'T00:00:00')
+  let actualDateRange = new Date(startDate + 'T00:00:00')
+  const endDateRange = new Date(endDate + 'T00:00:00')
   
   let dataStats = {
     childrenNumber: 0,
@@ -60,11 +60,13 @@ const showStats = (startDate, endDate) => {
     seniorsNumber: 0,
     totalBolivars: 0,
     totalDolars: 0,
-    yearIncome
+    cashBolivars: 0,
+    cashDolars: 0,
+    eMoneyBolivars: 0
   }
 
-  while(endIn.getTime() >= actualDate.getTime()){
-    let styledDate = stylingDate(actualDate)
+  while(endDateRange.getTime() >= actualDateRange.getTime()){
+    let styledDate = stylingDate(actualDateRange)
     visits.forEach((visit) => {
      if (visit.date == styledDate){
        dataStats.childrenNumber += parseInt(visit.childrenNumber)
@@ -76,9 +78,20 @@ const showStats = (startDate, endDate) => {
 
        let dolarsValue = new decimal(visit.totalDolars)
        dataStats.totalDolars = dolarsValue.plus(new decimal(dataStats.totalDolars)).toNumber()
+
+       if (visit.paymentMethod == "Efectivo"){
+          if (visit.extraInfoPayment == "Dolar"){
+            dataStats.cashDolars = bolivarsValue.plus(new decimal(dataStats.cashDolars)).toNumber()
+          } else{
+            dataStats.cashBolivars = bolivarsValue.plus(new decimal(dataStats.cashBolivars)).toNumber()
+          }
+       } else {
+          dataStats.eMoneyBolivars = bolivarsValue.plus(new decimal(dataStats.eMoneyBolivars)).toNumber()
+       }
+
      }
     });
-    actualDate.setDate(actualDate.getDate() + 1);
+    actualDateRange.setDate(actualDateRange.getDate() + 1);
   }
   return dataStats
 }
@@ -93,6 +106,5 @@ const stylingDate = (date) => {
   let year = date.getFullYear()
   let month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)
   let day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
-
   return day + '/' + month + '/' + year;
 }

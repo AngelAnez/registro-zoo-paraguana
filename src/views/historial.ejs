@@ -2,41 +2,22 @@
 <body class="d-flex bg-body-secondary">
   <!-- Menu Lateral y Main-->
   <%- include('partials/sidebar'); %>
-  <main
-    class="container row d-flex flex-column p-0 m-0 gap-3"
-    style="height: 100vh"
-  >
+  <main class="container row d-flex flex-column p-0 m-0 gap-3 vh-100">
     <!-- Encabezado -->
     <%- include('partials/header'); %>
 
     <nav class="navbar m-0">
-      <div
-        class="container-fluid d-flex align-items-center justify-content-center"
-      >
-        <form
-          class="d-flex w-100 align-items-center justify-content-center"
-          role="search"
-        >
-          <input
-            class="form-control w-75 me-4 shadow"
-            type="search"
-            placeholder="Buscar Visita..."
-            aria-label="Search"
-            name="filter"
-            value="<%=searchFilter%>"
-          />
-          <button class="btn btn-success shadow me-3" type="submit">
-            Buscar
-          </button>
+      <section class="container-fluid d-flex align-items-center justify-content-center">
+        <form class="d-flex w-100 align-items-center justify-content-center" role="search">
+          <input class="form-control w-75 me-4 shadow" type="search" placeholder="Buscar Visita..." aria-label="Search" name="filter" value="<%=searchFilter%>" />
+          <button class="btn btn-success shadow me-3" type="submit">Buscar</button>
           <a class="btn btn-primary shadow" href="/historial">Limpiar</a>
         </form>
-      </div>
+      </section>
     </nav>
 
     <section class="container py-2 px-4 table-responsive">
-      <table
-        class="table text-center table-hover table-sm table-rounded rounded-2 overflow-hidden shadow border"
-      >
+      <table class="table text-center table-hover table-sm table-rounded rounded-2 overflow-hidden shadow border">
         <thead class="table-success">
           <tr class="user-select-none">
             <% if (searchFilter != "") { %> 
@@ -44,14 +25,7 @@
               <% } %> 
             <% if (sort == "date" && order == "asc"){ %>
             <th scope="col">
-              <a
-                href="/historial?pag=<%=pag%>&sort=date&order=dec<%=searchFilter%>"
-                class="text-decoration-none text-black"
-                data-bs-toggle="tooltip"
-                data-bs-placement="top"
-                data-bs-title="Fecha de cada Visita (Orden Ascendente)"
-                >Fecha &uarr;</a
-              >
+              <a href="/historial?pag=<%=pag%>&sort=date&order=dec<%=searchFilter%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Fecha de cada Visita (Orden Ascendente)">Fecha &uarr;</a>
             </th>
             <% } else if (sort == "date" && order == "dec"){ %>
             <th scope="col">

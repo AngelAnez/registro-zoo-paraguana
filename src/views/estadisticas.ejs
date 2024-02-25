@@ -1,5 +1,5 @@
 <%- include('partials/head', {title : "Estadísticas", css :
-"estadisticas.css", js : ""}); %>
+"estadisticas.css", js : "estadisticas.js"}); %>
 <body class="d-flex bg-body-secondary">
   <!-- Menu Lateral y Main-->
   <%- include('partials/sidebar'); %>
@@ -17,53 +17,31 @@
               </p>
               <small class="text-secondary">Visitantes</small>
             </label>
-            <figure
-              class="text-secondary d-flex justify-content-center w-50 mb-0"
-            >
-              <i
-                class="w-50 h-50"
-                data-lucide="users"
-                alt="visitantes-icon"
-              ></i>
+            <figure class="text-secondary d-flex justify-content-center w-50 mb-0">
+              <i class="w-50 h-50" data-lucide="users" alt="visitantes-icon"></i>
             </figure>
           </div>
         </div>
         <div class="offset-1 col-3 px-3 py-4">
-          <div
-            class="bg-light-subtle rounded-4 shadow px-1 pt-2 pb-3 d-flex justify-content-between align-items-center"
-          >
-            <label
-              class="d-flex flex-column align-items-center w-50 text-center ms-3"
-            >
+          <div class="bg-light-subtle rounded-4 shadow px-1 pt-2 pb-3 d-flex justify-content-between align-items-center">
+            <label class="d-flex flex-column align-items-center w-50 text-center ms-3">
               <p class="text-primary fs-2 m-0 fw-semibold"><%= totalBolivars %></p>
               <small class="text-secondary">Ingresos (Bs.)</small>
             </label>
-            <figure
-              class="text-secondary d-flex justify-content-center w-50 mb-0"
-            >
-              <i
-                class="w-50 h-50"
-                data-lucide="circle-dollar-sign"
-                alt="circle-dolar-icon"
-              ></i>
+            <figure class="text-secondary d-flex justify-content-center w-50 mb-0">
+              <i class="w-50 h-50" data-lucide="circle-dollar-sign" alt="circle-dolar-icon"></i>
             </figure>
           </div>
         </div>
         <div class="col-3 px-3 py-4">
-          <div
-            class="bg-light-subtle rounded-4 shadow px-1 pt-2 pb-3 d-flex justify-content-between align-items-center"
-          >
-            <label
-              class="d-flex flex-column align-items-center w-50 text-center ms-3"
-            >
+          <div class="bg-light-subtle rounded-4 shadow px-1 pt-2 pb-3 d-flex justify-content-between align-items-center">
+            <label class="d-flex flex-column align-items-center w-50 text-center ms-3">
               <p class="text-primary fs-2 m-0 fw-semibold">
                 <%= totalDolars %>
               </p>
               <small class="text-secondary">Ingresos ($)</small>
             </label>
-            <figure
-              class="text-secondary d-flex justify-content-center w-50 mb-0"
-            >
+            <figure class="text-secondary d-flex justify-content-center w-50 mb-0">
               <i
                 class="w-50 h-50"
                 data-lucide="circle-dollar-sign"
@@ -76,21 +54,18 @@
       <section class="row">
         <figure class="offset-1 col-4 bg-light-subtle rounded-4 shadow h-100 py-2">
           <h6 class="text-secondary-emphasis text-center fw-bold py-1">
-            Cantidad de Personas según su Edad
+            Distribución de los Visitantes según su Edad
           </h6>
           <div class="chartContainer">
-            <canvas id="dailyChart" aria-label="dailyChart" role="img"></canvas>
+            <canvas id="visitsDistChart" aria-label="visitsDistChart" role="img"></canvas>
           </div>
         </figure>
-        <figure class="offset-1 col-5 bg-light-subtle rounded-4 shadow">
+        <figure class="offset-1 col-4 bg-light-subtle rounded-4 shadow h-100 py-2">
           <h6 class="text-secondary-emphasis text-center fw-bold py-1">
-            Ingresos en Bolívares por Mes
+            Distribución de los Ingresos según el Método
           </h6>
-          <div
-            class="chart-container d-flex justify-content-center"
-            style="position: relative"
-          >
-            <canvas id="monthChart" aria-label="monthChart" role="img"></canvas>
+          <div class="chartContainer">
+            <canvas id="paymentDistChart" aria-label="paymentDistChart" role="img"></canvas>
           </div>
         </figure>
       </section>
@@ -99,7 +74,9 @@
         <li id="childrenValue" value="<%= childrenNumber %>"></li>
         <li id="adultsValue" value="<%= adultsNumber %>"></li>
         <li id="seniorsValue" value="<%= seniorsNumber %>"></li>
-        <li id="monthlyIncomeValue"><%= yearIncome %></li>
+        <li id="eMoneyBolivarsValue" value="<%= eMoneyBolivars %>"></li>
+        <li id="cashBolivarsValue" value="<%= cashBolivars %>"></li>
+        <li id="cashDolarsValue" value="<%= cashDolars %>"></li>
       </ul>
 
       <form method="post" class="d-flex justify-content-center align-items-center gap-4 mt-4">
@@ -124,6 +101,5 @@
     </article>
   </main>
   <script src="./public/plugins/chartjs/chart.min.js"></script>
-  <script src="./public/js/graficas.js"></script>
   <%- include('partials/scripts')%> <%- include('partials/foot'); %>
 </body>
