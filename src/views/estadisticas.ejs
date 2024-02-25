@@ -36,38 +36,28 @@
         <div class="col-3 px-3 py-4">
           <div class="bg-light-subtle rounded-4 shadow px-1 pt-2 pb-3 d-flex justify-content-between align-items-center">
             <label class="d-flex flex-column align-items-center w-50 text-center ms-3">
-              <p class="text-primary fs-2 m-0 fw-semibold">
-                <%= totalDolars %>
-              </p>
+              <p class="text-primary fs-2 m-0 fw-semibold"><%= totalDolars %></p>
               <small class="text-secondary">Ingresos ($)</small>
             </label>
             <figure class="text-secondary d-flex justify-content-center w-50 mb-0">
-              <i
-                class="w-50 h-50"
-                data-lucide="circle-dollar-sign"
-                alt="circle-dolar-icon"
-              ></i>
+              <i class="w-50 h-50" data-lucide="circle-dollar-sign" alt="circle-dolar-icon"></i>
             </figure>
           </div>
         </div>
       </section>
       <section class="row">
-        <figure class="offset-1 col-4 bg-light-subtle rounded-4 shadow h-100 py-2">
-          <h6 class="text-secondary-emphasis text-center fw-bold py-1">
-            Distribución de los Visitantes según su Edad
-          </h6>
-          <div class="chartContainer">
+        <section class="offset-1 col-4 bg-light-subtle rounded-4 shadow h-100 py-2">
+          <h6 class="text-secondary-emphasis text-center fw-bold py-1">Distribución de los Visitantes según su Edad</h6>
+          <figure class="chartContainer">
             <canvas id="visitsDistChart" aria-label="visitsDistChart" role="img"></canvas>
-          </div>
-        </figure>
-        <figure class="offset-1 col-4 bg-light-subtle rounded-4 shadow h-100 py-2">
-          <h6 class="text-secondary-emphasis text-center fw-bold py-1">
-            Distribución de los Ingresos según el Método
-          </h6>
-          <div class="chartContainer">
+          </figure>
+        </section>
+        <section class="offset-1 col-4 bg-light-subtle rounded-4 shadow h-100 py-2">
+          <h6 class="text-secondary-emphasis text-center fw-bold py-1">Distribución de los Ingresos según el Método</h6>
+          <figure class="chartContainer">
             <canvas id="paymentDistChart" aria-label="paymentDistChart" role="img"></canvas>
-          </div>
-        </figure>
+          </figure>
+        </section>
       </section>
 
       <ul class="d-none">
