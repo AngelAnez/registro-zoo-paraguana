@@ -43,20 +43,18 @@ new Chart(visitsDistChart, {
 new Chart(paymentDistChart, {
   type: 'doughnut',
   data: {
-    labels: ['Bolivares (Efectivo)', 'Bolivares (Digital)', 'Dólares (Efectivo)'],
+    labels: ['Efectivo', 'Digital'],
     datasets: [
         {
           label: 'Cantidad',
-          data: [cashBolivars, eMoneyBolivars, cashDolars],
+          data: [cashBolivars, eMoneyBolivars],
           backgroundColor: [
             'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(75, 192, 192)'
+            'rgb(54, 162, 235)'
           ],
           hoverBackgroundColor: [
             'rgba(255, 99, 132, 0.7)',
-            'rgba(54, 162, 235, 0.7)',
-            'rgba(75, 192, 192, 0.7)'
+            'rgba(54, 162, 235, 0.7)'
           ]
         }
       ]

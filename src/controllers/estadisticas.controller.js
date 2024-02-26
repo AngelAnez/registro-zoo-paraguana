@@ -74,18 +74,21 @@ const getVisitStats = (startDate, endDate) => {
        dataStats.seniorsNumber += parseInt(visit.seniorsNumber)
 
        let bolivarsValue = new decimal(visit.totalBolivars)
-       dataStats.totalBolivars = bolivarsValue.plus(new decimal(dataStats.totalBolivars)).toNumber()
+
 
        let dolarsValue = new decimal(visit.totalDolars)
-       dataStats.totalDolars = dolarsValue.plus(new decimal(dataStats.totalDolars)).toNumber()
+       
 
        if (visit.paymentMethod == "Efectivo"){
           if (visit.extraInfoPayment == "Dolar"){
+            dataStats.totalDolars = dolarsValue.plus(new decimal(dataStats.totalDolars)).toNumber()
             dataStats.cashDolars = bolivarsValue.plus(new decimal(dataStats.cashDolars)).toNumber()
           } else{
+            dataStats.totalBolivars = bolivarsValue.plus(new decimal(dataStats.totalBolivars)).toNumber()
             dataStats.cashBolivars = bolivarsValue.plus(new decimal(dataStats.cashBolivars)).toNumber()
           }
        } else {
+          dataStats.totalBolivars = bolivarsValue.plus(new decimal(dataStats.totalBolivars)).toNumber()
           dataStats.eMoneyBolivars = bolivarsValue.plus(new decimal(dataStats.eMoneyBolivars)).toNumber()
        }
 
