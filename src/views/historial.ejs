@@ -91,10 +91,10 @@
               >
             </th>
             <% } %>
-            <% if (sort == "child" && order == "asc"){ %>
+            <% if (sort == "childrenNumber" && order == "asc"){ %>
             <th scope="col">
               <a
-                href="/historial?pag=<%=pag%>&sort=child&order=dec<%=searchFilter%>"
+                href="/historial?pag=<%=pag%>&sort=childrenNumber&order=dec<%=searchFilter%>"
                 class="text-decoration-none text-black"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
@@ -102,10 +102,10 @@
                 >Niños &uarr;</a
               >
             </th>
-            <% } else if (sort == "child" && order == "dec"){ %>
+            <% } else if (sort == "childrenNumber" && order == "dec"){ %>
             <th scope="col">
               <a
-                href="/historial?pag=<%=pag%>&sort=child&order=asc<%=searchFilter%>"
+                href="/historial?pag=<%=pag%>&sort=childrenNumber&order=asc<%=searchFilter%>"
                 class="text-decoration-none text-black"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
@@ -116,7 +116,7 @@
             <% } else { %>
             <th scope="col">
               <a
-                href="/historial?pag=<%=pag%>&sort=child&order=asc<%=searchFilter%>"
+                href="/historial?pag=<%=pag%>&sort=childrenNumber&order=asc<%=searchFilter%>"
                 class="text-decoration-none text-black"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
@@ -125,10 +125,10 @@
               >
             </th>
             <% } %>
-            <% if (sort == "adult" && order == "asc"){ %>
+            <% if (sort == "adultsNumber" && order == "asc"){ %>
             <th scope="col">
               <a
-                href="/historial?pag=<%=pag%>&sort=adult&order=dec<%=searchFilter%>"
+                href="/historial?pag=<%=pag%>&sort=adultsNumber&order=dec<%=searchFilter%>"
                 class="text-decoration-none text-black"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
@@ -136,10 +136,10 @@
                 >Adultos &uarr;</a
               >
             </th>
-            <% } else if (sort == "adult" && order == "dec"){ %>
+            <% } else if (sort == "adultsNumber" && order == "dec"){ %>
             <th scope="col">
               <a
-                href="/historial?pag=<%=pag%>&sort=adult&order=asc<%=searchFilter%>"
+                href="/historial?pag=<%=pag%>&sort=adultsNumber&order=asc<%=searchFilter%>"
                 class="text-decoration-none text-black"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
@@ -150,7 +150,7 @@
             <% } else { %>
             <th scope="col">
               <a
-                href="/historial?pag=<%=pag%>&sort=adult&order=asc<%=searchFilter%>"
+                href="/historial?pag=<%=pag%>&sort=adultsNumber&order=asc<%=searchFilter%>"
                 class="text-decoration-none text-black"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
@@ -159,10 +159,10 @@
               >
             </th>
             <% } %>
-            <% if (sort == "older" && order == "asc"){ %>
+            <% if (sort == "seniorsNumber" && order == "asc"){ %>
             <th scope="col">
               <a
-                href="/historial?pag=<%=pag%>&sort=older&order=dec<%=searchFilter%>"
+                href="/historial?pag=<%=pag%>&sort=seniorsNumber&order=dec<%=searchFilter%>"
                 class="text-decoration-none text-black"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
@@ -170,10 +170,10 @@
                 >Adultos M. &uarr;</a
               >
             </th>
-            <% } else if (sort == "older" && order == "dec"){ %>
+            <% } else if (sort == "seniorsNumber" && order == "dec"){ %>
             <th scope="col">
               <a
-                href="/historial?pag=<%=pag%>&sort=older&order=asc<%=searchFilter%>"
+                href="/historial?pag=<%=pag%>&sort=seniorsNumber&order=asc<%=searchFilter%>"
                 class="text-decoration-none text-black"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
@@ -184,7 +184,7 @@
             <% } else { %>
             <th scope="col">
               <a
-                href="/historial?pag=<%=pag%>&sort=older&order=asc<%=searchFilter%>"
+                href="/historial?pag=<%=pag%>&sort=seniorsNumber&order=asc<%=searchFilter%>"
                 class="text-decoration-none text-black"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
@@ -193,10 +193,10 @@
               >
             </th>
             <% } %>
-            <% if (sort == "method" && order == "asc"){ %>
+            <% if (sort == "paymentMethod" && order == "asc"){ %>
             <th scope="col">
               <a
-                href="/historial?pag=<%=pag%>&sort=method&order=dec<%=searchFilter%>"
+                href="/historial?pag=<%=pag%>&sort=paymentMethod&order=dec<%=searchFilter%>"
                 class="text-decoration-none text-black"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
@@ -204,10 +204,10 @@
                 >Método de Pago &uarr;</a
               >
             </th>
-            <% } else if (sort == "method" && order == "dec"){ %>
+            <% } else if (sort == "paymentMethod" && order == "dec"){ %>
             <th scope="col">
               <a
-                href="/historial?pag=<%=pag%>&sort=method&order=asc<%=searchFilter%>"
+                href="/historial?pag=<%=pag%>&sort=paymentMethod&order=asc<%=searchFilter%>"
                 class="text-decoration-none text-black"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
@@ -218,7 +218,7 @@
             <% } else { %>
             <th scope="col">
               <a
-                href="/historial?pag=<%=pag%>&sort=method&order=asc<%=searchFilter%>"
+                href="/historial?pag=<%=pag%>&sort=paymentMethod&order=asc<%=searchFilter%>"
                 class="text-decoration-none text-black"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
@@ -227,10 +227,10 @@
               >
             </th>
             <% } %>
-            <% if (sort == "bolivares" && order == "asc"){ %>
+            <% if (sort == "totalBolivars" && order == "asc"){ %>
             <th scope="col">
               <a
-                href="/historial?pag=<%=pag%>&sort=bolivares&order=dec<%=searchFilter%>"
+                href="/historial?pag=<%=pag%>&sort=totalBolivars&order=dec<%=searchFilter%>"
                 class="text-decoration-none text-black"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
@@ -238,10 +238,10 @@
                 >Monto (Bs.) &uarr;</a
               >
             </th>
-            <% } else if (sort == "bolivares" && order == "dec"){ %>
+            <% } else if (sort == "totalBolivars" && order == "dec"){ %>
             <th scope="col">
               <a
-                href="/historial?pag=<%=pag%>&sort=bolivares&order=asc<%=searchFilter%>"
+                href="/historial?pag=<%=pag%>&sort=totalBolivars&order=asc<%=searchFilter%>"
                 class="text-decoration-none text-black"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
@@ -252,7 +252,7 @@
             <% } else { %>
             <th scope="col">
               <a
-                href="/historial?pag=<%=pag%>&sort=bolivares&order=asc<%=searchFilter%>"
+                href="/historial?pag=<%=pag%>&sort=totalBolivars&order=asc<%=searchFilter%>"
                 class="text-decoration-none text-black"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
@@ -261,10 +261,10 @@
               >
             </th>
             <% } %>
-            <% if (sort == "dolar" && order == "asc"){ %>
+            <% if (sort == "totalDolars" && order == "asc"){ %>
             <th scope="col">
               <a
-                href="/historial?pag=<%=pag%>&sort=dolar&order=dec<%=searchFilter%>"
+                href="/historial?pag=<%=pag%>&sort=totalDolars&order=dec<%=searchFilter%>"
                 class="text-decoration-none text-black"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
@@ -272,10 +272,10 @@
                 >Monto ($) &uarr;</a
               >
             </th>
-            <% } else if (sort == "dolar" && order == "dec"){ %>
+            <% } else if (sort == "totalDolars" && order == "dec"){ %>
             <th scope="col">
               <a
-                href="/historial?pag=<%=pag%>&sort=dolar&order=asc<%=searchFilter%>"
+                href="/historial?pag=<%=pag%>&sort=totalDolars&order=asc<%=searchFilter%>"
                 class="text-decoration-none text-black"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
@@ -286,7 +286,7 @@
             <% } else { %>
             <th scope="col">
               <a
-                href="/historial?pag=<%=pag%>&sort=dolar&order=asc<%=searchFilter%>"
+                href="/historial?pag=<%=pag%>&sort=totalDolars&order=asc<%=searchFilter%>"
                 class="text-decoration-none text-black"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"

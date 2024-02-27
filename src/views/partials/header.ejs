@@ -5,8 +5,10 @@
       <h6 class="m-0 fw-semibold headerText ps-2"> Tasa del Día: <span id="dolarToday" class="text-success" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Precio del Dolar en Bolívares"></span></h6>
     </li>
     <li class="col-3 d-flex align-items-center p-0 text-end justify-content-end dropdown">
-      <button id="user-name" class="btn btn-link text-dark text-decoration-none fw-semibold headerText" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <%= username %>
+      <button id="user-name" class="btn btn-link text-dark text-decoration-none fw-semibold headerText py-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="headerUser">
+          <%= username %>
+        </span>
       </button>
       <img id="user-img" class="col-2" src="./public/assets/img/rafa.webp" alt="profile-icon"/>
 

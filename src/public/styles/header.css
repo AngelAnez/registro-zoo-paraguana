@@ -6,12 +6,6 @@ img{
     font-size: larger;
 }
 
-.user-name{
-    padding: 0rem 1rem 0rem 0rem;
-    text-decoration: none;
-    color: black;
-}
-
-.user-name:hover{
-    color: rgb(87, 87, 87);
-}
+.headerUser:hover{
+    color: rgba(0, 0, 0, 0.4);
+}   
