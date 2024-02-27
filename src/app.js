@@ -4,6 +4,7 @@ import "ejs"
 import { DIR_APP } from "./global.js"
 
 import LoginRoutes from "./routes/login.routes.js"
+import LogoutRoutes from "./routes/logout.routes.js";
 import RegistroRoutes from "./routes/registro.routes.js"
 import InicioRoutes from "./routes/inicio.routes.js"
 import PerfilRoutes from "./routes/perfil.routes.js"
@@ -26,6 +27,7 @@ app.use(express.urlencoded({extended: true}));
 /* Rutas del Servidor */
 
 app.use(LoginRoutes)
+app.use(LogoutRoutes)
 app.use(RegistroRoutes)
 app.use(InicioRoutes)
 app.use(PerfilRoutes)

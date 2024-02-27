@@ -14,3 +14,7 @@ export const getUserSession = () => {
 export const postUserSession = (user) => {
   fs.writeFileSync(path.join(DIR_APP, filePath), user);
 };
+
+export const deleteUserSession = () => {
+  fs.writeFileSync(path.join(DIR_APP, filePath), "");
+}

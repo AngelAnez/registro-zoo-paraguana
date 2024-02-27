@@ -1,13 +1,57 @@
-<%- include('partials/head', {title : "Inicio", css : "",
-js : ""}); %>
+<%- include('partials/head', {title : "Inicio", css : "inicio.css",
+js : "", header : true}); %>
 <body class="d-flex bg-body-secondary">
   <!-- Menu Lateral y Main-->
   <%- include('partials/sidebar'); %>
-  <main class="container-fluid row d-flex p-0 m-0" style="height: 100vh">
+  <main class="container row d-flex flex-column p-0 m-0 gap-3 vh-100">
     <!-- Encabezado -->
     <%- include('partials/header'); %>
 
-    <h2>Inicio</h2>
+    <article class="container-fluid mt-2">
+      <header class="d-flex flex-column align-items-center justify-content-center rounded-5 text-bg-success mx-5">
+        <h1>Bienvenido, AngelDavid</h1>
+        <small>al</small>
+        <p class="fs-5">Sistema de Registro y Control de Visitantes e Ingresos del Zoológico Paraguaná </p>
+      </header>
+      <section class="col-4">
+        
+      </section>
+    </article>
+
+<!--     <article class="container-fluid row p-0 m-0" style="height: 88%;">
+      
+      <section id="carouselExample" class="carousel slide m-0 p-0 col-12 position-relative">
+
+        <section class="m-0 p-0 text-center d-flex align-items-center justify-content-center position-absolute z-1 text-bg-dark bg-opacity-75 w-100 h-100 carousel-dark">
+          <section>
+            <h1>Bienvenido, AngelDavid</h1>
+            <p class="fs-5">Sistema de Registro y Control de Visitantes e Ingresos del Zoológico Paraguaná </p>
+          </section>
+        </section>
+        <section class="carousel-inner p-0 pepe">
+          <figure class="carousel-item active">
+            <img src="./public/assets/img/zoo-bridge.webp" class="carouselImg" alt="...">
+          </figure>
+          <figure class="carousel-item">
+            <img src="./public/assets/img/zoo-entry.jpeg" class="carouselImg" alt="...">
+          </figure>
+          <figure class="carousel-item">
+            <img src="./public/assets/img/zoo-bridge.webp" class="carouselImg" alt="...">
+          </figure>
+        </section>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Siguiente</span>
+        </button>
+      </section>
+    </article> -->
+
+    
+
   </main>
   <%- include('partials/scripts')%> <%- include('partials/foot') %>
 </body>

@@ -1,0 +1,10 @@
+.carouselImg{
+    height: 85vh;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.pepe{
+    line-height: 0;
+}
