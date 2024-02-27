@@ -6,11 +6,18 @@
     <!-- Encabezado -->
     <%- include('partials/header'); %>
 
-    <nav class="navbar m-0">
-      <section class="container-fluid d-flex align-items-center justify-content-center">
-        <form class="d-flex w-100 align-items-center justify-content-center" role="search">
-          <input class="form-control w-75 me-4 shadow" type="search" placeholder="Buscar Visita..." aria-label="Search" name="filter" value="<%=searchFilter%>" />
-          <button class="btn btn-success shadow me-3" type="submit">Buscar</button>
+    <nav class="navbar m-0 user-select-none">
+      <section class="container-fluid">
+        <form class="d-flex w-100 align-items-center justify-content-center gap-4" role="search">
+          <section class="col-8 bg-light-subtle rounded-4 shadow py-2 d-flex justify-content-evenly align-items-center">
+            <h6 class="m-0"> Buscar Visita: </h6>
+            <section class="col-8">
+              <input class="form-control" type="search" aria-label="Search" name="filter" value="<%=searchFilter%>" />
+            </section>
+            
+          </section>
+          
+          <button class="btn btn-success shadow" type="submit">Buscar</button>
           <a class="btn btn-primary shadow" href="/historial">Limpiar</a>
         </form>
       </section>

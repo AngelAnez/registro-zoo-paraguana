@@ -1,18 +1,18 @@
-<header class="container-fluid col-12 bg-white shadow-sm py-2 position-sticky">
-  <ul class="header-list row py-1">
-    <li class="col-3 header-list-option">
-      <img class="col-2 tasa-dolar-img" src="./public/assets/img/dolar.webp" alt="dolar-icon"/>
-      <h6> Tasa del Día: <span id="dolar_today" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Precio del Dolar en Bolívares"></span></h6>
+<header class="container-fluid col-12 bg-white shadow-sm py-2 position-sticky z-1">
+  <ul class="row d-flex align-items-center justify-content-between w-100 px-0 py-1 m-0 user-select-none">
+    <li class="col-3 d-flex align-items-center p-0">
+      <img class="col-2" src="./public/assets/img/dolar.webp" alt="dolar-icon"/>
+      <h6 class="m-0 fw-semibold headerText ps-2"> Tasa del Día: <span id="dolarToday" class="text-success" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Precio del Dolar en Bolívares"></span></h6>
     </li>
-    <li class="col-3 header-list-option text-end justify-content-end dropdown">
-      <button id="user-name" class="btn btn-link text-dark text-decoration-none" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <li class="col-3 d-flex align-items-center p-0 text-end justify-content-end dropdown">
+      <button id="user-name" class="btn btn-link text-dark text-decoration-none fw-semibold headerText" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         <%= username %>
       </button>
       <img id="user-img" class="col-2" src="./public/assets/img/rafa.webp" alt="profile-icon"/>
 
-      <ul class="dropdown-menu z-1">
-        <li><a class="dropdown-item z-1" href="/perfil">Ver Perfil</a></li>
-        <li><a class="dropdown-item fw-bold text-danger" class="z-index: 40;" href="/logout">Cerrar Sesión</a></li>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="/perfil">Ver Perfil</a></li>
+        <li><a class="dropdown-item fw-bold text-danger" href="/logout">Cerrar Sesión</a></li>
       </ul>
     </li>
   </ul>
