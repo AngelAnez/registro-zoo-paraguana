@@ -12,7 +12,7 @@ export const postEstadisticas = (req, res) => {
 }
 
 export const renderEstadisticas = (req, res, startDate, endDate) => {
-  const {username} = req.user
+  const {username, admin} = req.user
   const today = getTodayDate().split("/").reverse().join("-")
 
   startDate = startDate.split("/").reverse().join("-")
@@ -25,6 +25,7 @@ export const renderEstadisticas = (req, res, startDate, endDate) => {
 
   res.render("estadisticas", {
     username,
+    admin,
     childrenNumber,
     adultsNumber,
     seniorsNumber,

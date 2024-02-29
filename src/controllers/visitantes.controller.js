@@ -6,12 +6,13 @@ export const getVisitantes = (req, res) => {
 };
 
 export const renderVisitantes = (req, res, alert) => {
-  const { username } = req.user
+  const { username, admin } = req.user
   const {childrenTicketPrice, adultsTicketPrice, seniorsTicketPrice} = getConfig()
 
   const { showAlert, messageAlert, typeAlert } = alert;
   res.render("visitantes", {
     username,
+    admin,
     childrenTicketPrice,
     adultsTicketPrice,
     seniorsTicketPrice,

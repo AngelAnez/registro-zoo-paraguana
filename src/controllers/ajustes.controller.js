@@ -5,7 +5,7 @@ export const getAjustes = (req, res) => {
 };
 
 export const renderAjustes = (req, res, alert) => {
-  const {username} = req.user;
+  const {username, admin} = req.user;
   const {
     internetDolarValue,
     defaultDolarValue,
@@ -18,6 +18,7 @@ export const renderAjustes = (req, res, alert) => {
 
   res.render("ajustes", {
     username,
+    admin,
     internetDolarValue,
     defaultDolarValue,
     childrenTicketPrice,

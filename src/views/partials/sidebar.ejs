@@ -9,7 +9,6 @@
         data-lucide="paw-print"
         alt="logo-zoo-icon"
       ></i>
-      <!-- <img class="col-3 p-0" src="./public/assets/img/pata-blanca.webp" alt="logo-zoo-paraguana"> -->
       <h5 class="col-9 p-0 m-0 text-center">Zoo Paraguaná</h5>
     </section>
     <hr class="solid m-0" />
@@ -53,6 +52,16 @@
           ></i>
           <a class="options-menu-link" href="/ajustes">Ajustes</a>
         </li>
+        <% if (admin) { %>
+        <li class="options-menu">
+          <i
+            class="options-menu-icon"
+            data-lucide="user-round-cog"
+            alt="ajustes-icon"
+          ></i>
+          <a class="options-menu-link" href="/admin">Administración</a>
+        </li>
+        <% } %>
       </ul>
     </section>
   </section>

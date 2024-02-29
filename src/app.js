@@ -5,6 +5,7 @@ import { DIR_APP } from "./global.js"
 import CookieParser from "cookie-parser";
 
 import AuthRoutes from "./routes/auth.routes.js";
+import AdminRoutes from "./routes/admin.routes.js";
 import InicioRoutes from "./routes/inicio.routes.js"
 import PerfilRoutes from "./routes/perfil.routes.js"
 import VisitantesRoutes from "./routes/visitantes.routes.js"
@@ -27,6 +28,7 @@ app.use(CookieParser())
 /* Rutas del Servidor */
 
 app.use(AuthRoutes)
+app.use(AdminRoutes)
 app.use(InicioRoutes)
 app.use(PerfilRoutes)
 app.use(VisitantesRoutes)

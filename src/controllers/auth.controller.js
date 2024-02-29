@@ -16,7 +16,8 @@ export const userRegister = async (req, res) => {
         const newUser = {
             username,
             password: passwordHash,
-            email
+            email,
+            admin: false
         }
 
         const userSaved = JSON.stringify(newUser) + "\n";
@@ -67,7 +68,7 @@ export const verifyUser = async (req, res) => {
     });
   }
 
-  const token = await createAccessToken({username})
+  const token = await createAccessToken({username, admin: userFound.admin})
   res.cookie("token", token)
 
   res.redirect("/inicio");    
