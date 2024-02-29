@@ -1,2 +1,5 @@
-{"username": "AngelDavid", "password": "1234", "email": "angel1234@gmail.com"}
-{"username": "Prueba", "password": "prueba123", "email": "prueba@prueba.com"}
+{"username":"Peperonni","password":"12321","email":"soydeitalia@bambino.com"}
+{"username":"Pruebaneitor2000","password":"soyunapruebajeje","email":"pruebacrack@google.com"}
+{"username":"AngelDavid","password":"1234","email":"angel1234@gmail.com"}
+{"username":"Top Secret","password":"$2a$10$UQAhK58PNwO7kQNSgd07nu6hoIiLKEGF/n2CnQfCLiyu8rvy9uehm","email":"espia@google.com"}
+{"username":"Token","password":"jwt","email":"tokenenproceso@node.com"}

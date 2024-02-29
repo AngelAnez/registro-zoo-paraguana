@@ -15,10 +15,13 @@
   "author": "Angel Añez",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "bcv-divisas": "^1.2.6",
+    "cookie-parser": "^1.4.6",
     "decimal.js-light": "^2.5.1",
     "ejs": "^3.1.9",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

@@ -1,6 +1,7 @@
 import { getUserSession } from "../models/userSession.js";
 import { postVisits } from "../models/visits.js";
 import { getConfig } from "../models/config.js";
+
 export const getVisitantes = (req, res) => {
   renderVisitantes(res, { showAlert: false, messageAlert: "", typeAlert: "" });
 };

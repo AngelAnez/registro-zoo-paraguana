@@ -3,9 +3,7 @@ import path from "path"
 import "ejs"
 import { DIR_APP } from "./global.js"
 
-import LoginRoutes from "./routes/login.routes.js"
-import LogoutRoutes from "./routes/logout.routes.js";
-import RegistroRoutes from "./routes/registro.routes.js"
+import AuthRoutes from "./routes/auth.routes.js";
 import InicioRoutes from "./routes/inicio.routes.js"
 import PerfilRoutes from "./routes/perfil.routes.js"
 import VisitantesRoutes from "./routes/visitantes.routes.js"
@@ -26,9 +24,7 @@ app.use(express.urlencoded({extended: true}));
 
 /* Rutas del Servidor */
 
-app.use(LoginRoutes)
-app.use(LogoutRoutes)
-app.use(RegistroRoutes)
+app.use(AuthRoutes)
 app.use(InicioRoutes)
 app.use(PerfilRoutes)
 app.use(VisitantesRoutes)
