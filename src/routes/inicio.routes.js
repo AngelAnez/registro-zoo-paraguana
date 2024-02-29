@@ -1,11 +1,11 @@
 import { Router } from "express"
 import { renderInicio, getDolarValue } from "../controllers/inicio.controller.js";
-import { userConnected } from "../middlewares/userConnected.js";
+import { validateToken } from "../middlewares/validateToken.js";
 
 const router = Router()
 
-router.get("/inicio", userConnected, renderInicio)
+router.get("/inicio", validateToken, renderInicio)
 
-router.get("/dolar", userConnected, getDolarValue)
+router.get("/dolar", validateToken, getDolarValue)
 
 export default router

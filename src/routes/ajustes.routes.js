@@ -1,11 +1,11 @@
 import { Router } from "express"
 import { getAjustes, changeConfig} from "../controllers/ajustes.controller.js";
-import { userConnected } from "../middlewares/userConnected.js";
+import { validateToken } from "../middlewares/validateToken.js";
 
 const router = Router()
 
-router.get("/ajustes", userConnected, getAjustes)
+router.get("/ajustes", validateToken, getAjustes)
 
-router.post("/ajustes", userConnected, changeConfig)
+router.post("/ajustes", validateToken, changeConfig)
 
 export default router

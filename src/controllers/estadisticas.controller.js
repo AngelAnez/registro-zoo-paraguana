@@ -1,19 +1,18 @@
-import { getUserSession } from "../models/userSession.js";
-import { getTodayDate } from "../middlewares/todayDate.js";
+import { getTodayDate } from "../lib/todayDate.js";
 import { getVisits } from "../models/visits.js";
 import decimal from "decimal.js-light"; 
 
 export const getEstadisticas = (req, res) => {
-  renderEstadisticas(res, getTodayDate(), getTodayDate())
+  renderEstadisticas(req, res, getTodayDate(), getTodayDate())
 }
 
 export const postEstadisticas = (req, res) => {
   const dateRange = formatDateRange(req.body.startDate, req.body.endDate)
-  renderEstadisticas(res, dateRange[0], dateRange[1])
+  renderEstadisticas(req, res, dateRange[0], dateRange[1])
 }
 
-export const renderEstadisticas = (res, startDate, endDate) => {
-  const user = getUserSession();
+export const renderEstadisticas = (req, res, startDate, endDate) => {
+  const {username} = req.user
   const today = getTodayDate().split("/").reverse().join("-")
 
   startDate = startDate.split("/").reverse().join("-")
@@ -25,7 +24,7 @@ export const renderEstadisticas = (res, startDate, endDate) => {
   );
 
   res.render("estadisticas", {
-    username: user.username,
+    username,
     childrenNumber,
     adultsNumber,
     seniorsNumber,

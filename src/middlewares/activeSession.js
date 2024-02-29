@@ -1,9 +1,11 @@
-import { getUserSession } from "../models/userSession.js";
+import {verifyAccessToken} from "../lib/jwt.js";
 
 export const activeSession = (req, res, next) => {
-  const data = getUserSession();
-  if (JSON.stringify(data) != "{}") {
-    return res.redirect("/visitantes");
-  }
-  next();
+  const {token} = req.cookies
+    if (token && verifyAccessToken(token)){
+      req.user = verifyAccessToken(token)
+      console.log(`El usuario ${req.user.username} tiene su sesión abierta`);
+      return res.redirect("/inicio");        
+    }
+    next();
 };

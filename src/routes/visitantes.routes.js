@@ -1,11 +1,11 @@
 import { Router } from "express"
 import { getVisitantes, addNewVisit } from "../controllers/visitantes.controller.js";
-import { userConnected } from "../middlewares/userConnected.js";
+import { validateToken } from "../middlewares/validateToken.js";
 
 const router = Router()
 
-router.get("/visitantes", userConnected, getVisitantes)
+router.get("/visitantes", validateToken, getVisitantes)
 
-router.post("/visitantes", userConnected, addNewVisit)
+router.post("/visitantes", validateToken, addNewVisit)
 
 export default router

@@ -1,18 +1,17 @@
-import { getUserSession } from "../models/userSession.js";
 import { postVisits } from "../models/visits.js";
 import { getConfig } from "../models/config.js";
 
 export const getVisitantes = (req, res) => {
-  renderVisitantes(res, { showAlert: false, messageAlert: "", typeAlert: "" });
+  renderVisitantes(req, res, { showAlert: false, messageAlert: "", typeAlert: "" });
 };
 
-export const renderVisitantes = (res, alert) => {
-  const user = getUserSession();
+export const renderVisitantes = (req, res, alert) => {
+  const { username } = req.user
   const {childrenTicketPrice, adultsTicketPrice, seniorsTicketPrice} = getConfig()
 
   const { showAlert, messageAlert, typeAlert } = alert;
   res.render("visitantes", {
-    username: user.username,
+    username,
     childrenTicketPrice,
     adultsTicketPrice,
     seniorsTicketPrice,
@@ -43,7 +42,7 @@ export const addNewVisit = (req, res) => {
   formData = JSON.stringify(formData) + "\n";
   postVisits(formData);
 
-  renderVisitantes(res, {
+  renderVisitantes(req, res, {
     showAlert: true,
     messageAlert: "Los visitantes han sido guardados exitosamente",
     typeAlert: "success",

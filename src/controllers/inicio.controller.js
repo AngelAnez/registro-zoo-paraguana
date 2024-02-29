@@ -1,9 +1,8 @@
 import { bcvDolar } from "bcv-divisas";
-import { getUserSession } from "../models/userSession.js";
 import { getConfig } from "../models/config.js";
 
 export const renderInicio = (req, res) => {
-  const {username} = getUserSession();
+  const {username} = req.user;
   res.render("inicio", {
     username
   });

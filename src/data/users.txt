@@ -1,5 +1,5 @@
-{"username":"Peperonni","password":"12321","email":"soydeitalia@bambino.com"}
-{"username":"Pruebaneitor2000","password":"soyunapruebajeje","email":"pruebacrack@google.com"}
-{"username":"AngelDavid","password":"1234","email":"angel1234@gmail.com"}
-{"username":"Top Secret","password":"$2a$10$UQAhK58PNwO7kQNSgd07nu6hoIiLKEGF/n2CnQfCLiyu8rvy9uehm","email":"espia@google.com"}
-{"username":"Token","password":"jwt","email":"tokenenproceso@node.com"}
+{"username":"Dolph Ziggler","password":"$2a$10$J2K8.fHDhWCTTsnaE3gb..PgnY8g740sghSHHyy346U9jWd75R9W.","email":"iamperfection@wwe.com"}
+{"username":"AngelDavid","password":"$2a$10$dryg3kfwWI/J.X.S1HC.oOPoVyy6xRZcgoxM/I8W1K.ISuK2lTFuW","email":"angeldavid@google.com"}
+{"username":"AdminSecreto","password":"$2a$10$zvNVAPBCnG6Ow3BhUkBq6.uIDqsQPOvVQsRjKIhpYrK4U/yBdjNRe","email":"adminsecreto@google.com"}
+{"username":"Rafael Rodriguez","password":"$2a$10$NMB5CACg.Bkg7yZg7UPOm.QIR1XOf9WEL8GmyLof90M.98OLimS7G","email":"rafa@zoo.com"}
+{"username":"Luz Urdaneta","password":"$2a$10$/mNyLZ4UusDlsaTGfq29QOwY9GMQV/ch4.d8bmM2Nv8D/IS8kqXZK","email":"luzurdaneta@google.com"}

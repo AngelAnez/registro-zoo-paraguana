@@ -1,8 +1,7 @@
-import { getUserSession } from "../models/userSession.js";
 import { getVisits } from "../models/visits.js";
 
 export const renderHistorial = (req, res) => {
-  const user = getUserSession();
+  const {username} = req.user
   let pag = 10;
   let sort = ""; // Puede ser cualquier propiedad de las visitas
   let order = ""; // Puede ser asc o dec
@@ -21,7 +20,7 @@ export const renderHistorial = (req, res) => {
   }
   const { visits, total } = showVisits(pag, sort, order, searchFilter);
   res.render("historial", {
-    username: user.username,
+    username,
     visits,
     total,
     pag: pag / 10,

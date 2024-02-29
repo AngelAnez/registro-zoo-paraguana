@@ -1,9 +1,9 @@
 import { Router } from "express"
 import { renderPerfil } from "../controllers/perfil.controller.js"
-import { userConnected } from "../middlewares/userConnected.js";
+import { validateToken } from "../middlewares/validateToken.js";
 
 const router = Router()
 
-router.get("/perfil", userConnected, renderPerfil)
+router.get("/perfil", validateToken, renderPerfil)
 
 export default router

@@ -1,12 +1,11 @@
-import { getUserSession } from "../models/userSession.js";
 import { getConfig, postConfig } from "../models/config.js";
 
 export const getAjustes = (req, res) => {
-  renderAjustes(res, {showAlert: false, messageAlert: "", typeAlert: ""});
+  renderAjustes(req, res, {showAlert: false, messageAlert: "", typeAlert: ""});
 };
 
-export const renderAjustes = (res, alert) => {
-  const user = getUserSession();
+export const renderAjustes = (req, res, alert) => {
+  const {username} = req.user;
   const {
     internetDolarValue,
     defaultDolarValue,
@@ -18,7 +17,7 @@ export const renderAjustes = (res, alert) => {
   const {showAlert, messageAlert, typeAlert} = alert
 
   res.render("ajustes", {
-    username: user.username,
+    username,
     internetDolarValue,
     defaultDolarValue,
     childrenTicketPrice,
