@@ -1,9 +1,3 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
 .menu-header{
     height: 10vh;
     user-select: none;
@@ -33,10 +27,6 @@
     border-radius: 20px;
     color: black;
     align-items: center;
-}
-.options-menu:hover{
-    opacity: 40%;
-    transition: 0.3s;
 }
 
 .options-menu-icon{

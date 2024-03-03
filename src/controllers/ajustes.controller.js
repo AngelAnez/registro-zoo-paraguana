@@ -44,27 +44,27 @@ export const changeConfig = (req, res) => {
   const numberRegex = /^[0-9]+([.][0-9]+)?$/;
 
   if (!internetDolarRegex.test(configData.internetDolarValue)) {
-    return renderAjustes(res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
+    return renderAjustes(req, res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
   }
 
   if (!numberRegex.test(configData.defaultDolarValue)) {
-    return renderAjustes(res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
+    return renderAjustes(req, res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
   }
 
   if (!numberRegex.test(configData.childrenTicketPrice)) {
-    return renderAjustes(res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
+    return renderAjustes(req, res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
   }
 
   if (!numberRegex.test(configData.adultsTicketPrice)) {
-    return renderAjustes(res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
+    return renderAjustes(req, res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
   }
 
   if (!numberRegex.test(configData.seniorsTicketPrice)) {
-    return renderAjustes(res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
+    return renderAjustes(req, res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
   }
 
   configData = JSON.stringify(configData);
   postConfig(configData);
 
-  renderAjustes(res, {showAlert: true, messageAlert: "Los cambios han sido guardados exitosamente", typeAlert: "success"});
+  renderAjustes(req, res, {showAlert: true, messageAlert: "Los cambios han sido guardados exitosamente", typeAlert: "success"});
 };

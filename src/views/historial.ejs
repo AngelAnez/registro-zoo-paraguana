@@ -327,16 +327,15 @@
                   <h1 class="modal-title fs-5" id="modalLabel<%=index %>">
                     Información de la Visita
                   </h1>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
+                  <button class="btn text-light p-0 opacityHover" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="" data-lucide="x" alt="close-icon"></i>
+                  </button>
                 </div>
                 <div class="modal-body d-flex">
                   <% if (visit.paymentMethod == "Efectivo") { %> 
                   <% methodInfoType = "Moneda:" %> 
+                  <% } else if (visit.paymentMethod == "Otro") { %>
+                  <% methodInfoType = "Información del Método:" %> 
                   <% } else { %> 
                   <% methodInfoType = "Nro de Referencia:" %> 
                   <% } %>
@@ -395,18 +394,6 @@
                       ><%= visit.time %></span
                     >
                   </section>
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                  <button type="button" class="btn btn-success">
-                    Save changes
-                  </button>
                 </div>
               </div>
             </div>
@@ -473,5 +460,3 @@
   </main>
   <%- include('partials/scripts')%>
 <%- include('partials/foot'); %>
-
-

@@ -1,0 +1,10 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.opacityHover:hover{
+    opacity: 40%;
+    transition: 0.3s;
+}

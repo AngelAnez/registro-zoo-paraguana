@@ -5,7 +5,3 @@ img{
 .headerText{
     font-size: larger;
 }
-
-.headerUser:hover{
-    color: rgba(0, 0, 0, 0.4);
-}   
