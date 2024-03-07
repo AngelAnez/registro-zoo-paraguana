@@ -8,3 +8,7 @@
     opacity: 40%;
     transition: 0.3s;
 }
+
+img{
+    pointer-events: none;
+}

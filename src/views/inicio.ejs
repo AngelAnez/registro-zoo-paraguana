@@ -3,19 +3,24 @@ js : "", header : true}); %>
 <body class="d-flex bg-body-secondary">
   <!-- Menu Lateral y Main-->
   <%- include('partials/sidebar'); %>
-  <main class="container row d-flex flex-column p-0 m-0 gap-3 vh-100">
+  <main class="container-fluid d-flex flex-column p-0 m-0 vh-100">
     <!-- Encabezado -->
     <%- include('partials/header'); %>
 
-    <article class="container-fluid mt-2">
-      <header class="d-flex flex-column align-items-center justify-content-center rounded-5 text-bg-success mx-5">
-        <h1>Bienvenido, <%= username %></h1>
-        <small>al</small>
-        <p class="fs-5">Sistema de Registro y Control de Visitantes e Ingresos del Zoológico Paraguaná </p>
+    <article class="d-flex flex-column justify-content-evenly mainArticle position-relative text-white align-items-center">
+      <header class="d-flex flex-column align-items-center justify-content-center rounded-5 text-center z-1 w-75 mx-auto my-5">
+        <h4>Bienvenido, <span class="text-info"><%= username %></span></h4>
+        <p class="m-0 p-0">al</p>
+        <h2>Sistema de Registro y Control de Visitantes e Ingresos del Zoológico Paraguaná</h2>
       </header>
-      <section class="col-4">
-        
+      <section class="d-flex gap-5 z-1">
+        <a class="btn btn-outline-light" href="/visitantes">Registrar Visitantes</a>
+        <a class="btn btn-outline-light" href="/historial">Historial Diario</a>
+        <a class="btn btn-outline-light" href="/estadisticas">Estadisticas</a>
+        <a class="btn btn-outline-light" href="/ajustes">Ajustes</a>
       </section>
+      <footer class="z-1 mt-5">Creado con &#128154 por Angel Añez</footer>
+      <div class="position-absolute text-bg-dark bg-opacity-75 w-100 h-100"></div>
     </article>
 
 <!--     <article class="container-fluid row p-0 m-0" style="height: 88%;">

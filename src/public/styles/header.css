@@ -1,5 +1,9 @@
-img{
-    pointer-events: none;
+.headerContainer{
+    height: 10%;
+}
+
+.headerImg{
+    max-height: 8vh;
 }
 
 .headerText{

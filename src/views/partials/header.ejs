@@ -1,7 +1,12 @@
-<header class="container-fluid col-12 bg-white shadow-sm py-2 position-sticky z-1">
+<header class="container-fluid col-12 bg-white shadow-sm py-1 position-sticky z-1 headerContainer" >
   <ul class="row d-flex align-items-center justify-content-between w-100 px-0 py-1 m-0 user-select-none">
+    <li class="col-2 p-0 d-flex">
+      <button id="sidebarButton" class="btn btn-light" data-bs-target="#sidebar" data-bs-toggle="collapse">
+        <i data-lucide="menu" alt="estadisticas-icon"></i>
+      </button>
+    </li>
     <li class="col-3 d-flex align-items-center p-0">
-      <img class="col-2" src="./public/assets/img/dolar.webp" alt="dolar-icon"/>
+      <img class="headerImg" src="./public/assets/img/dolar.webp" alt="dolar-icon"/>
       <h6 class="m-0 fw-semibold headerText ps-2"> Tasa del Día: <span id="dolarToday" class="text-success" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Precio del Dolar en Bolívares"></span></h6>
     </li>
     <li class="col-3 d-flex align-items-center p-0 text-end justify-content-end dropdown">
@@ -10,7 +15,7 @@
           <%= username %>
         </span>
       </button>
-      <img id="user-img" class="col-2" src="./public/assets/img/rafa.webp" alt="profile-icon"/>
+      <img id="user-img" class="headerImg" src="./public/assets/img/rafa.webp" alt="profile-icon"/>
 
       <ul class="dropdown-menu mt-2">
         <li><a class="dropdown-item" href="/perfil">Ver Perfil</a></li>
