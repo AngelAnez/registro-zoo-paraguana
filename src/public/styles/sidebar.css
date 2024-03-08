@@ -1,3 +1,7 @@
+.collapse{
+    transition: 0.5s;
+}
+
 .menu-header{
     height: 10vh;
     user-select: none;
@@ -30,8 +34,8 @@
 }
 
 .options-menu-icon{
-    width: 15%;
-    height: 15%;
+    width: 2.5vw;
+    height: 5vh;
     pointer-events: none;
     margin-left: 0.2rem;
     color: white;

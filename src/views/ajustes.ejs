@@ -35,7 +35,7 @@
                 <sub class="user-select-none lh-base">Valor del dólar en bolívares que toma el sistema por defecto</sub>
               </section>
             </li>
-
+            <% if (admin) { %>
             <li class="container row">
               <section class="offset-1 col-6 p-0 fw-bold my-2 user-select-none">
                 <label for="childrenTicketPrice"
@@ -90,6 +90,7 @@
                 >
               </section>
             </li>
+            <% } %>
           </ul>
           <button class="btn btn-success mb-3">Guardar Cambios</button>
         </section>

@@ -4,6 +4,7 @@
 
 .headerImg{
     max-height: 8vh;
+    transform: scaleX(-1);
 }
 
 .headerText{

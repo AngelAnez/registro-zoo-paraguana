@@ -51,17 +51,29 @@ export const changeConfig = (req, res) => {
     return renderAjustes(req, res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
   }
 
-  if (!numberRegex.test(configData.childrenTicketPrice)) {
-    return renderAjustes(req, res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
+  if (!configData.childrenTicketPrice || !configData.adultsTicketPrice || !configData.seniorsTicketPrice){
+    const {childrenTicketPrice, adultsTicketPrice, seniorsTicketPrice} = getConfig()
+    configData = {
+      ...configData,
+      childrenTicketPrice,
+      adultsTicketPrice,
+      seniorsTicketPrice
+    }
+  } else {
+    if (!numberRegex.test(configData.childrenTicketPrice)) {
+      return renderAjustes(req, res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
+    }
+
+    if (!numberRegex.test(configData.adultsTicketPrice)) {
+      return renderAjustes(req, res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
+    }
+  
+    if (!numberRegex.test(configData.seniorsTicketPrice)) {
+      return renderAjustes(req, res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
+    }
   }
 
-  if (!numberRegex.test(configData.adultsTicketPrice)) {
-    return renderAjustes(req, res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
-  }
-
-  if (!numberRegex.test(configData.seniorsTicketPrice)) {
-    return renderAjustes(req, res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
-  }
+  
 
   configData = JSON.stringify(configData);
   postConfig(configData);

@@ -14,12 +14,24 @@ export const getDolarValue = async (req, res) => {
   const internetDolar = internetDolarValue;
   if (internetDolar == "on") {
     try {
-      const bcv = await bcvDolar();
-      return res.send(bcv._dolar);
+      const searchingDolar = new Promise(async (resolve, reject) => {
+        let data = await bcvDolar()
+        resolve(data._dolar)
+      })
+      const waitingTime = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(defaultDolarValue);
+        }, 5000);
+      })
+      return Promise.any([searchingDolar, waitingTime]).then((value) => {
+        res.send(value)
+      })
     } catch (error) {
-      console.log("Ha ocurrido un error de conexión");
+      console.log("Ha ocurrido un error de conexión")
     }
   }
   const defaultDolar = defaultDolarValue;
   res.send(defaultDolar); 
 };
+
+// Recuerda añadir el Promise.any() para poner un tiempo limite de buscar los dolares
