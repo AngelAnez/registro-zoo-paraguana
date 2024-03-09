@@ -19,31 +19,56 @@
                 </tr>
             </thead>
             <tbody>
-                <% users.forEach(user => { %>
+                <% users.forEach((user,index) => { %>
                     <% if (user.username != username) {%> 
                     <tr>
-                        <td><span><%= user.username %></span></td>
+                        <td><%= user.username %></td>
                         <td><%= user.email %></td>
                         <% if (user.admin){ %>
                         <td>Administrador</td>
                         <% } else { %>
                         <td>Moderador</td>
                         <% } %>
-                        <td>
-                            <button class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cambiar Contraseña">
-                                <i class="text-dark opacityHover" data-lucide="key-round" alt="changepassword-icon"></i>
-                            </button>
-                            <button class="btn btn-link p-0" >
-                                <i class="text-dark opacityHover" data-lucide="pencil" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Modificar Usuario" alt="modify-icon"></i>
-                            </button>
-                            <button class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Convertir en Administrador">
+                        <td data-bs-toggle="modal">
+                            <a class="btn btn-link p-0" data-bs-toggle="tooltip"  data-bs-placement="top" data-bs-title="Cambiar Contraseña">
+                                <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#modalchangePassword<%=index %>" data-lucide="key-round" alt="changepassword-icon"></i>
+                            </a>
+                            <a class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Modificar Usuario">
+                                <i class="text-dark opacityHover" data-lucide="pencil"  alt="modify-icon"></i>
+                            </a>
+                            <a class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Convertir en Administrador">
                                 <i class="text-dark opacityHover" data-lucide="shield-plus" alt="makeadmin-icon"></i>
-                            </button>
-                            <button class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Eliminar Usuario">
+                            </a>
+                            <a class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Eliminar Usuario">
                                 <i class="text-dark opacityHover" data-lucide="trash-2" alt="delete-icon"></i>
-                            </button>
+                            </a>
                         </td>
                     </tr>
+                    <article class="modal fade" id="modalchangePassword<%=index %>" tabindex="-1" aria-hidden="true">
+                        <section class="modal-dialog modal-dialog-centered">
+                            <section class="modal-content">
+                                <header class="modal-header text-bg-success">
+                                    <h1 class="modal-title fs-5" id="modalLabel<%=index %>">
+                                        Cambio de Contraseña
+                                      </h1>
+                                      <button class="btn text-light p-0 opacityHover" data-bs-dismiss="modal" aria-label="Close">
+                                        <i class="" data-lucide="x" alt="close-icon"></i>
+                                      </button>
+                                </header>
+                                <section class="modal-body">
+                                    <form>
+                                      <section>
+                                        <label for="newPassword" class="col-form-label">Ingrese la nueva contraseña</label>
+                                        <input type="text" class="form-control" id="newPassword" name="newPassword">
+                                      </section>
+                                      <section class="d-flex justify-content-end">
+                                        <button class="btn btn-success">Guardar</button>
+                                      </section>
+                                    </form>
+                                  </section>
+                            </section>
+                        </section>
+                    </article>
                 <% }}) %>
                 
             </tbody>
