@@ -33,5 +33,3 @@ export const getDolarValue = async (req, res) => {
   const defaultDolar = defaultDolarValue;
   res.send(defaultDolar); 
 };
-
-// Recuerda añadir el Promise.any() para poner un tiempo limite de buscar los dolares

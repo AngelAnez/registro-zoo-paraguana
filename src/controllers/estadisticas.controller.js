@@ -43,13 +43,7 @@ export const renderEstadisticas = (req, res, startDate, endDate) => {
 const getVisitStats = (startDate, endDate) => {
   const data = getVisits();
 
-  let visits = data
-  .split("\n")
-  .filter((e) => e != "")
-  .reverse()
-  .map((visit) => {
-    return JSON.parse(visit);
-  });
+  let visits = data.reverse()
 
   let actualDateRange = new Date(startDate + 'T00:00:00')
   const endDateRange = new Date(endDate + 'T00:00:00')
@@ -74,11 +68,8 @@ const getVisitStats = (startDate, endDate) => {
        dataStats.seniorsNumber += parseInt(visit.seniorsNumber)
 
        let bolivarsValue = new decimal(visit.totalBolivars)
-
-
        let dolarsValue = new decimal(visit.totalDolars)
        
-
        if (visit.paymentMethod == "Efectivo"){
           if (visit.extraInfoPayment == "Dolar"){
             dataStats.totalDolars = dolarsValue.plus(new decimal(dataStats.totalDolars)).toNumber()
@@ -91,7 +82,6 @@ const getVisitStats = (startDate, endDate) => {
           dataStats.totalBolivars = bolivarsValue.plus(new decimal(dataStats.totalBolivars)).toNumber()
           dataStats.eMoneyBolivars = bolivarsValue.plus(new decimal(dataStats.eMoneyBolivars)).toNumber()
        }
-
      }
     });
     actualDateRange.setDate(actualDateRange.getDate() + 1);

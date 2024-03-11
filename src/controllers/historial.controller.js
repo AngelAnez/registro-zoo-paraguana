@@ -1,7 +1,7 @@
 import { getVisits } from "../models/visits.js";
 
 export const renderHistorial = (req, res) => {
-  const {username, admin} = req.user
+  const { username, admin } = req.user;
   let pag = 10;
   let sort = ""; // Puede ser cualquier propiedad de las visitas
   let order = ""; // Puede ser asc o dec
@@ -18,7 +18,13 @@ export const renderHistorial = (req, res) => {
       .replaceAll(/[^a-zA-Z0-9áéíóúÁÉÍÓÚÑñ/.: ]+/g, "")
       .toLowerCase();
   }
-  const { visits, total } = showVisits(pag, sort, order, searchFilter);
+  let { visits, total } = showVisits(pag, sort, order, searchFilter);
+  if (!visits) {
+    visits = [];
+  }
+  if (!total) {
+    total = 1;
+  }
   res.render("historial", {
     username,
     admin,
@@ -33,13 +39,7 @@ export const renderHistorial = (req, res) => {
 
 const showVisits = (pag, sort, order, searchFilter) => {
   const data = getVisits();
-  let visits = data
-    .split("\n")
-    .filter((e) => e != "")
-    .reverse()
-    .map((visit) => {
-      return JSON.parse(visit);
-    });
+  let visits = data.reverse();
 
   if (searchFilter != "") {
     visits = visits.filter((visit) => {

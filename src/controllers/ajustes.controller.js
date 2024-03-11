@@ -75,7 +75,7 @@ export const changeConfig = (req, res) => {
 
   
 
-  configData = JSON.stringify(configData);
+  configData = JSON.stringify(configData, null, 2);
   postConfig(configData);
 
   renderAjustes(req, res, {showAlert: true, messageAlert: "Los cambios han sido guardados exitosamente", typeAlert: "success"});

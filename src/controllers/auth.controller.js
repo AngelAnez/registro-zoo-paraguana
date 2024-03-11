@@ -19,12 +19,8 @@ export const userRegister = async (req, res) => {
             email,
             admin: false
         }
-
-        const userSaved = JSON.stringify(newUser) + "\n";
-        postUsers(userSaved)
-
+        postUsers(newUser)
         res.redirect("/login");
-
     } catch (error) {
         res.status(500).json({message: error.message})
     }
@@ -42,36 +38,23 @@ export const verifyUser = async (req, res) => {
   try {
     const data = getUsers();
 
-  let userFound = data
-    .split("\n")
-    .filter((e) => e != "")
-    .find((user) => {
-      user = JSON.parse(user);
-      if (user.username === username) {
-        return user;
-      }
-    });
+    let userFound = data.find(user => user.username === username);
+    if (!userFound){
+      return res.render("login", {
+        invalidUser: true,
+      });
+    }
 
-  if (!userFound){
-    return res.render("login", {
-      invalidUser: true,
-    });
-  }
+    const validPassword = await bcryptjs.compare(password, userFound.password)
+    if (!validPassword){
+      return res.render("login", {
+        invalidUser: true,
+      });
+    }
 
-  userFound = JSON.parse(userFound)
-
-  const validPassword = await bcryptjs.compare(password, userFound.password)
-
-  if (!validPassword){
-    return res.render("login", {
-      invalidUser: true,
-    });
-  }
-
-  const token = await createAccessToken({username, admin: userFound.admin})
-  res.cookie("token", token)
-
-  res.redirect("/inicio");    
+    const token = await createAccessToken({username, admin: userFound.admin})
+    res.cookie("token", token)
+    res.redirect("/inicio");  
 
   } catch (error) {
     res.status(500).json({message: error.message})

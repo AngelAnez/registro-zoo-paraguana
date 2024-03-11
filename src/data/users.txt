@@ -1,6 +1,0 @@
-{"username":"Dolph Ziggler","password":"$2a$10$J2K8.fHDhWCTTsnaE3gb..PgnY8g740sghSHHyy346U9jWd75R9W.","email":"iamperfection@wwe.com","admin":false}
-{"username":"AngelDavid","password":"$2a$10$dryg3kfwWI/J.X.S1HC.oOPoVyy6xRZcgoxM/I8W1K.ISuK2lTFuW","email":"angeldavid@google.com","admin":true}
-{"username":"AdminSecreto","password":"$2a$10$zvNVAPBCnG6Ow3BhUkBq6.uIDqsQPOvVQsRjKIhpYrK4U/yBdjNRe","email":"adminsecreto@google.com","admin":false}
-{"username":"Rafael Rodriguez","password":"$2a$10$NMB5CACg.Bkg7yZg7UPOm.QIR1XOf9WEL8GmyLof90M.98OLimS7G","email":"rafa@zoo.com","admin":false}
-{"username":"Luz Urdaneta","password":"$2a$10$/mNyLZ4UusDlsaTGfq29QOwY9GMQV/ch4.d8bmM2Nv8D/IS8kqXZK","email":"luzurdaneta@google.com","admin":false}
-{"username":"Pepe","password":"$2a$10$z8uaWyiewhG6PK9uZVQmReY79QKmZxUj5xQZxT41fe/DIn2r1Rj.O","email":"pepe@google.com","admin":false}

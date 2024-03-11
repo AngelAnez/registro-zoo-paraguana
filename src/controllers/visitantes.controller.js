@@ -40,7 +40,6 @@ export const addNewVisit = (req, res) => {
     totalBolivars: totalBolivars.replace(" Bs.", "")
   }
 
-  formData = JSON.stringify(formData) + "\n";
   postVisits(formData);
 
   renderVisitantes(req, res, {

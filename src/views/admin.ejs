@@ -1,4 +1,4 @@
-<%- include('partials/head', {title : "Administración de Usuarios", css : "", js: "", header: true}); %>
+<%- include('partials/head', {title : "Administración de Usuarios", css : "", js: "admin.js", header: true}); %>
 <body class="d-flex bg-body-secondary">
   <!-- Menu Lateral y Main-->
   <%- include('partials/sidebar'); %>
@@ -29,9 +29,9 @@
                         <% } else { %>
                         <td>Moderador</td>
                         <% } %>
-                        <td data-bs-toggle="modal">
+                        <td>
                             <a class="btn btn-link p-0" data-bs-toggle="tooltip"  data-bs-placement="top" data-bs-title="Cambiar Contraseña">
-                                <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#modalchangePassword<%=index %>" data-lucide="key-round" alt="changepassword-icon"></i>
+                                <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#changePasswordModal" data-bs-user="<%=user.username%>" data-lucide="key-round" alt="changepassword-icon"></i>
                             </a>
                             <a class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Modificar Usuario">
                                 <i class="text-dark opacityHover" data-lucide="pencil"  alt="modify-icon"></i>
@@ -44,28 +44,28 @@
                             </a>
                         </td>
                     </tr>
-                    <article class="modal fade" id="modalchangePassword<%=index %>" tabindex="-1" aria-hidden="true">
+                    <article class="modal fade" id="changePasswordModal" tabindex="-1" aria-hidden="true">
                         <section class="modal-dialog modal-dialog-centered">
                             <section class="modal-content">
-                                <header class="modal-header text-bg-success">
-                                    <h1 class="modal-title fs-5" id="modalLabel<%=index %>">
-                                        Cambio de Contraseña
-                                      </h1>
-                                      <button class="btn text-light p-0 opacityHover" data-bs-dismiss="modal" aria-label="Close">
-                                        <i class="" data-lucide="x" alt="close-icon"></i>
-                                      </button>
+                                <header class="modal-header text-bg-success user-select-none">
+                                    <h1 class="modal-title fs-5"></h1>
+                                    <button class="btn text-light p-0 opacityHover" data-bs-dismiss="modal" aria-label="Close">
+                                        <i data-lucide="x" alt="close-icon"></i>
+                                    </button>
                                 </header>
-                                <section class="modal-body">
-                                    <form>
-                                      <section>
-                                        <label for="newPassword" class="col-form-label">Ingrese la nueva contraseña</label>
-                                        <input type="text" class="form-control" id="newPassword" name="newPassword">
-                                      </section>
-                                      <section class="d-flex justify-content-end">
-                                        <button class="btn btn-success">Guardar</button>
-                                      </section>
-                                    </form>
-                                  </section>
+                                <form method="post">
+                                    <section class="modal-body d-flex gap-3 flex-column justify-content-start">
+                                        <section class="user-select-none">
+                                          <label for="newPassword" class="col-form-label">Ingrese la nueva contraseña</label>
+                                          <input type="text" class="d-none" name="user" value="">
+                                          <input type="text" class="form-control" id="newPassword" name="newPassword" required>
+                                        </section>
+                                        <section class="d-flex justify-content-end">
+                                          <button class="btn btn-success">Guardar</button>
+                                        </section>
+                                    </section>
+                                </form>
+                                    
                             </section>
                         </section>
                     </article>
