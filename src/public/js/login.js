@@ -11,8 +11,7 @@ const hidePassword = (id) => {
         passwordHideIcon.setAttribute("data-lucide", "eye")
         passwordLogin.setAttribute("type", "password")
     }
-    lucide.createIcons()
-    
+    lucide.createIcons() 
 }
 
 const resetValidators = () => {

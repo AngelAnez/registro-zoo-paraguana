@@ -1,19 +1,46 @@
-const changePasswordModal = document.getElementById('changePasswordModal')
-if (changePasswordModal) {
-  changePasswordModal.addEventListener('show.bs.modal', event => {
-    // Button that triggered the modal
+const hidePassword = (id) => {
+  const password = document.getElementById(id)
+  let passwordHideIcon = document.getElementById("passwordHideIcon")
+
+  if (passwordHideIcon.getAttribute("data-lucide") === "eye"){
+      passwordHideIcon.setAttribute("data-lucide", "eye-off")
+      password.setAttribute("type", "text")
+  } else {
+      passwordHideIcon.setAttribute("data-lucide", "eye")
+      password.setAttribute("type", "password")
+  }
+  lucide.createIcons() 
+}
+
+const modalActions = (modalElement, title, type) => {
+  modalElement.addEventListener('show.bs.modal', event => {
     const button = event.relatedTarget
-    // Extract info from data-bs-* attributes
     const user = button.getAttribute('data-bs-user')
-    // If necessary, you could initiate an Ajax request here
-    // and then do the updating in a callback.
 
-    // Update the modal's content.
-    const modalTitle = changePasswordModal.querySelector('.modal-title')
+    const modalTitle = modalElement.querySelector('.modal-title')
+    modalTitle.textContent = title
 
-    const userInput = changePasswordModal.querySelector('.d-none')
+    let readable = "readonly"
+    if (modalElement.id == "modifyUserModal"){
+      readable = ""
+    }
 
-    modalTitle.textContent = `Cambio de Contraseña: ${user}`
-    userInput.value = user
+    const userSection = modalElement.querySelector("#" + modalElement.id + "User")
+    if (type == "form"){
+      userSection.innerHTML= `<label for="userSelected" class="col-form-label">Usuario</label>
+      <input type="text" class="form-control" id="userSelected" name="username" value="${user}" ${readable}>`
+    } else {
+      userSection.textContent = user
+    }
   })
 }
+
+const changePasswordModal = document.getElementById('changePasswordModal')
+const modifyUserModal = document.getElementById('modifyUserModal')
+const promoteAdminModal = document.getElementById('promoteAdminModal')
+
+if (changePasswordModal) modalActions(changePasswordModal, "Cambiar Contraseña", "form")
+
+if (modifyUserModal) modalActions(modifyUserModal, "Modificar Usuario", "form")
+
+if (promoteAdminModal) modalActions(promoteAdminModal, "Promover a Administrador", "alert")
