@@ -27,10 +27,11 @@ const modalActions = (modalElement, title, type) => {
 
     const userSection = modalElement.querySelector("#" + modalElement.id + "User")
     if (type == "form"){
-      userSection.innerHTML= `<label for="userSelected" class="col-form-label">Usuario</label>
-      <input type="text" class="form-control" id="userSelected" name="username" value="${user}" ${readable}>`
+      userSection.value = user
     } else {
       userSection.textContent = user
+      const userInput = modalElement.querySelector('input[name="username"]')
+      userInput.value = user
     }
   })
 }
@@ -38,9 +39,15 @@ const modalActions = (modalElement, title, type) => {
 const changePasswordModal = document.getElementById('changePasswordModal')
 const modifyUserModal = document.getElementById('modifyUserModal')
 const promoteAdminModal = document.getElementById('promoteAdminModal')
+const returnModeratorModal = document.getElementById('returnModeratorModal')
+const deleteUserModal = document.getElementById('deleteUserModal')
 
 if (changePasswordModal) modalActions(changePasswordModal, "Cambiar Contraseña", "form")
 
 if (modifyUserModal) modalActions(modifyUserModal, "Modificar Usuario", "form")
 
 if (promoteAdminModal) modalActions(promoteAdminModal, "Promover a Administrador", "alert")
+
+if (returnModeratorModal) modalActions(returnModeratorModal, "Retornar a Moderador", "alert")
+
+if (deleteUserModal) modalActions(deleteUserModal, "Eliminar Usuario", "alert")

@@ -1,7 +1,7 @@
 [
   {
     "username": "Dolph Ziggler",
-    "password": "$2a$10$J2K8.fHDhWCTTsnaE3gb..PgnY8g740sghSHHyy346U9jWd75R9W.",
+    "password": "$2a$10$loPLwk6JKJM0w5WoA2kxQevpTV7kjhJSWyiHO/i2g9YeHmWE8BIWq",
     "email": "iamperfection@wwe.com",
     "admin": false
   },
@@ -12,45 +12,15 @@
     "admin": true
   },
   {
-    "username": "AdminSecreto",
-    "password": "$2a$10$zvNVAPBCnG6Ow3BhUkBq6.uIDqsQPOvVQsRjKIhpYrK4U/yBdjNRe",
-    "email": "adminsecreto@google.com",
-    "admin": false
-  },
-  {
     "username": "Rafael Rodriguez",
     "password": "$2a$10$NMB5CACg.Bkg7yZg7UPOm.QIR1XOf9WEL8GmyLof90M.98OLimS7G",
     "email": "rafa@zoo.com",
-    "admin": false
+    "admin": true
   },
   {
-    "username": "Luz Urdaneta",
-    "password": "$2a$10$/mNyLZ4UusDlsaTGfq29QOwY9GMQV/ch4.d8bmM2Nv8D/IS8kqXZK",
-    "email": "luzurdaneta@google.com",
-    "admin": false
-  },
-  {
-    "username": "Pepe",
-    "password": "$2a$10$z8uaWyiewhG6PK9uZVQmReY79QKmZxUj5xQZxT41fe/DIn2r1Rj.O",
-    "email": "pepe@google.com",
-    "admin": false
-  },
-  {
-    "username": "Falco Lombardi",
-    "password": "$2a$10$t52jC.HBrJTZsTwRTZdJCOjYUM6tVJZ3EGPRJRsY.dL8m92SVPdB.",
-    "email": "starfalco@corneria.com",
-    "admin": false
-  },
-  {
-    "username": "RangerBlue",
-    "password": "$2a$10$iFom3C9uIO94kf.R1WCUxevzqdxvF36E0bwOx2IGVFK22dq5/rVM.",
-    "email": "hola@almia.com",
-    "admin": false
-  },
-  {
-    "username": "Sulenny",
-    "password": "$2a$10$4z93in0inUXGsMfciNEXB.HUjijBbLPFXREBQ2e1khwJYAvcgQbMq",
-    "email": "suli@gmail.com",
+    "username": "Zack Ryder",
+    "password": "$2a$10$ya5ox9PE12hT1TeIuVS.Ee82EPCKb01QJHKpx4S04GDpdPKu3sBq.",
+    "email": "zackwwe@wrestling.com",
     "admin": false
   }
 ]

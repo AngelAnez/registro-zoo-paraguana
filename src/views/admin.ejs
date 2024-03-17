@@ -6,14 +6,13 @@
     <!-- Encabezado -->
     <%- include('partials/header'); %>
 
-    <h3 class="mx-auto text-center">Administración de Usuarios</h3>
-
-    <section class="container-fluid table-responsive px-4">
+    <section class="container-fluid table-responsive px-4 w-75">
         <table class="table text-center table-hover table-sm table-rounded rounded-2 overflow-hidden shadow border user-select-none">
+            <caption class="text-center fs-3 caption-top text-dark fw-semibold mb-2">Administración de Usuarios</caption>
             <thead class="table-success">
                 <tr>
                     <th>Nombre de Usuario</th>
-                    <th>Email</th>
+                    <!-- <th>Email</th> -->
                     <th>Rol</th>
                     <th>Acciones</th>
                 </tr>
@@ -23,7 +22,7 @@
                     <% if (user.username != username) {%> 
                     <tr>
                         <td><%= user.username %></td>
-                        <td><%= user.email %></td>
+                        <!-- <td><%= user.email %></td> -->
                         <% if (user.admin){ %>
                         <td>Administrador</td>
                         <% } else { %>
@@ -33,14 +32,20 @@
                             <a class="btn btn-link p-0" data-bs-toggle="tooltip"  data-bs-placement="top" data-bs-title="Cambiar Contraseña">
                                 <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#changePasswordModal" data-bs-user="<%=user.username%>" data-lucide="key-round" alt="changepassword-icon"></i>
                             </a>
-                            <a class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Modificar Usuario">
+<!--                             <a class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cambiar Nombre de Usuario">
                                 <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#modifyUserModal" data-bs-user="<%=user.username%>" data-lucide="pencil"  alt="modify-icon"></i>
-                            </a>
+                            </a> -->
+                            <% if (!user.admin) { %>
                             <a class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Convertir en Administrador">
                                 <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#promoteAdminModal" data-bs-user="<%=user.username%>" data-lucide="shield-plus" alt="makeadmin-icon"></i>
                             </a>
+                            <% } else { %>
+                            <a class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Retornar a Moderador">
+                                <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#returnModeratorModal" data-bs-user="<%=user.username%>" data-lucide="shield-minus" alt="makeadmin-icon"></i>
+                            </a>
+                            <% } %>
                             <a class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Eliminar Usuario">
-                                <i class="text-dark opacityHover" data-lucide="trash-2" alt="delete-icon"></i>
+                                <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#deleteUserModal" data-bs-user="<%=user.username%>" data-lucide="trash-2" alt="delete-icon"></i>
                             </a>
                         </td>
                     </tr>
@@ -56,10 +61,12 @@
                                     <i data-lucide="x" alt="close-icon"></i>
                                 </button>
                             </header>
-                            <form method="get">
+                            <form method="post">
                                 <section class="modal-body d-flex flex-column gap-4 py-2 px-3">
                                     <section class="user-select-none d-flex flex-column gap-3">
-                                        <section id="changePasswordModalUser">
+                                        <section>
+                                            <label for="changePasswordModalUser" class="col-form-label">Usuario</label>
+                                            <input type="text" class="form-control" id="changePasswordModalUser" name="username" value="" readonly/>
                                         </section>
                                         <section>
                                             <label for="newPassword" class="col-form-label">Nueva contraseña</label>
@@ -69,7 +76,8 @@
                                             </div>
                                         </section>
                                     </section>
-                                    <section class="d-flex justify-content-end mb-2">
+                                    <section class="d-flex justify-content-around mb-2">
+                                        <a class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancelar</a>
                                         <button type="submit" class="btn btn-success">Guardar Cambios</button>
                                     </section>
                                 </section>
@@ -79,7 +87,7 @@
                 </article>
 
                 <!--Modal para Modificar Usuario -->
-                <article class="modal fade" id="modifyUserModal" tabindex="-1" aria-hidden="true">
+<!--                 <article class="modal fade" id="modifyUserModal" tabindex="-1" aria-hidden="true">
                     <section class="modal-dialog modal-dialog-centered">
                         <section class="modal-content">
                             <header class="modal-header text-bg-success user-select-none">
@@ -88,10 +96,12 @@
                                     <i data-lucide="x" alt="close-icon"></i>
                                 </button>
                             </header>
-                            <form method="get">
+                            <form method="post">
                                 <section class="modal-body d-flex flex-column gap-4 py-2 px-3">
                                     <section class="user-select-none d-flex flex-column gap-3">
-                                        <section id="modifyUserModalUser">
+                                        <section>
+                                            <label for="modifyUserModalUser" class="col-form-label">Usuario</label>
+                                            <input type="text" class="form-control" id="modifyUserModalUser" name="username" value=""/>
                                         </section>
                                         <section>
                                             <label for="userEmail" class="col-form-label">Correo Electrónico</label>
@@ -105,25 +115,76 @@
                             </form>  
                         </section>
                     </section>
-                </article>
+                </article> -->
 
                 <!-- Modal para Convertir en Administrador -->
                 <article class="modal fade" id="promoteAdminModal" tabindex="-1" aria-hidden="true">
                     <section class="modal-dialog modal-dialog-centered">
                         <section class="modal-content">
-                            <header class="modal-header text-bg-success user-select-none">
+                            <header class="modal-header text-bg-primary user-select-none">
                                 <h1 class="modal-title fs-5"></h1>
                                 <button class="btn text-light p-0 opacityHover" data-bs-dismiss="modal" aria-label="Close">
                                     <i data-lucide="x" alt="close-icon"></i>
                                 </button>
                             </header>
-                            <form method="get">
+                            <form method="post">
                                 <section class="modal-body d-flex flex-column gap-2 py-3 px-3 user-select-none">
                                     <p class="text-center">¿Está seguro que desea promover a <span id="promoteAdminModalUser" class="fw-bold"></span> al rol de Administrador?</p>
                                     <section class="d-flex justify-content-around mb-2">
                                         <a class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancelar</a>
-                                        <input type="text" class="d-none" name="pro">
-                                        <button type="submit" class="btn btn-success">Promover</button>
+                                        <input type="text" class="d-none" name="username" value="">
+                                        <input type="text" class="d-none" name="promoteUser" value=true>
+                                        <button type="submit" class="btn btn-primary">Promover</button>
+                                    </section>
+                                </section>
+                            </form>  
+                        </section>
+                    </section>
+                </article>
+
+                <!-- Modal para Retornar a Moderador -->
+                <article class="modal fade" id="returnModeratorModal" tabindex="-1" aria-hidden="true">
+                    <section class="modal-dialog modal-dialog-centered">
+                        <section class="modal-content">
+                            <header class="modal-header text-bg-primary user-select-none">
+                                <h1 class="modal-title fs-5"></h1>
+                                <button class="btn text-light p-0 opacityHover" data-bs-dismiss="modal" aria-label="Close">
+                                    <i data-lucide="x" alt="close-icon"></i>
+                                </button>
+                            </header>
+                            <form method="post">
+                                <section class="modal-body d-flex flex-column gap-2 py-3 px-3 user-select-none">
+                                    <p class="text-center">¿Está seguro que desea retornar a <span id="returnModeratorModalUser" class="fw-bold"></span> al rol de Moderador?</p>
+                                    <section class="d-flex justify-content-around mb-2">
+                                        <a class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancelar</a>
+                                        <input type="text" class="d-none" name="username" value="">
+                                        <input type="text" class="d-none" name="promoteUser" value=false>
+                                        <button type="submit" class="btn btn-primary">Retornar</button>
+                                    </section>
+                                </section>
+                            </form>  
+                        </section>
+                    </section>
+                </article>
+
+                <!-- Modal para Eliminar Usuario -->
+                <article class="modal fade" id="deleteUserModal" tabindex="-1" aria-hidden="true">
+                    <section class="modal-dialog modal-dialog-centered">
+                        <section class="modal-content">
+                            <header class="modal-header text-bg-danger user-select-none">
+                                <h1 class="modal-title fs-5"></h1>
+                                <button class="btn text-light p-0 opacityHover" data-bs-dismiss="modal" aria-label="Close">
+                                    <i data-lucide="x" alt="close-icon"></i>
+                                </button>
+                            </header>
+                            <form method="post">
+                                <section class="modal-body d-flex flex-column gap-2 py-3 px-3 user-select-none">
+                                    <p class="text-center">¿Está seguro que desea eliminar a <span id="deleteUserModalUser" class="fw-bold"></span>?</p>
+                                    <section class="d-flex justify-content-around mb-2">
+                                        <a class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancelar</a>
+                                        <input type="text" class="d-none" name="username" value="">
+                                        <input type="text" class="d-none" name="eraseUser" value=true>
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
                                     </section>
                                 </section>
                             </form>  
