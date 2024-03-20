@@ -19,7 +19,6 @@ export const postVisits = (newVisit) => {
   fs.writeFile(
     path.join(DIR_APP, filePath),
     data,
-    { flag: "a" },
     (err) => {
       if (err) {
         console.log(err);

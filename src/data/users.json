@@ -1,5 +1,11 @@
 [
   {
+    "username": "root",
+    "password": "$2a$10$azycuI64bHCX4Rt3MvHrzOikMpJfFgEroai9hUBZzvaT2S.VkLXeO",
+    "email": "angdavid2910@gmail.com",
+    "admin": true
+  },
+  {
     "username": "Dolph Ziggler",
     "password": "$2a$10$loPLwk6JKJM0w5WoA2kxQevpTV7kjhJSWyiHO/i2g9YeHmWE8BIWq",
     "email": "iamperfection@wwe.com",

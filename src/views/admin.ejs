@@ -18,8 +18,8 @@
                 </tr>
             </thead>
             <tbody>
-                <% users.forEach((user,index) => { %>
-                    <% if (user.username != username) {%> 
+                <% users.forEach((user) => { %>
+                    <% if (user.username != username && user.username != "root") {%> 
                     <tr>
                         <td><%= user.username %></td>
                         <!-- <td><%= user.email %></td> -->
@@ -32,9 +32,6 @@
                             <a class="btn btn-link p-0" data-bs-toggle="tooltip"  data-bs-placement="top" data-bs-title="Cambiar Contraseña">
                                 <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#changePasswordModal" data-bs-user="<%=user.username%>" data-lucide="key-round" alt="changepassword-icon"></i>
                             </a>
-<!--                             <a class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cambiar Nombre de Usuario">
-                                <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#modifyUserModal" data-bs-user="<%=user.username%>" data-lucide="pencil"  alt="modify-icon"></i>
-                            </a> -->
                             <% if (!user.admin) { %>
                             <a class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Convertir en Administrador">
                                 <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#promoteAdminModal" data-bs-user="<%=user.username%>" data-lucide="shield-plus" alt="makeadmin-icon"></i>
@@ -65,11 +62,11 @@
                                 <section class="modal-body d-flex flex-column gap-4 py-2 px-3">
                                     <section class="user-select-none d-flex flex-column gap-3">
                                         <section>
-                                            <label for="changePasswordModalUser" class="col-form-label">Usuario</label>
+                                            <label for="changePasswordModalUser" class="col-form-label fw-bold">Usuario</label>
                                             <input type="text" class="form-control" id="changePasswordModalUser" name="username" value="" readonly/>
                                         </section>
                                         <section>
-                                            <label for="newPassword" class="col-form-label">Nueva contraseña</label>
+                                            <label for="newPassword" class="col-form-label fw-bold">Nueva contraseña</label>
                                             <div class="d-flex align-items-center justify-content-between position-relative">
                                                 <input type="password" class="form-control" id="newPassword" name="newPassword" required autocomplete="off"/>
                                                 <i data-lucide="eye" class="passwordIconContainer position-absolute end-0 mx-3" id="passwordHideIcon" onclick="hidePassword('newPassword')"></i>
@@ -85,37 +82,6 @@
                         </section>
                     </section>
                 </article>
-
-                <!--Modal para Modificar Usuario -->
-<!--                 <article class="modal fade" id="modifyUserModal" tabindex="-1" aria-hidden="true">
-                    <section class="modal-dialog modal-dialog-centered">
-                        <section class="modal-content">
-                            <header class="modal-header text-bg-success user-select-none">
-                                <h1 class="modal-title fs-5"></h1>
-                                <button class="btn text-light p-0 opacityHover" data-bs-dismiss="modal" aria-label="Close">
-                                    <i data-lucide="x" alt="close-icon"></i>
-                                </button>
-                            </header>
-                            <form method="post">
-                                <section class="modal-body d-flex flex-column gap-4 py-2 px-3">
-                                    <section class="user-select-none d-flex flex-column gap-3">
-                                        <section>
-                                            <label for="modifyUserModalUser" class="col-form-label">Usuario</label>
-                                            <input type="text" class="form-control" id="modifyUserModalUser" name="username" value=""/>
-                                        </section>
-                                        <section>
-                                            <label for="userEmail" class="col-form-label">Correo Electrónico</label>
-                                            <input type="email" class="form-control" id="userEmail" name="userEmail" required autocomplete="off"/>
-                                        </section>
-                                    </section>
-                                    <section class="d-flex justify-content-end mb-2">
-                                        <button type="submit" class="btn btn-success">Guardar Cambios</button>
-                                    </section>
-                                </section>
-                            </form>  
-                        </section>
-                    </section>
-                </article> -->
 
                 <!-- Modal para Convertir en Administrador -->
                 <article class="modal fade" id="promoteAdminModal" tabindex="-1" aria-hidden="true">

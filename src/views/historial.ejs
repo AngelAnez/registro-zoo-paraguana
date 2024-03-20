@@ -29,7 +29,7 @@
           <tr class="user-select-none">
             <% if (searchFilter != "") { %> 
               <% searchFilter = "&filter=" + searchFilter %> 
-              <% } %> 
+            <% } %> 
             <% if (sort == "date" && order == "asc"){ %>
             <th scope="col">
               <a href="/historial?pag=<%=pag%>&sort=date&order=dec<%=searchFilter%>" class="text-decoration-none text-black" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Fecha de cada Visita (Orden Ascendente)">Fecha &uarr;</a>
@@ -298,12 +298,20 @@
           </tr>
         </thead>
         <tbody>
-          <% visits.forEach((visit, index) => { %>
+          <% visits.forEach((visit) => { %>
           <tr
             class="user-select-none"
             style="cursor: pointer"
             data-bs-toggle="modal"
-            data-bs-target="#modalVisit<%=index %>"
+            data-bs-target="#visitInfoModal"
+            data-bs-date="<%= visit.date %>"
+            data-bs-time="<%= visit.time %>"
+            data-bs-childrenNumber="<%= visit.childrenNumber %>"
+            data-bs-adultsNumber="<%= visit.adultsNumber %>"
+            data-bs-seniorsNumber="<%= visit.seniorsNumber %>"
+            data-bs-paymentMethod="<%= visit.paymentMethod %>"
+            data-bs-totalBolivars="<%= visit.totalBolivars %>"
+            data-bs-totalDolars="<%= visit.totalDolars %>"
           >
             <td><%= visit.date %></td>
             <td><%= visit.time %></td>
@@ -314,89 +322,6 @@
             <td><%= visit.totalBolivars %></td>
             <td><%= visit.totalDolars %></td>
           </tr>
-          <div
-            class="modal fade"
-            id="modalVisit<%=index %>"
-            tabindex="-1"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header text-bg-success">
-                  <h1 class="modal-title fs-5" id="modalLabel<%=index %>">
-                    Información de la Visita
-                  </h1>
-                  <button class="btn text-light p-0 opacityHover" data-bs-dismiss="modal" aria-label="Close">
-                    <i class="" data-lucide="x" alt="close-icon"></i>
-                  </button>
-                </div>
-                <div class="modal-body d-flex">
-                  <% if (visit.paymentMethod == "Efectivo") { %> 
-                  <% methodInfoType = "Moneda:" %> 
-                  <% } else if (visit.paymentMethod == "Otro") { %>
-                  <% methodInfoType = "Información del Método:" %> 
-                  <% } else { %> 
-                  <% methodInfoType = "Nro de Referencia:" %> 
-                  <% } %>
-                  <section class="offset-2 col-4 d-flex flex-column">
-                    <label class="factura_campo">Representante:</label>
-                    <label class="factura_campo">Teléfono:</label>
-                    <hr class="solid mt-2 mb-2" />
-                    <label class="factura_campo">Niños:</label>
-                    <label class="factura_campo">Adultos:</label>
-                    <label class="factura_campo">Adultos Mayores:</label>
-                    <hr class="solid mt-2 mb-2" />
-                    <label class="factura_campo">Monto (Bs.):</label>
-                    <label class="factura_campo">Monto ($):</label>
-                    <label class="factura_campo">Método de Pago:</label>
-                    <label class="factura_campo"><%=methodInfoType %></label>
-                    <hr class="solid mt-2 mb-2" />
-                    <label class="factura_campo">Fecha:</label>
-                    <label class="factura_campo">Hora:</label>
-                  </section>
-
-                  <section class="col-4 d-flex flex-column">
-                    <span class="factura_datos text-center"
-                      ><%= visit.representativeName %></span
-                    >
-                    <span class="factura_datos text-center"
-                      ><%= visit.representativePhone %></span
-                    >
-                    <hr class="solid mt-2 mb-2" />
-                    <span class="factura_datos text-center"
-                      ><%= visit.childrenNumber %></span
-                    >
-                    <span class="factura_datos text-center"
-                      ><%= visit.adultsNumber %></span
-                    >
-                    <span class="factura_datos text-center"
-                      ><%= visit.seniorsNumber %></span
-                    >
-                    <hr class="solid mt-2 mb-2" />
-                    <span class="factura_datos text-center"
-                      ><%= visit.totalBolivars %></span
-                    >
-                    <span class="factura_datos text-center"
-                      ><%= visit.totalDolars %></span
-                    >
-                    <span class="factura_datos text-center"
-                      ><%= visit.paymentMethod%></span
-                    >
-                    <span class="factura_datos text-center"
-                      ><%= visit.extraInfoPayment %></span
-                    >
-                    <hr class="solid mt-2 mb-2" />
-                    <span class="factura_datos text-center"
-                      ><%= visit.date %></span
-                    >
-                    <span class="factura_datos text-center"
-                      ><%= visit.time %></span
-                    >
-                  </section>
-                </div>
-              </div>
-            </div>
-          </div>
           <% }) %>
         </tbody>
       </table>
@@ -456,6 +381,24 @@
         </a>
       </li>
     </ul>
+
+    <!-- Modal de cada visitante  -->
+    <article class="modal fade" id="visitInfoModal" tabindex="-1" aria-hidden="true">
+      <section class="modal-dialog modal-dialog-centered">
+          <section class="modal-content">
+              <header class="modal-header text-bg-success user-select-none">
+                  <h1 class="modal-title fs-5">Información de la Visita</h1>
+                  <button class="btn text-light p-0 opacityHover" data-bs-dismiss="modal" aria-label="Close">
+                      <i data-lucide="x" alt="close-icon"></i>
+                  </button>
+              </header>
+                <section class="modal-body d-flex flex-column gap-4 py-2 px-3">
+
+                </section>
+          </section>
+      </section>
+  </article>
+
   </main>
   <%- include('partials/scripts')%>
 <%- include('partials/foot'); %>

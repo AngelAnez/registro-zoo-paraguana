@@ -1,6 +1,95 @@
-<%- include('partials/head', {title: "Perfil", css : "",
-js : "", header: false}); %>
+<%- include('partials/head', {title: "Perfil", css : "perfil.css",
+js : "perfil.js", header: true}); %>
 <body class="d-flex bg-body-secondary">
-  <h1>Hola</h1>
-</body>
+  <!-- Menu Lateral y Main-->
+  <%- include('partials/sidebar'); %>
+  <main class="container-fluid row d-flex p-0 m-0 align-items-start vh-100">
+    <%- include('partials/header'); %>
+    <article class="d-flex flex-column justify-content-center align-items-center bg-white rounded-4 w-50 mx-auto p-0 shadow">
+      <section class="p-4 w-100 user-select-none">
+        <form method="get" class="d-flex flex-column align-items-center gap-4 w-100">
+          <header class="d-flex flex-column align-items-center gap-2">
+            <img class="profileImg" src="/public/assets/img/parrot.png" alt="Profile Image">
+            <h3><%= username %></h3>
+          </header>
+          <section class="d-flex justify-content-around align-items-center w-100 row">
+            <label class="fw-bold col-4">Nombre de Usuario</label>
+            <section class="d-flex gap-2 col-6">
+              <input id="usernameInput" class="form-control border-white bg-transparent" type="text" disabled required name="username" value="<%= username %>">
+              <a class="opacityHover d-flex align-items-center text-secondary" onclick="toggleProfileInput('usernameInput')">
+                <i id="usernameInputModify" data-lucide="pencil" alt="modifyIcon"></i>
+                <i id="usernameInputCheck" class="d-none" data-lucide="check" alt="checkIcon"></i>
+              </a>       
+            </section>
+          </section>
+          <!-- <section class="d-flex justify-content-around align-items-center w-100 row">
+            <label class="fw-bold col-4">Contraseña</label>
+            <section class="d-flex gap-2 col-6">
+              <input id="passwordInput" class="form-control border-white bg-transparent" type="password" disabled required name="password" value="AngelDavid">
+              <a class="opacityHover d-flex align-items-center text-secondary" onclick="toggleProfileInput('passwordInput')">
+                <i id="passwordInputModify" data-lucide="pencil" alt="modifyIcon"></i>
+                <i id="passwordInputCheck" class="d-none" data-lucide="check" alt="checkIcon"></i>
+              </a>       
+            </section>
+          </section> -->
+          <section class="d-flex justify-content-around align-items-center w-100 row">
+            <label class="fw-bold col-4">Correo Electrónico</label>
+            <section class="d-flex gap-2 col-6">
+              <input id="emailInput" class="form-control border-white bg-transparent" type="email" disabled required name="email" value="<%= email%>">
+              <a class="opacityHover d-flex align-items-center text-secondary" onclick="toggleProfileInput('emailInput')">
+                <i id="emailInputModify" data-lucide="pencil" alt="modifyIcon"></i>
+                <i id="emailInputCheck" class="d-none" data-lucide="check" alt="checkIcon"></i>
+              </a>       
+            </section>
+          </section>
+          <footer class="d-flex justify-content-around w-100 mt-3">
+            <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changePasswordModal">Cambiar Contraseña</a>
+            <button class="btn btn-success" onclick="validateUserData()">Guardar Cambios</button>
+          </footer>
+        </form>
+      </section>
+    </article>
+
+  <article class="modal fade" id="changePasswordModal" tabindex="-1" aria-hidden="true">
+    <section class="modal-dialog modal-dialog-centered">
+        <section class="modal-content">
+            <header class="modal-header text-bg-primary user-select-none">
+                <h1 class="modal-title fs-5">Cambiar Contraseña</h1>
+                <button class="btn text-light p-0 opacityHover" data-bs-dismiss="modal" aria-label="Close">
+                    <i data-lucide="x" alt="close-icon"></i>
+                </button>
+            </header>
+            <form method="get">
+                <section class="modal-body d-flex flex-column gap-4 py-2 px-5">
+                  <input type="text" class="visually-hidden" id="changePasswordModalUser" name="username" value="<%=username%>" readonly/>
+                  <section class="user-select-none d-flex flex-column gap-3">
+                    <section>
+                        <label for="actualPassword" class="col-form-label fw-bold">Contraseña Actual</label>
+                        <div class="d-flex align-items-center justify-content-between position-relative">
+                            <input type="password" class="form-control" id="actualPassword" name="actualPassword" required autocomplete="off"/>
+                            <i data-lucide="eye" class="passwordIconContainer position-absolute end-0 mx-3" id="actualPasswordHideIcon" onclick="hidePassword('actualPassword')"></i>
+                        </div>
+                    </section>
+                </section>
+                    <section class="user-select-none d-flex flex-column gap-3">
+                        <section>
+                            <label for="newPassword" class="col-form-label fw-bold">Nueva Contraseña</label>
+                            <div class="d-flex align-items-center justify-content-between position-relative">
+                                <input type="password" class="form-control" id="newPassword" name="newPassword" required autocomplete="off"/>
+                                <i data-lucide="eye" class="passwordIconContainer position-absolute end-0 mx-3" id="newPasswordHideIcon" onclick="hidePassword('newPassword')"></i>
+                            </div>
+                        </section>
+                    </section>
+                    <section class="d-flex justify-content-around mb-2">
+                        <a class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancelar</a>
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    </section>
+                </section>
+            </form>  
+        </section>
+    </section>
+</article>
+
+  </main>
+  <%- include('partials/scripts') %> 
 <%- include('partials/foot.ejs') %>
