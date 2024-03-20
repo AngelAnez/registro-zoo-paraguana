@@ -40,6 +40,7 @@ const changePasswordModal = document.getElementById('changePasswordModal')
 const modifyUserModal = document.getElementById('modifyUserModal')
 const promoteAdminModal = document.getElementById('promoteAdminModal')
 const returnModeratorModal = document.getElementById('returnModeratorModal')
+const aceptRequestModal = document.getElementById('aceptRequestModal')
 const deleteUserModal = document.getElementById('deleteUserModal')
 
 if (changePasswordModal) modalActions(changePasswordModal, "Cambiar Contraseña", "form")
@@ -49,5 +50,7 @@ if (modifyUserModal) modalActions(modifyUserModal, "Modificar Usuario", "form")
 if (promoteAdminModal) modalActions(promoteAdminModal, "Promover a Administrador", "alert")
 
 if (returnModeratorModal) modalActions(returnModeratorModal, "Retornar a Moderador", "alert")
+
+if (aceptRequestModal) modalActions(aceptRequestModal, "Aprobar Solicitud", "alert")
 
 if (deleteUserModal) modalActions(deleteUserModal, "Eliminar Usuario", "alert")

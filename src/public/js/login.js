@@ -14,9 +14,15 @@ const hidePassword = (id) => {
     lucide.createIcons() 
 }
 
-const resetValidators = () => {
-    document.getElementById("usernameLogin").classList.remove("is-invalid")
-    document.getElementById("passwordLogin").classList.remove("is-invalid")
+const resetValidators = (page) => {
     document.getElementById("invalidUserText").classList.remove("is-invalid")
     document.getElementById("passwordHideIcon").classList.remove("visually-hidden")
+    if (page == "Login"){
+        document.getElementById("usernameLogin").classList.remove("is-invalid")
+        document.getElementById("passwordLogin").classList.remove("is-invalid")
+    } else {
+        document.getElementById("usernameRegistro").classList.remove("is-invalid")
+        document.getElementById("passwordRegistro").classList.remove("is-invalid")
+        document.getElementById("emailRegistro").classList.remove("is-invalid")
+    }
 }

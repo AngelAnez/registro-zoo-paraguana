@@ -22,43 +22,18 @@ js: "login.js", header: false}); %>
         <h4 class="offset-1 col-10 px-0 py-2 user-select-none">
           Registrar Usuario
         </h4>
-        <!-- <section class="offset-1 col-10 px-0 py-2">
-          <label for="firstNameRegistro" class="form-label user-select-none"
-            >Nombre</label
-          >
-          <input
-            type="text"
-            class="form-control w-100"
-            id="firstNameRegistro"
-            name="firstname"
-            required
-            autocomplete="off"
-          />
-        </section>
-        <section class="offset-1 col-10 px-0 py-2">
-          <label for="lastnameRegistro" class="form-label user-select-none"
-            >Apellido</label
-          >
-          <input
-            type="text"
-            class="form-control w-100"
-            id="lastnameRegistro"
-            name="lastname"
-            required
-            autocomplete="off"
-          />
-        </section> -->
         <section class="offset-1 col-10 px-0 py-2">
           <label for="usernameRegistro" class="form-label user-select-none"
             >Nombre de Usuario</label
           >
           <input
             type="text"
-            class="form-control w-100"
+            class="form-control w-100 <% if (invalidUser) { %> is-invalid <% } %>"
             id="usernameRegistro"
             name="username"
             required
             autocomplete="off"
+            oninput="resetValidators('Registro')"
           />
         </section>
         <section class="offset-1 col-10 px-0 py-2">
@@ -70,15 +45,16 @@ js: "login.js", header: false}); %>
           >
             <input
               type="password"
-              class="form-control w-100 pe-5"
+              class="form-control w-100 pe-5 <% if (invalidUser) { %> is-invalid <% } %>"
               id="passwordRegistro"
               name="password"
               required
               autocomplete="off"
+              oninput="resetValidators('Registro')"
             />
             <i
               data-lucide="eye"
-              class="passwordIconContainer position-absolute end-0 mx-3"
+              class="passwordIconContainer position-absolute end-0 mx-3 <% if (invalidUser) { %> visually-hidden <% } %>"
               id="passwordHideIcon"
               onclick="hidePassword('passwordRegistro')"
             ></i>
@@ -90,13 +66,26 @@ js: "login.js", header: false}); %>
           >
           <input
             type="email"
-            class="form-control w-100"
+            class="form-control w-100 <% if (invalidUser) { %> is-invalid <% } %>"
             id="emailRegistro"
             name="email"
             required
             autocomplete="off"
+            oninput="resetValidators('Registro')"
           />
+          <section
+          id="invalidUserText"
+          class="<% if (invalidUser) { %> is-invalid <% } %>"
+          aria-describedby="validationLoginFeedback"
+          ></section>
+          <section
+          id="validationLoginFeedback"
+          class="invalid-feedback user-select-none"
+          >
+            <%= message %>
+          </section>
         </section>
+
         <section class="offset-1 col-10 px-0 py-2">
           <button class="btn btn-success" type="submit">Registrarse</button>
         </section>

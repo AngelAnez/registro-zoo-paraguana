@@ -27,7 +27,7 @@
             class="form-control w-100 <% if (invalidUser) { %> is-invalid <% } %>"
             id="usernameLogin"
             name="username"
-            oninput="resetValidators()"
+            oninput="resetValidators('Login')"
             required
             autocomplete="off"
           />
@@ -44,7 +44,7 @@
               class="form-control w-100 pe-5 <% if (invalidUser) { %> is-invalid <% } %>"
               id="passwordLogin"
               name="password"
-              oninput="resetValidators()"
+              oninput="resetValidators('Login')"
               required
               autocomplete="off"
             />
@@ -64,7 +64,7 @@
             id="validationLoginFeedback"
             class="invalid-feedback user-select-none"
           >
-            El nombre de usuario o la contraseña son incorrectos.
+            <%= message %>
           </div>
         </div>
         <div class="offset-1 col-10 px-0 py-2">

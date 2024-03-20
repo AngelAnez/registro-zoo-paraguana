@@ -15,8 +15,12 @@ export const getDolarValue = async (req, res) => {
   if (internetDolar == "on") {
     try {
       const searchingDolar = new Promise(async (resolve, reject) => {
-        let data = await bcvDolar()
-        resolve(data._dolar)
+        try {
+          let data = await bcvDolar()
+          resolve(data._dolar)
+        } catch (error) {
+          reject(error)
+        }
       })
       const waitingTime = new Promise((resolve, reject) => {
         setTimeout(() => {

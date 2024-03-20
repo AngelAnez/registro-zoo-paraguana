@@ -14,7 +14,7 @@ export const getAdmin = (req, res) => {
 }
 
 export const postAdmin = (req, res) => {
-    const {username, newPassword, promoteUser, eraseUser} = req.body
+    const {username, newPassword, changeRole, eraseUser} = req.body
     let users = getUsers()
     const userPosition = users.findIndex(user => user.username == username)
     if (userPosition == -1){
@@ -23,8 +23,8 @@ export const postAdmin = (req, res) => {
     if (newPassword){
         modifyUser(userPosition, "password", newPassword)
     }
-    if (promoteUser){
-        modifyUser(userPosition, "admin", promoteUser)
+    if (changeRole){
+        modifyUser(userPosition, "role", changeRole)
     }
     if (eraseUser){
         deleteUser(username)

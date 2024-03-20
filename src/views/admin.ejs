@@ -23,22 +23,26 @@
                     <tr>
                         <td><%= user.username %></td>
                         <!-- <td><%= user.email %></td> -->
-                        <% if (user.admin){ %>
-                        <td>Administrador</td>
-                        <% } else { %>
-                        <td>Moderador</td>
-                        <% } %>
+                        <td><%= user.role %></td>
                         <td>
+                            <% if (user.role != "Por Aprobar"){ %>
                             <a class="btn btn-link p-0" data-bs-toggle="tooltip"  data-bs-placement="top" data-bs-title="Cambiar Contraseña">
                                 <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#changePasswordModal" data-bs-user="<%=user.username%>" data-lucide="key-round" alt="changepassword-icon"></i>
                             </a>
-                            <% if (!user.admin) { %>
+                            <% } %>
+                            <% if (user.role == "Moderador") { %>
                             <a class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Convertir en Administrador">
                                 <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#promoteAdminModal" data-bs-user="<%=user.username%>" data-lucide="shield-plus" alt="makeadmin-icon"></i>
                             </a>
-                            <% } else { %>
+                            <% } %> 
+                            <% if (user.role == "Administrador") {%>
                             <a class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Retornar a Moderador">
                                 <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#returnModeratorModal" data-bs-user="<%=user.username%>" data-lucide="shield-minus" alt="makeadmin-icon"></i>
+                            </a>
+                            <% } %>
+                            <% if (user.role == "Por Aprobar") {%>
+                            <a class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Aprobar Solicitud">
+                                <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#aceptRequestModal" data-bs-user="<%=user.username%>" data-lucide="check" alt="makeadmin-icon"></i>
                             </a>
                             <% } %>
                             <a class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Eliminar Usuario">
@@ -99,7 +103,7 @@
                                     <section class="d-flex justify-content-around mb-2">
                                         <a class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancelar</a>
                                         <input type="text" class="d-none" name="username" value="">
-                                        <input type="text" class="d-none" name="promoteUser" value=true>
+                                        <input type="text" class="d-none" name="changeRole" value="Administrador">
                                         <button type="submit" class="btn btn-primary">Promover</button>
                                     </section>
                                 </section>
@@ -124,8 +128,32 @@
                                     <section class="d-flex justify-content-around mb-2">
                                         <a class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancelar</a>
                                         <input type="text" class="d-none" name="username" value="">
-                                        <input type="text" class="d-none" name="promoteUser" value=false>
+                                        <input type="text" class="d-none" name="changeRole" value="Moderador">
                                         <button type="submit" class="btn btn-primary">Retornar</button>
+                                    </section>
+                                </section>
+                            </form>  
+                        </section>
+                    </section>
+                </article>
+
+                <article class="modal fade" id="aceptRequestModal" tabindex="-1" aria-hidden="true">
+                    <section class="modal-dialog modal-dialog-centered">
+                        <section class="modal-content">
+                            <header class="modal-header text-bg-primary user-select-none">
+                                <h1 class="modal-title fs-5"></h1>
+                                <button class="btn text-light p-0 opacityHover" data-bs-dismiss="modal" aria-label="Close">
+                                    <i data-lucide="x" alt="close-icon"></i>
+                                </button>
+                            </header>
+                            <form method="post">
+                                <section class="modal-body d-flex flex-column gap-2 py-3 px-3 user-select-none">
+                                    <p class="text-center">¿Está seguro que desea aceptar la creación del usuario <span id="aceptRequestModalUser" class="fw-bold"></span>?</p>
+                                    <section class="d-flex justify-content-around mb-2">
+                                        <a class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancelar</a>
+                                        <input type="text" class="d-none" name="username" value="">
+                                        <input type="text" class="d-none" name="changeRole" value="Moderador">
+                                        <button type="submit" class="btn btn-primary">Aprobar</button>
                                     </section>
                                 </section>
                             </form>  

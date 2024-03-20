@@ -34,9 +34,8 @@ export const modifyUser = async (userPosition, key, value) => {
   if (key == "password"){
     value = await bcryptjs.hash(value, 10)
   }
-  if (key == "admin"){
-    value = value == "true" ? true : false
-  }
+  console.log(key)
+  console.log(value)
   user[key] = value
   users = users.map(u => {
     if (u.username == user.username){
