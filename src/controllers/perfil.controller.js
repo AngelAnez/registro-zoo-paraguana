@@ -1,13 +1,13 @@
 import User from "../models/user.model.js";
 
-export const getPerfil = (req, res) => {
+export const getPerfil = async (req, res) => {
   const {username, admin} = req.user;
 
-  const user = User.findOne({username})
+  const actualUser = await User.findOne({username})
 
   res.render("perfil", {
     username,
     admin,
-    email: user.email
+    email: actualUser.email
   });
 };

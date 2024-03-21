@@ -3,7 +3,7 @@ import Visit from "../models/visit.model.js";
 export const renderHistorial = async (req, res) => {
   try {
     const { username, admin } = req.user;
-    const data = await Visit.find()
+    const data = await Visit.find({}, {_id: false, __v: false})
     let pag = 10;
     let sort = ""; // Puede ser cualquier propiedad de las visitas
     let order = ""; // Puede ser asc o dec
@@ -18,7 +18,7 @@ export const renderHistorial = async (req, res) => {
     if (req.query.filter) {
       searchFilter = req.query.filter
         .replaceAll(/[^a-zA-Z0-9áéíóúÁÉÍÓÚÑñ/.: ]+/g, "")
-        .toLowerCase();
+        .toLowerCase()
     }
     let { visits, total } = showVisits(data, pag, sort, order, searchFilter);
     if (!visits) {
@@ -47,7 +47,7 @@ const showVisits = (data, pag, sort, order, searchFilter) => {
 
   if (searchFilter != "") {
     visits = visits.filter((visit) => {
-      return Object.values(visit).join("").toLowerCase().includes(searchFilter);
+      return Object.values(visit['_doc']).join("").toLowerCase().includes(searchFilter)
     });
   }
 
