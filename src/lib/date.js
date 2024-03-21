@@ -12,3 +12,7 @@ export const getTodayDate = () => {
   }
   return `${day}/${month}/${year}`;
 };
+
+export const dateStyleForm = (date) => {
+  return date.split("/").reverse().join("-")
+}

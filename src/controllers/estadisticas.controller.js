@@ -1,5 +1,5 @@
-import { getTodayDate } from "../lib/todayDate.js";
-import { getVisits } from "../models/visits.js";
+import { getTodayDate, dateStyleForm } from "../lib/date.js";
+import Visit from "../models/visit.model.js";
 import decimal from "decimal.js-light"; 
 
 export const getEstadisticas = (req, res) => {
@@ -11,38 +11,41 @@ export const postEstadisticas = (req, res) => {
   renderEstadisticas(req, res, dateRange[0], dateRange[1])
 }
 
-export const renderEstadisticas = (req, res, startDate, endDate) => {
-  const {username, admin} = req.user
-  const today = getTodayDate().split("/").reverse().join("-")
-
-  startDate = startDate.split("/").reverse().join("-")
-  endDate = endDate.split("/").reverse().join("-")
-
-  const { childrenNumber, adultsNumber, seniorsNumber, totalBolivars, totalDolars, cashBolivars, cashDolars, eMoneyBolivars } = getVisitStats(
-    startDate,
-    endDate
-  );
-
-  res.render("estadisticas", {
-    username,
-    admin,
-    childrenNumber,
-    adultsNumber,
-    seniorsNumber,
-    totalBolivars,
-    totalDolars,
-    cashBolivars,
-    cashDolars,
-    eMoneyBolivars,
-    startDate,
-    endDate,
-    today
-  });
+export const renderEstadisticas = async (req, res, startDate, endDate) => {
+  try {
+    const {username, admin} = req.user
+    const today = dateStyleForm(getTodayDate())
+    const data = await Visit.find()
+    
+    startDate = dateStyleForm(startDate)
+    endDate = dateStyleForm(endDate)
+    
+    const { childrenNumber, adultsNumber, seniorsNumber, totalBolivars, totalDolars, cashBolivars, cashDolars, eMoneyBolivars } = getVisitStats(
+      data,
+      startDate,
+      endDate
+    );
+    res.render("estadisticas", {
+      username,
+      admin,
+      childrenNumber,
+      adultsNumber,
+      seniorsNumber,
+      totalBolivars,
+      totalDolars,
+      cashBolivars,
+      cashDolars,
+      eMoneyBolivars,
+      startDate,
+      endDate,
+      today
+    });
+  } catch (error) {
+    res.status(500).json({message: error.message})
+  }
 };
 
-const getVisitStats = (startDate, endDate) => {
-  const data = getVisits();
-
+const getVisitStats = (data, startDate, endDate) => {
   let visits = data.reverse()
 
   let actualDateRange = new Date(startDate + 'T00:00:00')
