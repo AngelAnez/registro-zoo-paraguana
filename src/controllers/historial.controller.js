@@ -1,44 +1,49 @@
 import { getVisits } from "../models/visits.js";
+import Visit from "../models/visit.model.js";
 
-export const renderHistorial = (req, res) => {
-  const { username, admin } = req.user;
-  let pag = 10;
-  let sort = ""; // Puede ser cualquier propiedad de las visitas
-  let order = ""; // Puede ser asc o dec
-  let searchFilter = "";
-  if (req.query.pag) {
-    pag = parseInt(req.query.pag) * 10;
+export const renderHistorial = async (req, res) => {
+  try {
+    const { username, admin } = req.user;
+    const data = await Visit.find()
+    let pag = 10;
+    let sort = ""; // Puede ser cualquier propiedad de las visitas
+    let order = ""; // Puede ser asc o dec
+    let searchFilter = "";
+    if (req.query.pag) {
+      pag = parseInt(req.query.pag) * 10;
+    }
+    if (req.query.sort && req.query.order) {
+      sort = req.query.sort;
+      order = req.query.order;
+    }
+    if (req.query.filter) {
+      searchFilter = req.query.filter
+        .replaceAll(/[^a-zA-Z0-9áéíóúÁÉÍÓÚÑñ/.: ]+/g, "")
+        .toLowerCase();
+    }
+    let { visits, total } = showVisits(data, pag, sort, order, searchFilter);
+    if (!visits) {
+      visits = [];
+    }
+    if (!total) {
+      total = 1;
+    }
+    res.render("historial", {
+      username,
+      admin,
+      visits,
+      total,
+      pag: pag / 10,
+      sort,
+      order,
+      searchFilter,
+    });
+  } catch (error) {
+    res.status(500).json({message: error.message})
   }
-  if (req.query.sort && req.query.order) {
-    sort = req.query.sort;
-    order = req.query.order;
-  }
-  if (req.query.filter) {
-    searchFilter = req.query.filter
-      .replaceAll(/[^a-zA-Z0-9áéíóúÁÉÍÓÚÑñ/.: ]+/g, "")
-      .toLowerCase();
-  }
-  let { visits, total } = showVisits(pag, sort, order, searchFilter);
-  if (!visits) {
-    visits = [];
-  }
-  if (!total) {
-    total = 1;
-  }
-  res.render("historial", {
-    username,
-    admin,
-    visits,
-    total,
-    pag: pag / 10,
-    sort,
-    order,
-    searchFilter,
-  });
 };
 
-const showVisits = (pag, sort, order, searchFilter) => {
-  const data = getVisits();
+const showVisits = (data, pag, sort, order, searchFilter) => {
   let visits = data.reverse();
 
   if (searchFilter != "") {
