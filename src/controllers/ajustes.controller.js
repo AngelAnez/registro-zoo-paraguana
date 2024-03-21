@@ -1,4 +1,3 @@
-import { getConfig, postConfig } from "../models/config.js";
 import Config from "../models/config.model.js";
 
 export const getAjustes = (req, res) => {
@@ -35,33 +34,9 @@ export const renderAjustes = async (req, res, alert) => {
   } catch (error) {
     res.status(500).json({message: error.message})
   }
-  
-
-/*   const {
-    internetDolarValue,
-    defaultDolarValue,
-    childrenTicketPrice,
-    adultsTicketPrice,
-    seniorsTicketPrice,
-  } = getConfig();
-
-  const {showAlert, messageAlert, typeAlert} = alert
-
-  res.render("ajustes", {
-    username,
-    admin,
-    internetDolarValue,
-    defaultDolarValue,
-    childrenTicketPrice,
-    adultsTicketPrice,
-    seniorsTicketPrice,
-    showAlert,
-    messageAlert,
-    typeAlert
-  }); */
 };
 
-export const changeConfig = (req, res) => {
+export const changeConfig = async (req, res) => {
   const {
     internetDolarValue
   } = req.body;
@@ -83,13 +58,12 @@ export const changeConfig = (req, res) => {
   }
 
   if (!configData.childrenTicketPrice || !configData.adultsTicketPrice || !configData.seniorsTicketPrice){
-    const {childrenTicketPrice, adultsTicketPrice, seniorsTicketPrice} = getConfig()
-    configData = {
-      ...configData,
-      childrenTicketPrice,
-      adultsTicketPrice,
-      seniorsTicketPrice
+    try {
+      await Config.updateOne({}, {...configData})
+    } catch (error) {
+      return res.status(500).json({message: error.message})
     }
+    
   } else {
     if (!numberRegex.test(configData.childrenTicketPrice)) {
       return renderAjustes(req, res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
@@ -102,12 +76,12 @@ export const changeConfig = (req, res) => {
     if (!numberRegex.test(configData.seniorsTicketPrice)) {
       return renderAjustes(req, res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
     }
+    try { 
+      await Config.replaceOne({}, {...configData})
+    } catch (error) {
+      return res.status(500).json({message: error.message})
+    }
   }
-
-  
-
-  configData = JSON.stringify(configData, null, 2);
-  postConfig(configData);
 
   renderAjustes(req, res, {showAlert: true, messageAlert: "Los cambios han sido guardados exitosamente", typeAlert: "success"});
 };
