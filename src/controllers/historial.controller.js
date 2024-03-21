@@ -1,4 +1,3 @@
-import { getVisits } from "../models/visits.js";
 import Visit from "../models/visit.model.js";
 
 export const renderHistorial = async (req, res) => {

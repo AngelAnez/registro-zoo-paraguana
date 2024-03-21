@@ -1,5 +1,5 @@
 import { bcvDolar } from "bcv-divisas";
-import { getConfig } from "../models/config.js";
+import Config from "../models/config.model.js";
 
 export const renderInicio = (req, res) => {
   const {username, admin} = req.user;
@@ -10,7 +10,7 @@ export const renderInicio = (req, res) => {
 };
 
 export const getDolarValue = async (req, res) => {
-  const {defaultDolarValue, internetDolarValue} = getConfig()
+  const {defaultDolarValue, internetDolarValue} = await Config.findOne()
   const internetDolar = internetDolarValue;
   if (internetDolar == "on") {
     try {

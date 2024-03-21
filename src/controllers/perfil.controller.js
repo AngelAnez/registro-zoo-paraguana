@@ -1,14 +1,13 @@
-import { getUsers } from "../models/users.js";
+import User from "../models/user.model.js";
 
 export const getPerfil = (req, res) => {
   const {username, admin} = req.user;
 
-  const users = getUsers()
-  const userInfo = users.find(user => user.username == username)
+  const user = User.findOne({username})
 
   res.render("perfil", {
     username,
     admin,
-    email: userInfo.email
+    email: user.email
   });
 };
