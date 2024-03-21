@@ -1,12 +1,43 @@
 import { getConfig, postConfig } from "../models/config.js";
+import Config from "../models/config.model.js";
 
 export const getAjustes = (req, res) => {
   renderAjustes(req, res, {showAlert: false, messageAlert: "", typeAlert: ""});
 };
 
-export const renderAjustes = (req, res, alert) => {
+export const renderAjustes = async (req, res, alert) => {
   const {username, admin} = req.user;
-  const {
+  try {
+    const configDocument = await Config.findOne();
+
+    const {
+    internetDolarValue,
+    defaultDolarValue,
+    childrenTicketPrice,
+    adultsTicketPrice,
+    seniorsTicketPrice,
+  } = configDocument; 
+
+  const {showAlert, messageAlert, typeAlert} = alert
+
+  res.render("ajustes", {
+    username,
+    admin,
+    internetDolarValue,
+    defaultDolarValue,
+    childrenTicketPrice,
+    adultsTicketPrice,
+    seniorsTicketPrice,
+    showAlert,
+    messageAlert,
+    typeAlert
+  });
+  } catch (error) {
+    res.status(500).json({message: error.message})
+  }
+  
+
+/*   const {
     internetDolarValue,
     defaultDolarValue,
     childrenTicketPrice,
@@ -27,7 +58,7 @@ export const renderAjustes = (req, res, alert) => {
     showAlert,
     messageAlert,
     typeAlert
-  });
+  }); */
 };
 
 export const changeConfig = (req, res) => {

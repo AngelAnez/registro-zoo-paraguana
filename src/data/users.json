@@ -34,5 +34,23 @@
     "password": "$2a$10$3OrBKsulcO0dMqdd6iXC4.mRTbblEmZ6GdHcxu7ngaUPaB1PdtSL6",
     "email": "blueknight@pirate.com",
     "role": "Por Aprobar"
+  },
+  {
+    "username": "MongoMan",
+    "password": "$2a$10$pX6Ve4Ds.WQ.ZDA8rMLURut9AOVsoJ.f1ri0z03/Il.QGe7yHA7uS",
+    "email": "mongo@nosql.com",
+    "role": "Por Aprobar"
+  },
+  {
+    "username": "Monguita",
+    "password": "$2a$10$mXHaES6qdVNQu57uggqw4OjpYlQegqMdT1oKrg8X6kR3MpqVi5d4K",
+    "email": "mongosan@mongo.com",
+    "role": "Por Aprobar"
+  },
+  {
+    "username": "Monga",
+    "password": "$2a$10$BfEefUnztz1.3pNasA0Ke.eIA0IS3EpK/GgDOQvUhbo5ZzttCoqUW",
+    "email": "monga@monga.com",
+    "role": "Por Aprobar"
   }
 ]
