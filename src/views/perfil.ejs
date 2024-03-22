@@ -7,7 +7,7 @@ js : "perfil.js", header: true}); %>
     <%- include('partials/header'); %>
     <article class="d-flex flex-column justify-content-center align-items-center bg-white rounded-4 w-50 mx-auto p-0 shadow">
       <section class="p-4 w-100 user-select-none">
-        <form method="get" class="d-flex flex-column align-items-center gap-4 w-100">
+        <form method="post" class="d-flex flex-column align-items-center gap-4 w-100">
           <header class="d-flex flex-column align-items-center gap-2">
             <img class="profileImg" src="/public/assets/img/parrot.png" alt="Profile Image">
             <h3><%= username %></h3>
@@ -15,23 +15,13 @@ js : "perfil.js", header: true}); %>
           <section class="d-flex justify-content-around align-items-center w-100 row">
             <label class="fw-bold col-4">Nombre de Usuario</label>
             <section class="d-flex gap-2 col-6">
-              <input id="usernameInput" class="form-control border-white bg-transparent" type="text" disabled required name="username" value="<%= username %>">
+              <input id="usernameInput" class="form-control border-white bg-transparent" type="text" disabled required name="newUsername" value="<%= username %>">
               <a class="opacityHover d-flex align-items-center text-secondary" onclick="toggleProfileInput('usernameInput')">
                 <i id="usernameInputModify" data-lucide="pencil" alt="modifyIcon"></i>
                 <i id="usernameInputCheck" class="d-none" data-lucide="check" alt="checkIcon"></i>
               </a>       
             </section>
           </section>
-          <!-- <section class="d-flex justify-content-around align-items-center w-100 row">
-            <label class="fw-bold col-4">Contraseña</label>
-            <section class="d-flex gap-2 col-6">
-              <input id="passwordInput" class="form-control border-white bg-transparent" type="password" disabled required name="password" value="AngelDavid">
-              <a class="opacityHover d-flex align-items-center text-secondary" onclick="toggleProfileInput('passwordInput')">
-                <i id="passwordInputModify" data-lucide="pencil" alt="modifyIcon"></i>
-                <i id="passwordInputCheck" class="d-none" data-lucide="check" alt="checkIcon"></i>
-              </a>       
-            </section>
-          </section> -->
           <section class="d-flex justify-content-around align-items-center w-100 row">
             <label class="fw-bold col-4">Correo Electrónico</label>
             <section class="d-flex gap-2 col-6">
@@ -59,7 +49,7 @@ js : "perfil.js", header: true}); %>
                     <i data-lucide="x" alt="close-icon"></i>
                 </button>
             </header>
-            <form method="get">
+            <form method="post">
                 <section class="modal-body d-flex flex-column gap-4 py-2 px-5">
                   <input type="text" class="visually-hidden" id="changePasswordModalUser" name="username" value="<%=username%>" readonly/>
                   <section class="user-select-none d-flex flex-column gap-3">
@@ -91,5 +81,7 @@ js : "perfil.js", header: true}); %>
 </article>
 
   </main>
+  <%- include('partials/alert', {messageAlert, typeAlert}); %> 
   <%- include('partials/scripts') %> 
+  <%- include('partials/alertScript.ejs', {showAlert})%>
 <%- include('partials/foot.ejs') %>
