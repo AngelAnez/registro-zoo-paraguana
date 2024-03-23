@@ -155,7 +155,7 @@ function dinamicPaymentMethod() {
       methodHTML= `<section class="col-9 d-flex flex-column gap-2"><span class="fw-bold user-select-none text-center" style="width: 100%;">Moneda</span><section class="d-flex align-items-center justify-content-around"><label for="dolarOption" class="d-flex gap-2"><span class="user-select-none">Dólar</span><input type="radio" id="dolarOption" value="Dolar" class="form-check-input" name="extraInfoPayment" required oninput="cleanInputs(step2Container)"/></label><label for="bolivarOption" class="d-flex gap-2"><span for="bolivarOption" class="user-select-none">Bolívar</span><input type="radio" id="bolivarOption" value="Bolivar" class="form-check-input" name="extraInfoPayment" required oninput="cleanInputs(step2Container)"/></label></section></section>`;
       break;
     case "Otro":
-      methodHTML= `<label for="alternativeMethodInfo" class="col-12 text-start d-flex flex-column gap-2"><span class="fw-bold user-select-none">Explique el Método de Pago</span><textarea rows="2" id="alternativeMethodInfo" class="form-control px-1 py-0 text-start" style="resize: none;" autocomplete="off" name="extraInfoPayment" oninput="cleanInputs(step2Container)"></textarea></label>`;
+      methodHTML= `<label for="alternativeMethodInfo" class="col-12 text-start d-flex flex-column gap-2"><span class="fw-bold user-select-none">Información del Pago</span><textarea rows="2" id="alternativeMethodInfo" class="form-control px-1 py-0 text-start" style="resize: none;" autocomplete="off" name="extraInfoPayment" oninput="cleanInputs(step2Container)"></textarea></label>`;
       break;
     default:
       methodHTML= `<label for="referenceNumberOption" class="col-9 text-start d-flex flex-column gap-2"><span class="fw-bold user-select-none">Número de Referencia</span><input type="text" id="referenceNumberOption" class="form-control px-1 py-0 test-start" autocomplete="off" name="extraInfoPayment" oninput="cleanInputs(step2Container)" /></label>`;
@@ -184,7 +184,7 @@ function validateStep2() {
   }
   if (textMethodSelected == "Otro"){
     let alternativeMethodInfo = document.querySelector("#alternativeMethodInfo")
-    if (alternativeMethodInfo.value != "" && alternativeMethodInfo.value.match("^[0-9A-ZÑa-zñáéíóúÁÉÍÓÚ. ]+$")){
+    if (alternativeMethodInfo.value != "" && alternativeMethodInfo.value.match("^[0-9A-ZÑa-zñáéíóúÁÉÍÓÚ.,$ ]+$")){
       invalid = false
     } else {
       return formValidator("error", step2Container.querySelectorAll("#alternativeMethodInfo"), "Explique el método de pago utilizado")
@@ -246,7 +246,7 @@ function all_values() {
     }
   } else if (paymentMethod.value == "Otro"){
     let alternativeMethodInfo = document.querySelector("#alternativeMethodInfo")
-    extraInfoTitle.innerHTML = "Información del Método:";
+    extraInfoTitle.innerHTML = "Información del Pago:";
     extraInfoInvoice.innerHTML = alternativeMethodInfo.value;
   } else {
     let referenceNumberOption = document.querySelector("#referenceNumberOption")

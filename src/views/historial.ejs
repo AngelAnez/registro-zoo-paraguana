@@ -1,4 +1,4 @@
-<%- include('partials/head', {title : "Historial", css : "", js : "", header: true}); %>
+<%- include('partials/head', {title : "Historial", css : "", js : "historial.js", header: true}); %>
 <body class="d-flex bg-body-secondary">
   <!-- Menu Lateral y Main-->
   <%- include('partials/sidebar'); %>
@@ -312,6 +312,9 @@
             data-bs-paymentMethod="<%= visit.paymentMethod %>"
             data-bs-totalBolivars="<%= visit.totalBolivars %>"
             data-bs-totalDolars="<%= visit.totalDolars %>"
+            data-bs-extraInfoPayment="<%= visit.extraInfoPayment %>"
+            data-bs-representativeName="<%= visit.representativeName %>"
+            data-bs-representativePhone="<%= visit.representativePhone%>"
           >
             <td><%= visit.date %></td>
             <td><%= visit.time %></td>
@@ -392,9 +395,55 @@
                       <i data-lucide="x" alt="close-icon"></i>
                   </button>
               </header>
-                <section class="modal-body d-flex flex-column gap-4 py-2 px-3">
-
+              <section class="modal-body d-flex flex-column py-2 px-3">
+                <section class="d-flex px-2 user-select-none">
+                  <section class="col-9">
+                    <label for="representativeNameVisitValue">Representante:</label>
+                    <h6 id="representativeNameVisitValue">Angel Añez</h6>
+                    <label for="representativePhoneVisitValue">Número de Contacto:</label>
+                    <h6 id="representativePhoneVisitValue">04162135164</h6>
+                  </section>
+                  <section class="col-3">
+                    <label for="dateVisitValue">Fecha:</label>
+                    <h6 id="dateVisitValue">Angel Añez</h6>
+                    <label for="timeVisitValue">Hora:</label>
+                    <h6 id="timeVisitValue">04162135164</h6>
+                  </section>
                 </section>
+                <hr class="p-0 my-2">
+                <section class="container-fluid d-flex justify-content-around user-select-none">
+                  <section class="m-0 p-0 d-flex flex-column justify-content-start col-3">
+                    <img class="p-3" src="./public/assets/img/children.webp" alt="childrenImg">
+                    <h3 class="text-center" id="childrenNumberVisitValue"></h3>
+                    <p class="text-center">Niños</p>
+                  </section>
+                  <section class="m-0 p-0 d-flex flex-column justify-content-start col-3">
+                    <img class="p-3" src="./public/assets/img/adults.webp" alt="adultsImg">
+                    <h3 class="text-center" id="adultsNumberVisitValue"></h3>
+                    <p class="text-center">Adultos</p>
+                  </section>
+                  <section class="m-0 p-0 d-flex flex-column justify-content-start col-3">
+                    <img class="p-3" src="./public/assets/img/seniors.webp" alt="seniorsImg">
+                    <h3 class="text-center" id="seniorsNumberVisitValue"></h3>
+                    <p class="text-center">Adultos Mayores</p>
+                  </section>
+                </section>
+              </section>
+              <footer class="modal-footer container-fluid p-0 d-flex align-items-start m-0 user-select-none">
+                <div class="row p-0 m-0 w-100">
+                  <section class="col-8 d-flex flex-column m-0 py-2 px-3 text-justify text-bg-secondary gap-2" style="border-bottom-left-radius: 0.375rem;">
+                    <p class="m-0 fw-bold">Método de Pago: <span id="paymentMethodVisitValue" class="fw-normal"></span></p>
+                    <p class="m-0 fw-bold"><span id="extraInfoType"></span> <span id="extraInfoPaymentVisitValue" class="fw-normal"></span></p>
+                  </section>
+                  <section class="col-4 d-flex flex-column text-bg-success m-0 py-2 px-3 rounded-bottom-2 rounded-start-0">
+                    <section class="d-flex flex-column gap-1">
+                      <p class="text-start w-100 m-0 fw-bold">Total:</p>
+                      <h5 class="text-end w-100 m-0"><span id="totalBolivarsVisitValue"></span> Bs.</h5>
+                      <h5 class="text-end w-100 m-0"><span id="totalDolarsVisitValue"></span> $</h6>
+                    </section>
+                  </section>
+                </div>
+              </footer>
           </section>
       </section>
   </article>
