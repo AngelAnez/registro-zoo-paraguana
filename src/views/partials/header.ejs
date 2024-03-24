@@ -10,14 +10,15 @@
       <h6 class="m-0 fw-semibold headerText ps-2"> Tasa del Día: <span id="dolarToday" class="text-success" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Precio del Dolar en Bolívares"></span></h6>
     </li>
     <li class="col-3 d-flex align-items-center p-0 text-end justify-content-end dropdown">
-      <button id="user-name" class="btn btn-link text-dark text-decoration-none fw-semibold headerText py-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <button id="user-name" class="btn btn-link text-dark text-decoration-none fw-semibold headerText py-0 px-0 d-flex gap-3 align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         <span class="opacityHover">
           <%= username %>
         </span>
+        <img id="user-img" class="headerImg" src="./public/assets/img/parrot.png" alt="profile-icon"/>
       </button>
-      <img id="user-img" class="headerImg" src="./public/assets/img/parrot.png" alt="profile-icon"/>
+      
 
-      <ul class="dropdown-menu mt-2">
+      <ul class="dropdown-menu">
         <li><a class="dropdown-item" href="/perfil">Ver Perfil</a></li>
         <li><a class="dropdown-item fw-bold text-danger" href="/logout">Cerrar Sesión</a></li>
       </ul>

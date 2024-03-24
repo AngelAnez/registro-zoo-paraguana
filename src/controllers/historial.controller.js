@@ -20,7 +20,7 @@ export const renderHistorial = async (req, res) => {
         .replaceAll(/[^a-zA-Z0-9áéíóúÁÉÍÓÚÑñ/.: ]+/g, "")
         .toLowerCase()
     }
-    let { visits, total } = showVisits(data, pag, sort, order, searchFilter);
+    let { visits, total, lastPage } = showVisits(data, pag, sort, order, searchFilter);
     if (!visits) {
       visits = [];
     }
@@ -36,6 +36,7 @@ export const renderHistorial = async (req, res) => {
       sort,
       order,
       searchFilter,
+      lastPage
     });
   } catch (error) {
     res.status(500).json({message: error.message})
@@ -52,6 +53,7 @@ const showVisits = (data, pag, sort, order, searchFilter) => {
   }
 
   let totalData = visits.length;
+  let lastPage = Math.ceil(totalData/10)
   if (sort != "" && order != "") {
     if (order == "dec") {
       visits.sort((a, b) => {
@@ -103,7 +105,7 @@ const showVisits = (data, pag, sort, order, searchFilter) => {
       return e;
     }
   });
-  return { visits, total: totalData };
+  return { visits, total: totalData, lastPage };
 };
 
 function comparingTime(a, b, order) {

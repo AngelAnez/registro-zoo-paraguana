@@ -12,13 +12,13 @@
           <section class="col-8 bg-light-subtle rounded-4 shadow py-2 d-flex justify-content-evenly align-items-center">
             <h6 class="m-0"> Buscar Visita: </h6>
             <section class="col-8">
-              <input class="form-control" type="search" aria-label="Search" name="filter" value="<%=searchFilter%>" />
+              <input class="form-control" type="search" aria-label="Search" name="filter" value="<%=searchFilter%>" autocomplete="off" title="Ingrese una palabra clave para realizar una búsqueda"/>
             </section>
             
           </section>
           
-          <button class="btn btn-success shadow" type="submit">Buscar</button>
-          <a class="btn btn-primary shadow" href="/historial">Limpiar</a>
+          <button class="btn btn-success shadow" type="submit" title="Filtra las visitas según la palabra clave ingresada">Buscar</button>
+          <a class="btn btn-primary shadow" href="/historial" title="Elimina los filtros y muestra todas las visitas">Limpiar</a>
         </form>
       </section>
     </nav>
@@ -302,6 +302,7 @@
           <tr
             class="user-select-none"
             style="cursor: pointer"
+            title="Pulse aquí para ver más información de la visita"
             data-bs-toggle="modal"
             data-bs-target="#visitInfoModal"
             data-bs-date="<%= visit.date %>"

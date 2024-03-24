@@ -191,6 +191,8 @@
     </section>
     
   </main>
-  <%- include('partials/scripts')%>
+  <%- include('partials/alert', {messageAlert, typeAlert}); %> 
+  <%- include('partials/scripts') %> 
+  <%- include('partials/alertScript.ejs', {showAlert})%>
   <%- include('partials/foot'); %>
 </body>
