@@ -1,6 +1,6 @@
 import { createAccessToken } from "../lib/jwt.js";
 import bcryptjs from "bcryptjs";
-import User from "../models/user.model.js";
+import { pool } from "../mysqlDb.js";
 
 export const renderRegistro = (req, res) => {
   res.render("registro", {
@@ -12,22 +12,17 @@ export const renderRegistro = (req, res) => {
 export const userRegister = async (req, res) => {
   const { username, password, email } = req.body;
   try {
-    const userRepeatedDb = await User.findOne({ username });
-    if (userRepeatedDb) {
+    const [repeatedUserQuery] = await pool.query(`SELECT * FROM users WHERE username = '${username}'`)
+    const repeatedUser = repeatedUserQuery[0]
+    if (repeatedUser) {
       return res.render("registro", {
         invalidUser: true,
         message: "Ya existe un usuario con el mismo nombre en la base de datos",
       });
     }
     const passwordHashDb = await bcryptjs.hash(password, 10);
-    const newUserDb = new User({
-      username,
-      password: passwordHashDb,
-      email,
-      role: "Por Aprobar",
-    });
-
-    await newUserDb.save();
+    await pool.query(`INSERT INTO users (username, password, email) VALUES
+    ('${username}', '${passwordHashDb}', '${email}')`)
     res.redirect("/login");
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -45,7 +40,8 @@ export const verifyUser = async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    const userFound = await User.findOne({username})
+    const [userFoundQuery] = await pool.query(`SELECT * FROM users WHERE username="${username}"`)
+    const userFound = userFoundQuery[0]
     if (!userFound){
       return res.render("login", {
         invalidUser: true,

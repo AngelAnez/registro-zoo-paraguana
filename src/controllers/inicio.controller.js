@@ -1,5 +1,5 @@
 import { bcvDolar } from "bcv-divisas";
-import Config from "../models/config.model.js";
+import { pool } from "../mysqlDb.js";
 
 export const renderInicio = (req, res) => {
   const {username, admin} = req.user;
@@ -10,8 +10,8 @@ export const renderInicio = (req, res) => {
 };
 
 export const getDolarValue = async (req, res) => {
-  const {defaultDolarValue, internetDolarValue} = await Config.findOne()
-  const internetDolar = internetDolarValue;
+  const [dolarQuery] = await pool.query('SELECT * FROM configs LIMIT 1')
+  const {internetDolar, defaultDolar} = dolarQuery[0]
   if (internetDolar == "on") {
     try {
       const searchingDolar = new Promise(async (resolve, reject) => {
@@ -24,7 +24,7 @@ export const getDolarValue = async (req, res) => {
       })
       const waitingTime = new Promise((resolve, reject) => {
         setTimeout(() => {
-          resolve(defaultDolarValue);
+          resolve(defaultDolar);
         }, 5000);
       })
       return Promise.any([searchingDolar, waitingTime]).then((value) => {
@@ -34,6 +34,5 @@ export const getDolarValue = async (req, res) => {
       console.log("Ha ocurrido un error de conexión")
     }
   }
-  const defaultDolar = defaultDolarValue;
   res.send(defaultDolar); 
 };

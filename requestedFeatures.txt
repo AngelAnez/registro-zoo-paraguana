@@ -1,0 +1,10 @@
+Los adultos mayores siempre valen 0
+Añadir division de genero (niños, niñas, hombres, mujeres)
+Las entradas de cortesía de niños y adultos
+Registro de Novedades
+Historial de Novedades
+(Fecha, Hora, Asunto y Mensaje)
+Pdf de la vista Estadísticas
+Total del Rango en Dólares
+Grafica que muestre la cantidad de dólar por método de pago
+Tabla añadir campo Niñas, Mujeres, Cortesía

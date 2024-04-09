@@ -14,6 +14,8 @@ import HistorialRoutes from "./routes/historial.routes.js"
 import EstadisticasRoutes from "./routes/estadisticas.routes.js"
 import AjustesRoutes from "./routes/ajustes.routes.js"
 
+import { pool } from "./mysqlDb.js";
+
 const app = express()
 
 app.set("port", 8040)
@@ -27,6 +29,15 @@ app.use(express.urlencoded({extended: true}));
 app.use(CookieParser())
 
 /* Rutas del Servidor */
+
+app.get("/ping", async (req, res) => {
+    try {
+        const [result] = await pool.query(`SELECT * FROM configs`)
+        res.json(result)
+    } catch (error) {
+        res.status(404).json(error.message)
+    }
+})
 
 app.use(AuthRoutes)
 app.use(AdminRoutes)

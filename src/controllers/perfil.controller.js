@@ -1,11 +1,12 @@
-import User from "../models/user.model.js";
 import { createAccessToken } from "../lib/jwt.js";
 import bcryptjs from "bcryptjs";
+import { pool } from "../mysqlDb.js";
 
 export const getPerfil = async (req, res) => {
   const {username, admin} = req.user;
 
-  const actualUser = await User.findOne({username})
+  const [actualUserQuery] = await pool.query(`SELECT * FROM users WHERE username='${username}'`)
+  const actualUser = actualUserQuery[0]
 
   res.render("perfil", {
     username,
@@ -21,12 +22,14 @@ export const changePerfil = async (req, res) => {
   let {username, admin} = req.user
   const {newUsername, email, actualPassword, newPassword} = req.body
 
-  const originalUser = await User.findOne({ username });
+  const [originalUserQuery] = await pool.query(`SELECT * FROM users WHERE username='${username}'`)
+  const originalUser = originalUserQuery[0]
 
   if (newUsername && email){
     if (newUsername != username){
-      const userRepeatedDb = await User.findOne({ username: newUsername });
-      if (userRepeatedDb){
+      const [repeatedUserQuery] = await pool.query(`SELECT * FROM users WHERE username='${newUsername}'`)
+      const repeatedUser = repeatedUserQuery[0]
+      if (repeatedUser){
         return res.render("perfil", {
           username,
           admin,
@@ -39,7 +42,9 @@ export const changePerfil = async (req, res) => {
       const token = await createAccessToken({username: newUsername, admin });
       res.cookie("token", token);
     }
-    await User.findOneAndUpdate({username}, {username: newUsername, email})
+    await pool.query(`UPDATE users
+    SET username = '${newUsername}', email = '${email}'
+    WHERE username = '${username}';`)
     username = newUsername
   }
 
@@ -56,10 +61,13 @@ export const changePerfil = async (req, res) => {
       });
     }
     const passwordHash = await bcryptjs.hash(newPassword, 10);
-    await User.updateOne({username}, {password: passwordHash})
+    await pool.query(`UPDATE users
+    SET password = '${passwordHash}'
+    WHERE username = '${username}';`)
   }
   
-  const userModified = await User.findOne({username})
+  const [userModifiedQuery] = await pool.query(`SELECT * FROM users WHERE username='${username}'`)
+  const userModified = userModifiedQuery[0]
 
   res.render("perfil", {
     username,

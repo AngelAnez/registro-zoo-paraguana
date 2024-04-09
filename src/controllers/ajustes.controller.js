@@ -1,4 +1,4 @@
-import Config from "../models/config.model.js";
+import { pool } from "../mysqlDb.js";
 
 export const getAjustes = (req, res) => {
   renderAjustes(req, res, {showAlert: false, messageAlert: "", typeAlert: ""});
@@ -7,14 +7,13 @@ export const getAjustes = (req, res) => {
 export const renderAjustes = async (req, res, alert) => {
   const {username, admin} = req.user;
   try {
-    const configDocument = await Config.findOne();
-
+    const [configsQuery] = await pool.query("SELECT * FROM configs LIMIT 1")
+    const configDocument = configsQuery[0]
     const {
-    internetDolarValue,
-    defaultDolarValue,
-    childrenTicketPrice,
-    adultsTicketPrice,
-    seniorsTicketPrice,
+    internetDolar,
+    defaultDolar,
+    kidsPrice,
+    adultsPrice,
   } = configDocument; 
 
   const {showAlert, messageAlert, typeAlert} = alert
@@ -22,11 +21,10 @@ export const renderAjustes = async (req, res, alert) => {
   res.render("ajustes", {
     username,
     admin,
-    internetDolarValue,
-    defaultDolarValue,
-    childrenTicketPrice,
-    adultsTicketPrice,
-    seniorsTicketPrice,
+    internetDolar,
+    defaultDolar,
+    kidsPrice,
+    adultsPrice,
     showAlert,
     messageAlert,
     typeAlert
@@ -38,46 +36,47 @@ export const renderAjustes = async (req, res, alert) => {
 
 export const changeConfig = async (req, res) => {
   const {
-    internetDolarValue
+    internetDolar
   } = req.body;
 
   let configData = {
     ...req.body,
-    internetDolarValue: internetDolarValue ?? "off",
+    internetDolar: internetDolar ?? "off",
   };
 
   const internetDolarRegex = /^(on|off)$/;
   const numberRegex = /^[0-9]+([.][0-9]+)?$/;
 
-  if (!internetDolarRegex.test(configData.internetDolarValue)) {
+  if (!internetDolarRegex.test(configData.internetDolar)) {
     return renderAjustes(req, res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
   }
 
-  if (!numberRegex.test(configData.defaultDolarValue)) {
+  if (!numberRegex.test(configData.defaultDolar)) {
     return renderAjustes(req, res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
   }
 
-  if (!configData.childrenTicketPrice || !configData.adultsTicketPrice || !configData.seniorsTicketPrice){
+  if (!configData.kidsPrice || !configData.adultsPrice){
     try {
-      await Config.updateOne({}, {...configData})
+      await pool.query(`UPDATE configs
+      SET internetDolar = '${internetDolar}', defaultDolar = '${defaultDolar}';`)
     } catch (error) {
       return res.status(500).json({message: error.message})
     }
     
   } else {
-    if (!numberRegex.test(configData.childrenTicketPrice)) {
+    if (!numberRegex.test(configData.kidsPrice)) {
       return renderAjustes(req, res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
     }
 
-    if (!numberRegex.test(configData.adultsTicketPrice)) {
-      return renderAjustes(req, res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
-    }
-  
-    if (!numberRegex.test(configData.seniorsTicketPrice)) {
+    if (!numberRegex.test(configData.adultsPrice)) {
       return renderAjustes(req, res, {showAlert: true, messageAlert: "Se ha producido un error al momento de guardar los cambios", typeAlert: "danger"});
     }
     try { 
-      await Config.replaceOne({}, {...configData})
+      await pool.query(`UPDATE configs
+      SET internetDolar = '${configData.internetDolar}',
+      defaultDolar = '${configData.defaultDolar}',
+      kidsPrice = '${configData.kidsPrice}',
+      adultsPrice = ${configData.adultsPrice};`)
     } catch (error) {
       return res.status(500).json({message: error.message})
     }
