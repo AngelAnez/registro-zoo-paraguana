@@ -3,14 +3,18 @@ const alertInfo = document.getElementById("alertInfo");
 const alertInfoToast = bootstrap.Toast.getOrCreateInstance(alertInfo);
 
 const step1Container = document.querySelector("#addNewVisitStep1");
-const childrenNumber = document.querySelector("#childrenNumber");
-const adultsNumber = document.querySelector("#adultsNumber");
-const seniorsNumber = document.querySelector("#seniorsNumber");
+const boysNumber = document.querySelector("#boysNumber");
+const girlsNumber = document.querySelector("#girlsNumber");
+const menNumber = document.querySelector("#menNumber");
+const womenNumber = document.querySelector("#womenNumber");
+const elderMenNumber = document.querySelector("#elderMenNumber");
+const elderWomenNumber = document.querySelector("#elderWomenNumber");
+const courtesyKidsNumber = document.querySelector("#courtesyKidsNumber");
+const courtesyAdultsNumber = document.querySelector("#courtesyAdultsNumber");
 const family = document.querySelector("#totalFamily");
 
-const childrenTicket = parseFloat(document.querySelector("#childrenTicket").getAttribute("value"));
+const kidsTicket = parseFloat(document.querySelector("#kidsTicket").getAttribute("value"));
 const adultsTicket = parseFloat(document.querySelector("#adultsTicket").getAttribute("value"));
-const seniorsTicket = parseFloat(document.querySelector("#seniorsTicket").getAttribute("value"));
 
 const step2Container = document.querySelector("#addNewVisitStep2");
 const totalDolars = document.getElementById("totalDolars");
@@ -98,15 +102,21 @@ const formValidator = (type, tagList, message) => {
 function changeFamilyNumber() {
   formValidator("clean", step1Container.querySelectorAll("input"))
 
-  let childrenTotalValue = +childrenNumber.value;
-  let adultsTotalValue = +adultsNumber.value;
-  let seniorsTotalValue = +seniorsNumber.value;
+  let kidsTotalValue = (+boysNumber.value) + (+girlsNumber.value);
+  let adultsTotalValue = (+menNumber.value) + (+womenNumber.value);
+  let eldersTotalValue = (+elderMenNumber.value) + (+elderWomenNumber.value);
 
-  family.value = childrenTotalValue + adultsTotalValue + seniorsTotalValue;
+  family.value = kidsTotalValue + adultsTotalValue + eldersTotalValue;
+
+  let courtesyKidsValue = +courtesyKidsNumber.value
+  let courtesyAdultsValue = +courtesyAdultsNumber.value
+
+  let kidsFinalValue = kidsTotalValue - courtesyKidsValue
+  let adultsFinalValue = adultsTotalValue - courtesyAdultsValue
+
   totalDolars.value =
-    childrenTotalValue * childrenTicket +
-    adultsTotalValue * adultsTicket +
-    seniorsTotalValue * seniorsTicket;
+    kidsFinalValue * kidsTicket +
+    adultsFinalValue * adultsTicket
   totalBolivars.value = totalDolars.value * dolarToday.value;
 
   totalBolivars.value = parseFloat(totalBolivars.value).toFixed(2)
@@ -122,8 +132,23 @@ function validateStep1() {
     formValidator("error", step1Container.querySelectorAll("#" + family.id), "El número de visitantes no puede ser menor a 1")
     invalid = true
   } 
+  let kidsTotalValue = (+boysNumber.value) + (+girlsNumber.value);
+  let courtesyKidsValue = +courtesyKidsNumber.value
 
-  let visits = [childrenNumber, adultsNumber, seniorsNumber]
+  if (kidsTotalValue < courtesyKidsValue){
+    formValidator("error", step1Container.querySelectorAll("#" + courtesyKidsNumber.id), "El número de entradas de cortesía no puede ser mayor al total de niños")
+    invalid = true
+  }
+
+  let adultsTotalValue = (+menNumber.value) + (+womenNumber.value);
+  let courtesyAdultsValue = +courtesyAdultsNumber.value
+
+  if (adultsTotalValue < courtesyAdultsValue){
+    formValidator("error", step1Container.querySelectorAll("#" + courtesyAdultsNumber.id), "El número de entradas de cortesía no puede ser mayor al total de adultos")
+    invalid = true
+  }
+
+  let visits = [boysNumber, girlsNumber, menNumber, womenNumber, elderMenNumber, elderWomenNumber]
   for (let i = 0; i < visits.length; i++) {
     if (visits[i].value < 0){
       formValidator("error", step1Container.querySelectorAll("#" + visits[i].id), "No puede registrar visitas en negativo")
@@ -206,9 +231,9 @@ function validateStep2() {
 /* Paso 3 */
 
 function validateStep3() {
-  if (!representativeName.value.match("^[0-9A-ZÑa-zñáéíóúÁÉÍÓÚ ]+$")) {
+  if (!representativeName.value.match("^[0-9A-ZÑa-zñáéíóúÁÉÍÓÚ ]+$") && representativeName.value != "") {
     formValidator("error", step3Container.querySelectorAll("#" + representativeName.id), "Introduzca un nombre válido")
-  } else if (representativePhone.value.match("^[0-9,+ ]+$") == null) {
+  } else if (representativePhone.value.match("^[0-9,+ ]+$") == null && representativePhone.value != "") {
     formValidator("error", step3Container.querySelectorAll("#" + representativePhone.id), "Introduzca un número de teléfono válido")
   } else {
     formValidator("clean", step3Container.querySelectorAll("input"))
@@ -224,9 +249,9 @@ function all_values() {
   document.querySelector("#dateInvoice").innerHTML = date;
   document.querySelector("#timeInvoice").innerHTML = time;
 
-  document.querySelector("#childrenInvoice").innerHTML = +childrenNumber.value
-  document.querySelector("#adultsInvoice").innerHTML = +adultsNumber.value
-  document.querySelector("#seniorsInvoice").innerHTML = +seniorsNumber.value
+  document.querySelector("#kidsInvoice").innerHTML = (+boysNumber.value) + (+girlsNumber.value)
+  document.querySelector("#adultsInvoice").innerHTML = (+menNumber.value) + (+womenNumber.value)
+  document.querySelector("#eldersInvoice").innerHTML = (+elderMenNumber.value) + (+elderWomenNumber.value)
   document.querySelector("#representativeInvoice").innerHTML = representativeName.value
   document.querySelector("#methodInvoice").innerHTML = paymentMethod.value
   document.querySelector("#totalInvoice").innerHTML = totalBolivars.value

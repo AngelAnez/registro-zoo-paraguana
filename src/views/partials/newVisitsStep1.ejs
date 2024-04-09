@@ -5,47 +5,65 @@
     </section>
 
     <section class="row gy-3">
-        <label for="childrenNumber" class="col-5 d-flex align-items-center ms-2 p-0 gap-3">
-            <figure class="m-0 p-0">
+        <section class="col-4 d-flex flex-column align-items-center p-0 gap-3">
+            <figure class="m-0 p-0 col-5 d-flex flex-column gap-1">
                 <img class="w-100 user-select-none" src="./public/assets/img/children.webp" alt="childrenImg">
+                <figcaption id="kidsTicket" class="fw-bold" value="<%=kidsPrice%>">Niños</figcaption>
             </figure>
-            <div class="col-7 text-start d-flex flex-column gap-2">
-                <span id="childrenTicket" class="fw-bold user-select-none" value="<%=childrenTicketPrice%>">Niños</span>
-                <input type="number" class="form-control p-0 text-center" id="childrenNumber" autocomplete="off" oninput="changeFamilyNumber()" name="childrenNumber" min="0"/>
+            <div class="col-9 text-start d-flex flex-column gap-2">
+                <label for="boysNumber" class="d-flex justify-content-evenly">
+                    <img class="user-select-none col-2" src="./public/assets/img/male.png" alt="maleImg">
+                    <input type="number" class="form-control p-0 text-center w-50" id="boysNumber" autocomplete="off" oninput="changeFamilyNumber()" name="boys" min="0"/>
+                </label>
+                <label for="girlsNumber" class="d-flex justify-content-evenly">
+                    <img class="user-select-none col-2" src="./public/assets/img/female.png" alt="femaleImg">
+                    <input type="number" class="form-control p-0 text-center w-50" id="girlsNumber" autocomplete="off" oninput="changeFamilyNumber()" name="girls" min="0"/>
+                </label>
+                <label for="courtesyKidsNumber" class="d-flex justify-content-evenly">
+                    <img class="user-select-none col-2" src="./public/assets/img/gift.png" alt="giftImg">
+                    <input type="number" class="form-control p-0 text-center w-50" id="courtesyKidsNumber" autocomplete="off" oninput="changeFamilyNumber()" name="courtesyKids" min="0"/>
+                </label>
             </div>
-        </label>
+        </section>
         
-        <label for="adultsNumber" class="offset-1 col-5 d-flex align-items-center p-0 gap-3">
-            <figure class="m-0 p-0">
+        <section class="col-4 d-flex flex-column align-items-center p-0 gap-3">
+            <figure class="m-0 p-0 col-5 d-flex flex-column gap-1">
                 <img class="w-100 user-select-none" src="./public/assets/img/adults.webp" alt="adultsImg">
+                <figcaption id="adultsTicket" class="fw-bold" value="<%=adultsPrice%>">Adultos</figcaption>
             </figure>
-            <div class="col-7 text-start d-flex flex-column gap-2">
-                <span id="adultsTicket" class="fw-bold user-select-none" value="<%=adultsTicketPrice%>">Adultos</span>
-                <input type="number" class="form-control p-0 text-center" id="adultsNumber" autocomplete="off" oninput="changeFamilyNumber()" name="adultsNumber" min="0"/>
+            <div class="col-9 text-start d-flex flex-column gap-2">
+                <label for="menNumber" class="d-flex justify-content-evenly">
+                    <img class="user-select-none col-2" src="./public/assets/img/male.png" alt="maleImg">
+                    <input type="number" class="form-control p-0 text-center w-50" id="menNumber" autocomplete="off" oninput="changeFamilyNumber()" name="men" min="0"/>
+                </label>
+                <label for="womenNumber" class="d-flex justify-content-evenly">
+                    <img class="user-select-none col-2" src="./public/assets/img/female.png" alt="femaleImg">
+                    <input type="number" class="form-control p-0 text-center w-50" id="womenNumber" autocomplete="off" oninput="changeFamilyNumber()" name="women" min="0"/>
+                </label>
+                <label for="courtesyAdultsNumber" class="d-flex justify-content-evenly">
+                    <img class="user-select-none col-2" src="./public/assets/img/gift.png" alt="giftImg">
+                    <input type="number" class="form-control p-0 text-center w-50" id="courtesyAdultsNumber" autocomplete="off" oninput="changeFamilyNumber()" name="courtesyAdults" min="0"/>
+                </label>
             </div>
-        </label>
-    </section>
+        </section>
 
-    <section class="row gy-3">
-        <label for="seniorsNumber" class="col-5 d-flex align-items-center ms-2 p-0 gap-3">
-            <figure class="m-0 p-0">
+        <section class="col-4 d-flex flex-column align-items-center p-0 gap-3">
+            <figure class="m-0 p-0 col-5 d-flex flex-column gap-1">
                 <img class="w-100 user-select-none" src="./public/assets/img/seniors.webp" alt="seniorsImg">
+                <figcaption class="fw-bold">Adultos Mayores</figcaption>
             </figure>
-            <div class="col-7 text-start d-flex flex-column gap-2">
-                <span id="seniorsTicket" class="fw-bold user-select-none" value="<%=seniorsTicketPrice%>">Adultos Mayores</span>
-                <input type="number" class="form-control p-0 text-center" id="seniorsNumber" autocomplete="off" oninput="changeFamilyNumber()" name="seniorsNumber" min="0"/>
+            <div class="col-9 text-start d-flex flex-column gap-2">
+                <label for="elderMenNumber" class="d-flex justify-content-evenly">
+                    <img class="user-select-none col-2" src="./public/assets/img/male.png" alt="maleImg">
+                    <input type="number" class="form-control p-0 text-center w-50" id="elderMenNumber" autocomplete="off" oninput="changeFamilyNumber()" name="elderMen" min="0"/>
+                </label>
+                <label for="elderWomenNumber" class="d-flex justify-content-evenly">
+                    <img class="user-select-none col-2" src="./public/assets/img/female.png" alt="femaleImg">
+                    <input type="number" class="form-control p-0 text-center w-50" id="elderWomenNumber" autocomplete="off" oninput="changeFamilyNumber()" name="elderWomen" min="0"/>
+                </label>
             </div>
-        </label>
-
-        <label for="totalFamily" class="offset-1 col-5 d-flex align-items-center p-0 gap-3">
-            <figure class="m-0 p-0">
-                <img class="w-100 user-select-none" src="./public/assets/img/family.webp" alt="familyImg">
-            </figure>
-            <div class="col-7 text-start d-flex flex-column gap-2">
-                <span class="fw-bold user-select-none">Total</span>
-                <input type="text" class="form-control p-0 text-center" readonly id="totalFamily" value=0 name="totalFamily" required/>
-            </div>
-        </label>
+        </section>
+        <input type="text" class="form-control p-0 text-center visually-hidden" readonly id="totalFamily" value=0 name="totalFamily" required/>
     </section>
 
     <section class="row text-center mt-5 mb-4 d-flex justify-content-center align-items-center">

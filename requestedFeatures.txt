@@ -8,3 +8,15 @@ Pdf de la vista Estadísticas
 Total del Rango en Dólares
 Grafica que muestre la cantidad de dólar por método de pago
 Tabla añadir campo Niñas, Mujeres, Cortesía
+
+* Sustituir la base de datos MongoDB por MySQL
+* Eliminar el precio de los adultos mayores, tanto en ajustes como en visitantes
+* Dividir a los niños en varones y hembras, y adultos en hombres y mujeres
+* La tabla del Historial de Visitas debe mostrar adicionalmente las niñas, mujeres y entradas de cortesía de cada visita
+* Agregar en los Visitantes la opción de indicar la cantidad de visitas de cortesía de niños y adultos
+* Crear 2 nuevas secciones: Una llamada Registro de Novedades y otra Historial de Novedades
+* La sección Registro de Novedades debe ser un formulario que permita generar una novedad. Una novedad es como un mensaje o correo donde se da a conocer una información. Cuenta con Asunto, Mensaje, Fecha y Hora
+* La sección Historial de Novedades debe enlistar todas las Novedades, y permitir mostrarlas cada una
+* Agregar en la vista Estadísticas un recuadro que muestre el total de los ingresos en Dólares
+* Cambiar la segunda gráfica de la vista Estadísticas para que muestre la cantidad de dólares recaudados en cada método de pago
+* Permitir que se genere y se descargue un PDF de toda la vista Estadísticas
