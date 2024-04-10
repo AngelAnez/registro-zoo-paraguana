@@ -7,7 +7,7 @@
 * Crear 2 nuevas secciones: Una llamada Registro de Novedades y otra Historial de Novedades
 * La sección Registro de Novedades debe ser un formulario que permita generar una novedad. Una novedad es como un mensaje o correo donde se da a conocer una información. Cuenta con Asunto, Mensaje, Fecha y Hora
 * La sección Historial de Novedades debe enlistar todas las Novedades, y permitir mostrarlas cada una
-* Agregar en la vista Estadísticas un recuadro que muestre el total de los ingresos en Dólares
-* Cambiar la segunda gráfica de la vista Estadísticas para que muestre la cantidad de dólares recaudados en cada método de pago
+(LISTO) * Agregar en la vista Estadísticas un recuadro que muestre el total de los ingresos en Dólares
+(LISTO) * Cambiar la segunda gráfica de la vista Estadísticas para que muestre la cantidad de dólares recaudados en cada método de pago
 * Permitir que se genere y se descargue un PDF de toda la vista Estadísticas
-* Optimizar el controlador de la vista Historial para aprovechar las características de MySQL
+(LISTO) * Optimizar el controlador de la vista Historial para aprovechar las características de MySQL

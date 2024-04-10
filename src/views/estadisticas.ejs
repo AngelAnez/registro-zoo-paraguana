@@ -8,12 +8,12 @@
     <%- include('partials/header'); %>
 
     <article class="container-fluid user-select-none">
-      <section class="row mb-2 d-flex gap-4">
-        <div class="offset-1 col-3 px-3 py-4">
+      <section class="row mb-2 d-flex justify-content-around">
+        <div class="col-3 px-3 py-4">
           <div class="bg-light-subtle rounded-4 shadow px-1 pt-2 pb-3 d-flex justify-content-between align-items-center">
-            <label class="d-flex flex-column align-items-center w-50 text-center ms-3">
-              <p class="text-primary fs-2 m-0 fw-semibold">
-                <%= childrenNumber+adultsNumber+seniorsNumber %>
+            <label class="d-flex flex-column align-items-center col-6 text-center ms-3">
+              <p class="text-primary fs-3 m-0 fw-semibold">
+                <%= totalKids+totalAdults+totalElders %>
               </p>
               <small class="text-secondary">Visitantes</small>
             </label>
@@ -22,7 +22,7 @@
             </figure>
           </div>
         </div>
-        <div class="offset-1 col-3 px-3 py-4">
+<!--         <div class="offset-1 col-3 px-3 py-4">
           <div class="bg-light-subtle rounded-4 shadow px-1 pt-2 pb-3 d-flex justify-content-between align-items-center">
             <label class="d-flex flex-column align-items-center w-50 text-center ms-3">
               <p class="text-primary fs-2 m-0 fw-semibold"><%= totalBolivars %></p>
@@ -32,28 +32,28 @@
               <i class="w-50 h-50" data-lucide="banknote" alt="circle-dolar-icon"></i>
             </figure>
           </div>
-        </div>
+        </div> -->
         <div class="col-3 px-3 py-4">
-          <div class="bg-light-subtle rounded-4 shadow px-1 pt-2 pb-3 d-flex justify-content-between align-items-center">
-            <label class="d-flex flex-column align-items-center w-50 text-center ms-3">
-              <p class="text-primary fs-2 m-0 fw-semibold"><%= totalDolars %></p>
-              <small class="text-secondary">Ingresos ($)</small>
+          <div class="bg-light-subtle rounded-4 shadow px-1 pt-2 pb-3 d-flex justify-content-evenly align-items-center">
+            <label class="d-flex flex-column align-items-center col-6 text-center ms-3">
+              <p class="text-primary fs-3 m-0 fw-semibold"><%= totalDolars %> $</p>
+              <small class="text-secondary">Ingresos Totales</small>
             </label>
-            <figure class="text-secondary d-flex justify-content-center w-50 mb-0">
+            <figure class="text-secondary d-flex justify-content-center col-5 mb-0">
               <i class="w-50 h-50" data-lucide="circle-dollar-sign" alt="circle-dolar-icon"></i>
             </figure>
           </div>
         </div>
       </section>
-      <section class="row d-flex gap-5">
-        <section class="offset-1 col-4 bg-light-subtle rounded-4 shadow h-100 py-2">
+      <section class="row d-flex gap-5 justify-content-evenly">
+        <section class="col-4 bg-light-subtle rounded-4 shadow h-100 py-2">
           <h6 class="text-secondary-emphasis text-center fw-bold py-1">Distribución de los Visitantes según su Edad</h6>
           <figure class="chartContainer">
             <canvas id="visitsDistChart" aria-label="visitsDistChart" role="img"></canvas>
           </figure>
         </section>
-        <section class="offset-1 col-4 bg-light-subtle rounded-4 shadow h-100 py-2">
-          <h6 class="text-secondary-emphasis text-center fw-bold py-1">Distribución de los Bolivares según el Método</h6>
+        <section class="col-4 bg-light-subtle rounded-4 shadow h-100 py-2">
+          <h6 class="text-secondary-emphasis text-center fw-bold py-1">Ingresos en Dólares por cada Método de Pago</h6>
           <figure class="chartContainer">
             <canvas id="paymentDistChart" aria-label="paymentDistChart" role="img"></canvas>
           </figure>
@@ -61,12 +61,16 @@
       </section>
 
       <ul class="d-none">
-        <li id="childrenValue" value="<%= childrenNumber %>"></li>
-        <li id="adultsValue" value="<%= adultsNumber %>"></li>
-        <li id="seniorsValue" value="<%= seniorsNumber %>"></li>
+        <li id="childrenValue" value="<%= totalKids %>"></li>
+        <li id="adultsValue" value="<%= totalAdults %>"></li>
+        <li id="seniorsValue" value="<%= totalElders %>"></li>
         <li id="eMoneyBolivarsValue" value="<%= eMoneyBolivars %>"></li>
         <li id="cashBolivarsValue" value="<%= cashBolivars %>"></li>
         <li id="cashDolarsValue" value="<%= cashDolars %>"></li>
+        <li id="cashValue" value="<%= cash %>"></li>
+        <li id="bankTransferValue" value="<%= bankTransfer %>"></li>
+        <li id="mobilePayValue" value="<%= mobilePay %>"></li>
+        <li id="otherValue" value="<%= other %>"></li>
       </ul>
 
       <form method="post" class="d-flex justify-content-center align-items-center gap-4 mt-4">

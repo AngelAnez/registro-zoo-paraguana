@@ -8,6 +8,11 @@ const eMoneyBolivars = document.querySelector("#eMoneyBolivarsValue").value
 const cashBolivars = document.querySelector("#cashBolivarsValue").value
 const cashDolars = document.querySelector("#cashDolarsValue").value
 
+const cash = document.querySelector("#cashValue").value
+const bankTransfer = document.querySelector("#bankTransferValue").value
+const mobilePay = document.querySelector("#mobilePayValue").value
+const other = document.querySelector("#otherValue").value
+
 new Chart(visitsDistChart, {
   type: 'pie',
   data: {
@@ -43,18 +48,22 @@ new Chart(visitsDistChart, {
 new Chart(paymentDistChart, {
   type: 'doughnut',
   data: {
-    labels: ['Efectivo', 'Digital'],
+    labels: ['Transferencia', 'Pago Móvil', 'Efectivo', 'Otro'],
     datasets: [
         {
           label: 'Cantidad',
-          data: [cashBolivars, eMoneyBolivars],
+          data: [bankTransfer, mobilePay, cash, other],
           backgroundColor: [
             'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)'
+            'rgb(54, 162, 235)',
+            'rgb(75, 192, 192)',
+            'rgb(201, 203, 207)'
           ],
           hoverBackgroundColor: [
             'rgba(255, 99, 132, 0.7)',
-            'rgba(54, 162, 235, 0.7)'
+            'rgb(54, 162, 235, 0.7)',
+            'rgb(75, 192, 192, 0.7)',
+            'rgb(201, 203, 207, 0.7)'
           ]
         }
       ]
