@@ -162,3 +162,5 @@ INSERT INTO configs (internetDolar, defaultDolar, kidsPrice, adultsPrice ) VALUE
 ("on","36.50","1.50","2");
 
 SELECT * FROM configs LIMIT 1;
+
+SELECT *, DATE_FORMAT(date, '%d/%m/%Y') AS date FROM visits;

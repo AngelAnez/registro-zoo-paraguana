@@ -23,8 +23,8 @@ const paymentMethod = document.getElementById("paymentMethod");
 const methodSelected = document.getElementById("methodSelected");
 
 const step3Container = document.querySelector("#addNewVisitStep3");
-const representativeName = document.getElementById("representativeName");
-const representativePhone = document.getElementById("representativePhone");
+let representativeName = document.getElementById("representativeName");
+let representativePhone = document.getElementById("representativePhone");
 
 /* Cambio de Pasos y Estilos de Validaciones */
 
@@ -45,6 +45,7 @@ function addZero(number) {
 
 const getDateandTime = () => {
   let hoy = new Date();
+  console.log(hoy)
   let hour = hoy.getHours();
   let minutes = hoy.getMinutes();
   let period = "";
@@ -69,7 +70,7 @@ const getDateandTime = () => {
   month = addZero(month);
 
   document.getElementById("dateInput").value = `${day}/${month}/${year}`
-  document.getElementById("timeInput").value = `${hour}:${minutes} ${period}`
+  document.getElementById("timeInput").value = `${hoy.getHours()}:${hoy.getMinutes()}`
   return {date: `${day}/${month}/${year}`, time: `${hour}:${minutes} ${period}`}
 }
 
@@ -168,7 +169,6 @@ const cleanInputs = (container) => {
   formValidator('clean', container.querySelectorAll('.is-invalid'))
 }
 
-
 function dinamicPaymentMethod() {
   formValidator("clean", step2Container.querySelectorAll("#" + paymentMethod.id))
 
@@ -252,7 +252,7 @@ function all_values() {
   document.querySelector("#kidsInvoice").innerHTML = (+boysNumber.value) + (+girlsNumber.value)
   document.querySelector("#adultsInvoice").innerHTML = (+menNumber.value) + (+womenNumber.value)
   document.querySelector("#eldersInvoice").innerHTML = (+elderMenNumber.value) + (+elderWomenNumber.value)
-  document.querySelector("#representativeInvoice").innerHTML = representativeName.value
+  document.querySelector("#representativeInvoice").innerHTML = representativeName.value == "" ? "Sin Asignar" : representativeName.value
   document.querySelector("#methodInvoice").innerHTML = paymentMethod.value
   document.querySelector("#totalInvoice").innerHTML = totalBolivars.value
 

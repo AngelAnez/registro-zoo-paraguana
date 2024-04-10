@@ -32,7 +32,7 @@ app.use(CookieParser())
 
 app.get("/ping", async (req, res) => {
     try {
-        const [result] = await pool.query(`SELECT * FROM configs`)
+        const [result] = await pool.query(`SELECT *, DATE_FORMAT(date, '%d/%m/%Y') AS date FROM visits`)
         res.json(result)
     } catch (error) {
         res.status(404).json(error.message)

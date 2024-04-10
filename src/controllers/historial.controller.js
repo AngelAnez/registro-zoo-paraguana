@@ -1,31 +1,75 @@
 import Visit from "../models/visit.model.js";
+import { pool } from "../mysqlDb.js";
 
 export const renderHistorial = async (req, res) => {
   try {
     const { username, admin } = req.user;
-    const data = await Visit.find({}, {_id: false, __v: false})
     let pag = 10;
     let sort = ""; // Puede ser cualquier propiedad de las visitas
     let order = ""; // Puede ser asc o dec
     let searchFilter = "";
-    if (req.query.pag) {
-      pag = parseInt(req.query.pag) * 10;
+    let query = `SELECT *, DATE_FORMAT(date, '%d/%m/%Y') AS date, TIME_FORMAT(time, "%h:%i %p") AS time FROM visits INNER JOIN paymentMethod ON visits.paymentMethod_id=paymentMethod._id
+    INNER JOIN kids ON visits.kids_id=kids._id
+    INNER JOIN adults ON visits.adults_id=adults._id
+    INNER JOIN elders ON visits.elders_id=elders._id`
+    let whereQuery = ""
+    if (req.query.filter) {
+      searchFilter = req.query.filter
+        .replaceAll(/[^a-zA-Z0-9áéíóúÁÉÍÓÚÑñ/.:\- ]+/g, "")
+        .toLowerCase()
+      whereQuery = ` WHERE visits.totalFamily LIKE '%${searchFilter}%' OR 
+      visits.totalDolars LIKE '%${searchFilter}%' OR
+      visits.totalBolivars LIKE '%${searchFilter}%' OR
+      visits.paymentInfo LIKE '%${searchFilter}%' OR
+      visits.representativeName LIKE '%${searchFilter}%' OR
+      visits.representativePhone LIKE '%${searchFilter}%' OR
+      visits.date LIKE '%${searchFilter}%' OR
+      visits.time LIKE '%${searchFilter}%' OR
+      paymentMethod.method LIKE '%${searchFilter}%' OR
+      paymentMethod.extraInfoTitle LIKE '%${searchFilter}%' OR
+      kids.boys LIKE '%${searchFilter}%' OR
+      kids.girls LIKE '%${searchFilter}%' OR
+      kids.courtesyKids LIKE '%${searchFilter}%' OR
+      kids.totalKids LIKE '%${searchFilter}%' OR
+      adults.men LIKE '%${searchFilter}%' OR
+      adults.women LIKE '%${searchFilter}%' OR
+      adults.courtesyAdults LIKE '%${searchFilter}%' OR
+      adults.totalAdults LIKE '%${searchFilter}%' OR
+      elders.elderMen LIKE '%${searchFilter}%' OR
+      elders.elderWomen LIKE '%${searchFilter}%' OR
+      elders.totalElders LIKE '%${searchFilter}%'`
+      query += whereQuery
     }
+
+    const totalVisitsQuery = await pool.query(`${query.replace("*", "COUNT(*)")};`)
+    let total = Object.values(totalVisitsQuery[0][0])[0]
+
     if (req.query.sort && req.query.order) {
       sort = req.query.sort;
       order = req.query.order;
+      let table
+      if (sort == "totalKids" || sort == "totalAdults" || sort == "totalElders"){
+        table = sort.slice(5).toLowerCase()
+      } else if (sort == "method"){
+        table = "paymentMethod"
+      } else {
+        table = "visits"
+      }
+      query += ` ORDER BY ${table}.${sort} ${order.toUpperCase()}`
+    } else {
+      query += ' ORDER BY visits._id DESC'
     }
-    if (req.query.filter) {
-      searchFilter = req.query.filter
-        .replaceAll(/[^a-zA-Z0-9áéíóúÁÉÍÓÚÑñ/.: ]+/g, "")
-        .toLowerCase()
+    query+= ` LIMIT 10`
+    if (req.query.pag) {
+      pag = parseInt(req.query.pag) * 10;
+      if (pag-10 > 0){
+        query+= ` OFFSET ${pag-10}`
+      }
     }
-    let { visits, total } = showVisits(data, pag, sort, order, searchFilter);
+    const visitsQuery = await pool.query(query + ";")
+    const visits = visitsQuery[0]
     if (!visits) {
       visits = [];
-    }
-    if (!total) {
-      total = 1;
     }
     res.render("historial", {
       username,
@@ -41,104 +85,3 @@ export const renderHistorial = async (req, res) => {
     res.status(500).json({message: error.message})
   }
 };
-
-const showVisits = (data, pag, sort, order, searchFilter) => {
-  let visits = data.reverse();
-
-  if (searchFilter != "") {
-    visits = visits.filter((visit) => {
-      return Object.values(visit['_doc']).join("").toLowerCase().includes(searchFilter)
-    });
-  }
-
-  let totalData = visits.length;
-  if (sort != "" && order != "") {
-    if (order == "dec") {
-      visits.sort((a, b) => {
-        if (a[sort].includes(":")) {
-          return comparingTime(a[sort], b[sort], order);
-        }
-        if (a[sort].includes("/")) {
-          return comparingDate(a[sort], b[sort], order);
-        }
-        if (a[sort].includes("i")) {
-          if (a[sort] > b[sort]) {
-            return -1;
-          }
-          if (a[sort] < b[sort]) {
-            return 1;
-          }
-          if (a[sort] == b[sort]) {
-            return comparingTime(a.time, b.time, "dec");
-          }
-        }
-        return parseInt(b[sort]) - parseInt(a[sort]);
-      });
-    }
-    if (order == "asc") {
-      visits.sort((a, b) => {
-        if (a[sort].includes(":")) {
-          return comparingTime(a[sort], b[sort], order);
-        }
-        if (a[sort].includes("/")) {
-          return comparingDate(a[sort], b[sort], order);
-        }
-        if (a[sort].includes("i")) {
-          if (a[sort] > b[sort]) {
-            return 1;
-          }
-          if (a[sort] < b[sort]) {
-            return -1;
-          }
-          if (a[sort] == b[sort]) {
-            return comparingTime(a.time, b.time, "dec");
-          }
-        }
-        return parseInt(a[sort]) - parseInt(b[sort]);
-      });
-    }
-  }
-  visits = visits.filter((e, index) => {
-    if (index > pag - 11 && index < pag) {
-      return e;
-    }
-  });
-  return { visits, total: totalData };
-};
-
-function comparingTime(a, b, order) {
-  let hours = [a, b];
-  hours = hours.map((hour) => {
-    hour = hour.split(":");
-    if (hour[1].includes("pm") && hour[0] != "12") {
-      hour[0] = parseInt(hour[0]) + 12;
-    }
-    hour[1] = hour[1].replaceAll(/ [a|p]m/g, "");
-    hour[1] = parseInt(hour[1]);
-    hour = hour[0] * 3600 + hour[1] * 60;
-    return hour;
-  });
-  return order === "asc" ? hours[0] - hours[1] : hours[1] - hours[0];
-}
-
-function comparingDate(a, b, order) {
-  let dates = [a, b];
-  dates = dates.map((date) => {
-    date = date.split("/");
-    return { day: date[0], month: date[1], year: date[2] };
-  });
-
-  if (dates[0].year != dates[1].year) {
-    return order === "asc"
-      ? dates[0].year - dates[1].year
-      : dates[1].year - dates[0].year;
-  }
-  if (dates[0].month != dates[1].month) {
-    return order === "asc"
-      ? dates[0].month - dates[1].month
-      : dates[1].month - dates[0].month;
-  }
-  return order === "asc"
-    ? dates[0].day - dates[1].day
-    : dates[1].day - dates[0].day;
-}

@@ -1,4 +1,4 @@
-import { getTodayDate, dateStyleForm } from "../lib/date.js";
+import { getTodayDate, dateStyleYMD } from "../lib/date.js";
 import Visit from "../models/visit.model.js";
 import decimal from "decimal.js-light"; 
 
@@ -14,11 +14,11 @@ export const postEstadisticas = (req, res) => {
 export const renderEstadisticas = async (req, res, startDate, endDate) => {
   try {
     const {username, admin} = req.user
-    const today = dateStyleForm(getTodayDate())
+    const today = dateStyleYMD(getTodayDate())
     const data = await Visit.find()
     
-    startDate = dateStyleForm(startDate)
-    endDate = dateStyleForm(endDate)
+    startDate = dateStyleYMD(startDate)
+    endDate = dateStyleYMD(endDate)
     
     const { childrenNumber, adultsNumber, seniorsNumber, totalBolivars, totalDolars, cashBolivars, cashDolars, eMoneyBolivars } = getVisitStats(
       data,
