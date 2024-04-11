@@ -13,7 +13,7 @@ import VisitantesRoutes from "./routes/visitantes.routes.js"
 import HistorialRoutes from "./routes/historial.routes.js"
 import EstadisticasRoutes from "./routes/estadisticas.routes.js"
 import AjustesRoutes from "./routes/ajustes.routes.js"
-
+import ReporteRoutes from "./routes/reporte.routes.js";
 import { pool } from "./mysqlDb.js";
 
 const app = express()
@@ -47,6 +47,7 @@ app.use(VisitantesRoutes)
 app.use(HistorialRoutes)
 app.use(EstadisticasRoutes)
 app.use(AjustesRoutes)
+app.use(ReporteRoutes)
 
 /* Archivos Estáticos*/
 

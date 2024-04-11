@@ -1,12 +1,9 @@
 const visitsDistChart = document.querySelector('#visitsDistChart');
 const paymentDistChart = document.querySelector('#paymentDistChart');
 
-const children = document.querySelector("#childrenValue").value
+const kids = document.querySelector("#kidsValue").value
 const adults = document.querySelector("#adultsValue").value
-const seniors = document.querySelector("#seniorsValue").value
-const eMoneyBolivars = document.querySelector("#eMoneyBolivarsValue").value
-const cashBolivars = document.querySelector("#cashBolivarsValue").value
-const cashDolars = document.querySelector("#cashDolarsValue").value
+const elders = document.querySelector("#eldersValue").value
 
 const cash = document.querySelector("#cashValue").value
 const bankTransfer = document.querySelector("#bankTransferValue").value
@@ -20,7 +17,7 @@ new Chart(visitsDistChart, {
     datasets: [
         {
           label: 'Cantidad',
-          data: [children, adults, seniors],
+          data: [kids, adults, elders],
           backgroundColor: [
             'rgb(255, 99, 132)',
             'rgb(54, 162, 235)',

@@ -12,7 +12,6 @@
             <thead class="table-success">
                 <tr>
                     <th>Nombre de Usuario</th>
-                    <!-- <th>Email</th> -->
                     <th>Rol</th>
                     <th>Acciones</th>
                 </tr>
@@ -22,7 +21,6 @@
                     <% if (user.username != username && user.username != "root") {%> 
                     <tr>
                         <td><%= user.username %></td>
-                        <!-- <td><%= user.email %></td> -->
                         <td><%= user.role %></td>
                         <td>
                             <% if (user.role != "Por Aprobar"){ %>

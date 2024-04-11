@@ -26,7 +26,7 @@ export const renderEstadisticas = async (req, res, startDate, endDate) => {
     
     const data = dataQuery[0]
     
-    const { totalKids, totalAdults, totalElders, totalBolivars, totalDolars, cashBolivars, cashDolars, eMoneyBolivars, cash, bankTransfer, mobilePay, other } = getVisitStats(
+    const { totalKids, totalAdults, totalElders, totalBolivars, totalDolars, cash, bankTransfer, mobilePay, other } = getVisitStats(
       data
     );
     res.render("estadisticas", {
@@ -37,9 +37,6 @@ export const renderEstadisticas = async (req, res, startDate, endDate) => {
       totalElders,
       totalBolivars,
       totalDolars,
-      cashBolivars,
-      cashDolars,
-      eMoneyBolivars,
       startDate,
       endDate,
       today,
@@ -53,7 +50,7 @@ export const renderEstadisticas = async (req, res, startDate, endDate) => {
   }
 };
 
-const getVisitStats = (data) => {
+export const getVisitStats = (data) => {
   
   let dataStats = {
     totalKids: 0,

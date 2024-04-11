@@ -18,7 +18,7 @@
               <small class="text-secondary">Visitantes</small>
             </label>
             <figure class="text-secondary d-flex justify-content-center w-50 mb-0">
-              <i class="w-50 h-50" data-lucide="users" alt="visitantes-icon"></i>
+              <img class="w-50 h-50" src="./public/assets/img/visitors.png" alt="circle-dolar-icon"></img>
             </figure>
           </div>
         </div>
@@ -40,7 +40,7 @@
               <small class="text-secondary">Ingresos Totales</small>
             </label>
             <figure class="text-secondary d-flex justify-content-center col-5 mb-0">
-              <i class="w-50 h-50" data-lucide="circle-dollar-sign" alt="circle-dolar-icon"></i>
+              <img class="w-50 h-50" src="./public/assets/img/income.png" alt="circle-dolar-icon"></img>
             </figure>
           </div>
         </div>
@@ -61,19 +61,16 @@
       </section>
 
       <ul class="d-none">
-        <li id="childrenValue" value="<%= totalKids %>"></li>
+        <li id="kidsValue" value="<%= totalKids %>"></li>
         <li id="adultsValue" value="<%= totalAdults %>"></li>
-        <li id="seniorsValue" value="<%= totalElders %>"></li>
-        <li id="eMoneyBolivarsValue" value="<%= eMoneyBolivars %>"></li>
-        <li id="cashBolivarsValue" value="<%= cashBolivars %>"></li>
-        <li id="cashDolarsValue" value="<%= cashDolars %>"></li>
+        <li id="eldersValue" value="<%= totalElders %>"></li>
         <li id="cashValue" value="<%= cash %>"></li>
         <li id="bankTransferValue" value="<%= bankTransfer %>"></li>
         <li id="mobilePayValue" value="<%= mobilePay %>"></li>
         <li id="otherValue" value="<%= other %>"></li>
       </ul>
 
-      <form method="post" class="d-flex justify-content-center align-items-center gap-4 mt-4">
+      <form method="post" action="/estadisticas" class="d-flex justify-content-center align-items-center gap-4 mt-4">
         <section class="bg-light-subtle rounded-4 shadow py-2 d-flex justify-content-around align-items-center w-75 user-select-none">
           <h6 class="m-0"> Seleccionar Período: </h6>
           <section class="d-flex gap-4">
@@ -89,7 +86,8 @@
             
           </section>
         </section>
-        <button class="btn btn-success shadow me-3" type="submit">Buscar</button>
+        <button class="btn btn-success shadow" type="submit">Buscar</button>
+        <button class="btn btn-primary" type="submit" formaction="/reporte" >Descargar</button>
       </form>
 
     </article>

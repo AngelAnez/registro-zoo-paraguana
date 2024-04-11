@@ -1,13 +1,15 @@
 * Sustituir la base de datos MongoDB por MySQL
-(LISTO) * Eliminar el precio de los adultos mayores, tanto en ajustes como en visitantes
-(LISTO) * Dividir a los niños en varones y hembras, y adultos en hombres y mujeres
 * Permitir a los administradores modificar datos de los visitantes o eliminarlos
-(NO AÑADIDO POR AFECTAR EL DISEÑO)* La tabla del Historial de Visitas debe mostrar adicionalmente las niñas, mujeres y entradas de cortesía de cada visita
-(LISTO) * Agregar en los Visitantes la opción de indicar la cantidad de visitas de cortesía de niños y adultos
 * Crear 2 nuevas secciones: Una llamada Registro de Novedades y otra Historial de Novedades
 * La sección Registro de Novedades debe ser un formulario que permita generar una novedad. Una novedad es como un mensaje o correo donde se da a conocer una información. Cuenta con Asunto, Mensaje, Fecha y Hora
 * La sección Historial de Novedades debe enlistar todas las Novedades, y permitir mostrarlas cada una
+* Permitir que se genere y se descargue un PDF de toda la vista Estadísticas
+
+
+(LISTO) * Eliminar el precio de los adultos mayores, tanto en ajustes como en visitantes
+(LISTO) * Dividir a los niños en varones y hembras, y adultos en hombres y mujeres
+(LISTO) * Optimizar el controlador de la vista Historial para aprovechar las características de MySQL
 (LISTO) * Agregar en la vista Estadísticas un recuadro que muestre el total de los ingresos en Dólares
 (LISTO) * Cambiar la segunda gráfica de la vista Estadísticas para que muestre la cantidad de dólares recaudados en cada método de pago
-* Permitir que se genere y se descargue un PDF de toda la vista Estadísticas
-(LISTO) * Optimizar el controlador de la vista Historial para aprovechar las características de MySQL
+(LISTO) * Agregar en los Visitantes la opción de indicar la cantidad de visitas de cortesía de niños y adultos
+(NO AÑADIDO POR AFECTAR EL DISEÑO)* La tabla del Historial de Visitas debe mostrar adicionalmente las niñas, mujeres y entradas de cortesía de cada visita
