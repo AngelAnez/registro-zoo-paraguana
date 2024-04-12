@@ -1,6 +1,6 @@
-import { getTodayDate, dateStyleYMD, dateStyleDMY } from "../lib/date.js";
+import { getTodayDate, dateStyleYMD, dateStyleDMY } from "../libs/date.js";
 import decimal from "decimal.js-light"; 
-import { pool } from "../mysqlDb.js";
+import { pool } from "../db.js";
 
 export const getEstadisticas = (req, res) => {
   renderEstadisticas(req, res, getTodayDate(), getTodayDate())

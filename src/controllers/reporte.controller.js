@@ -1,5 +1,5 @@
-import { buildPDF } from "../lib/pdfKit.js";
-import { dateStyleDMY } from "../lib/date.js";
+import { buildPDF } from "../libs/pdfKit.js";
+import { dateStyleDMY } from "../libs/date.js";
 
 export const generateReport = (req, res) => {
     const {startDate, endDate} = req.body

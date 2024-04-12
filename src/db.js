@@ -1,13 +1,9 @@
-import mongoose from "mongoose"
+import { createPool } from "mysql2/promise";
 
-export const connectDB = async () => {
-    /* try {
-        await mongoose.connect("mongodb://0.0.0.0:27017/zoodb")
-        console.log("DB is connected")
-    } catch (error) {
-        console.log(error)
-    } */
-    console.log("A")
-}
-
-// Localhost fue sustituido por 0.0.0.0, porque daba error. Para mas info: https://stackoverflow.com/questions/46523321/mongoerror-connect-econnrefused-127-0-0-127017
+export const pool = createPool({
+    host: "localhost",
+    user: "root",
+    password: "",
+    port: 3306,
+    database: "registrozoo"
+})

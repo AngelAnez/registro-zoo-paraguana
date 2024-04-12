@@ -1,9 +1,9 @@
 import PDFDocument from "pdfkit-table";
 import { getVisitStats } from "../controllers/estadisticas.controller.js";
-import { pool } from "../mysqlDb.js";
+import { pool } from "../db.js";
 import { DIR_APP } from "../global.js";
 import path from "path";
-import { dateStyleDMY } from "../lib/date.js";
+import { dateStyleDMY } from "./date.js";
 
 export const buildPDF = async (dataCallback, endCallback, dates) => {
     const {startDate, endDate} = dates

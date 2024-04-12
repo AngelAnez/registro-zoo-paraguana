@@ -1,5 +1,5 @@
 import { bcvDolar } from "bcv-divisas";
-import { pool } from "../mysqlDb.js";
+import { pool } from "../db.js";
 
 export const renderInicio = (req, res) => {
   const {username, admin} = req.user;

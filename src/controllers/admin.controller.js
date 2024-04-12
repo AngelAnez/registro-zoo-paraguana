@@ -1,5 +1,5 @@
-import User from "../models/user.model.js";
 import bcryptjs from "bcryptjs";
+import { pool } from "../db.js";
 
 export const getAdmin = async (req, res, alert) => {
     const {username, admin} = req.user
@@ -16,7 +16,8 @@ export const getAdmin = async (req, res, alert) => {
     }
 
     try {
-        const users = await User.find()    
+        const usersQuery = await pool.query('SELECT * FROM users')
+        const users = usersQuery[0]   
         return res.render("admin", {
             username,
             admin,
@@ -33,19 +34,19 @@ export const getAdmin = async (req, res, alert) => {
 export const postAdmin = async (req, res) => {
     const {username, newPassword, changeRole, eraseUser} = req.body
     try {
-        let userModified
+        let updateUserQuery
         let message = ""
         if (newPassword) {
             const passwordHash = await bcryptjs.hash(newPassword, 10);
-            userModified = await User.findOneAndUpdate({username}, {"password": passwordHash})
+            updateUserQuery = await pool.query(`UPDATE users SET password = '${passwordHash}' WHERE username = '${username}'`)
             message = `La contraseña del usuario ${username} ha sido cambiada exitosamente`
         }
         if (changeRole){
-            userModified = await User.findOneAndUpdate({username}, {"role": changeRole})
+            updateUserQuery = await pool.query(`UPDATE users SET ROLE = '${changeRole}' WHERE username = '${username}'`)
             message = `El cambio de rol del usuario ${username} ha sido realizado exitosamente`
         }
         if (eraseUser){
-            userModified = await User.deleteOne({username})
+            updateUserQuery = await pool.query(`DELETE FROM users WHERE username = '${username}'`)
             message = `El usuario ${username} ha sido eliminado exitosamente`
         }
         const alert = {

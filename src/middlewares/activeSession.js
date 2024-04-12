@@ -1,4 +1,4 @@
-import {verifyAccessToken} from "../lib/jwt.js";
+import {verifyAccessToken} from "../libs/jwt.js";
 
 export const activeSession = (req, res, next) => {
   const {token} = req.cookies

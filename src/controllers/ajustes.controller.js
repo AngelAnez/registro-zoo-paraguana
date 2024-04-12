@@ -1,4 +1,4 @@
-import { pool } from "../mysqlDb.js";
+import { pool } from "../db.js";
 
 export const getAjustes = (req, res) => {
   renderAjustes(req, res, {showAlert: false, messageAlert: "", typeAlert: ""});

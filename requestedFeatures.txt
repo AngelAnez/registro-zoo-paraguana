@@ -1,4 +1,3 @@
-* Sustituir la base de datos MongoDB por MySQL
 * Permitir a los administradores modificar datos de los visitantes o eliminarlos
 * Crear 2 nuevas secciones: Una llamada Registro de Novedades y otra Historial de Novedades
 * La sección Registro de Novedades debe ser un formulario que permita generar una novedad. Una novedad es como un mensaje o correo donde se da a conocer una información. Cuenta con Asunto, Mensaje, Fecha y Hora
@@ -14,3 +13,4 @@
 (LISTO) * Cambiar la segunda gráfica de la vista Estadísticas para que muestre la cantidad de dólares recaudados en cada método de pago
 (LISTO) * Agregar en los Visitantes la opción de indicar la cantidad de visitas de cortesía de niños y adultos
 (NO AÑADIDO POR AFECTAR EL DISEÑO)* La tabla del Historial de Visitas debe mostrar adicionalmente las niñas, mujeres y entradas de cortesía de cada visita
+(LISTO) * Sustituir la base de datos MongoDB por MySQL

@@ -1,6 +1,6 @@
-import { createAccessToken } from "../lib/jwt.js";
+import { createAccessToken } from "../libs/jwt.js";
 import bcryptjs from "bcryptjs";
-import { pool } from "../mysqlDb.js";
+import { pool } from "../db.js";
 
 export const getPerfil = async (req, res) => {
   const {username, admin} = req.user;

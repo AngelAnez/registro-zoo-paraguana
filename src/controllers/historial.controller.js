@@ -1,5 +1,4 @@
-import Visit from "../models/visit.model.js";
-import { pool } from "../mysqlDb.js";
+import { pool } from "../db.js";
 
 export const renderHistorial = async (req, res) => {
   try {

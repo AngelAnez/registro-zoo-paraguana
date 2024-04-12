@@ -1,9 +1,9 @@
 import express from "express"
 import path from "path"
 import "ejs"
-import { DIR_APP } from "./global.js"
 import CookieParser from "cookie-parser";
-import { connectDB } from "./db.js";
+import { DIR_APP } from "./global.js"
+import { pool } from "./db.js";
 
 import AuthRoutes from "./routes/auth.routes.js";
 import AdminRoutes from "./routes/admin.routes.js";
@@ -14,7 +14,6 @@ import HistorialRoutes from "./routes/historial.routes.js"
 import EstadisticasRoutes from "./routes/estadisticas.routes.js"
 import AjustesRoutes from "./routes/ajustes.routes.js"
 import ReporteRoutes from "./routes/reporte.routes.js";
-import { pool } from "./mysqlDb.js";
 
 const app = express()
 
@@ -56,6 +55,5 @@ app.use((req, res, next) => {
     res.redirect("/login")
 })
 
-connectDB();
 app.listen(app.get("port"))
 console.log(`Server on port ${app.get("port")}`)

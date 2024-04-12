@@ -1,5 +1,5 @@
-import { dateStyleYMD } from "../lib/date.js";
-import { pool } from "../mysqlDb.js";
+import { dateStyleYMD } from "../libs/date.js";
+import { pool } from "../db.js";
 
 export const getVisitantes = (req, res) => {
   renderVisitantes(req, res, { showAlert: false, messageAlert: "", typeAlert: "" });
