@@ -16,7 +16,7 @@ export const buildPDF = async (dataCallback, endCallback, dates) => {
 
     const data = dataQuery[0]
 
-    const { totalKids, totalAdults, totalElders, totalBolivars, totalDolars, cash, bankTransfer, mobilePay, other } = getVisitStats(data)
+    const { boys, girls, courtesyKids, men, women, courtesyAdults, elderMen, elderWomen, totalKids, totalAdults, totalElders, totalBolivars, totalDolars, cash, bankTransfer, mobilePay, other } = getVisitStats(data)
 
     const doc = new PDFDocument({font: 'Times-Roman', size: 'Letter', margin: 50})
     doc.on("data", dataCallback)
@@ -26,7 +26,7 @@ export const buildPDF = async (dataCallback, endCallback, dates) => {
         await doc.table(table, {
             prepareHeader: () => doc.font("Times-Bold").fontSize(12),
             prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => doc.font("Times-Roman").fontSize(12),
-            x: 60,
+            x: 112,
             y,
             align: "center"
         });
@@ -35,7 +35,7 @@ export const buildPDF = async (dataCallback, endCallback, dates) => {
     /* la anchura (x) es de 608px  */
     /* la altura (y) es de 784px  */
 
-    doc.image(path.join(DIR_APP, '/public/assets/img/zoo-logo.jpg'), 492, 8, {scale: 0.25})
+    doc.image(path.join(DIR_APP, '/public/assets/img/zoo-logo.jpg'), 16, 8, {scale: 0.25})
 
     doc.fontSize(20).font("Times-Bold").text(`Reporte General del Registro de Visitantes`, 0, 120, {
         width: 608,
@@ -57,23 +57,23 @@ export const buildPDF = async (dataCallback, endCallback, dates) => {
 
     let visitsData = {
         headers: [ 
-            {label: "", property: 'category', width: 80, align: "center", headerColor: "#198754"},
-            {label: "Niños", property: 'kids', width: 80, align: "center", headerColor: "#198754"},
-            {label: "Adultos", property: 'adults', width: 80, align: "center", headerColor: "#198754"},
-            {label: "Adultos Mayores", property: 'elders', width: 80, align: "center", headerColor: "#198754"}
+            {label: "", property: 'category', width: 100, align: "center", headerColor: "#198754"},
+            {label: "Niños", property: 'kids', width: 100, align: "center", headerColor: "#198754"},
+            {label: "Adultos", property: 'adults', width: 100, align: "center", headerColor: "#198754"},
+            {label: "Adultos Mayores", property: 'elders', width: 100, align: "center", headerColor: "#198754"}
         ],
         datas: [
           {category: {label: "Masculinos", options: {fontFamily: "Times-Bold"}}, 
-          kids: 10, 
-          adults: 5, 
-          elders: 7},
+          kids: boys, 
+          adults: men, 
+          elders: elderMen},
           {category: {label: "Femeninos", options: {fontFamily: "Times-Bold"}}, 
-          kids: 10, 
-          adults: 5, 
-          elders: 7},
+          kids: girls, 
+          adults: women, 
+          elders: elderWomen},
           {category: {label: "Cortesía", options: {fontFamily: "Times-Bold"}}, 
-          kids: 10, 
-          adults: 5},
+          kids: courtesyKids, 
+          adults: courtesyAdults},
         ]
       };
     buildTable(visitsData, 268)
@@ -90,15 +90,15 @@ export const buildPDF = async (dataCallback, endCallback, dates) => {
         ],
         datas: [
           {category: {label: "Dolares", options: {fontFamily: "Times-Bold"}}, 
-          mobilePay: 10, 
-          bankTransfer: 5, 
-          cash: 7,
-          other: 12},
+          mobilePay: mobilePay.dolars, 
+          bankTransfer: bankTransfer.dolars, 
+          cash: cash.dolars,
+          other: other.dolars},
           {category: {label: "Bolivares", options: {fontFamily: "Times-Bold"}}, 
-          mobilePay: 10, 
-          bankTransfer: 5, 
-          cash: 7,
-          other: 12}
+          mobilePay: mobilePay.bolivars, 
+          bankTransfer: bankTransfer.bolivars, 
+          cash: cash.bolivars,
+          other: other.bolivars}
         ]
       };
     buildTable(incomeData, 468)

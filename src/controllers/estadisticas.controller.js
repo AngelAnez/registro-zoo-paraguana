@@ -53,34 +53,63 @@ export const renderEstadisticas = async (req, res, startDate, endDate) => {
 export const getVisitStats = (data) => {
   
   let dataStats = {
+    boys: 0,
+    girls: 0,
+    courtesyKids: 0,
+    men: 0,
+    women: 0,
+    courtesyAdults: 0,
+    elderMen: 0,
+    elderWomen: 0,
     totalKids: 0,
     totalAdults: 0,
     totalElders: 0,
     totalBolivars: 0,
     totalDolars: 0,
-    cashBolivars: 0,
-    cashDolars: 0,
-    eMoneyBolivars: 0,
-    bankTransfer: 0,
-    mobilePay: 0,
-    cash: 0,
-    other: 0
+    bankTransfer: {
+      dolars: 0,
+      bolivars: 0
+    },
+    mobilePay: {
+      dolars: 0,
+      bolivars: 0
+    },
+    cash: {
+      dolars: 0,
+      bolivars: 0
+    },
+    other: {
+      dolars: 0,
+      bolivars: 0
+    }
   }
 
   data.forEach(visit => {
+    dataStats.boys += parseInt(visit.boys)
+    dataStats.girls += parseInt(visit.girls)
+    dataStats.courtesyKids += parseInt(visit.courtesyKids)
+    dataStats.men += parseInt(visit.men)
+    dataStats.women += parseInt(visit.women)
+    dataStats.courtesyAdults += parseInt(visit.courtesyAdults)
+    dataStats.elderMen += parseInt(visit.elderMen)
+    dataStats.elderWomen += parseInt(visit.elderWomen)
     dataStats.totalKids += parseInt(visit.totalKids)
     dataStats.totalAdults += parseInt(visit.totalAdults)
     dataStats.totalElders += parseInt(visit.totalElders)
     let bolivarsValue = new decimal(visit.totalBolivars)
     let dolarsValue = new decimal(visit.totalDolars)
     if (visit.method == "Efectivo"){
-      dataStats.cash = dolarsValue.plus(new decimal(dataStats.cash)).toNumber()
+      dataStats.cash.dolars = dolarsValue.plus(new decimal(dataStats.cash.dolars)).toNumber()
+      dataStats.cash.bolivars = bolivarsValue.plus(new decimal(dataStats.cash.bolivars)).toNumber()
     } else if (visit.method == "Pago Móvil"){
-      dataStats.mobilePay = dolarsValue.plus(new decimal(dataStats.mobilePay)).toNumber()
+      dataStats.mobilePay.dolars = dolarsValue.plus(new decimal(dataStats.mobilePay.dolars)).toNumber()
+      dataStats.mobilePay.bolivars = bolivarsValue.plus(new decimal(dataStats.mobilePay.bolivars)).toNumber()
     } else if (visit.method == "Transferencia"){
-      dataStats.bankTransfer = dolarsValue.plus(new decimal(dataStats.bankTransfer)).toNumber()
+      dataStats.bankTransfer.dolars = dolarsValue.plus(new decimal(dataStats.bankTransfer.dolars)).toNumber()
+      dataStats.bankTransfer.bolivars = bolivarsValue.plus(new decimal(dataStats.bankTransfer.bolivars)).toNumber()
     } else if (visit.method == "Otro"){
-      dataStats.other = dolarsValue.plus(new decimal(dataStats.other)).toNumber()
+      dataStats.other.dolars = dolarsValue.plus(new decimal(dataStats.other.dolars)).toNumber()
+      dataStats.other.bolivars = bolivarsValue.plus(new decimal(dataStats.other.bolivars)).toNumber()
     }
     dataStats.totalDolars = dolarsValue.plus(new decimal(dataStats.totalDolars)).toNumber()
   })
