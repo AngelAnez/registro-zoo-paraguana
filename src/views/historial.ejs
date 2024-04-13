@@ -405,9 +405,10 @@
             </a>
           </li>
       <% } } %>
-      <% nextPage = pag + 5%>
-      <% if (pag != nextPage){ %>
-        <% nextPage = pag + 1 %> 
+      <% if (pag == finalPage){ %>
+        <% nextPage = finalPage %> 
+      <% } else { %> 
+        <% nextPage = pag + 1 %>
       <% } %>
       <% if (finalPage > pag + 6 ) { %>
         <li class="page-item">

@@ -3,6 +3,7 @@ import { pool } from "../db.js";
 
 export const getAdmin = async (req, res, alert) => {
     const {username, admin} = req.user
+    let pag = 1
     if (!admin) return res.redirect("/inicio")
     let showAlert, messageAlert, typeAlert
     if (alert){
@@ -16,12 +17,28 @@ export const getAdmin = async (req, res, alert) => {
     }
 
     try {
-        const usersQuery = await pool.query('SELECT * FROM users')
-        const users = usersQuery[0]   
+        let query = `SELECT * FROM users WHERE username <> '${username}'`
+        const totalQuery = await pool.query(`${query.replace("*", "COUNT(*)")}`)
+        const total = Object.values(totalQuery[0][0])[0]
+        query+= ` LIMIT 8`
+        if (req.query.pag) {
+            pag = parseInt(req.query.pag);
+            if (pag > 1){
+              query+= ` OFFSET ${8*(pag-1)}`
+            }
+          }
+        
+        
+
+        const usersQuery = await pool.query(query)
+        const users = usersQuery[0]
+
         return res.render("admin", {
             username,
             admin,
             users,
+            pag,
+            total,
             showAlert,
             messageAlert,
             typeAlert
