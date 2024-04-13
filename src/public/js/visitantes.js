@@ -1,7 +1,4 @@
 /* Constantes */
-const alertInfo = document.getElementById("alertInfo");
-const alertInfoToast = bootstrap.Toast.getOrCreateInstance(alertInfo);
-
 const step1Container = document.querySelector("#addNewVisitStep1");
 const boysNumber = document.querySelector("#boysNumber");
 const girlsNumber = document.querySelector("#girlsNumber");
@@ -28,12 +25,15 @@ let representativePhone = document.getElementById("representativePhone");
 
 /* Cambio de Pasos y Estilos de Validaciones */
 
+const alertInfoVisit = document.getElementById("alertInfo");
+const alertInfoToastVisit = bootstrap.Toast.getOrCreateInstance(alertInfoVisit);
+
 const alertCall = (type, message) => {
   const alertHeader = document.getElementById("alertHeader")
   alertHeader.classList.add("text-bg-" + type)
   const alertMessage = document.getElementById("alertMessage")
   alertMessage.innerHTML = message
-  alertInfoToast.show();
+  alertInfoToastVisit.show();
 }
 
 function addZero(number) {
@@ -45,7 +45,6 @@ function addZero(number) {
 
 const getDateandTime = () => {
   let hoy = new Date();
-  console.log(hoy)
   let hour = hoy.getHours();
   let minutes = hoy.getMinutes();
   let period = "";
@@ -93,7 +92,7 @@ const formValidator = (type, tagList, message) => {
       alertCall("danger", message)
     } else {
       tag.classList.remove("is-invalid")
-      alertInfoToast.hide();
+      alertInfoToastVisit.hide();
     }
   })
 }

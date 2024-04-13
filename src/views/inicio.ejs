@@ -8,15 +8,16 @@ js : "", header : true}); %>
     <%- include('partials/header'); %>
 
     <article class="d-flex flex-column justify-content-evenly mainArticle position-relative text-white align-items-center user-select-none">
-      <header class="d-flex flex-column align-items-center justify-content-center rounded-5 text-center z-1 w-75 mx-auto mt-5">
+      <header class="d-flex flex-column align-items-center justify-content-center rounded-5 text-center z-1 w-75 mx-auto mt-4">
         <h4>Bienvenido, <span class="text-info"><%= username %></span></h4>
         <p class="m-0 p-0">al</p>
         <h2>Sistema de Registro y Control de Visitantes e Ingresos del Zoológico Paraguaná</h2>
       </header>
-      <section class="d-flex flex-column gap-4 z-1">
-        <a class="btn btn-light" href="/visitantes">Registrar Visitantes</a>
-        <a class="btn btn-light" href="/historial">Historial Diario</a>
+      <section class="d-flex flex-column gap-3 z-1">
+        <a class="btn btn-light" href="/visitantes">Registro de Visitantes</a>
+        <a class="btn btn-light" href="/historial">Historial de Visitas</a>
         <a class="btn btn-light" href="/estadisticas">Estadisticas</a>
+        <a class="btn btn-light" href="/novedades">Novedades</a>
         <a class="btn btn-light" href="/ajustes">Ajustes</a>
       </section>
       <footer class="z-1 mt-2">Creado con &#128154 por Angel Añez</footer>

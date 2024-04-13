@@ -3,11 +3,11 @@ import { pool } from "../db.js";
 export const renderHistorial = async (req, res) => {
   try {
     const { username, admin } = req.user;
-    let pag = 10;
+    let pag = 1;
     let sort = ""; // Puede ser cualquier propiedad de las visitas
     let order = ""; // Puede ser asc o dec
     let searchFilter = "";
-    let query = `SELECT *, DATE_FORMAT(date, '%d/%m/%Y') AS date, TIME_FORMAT(time, "%h:%i %p") AS time FROM visits INNER JOIN paymentMethod ON visits.paymentMethod_id=paymentMethod._id
+    let query = `SELECT *, DATE_FORMAT(date, '%d/%m/%Y') AS dateStyled, TIME_FORMAT(time, "%h:%i %p") AS timeStyled FROM visits INNER JOIN paymentMethod ON visits.paymentMethod_id=paymentMethod._id
     INNER JOIN kids ON visits.kids_id=kids._id
     INNER JOIN adults ON visits.adults_id=adults._id
     INNER JOIN elders ON visits.elders_id=elders._id`
@@ -22,8 +22,8 @@ export const renderHistorial = async (req, res) => {
       visits.paymentInfo LIKE '%${searchFilter}%' OR
       visits.representativeName LIKE '%${searchFilter}%' OR
       visits.representativePhone LIKE '%${searchFilter}%' OR
-      visits.date LIKE '%${searchFilter}%' OR
-      visits.time LIKE '%${searchFilter}%' OR
+      DATE_FORMAT(visits.date, '%d/%m/%Y') LIKE '%${searchFilter}%' OR
+      TIME_FORMAT(visits.time, "%h:%i %p") LIKE '%${searchFilter}%' OR
       paymentMethod.method LIKE '%${searchFilter}%' OR
       paymentMethod.extraInfoTitle LIKE '%${searchFilter}%' OR
       kids.boys LIKE '%${searchFilter}%' OR
@@ -54,15 +54,20 @@ export const renderHistorial = async (req, res) => {
       } else {
         table = "visits"
       }
-      query += ` ORDER BY ${table}.${sort} ${order.toUpperCase()}`
+      if (sort == "date"){
+        query += ` ORDER BY ${table}.${sort} ${order.toUpperCase()}, time DESC`
+      } else {
+        query += ` ORDER BY ${table}.${sort} ${order.toUpperCase()}, date DESC`
+      }
+      
     } else {
       query += ' ORDER BY visits._id DESC'
     }
-    query+= ` LIMIT 10`
+    query+= ` LIMIT 8`
     if (req.query.pag) {
-      pag = parseInt(req.query.pag) * 10;
-      if (pag-10 > 0){
-        query+= ` OFFSET ${pag-10}`
+      pag = parseInt(req.query.pag);
+      if (pag > 1){
+        query+= ` OFFSET ${8*(pag-1)}`
       }
     }
     const visitsQuery = await pool.query(query + ";")
@@ -75,7 +80,7 @@ export const renderHistorial = async (req, res) => {
       admin,
       visits,
       total,
-      pag: pag / 10,
+      pag,
       sort,
       order,
       searchFilter,

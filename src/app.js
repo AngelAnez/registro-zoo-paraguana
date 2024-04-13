@@ -12,6 +12,7 @@ import PerfilRoutes from "./routes/perfil.routes.js"
 import VisitantesRoutes from "./routes/visitantes.routes.js"
 import HistorialRoutes from "./routes/historial.routes.js"
 import EstadisticasRoutes from "./routes/estadisticas.routes.js"
+import NovedadesRoutes from "./routes/novedades.routes.js"
 import AjustesRoutes from "./routes/ajustes.routes.js"
 import ReporteRoutes from "./routes/reporte.routes.js";
 
@@ -31,7 +32,9 @@ app.use(CookieParser())
 
 app.get("/ping", async (req, res) => {
     try {
-        const [result] = await pool.query(`SELECT *, DATE_FORMAT(date, '%d/%m/%Y') AS date FROM visits`)
+        const [result] = await pool.query(`INSERT INTO news (subject, body, author, date, time) VALUES (
+            "Novedad de Prueba", "Este mensaje solo sirve para probar si la novedad se guarda exitosamente", "AngelDavid", "2024-4-12", "6:51 PM"
+        )`)
         res.json(result)
     } catch (error) {
         res.status(404).json(error.message)
@@ -45,6 +48,7 @@ app.use(PerfilRoutes)
 app.use(VisitantesRoutes)
 app.use(HistorialRoutes)
 app.use(EstadisticasRoutes)
+app.use(NovedadesRoutes)
 app.use(AjustesRoutes)
 app.use(ReporteRoutes)
 

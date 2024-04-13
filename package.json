@@ -1,6 +1,6 @@
 {
   "name": "registro_zoo",
-  "version": "1.3.0",
+  "version": "1.8.5",
   "description": "Sistema de Registro de Visitas del Zoo Paraguaná",
   "source": "./src/app.js",
   "type": "module",

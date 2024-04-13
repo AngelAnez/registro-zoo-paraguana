@@ -98,8 +98,8 @@
                 class="text-decoration-none text-black"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
-                data-bs-title="Cantidad de Niños por Visita (Orden Ascendente)"
-                >Niños &uarr;</a
+                data-bs-title="Cantidad de Niños y Niñas por Visita (Orden Ascendente)"
+                >Niños y Niñas &uarr;</a
               >
             </th>
             <% } else if (sort == "totalKids" && order == "desc"){ %>
@@ -109,8 +109,8 @@
                 class="text-decoration-none text-black"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
-                data-bs-title="Cantidad de Niños por Visita (Orden Descendente)"
-                >Niños &darr;</a
+                data-bs-title="Cantidad de Niños y Niñas por Visita (Orden Descendente)"
+                >Niños y Niñas &darr;</a
               >
             </th>
             <% } else { %>
@@ -120,8 +120,8 @@
                 class="text-decoration-none text-black"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
-                data-bs-title="Cantidad de Niños por Visita"
-                >Niños</a
+                data-bs-title="Cantidad de Niños y Niñas por Visita"
+                >Niños y Niñas</a
               >
             </th>
             <% } %>
@@ -295,6 +295,11 @@
               >
             </th>
             <% } %>
+            <% if (admin) { %>
+            <th scope="col">
+              Acciones
+            </th>
+            <% } %>
           </tr>
         </thead>
         <tbody>
@@ -305,8 +310,8 @@
             title="Pulse aquí para ver más información de la visita"
             data-bs-toggle="modal"
             data-bs-target="#visitInfoModal"
-            data-bs-date="<%= visit.date %>"
-            data-bs-time="<%= visit.time %>"
+            data-bs-date="<%= visit.dateStyled %>"
+            data-bs-time="<%= visit.timeStyled %>"
             data-bs-boys="<%= visit.boys %>"
             data-bs-girls="<%= visit.girls %>"
             data-bs-men="<%= visit.men%>"
@@ -326,14 +331,24 @@
             data-bs-representativeName="<%= visit.representativeName %>"
             data-bs-representativePhone="<%= visit.representativePhone %>"
           >
-            <td><%= visit.date %></td>
-            <td><%= visit.time %></td>
+            <td><%= visit.dateStyled %></td>
+            <td><%= visit.timeStyled %></td>
             <td><%= visit.totalKids %></td>
             <td><%= visit.totalAdults %></td>
             <td><%= visit.totalElders %></td>
             <td><%= visit.method %></td>
             <td><%= visit.totalBolivars %></td>
             <td><%= visit.totalDolars %></td>
+            <% if (admin) { %>
+            <td>
+              <a class="btn btn-link p-0" data-bs-toggle="tooltip"  data-bs-placement="top" data-bs-title="Modificar Visita">
+                <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#modifyVisitModal" data-bs-user="<%=visit._id%>" data-lucide="pencil" alt="modify-icon"></i>
+              </a>
+              <a class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Eliminar Visita">
+                <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#deleteVisitModal" data-bs-user="<%=visit._id%>" data-lucide="trash-2" alt="delete-icon"></i>
+              </a>
+            </td>
+            <% } %>
           </tr>
           <% }) %>
         </tbody>
@@ -351,6 +366,8 @@
     <% sortQueries = "" %> 
     <% } %>
     <ul class="pagination d-flex justify-content-center">
+      <% finalPage = Math.ceil(total / 8 )%>
+      <% if (finalPage > 1) { %>
       <li class="page-item">
         <a
           class="page-link"
@@ -358,41 +375,68 @@
           aria-label="Previous"
         >
           <span aria-hidden="true" class="text-success fw-bold user-select-none"
-            >&laquo;</span
+            >Anterior</span
           >
         </a>
       </li>
-
-      <% for (let p = 1, stop = false; stop != true; p++) { %> 
-        <% if (total > 0){ %>
+      <li class="page-item">
+        <a
+          class="page-link user-select-none <% if (pag == 1) { %> text-bg-success <% } else { %> text-success <% } %> fw-bold"
+          href="/historial?pag=1<%=sortQueries%><%=searchFilter%>"
+          >1
+        </a>
+      </li>
+      <% } %>
+      <% if (pag - 5 > 2) { %>
+      <li class="page-item">
+        <a
+          class="page-link user-select-none text-success fw-bold"
+          >...
+        </a>
+      </li>
+      <% } %>      
+      <% for (let p = -5; p < 6 ; p++) { %> 
+        <% if (pag + p > 1 && pag + p < finalPage) {%>
           <li class="page-item">
             <a
-              class="page-link user-select-none <% if (pag == p) { %> text-bg-success <% } else { %> text-success <% } %> fw-bold"
-              href="/historial?pag=<%=p%><%=sortQueries%><%=searchFilter%>"
-              ><%= p %>
+              class="page-link user-select-none <% if (pag == pag+p) { %> text-bg-success <% } else { %> text-success <% } %> fw-bold"
+              href="/historial?pag=<%=pag+p%><%=sortQueries%><%=searchFilter%>"
+              ><%= pag+p %>
             </a>
           </li>
-          <% total -= 10 %>
-        <% } else {%>
-          <% nextPage = p-1%>
-          <% stop = true %>
-        <% } %>
-      <% } %>
+      <% } } %>
+      <% nextPage = pag + 5%>
       <% if (pag != nextPage){ %>
         <% nextPage = pag + 1 %> 
       <% } %>
-
-      <li class="page-item">
-        <a
-          class="page-link"
-          href="/historial?pag=<%=nextPage%><%=sortQueries%><%=searchFilter%>"
-          aria-label="Next"
-        >
-          <span aria-hidden="true" class="text-success fw-bold user-select-none"
-            >&raquo;</span
-          >
-        </a>
-      </li>
+      <% if (finalPage > pag + 6 ) { %>
+        <li class="page-item">
+          <a
+            class="page-link user-select-none text-success fw-bold"
+            >...
+          </a>
+        </li>
+        <% } %>
+        <% if (finalPage > 1) {%>
+          <li class="page-item">
+            <a
+              class="page-link user-select-none <% if (pag == finalPage) { %> text-bg-success <% } else { %> text-success <% } %> fw-bold"
+              href="/historial?pag=<%=finalPage%><%=sortQueries%><%=searchFilter%>"
+              ><%=finalPage%>
+            </a>
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="/historial?pag=<%=nextPage%><%=sortQueries%><%=searchFilter%>"
+              aria-label="Next"
+            >
+              <span aria-hidden="true" class="text-success fw-bold user-select-none"
+              >Siguiente</span
+              >
+            </a>
+          </li>
+      <% } %>
     </ul>
 
     <!-- Modal de cada visitante  -->
@@ -423,7 +467,7 @@
                 <hr class="p-0 my-2">
                 <section class="container-fluid d-flex flex-column justify-content-around user-select-none gap-3 py-2">
                   <section class="m-0 p-0 d-flex justify-content-start align-items-center gap-3">
-                    <p class="text-center p-0 m-0 fw-bold col-2">Niños</p>
+                    <p class="text-center p-0 m-0 fw-bold col-2">Niños y Niñas</p>
                     <img class="col-2" src="./public/assets/img/children.webp" alt="childrenImg">
                     <label for="boysNumber" class="d-flex justify-content-around col-2">
                       <img class="user-select-none col-6" src="./public/assets/img/male.png" alt="maleImg">

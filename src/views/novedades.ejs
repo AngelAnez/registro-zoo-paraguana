@@ -1,0 +1,188 @@
+<%- include('partials/head', {title : "Novedades", css : "", js : "novedades.js", header: true}); %>
+<body class="d-flex bg-body-secondary">
+  <!-- Menu Lateral y Main-->
+  <%- include('partials/sidebar'); %>
+  <main class="container-fluid row d-flex flex-column p-0 m-0 gap-3 vh-100 w-100">
+    <!-- Encabezado -->
+    <%- include('partials/header'); %>
+
+    <nav class="navbar m-0 user-select-none">
+      <section class="container-fluid">
+        <form class="d-flex w-100 align-items-center justify-content-center gap-4" role="search">
+          <a class="btn btn-primary">Crear Nueva Novedad</a>
+          <section class="col-6 bg-light-subtle rounded-4 shadow py-2 d-flex justify-content-evenly align-items-center">
+            <h6 class="m-0"> Buscar Novedad: </h6>
+            <section class="col-8">
+              <input class="form-control" type="search" aria-label="Search" name="filter" value="<%=searchFilter%>" autocomplete="off" title="Ingrese una palabra clave para realizar una búsqueda"/>
+            </section>
+            
+          </section>
+          
+          <button class="btn btn-success shadow" type="submit" title="Filtra las novedades según la palabra clave ingresada">Buscar</button>
+          <a class="btn btn-primary shadow" href="/novedades" title="Elimina los filtros y muestra todas las novedades">Limpiar</a>
+        </form>
+      </section>
+    </nav>
+
+    <section class="container py-2 px-4 table-responsive">
+      <table class="table text-center table-hover table-sm table-rounded rounded-2 overflow-hidden shadow border">
+        <thead class="table-success">
+          <tr class="user-select-none">
+            <th scope="col">
+              <a
+                href="/novedades?pag=<%=pag%>&sort=date&order=asc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Fecha de la Novedad"
+                >Fecha</a
+              >
+            </th>
+            <th scope="col">
+              <a
+                href="/novedades?pag=<%=pag%>&sort=time&order=asc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Hora de la Novedad"
+                >Hora</a
+              >
+            </th>
+            <th scope="col" class="col-8">
+              <a
+                href="/novedades?pag=<%=pag%>&sort=subject&order=asc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Asunto o Título de la Novedad"
+                >Asunto</a
+              >
+            </th>
+            <% if (admin) { %>
+              <th scope="col">
+                Acciones
+              </th>
+            <% } %>
+          </tr>
+        </thead>
+        <tbody>
+          <% news.forEach(element => { %>
+          <tr
+            class="user-select-none"
+            style="cursor: pointer"
+            title="Pulse aquí para ver más información de la visita"
+            data-bs-toggle="modal"
+            data-bs-target="#elementInfoModal"
+            data-bs-date="<%= element.date %>"
+            data-bs-time="<%= element.time %>"
+            data-bs-boys="<%= element.subject %>"
+            data-bs-girls="<%= element.body %>"
+            data-bs-men="<%= element.author %>"
+          >
+            <td><%= element.date %></td>
+            <td><%= element.time %></td>
+            <td><%= element.subject %></td>
+            <% if (admin) { %>
+              <td>
+                <a class="btn btn-link p-0" data-bs-toggle="tooltip"  data-bs-placement="top" data-bs-title="Modificar Novedad">
+                  <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#modifyNewModal" data-bs-user="<%=element._id%>" data-lucide="pencil" alt="modify-icon"></i>
+                </a>
+                <a class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Eliminar Novedad">
+                  <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#deleteNewModal" data-bs-user="<%=element._id%>" data-lucide="trash-2" alt="delete-icon"></i>
+                </a>
+              </td>
+            <% } %>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </section>
+
+    <% if (pag == 1){ %>
+      <% prevPag = 1 %> 
+    <% } else { %> 
+      <% prevPag = pag-1 %>
+    <% } %>
+    <% if (sort != "" && order != "") { %>
+       <% sortQueries = "&sort=" + sort + "&order=" + order %>
+    <% } else { %> 
+    <% sortQueries = "" %> 
+    <% } %>
+    <ul class="pagination d-flex justify-content-center">
+      <% finalPage = Math.ceil(total / 8 )%>
+      <% if (finalPage > 1) { %>
+      <li class="page-item">
+        <a
+          class="page-link"
+          href="/novedades?pag=<%=prevPag%><%=sortQueries%><%=searchFilter%>"
+          aria-label="Previous"
+        >
+          <span aria-hidden="true" class="text-success fw-bold user-select-none"
+            >Anterior</span
+          >
+        </a>
+      </li>
+      <li class="page-item">
+        <a
+          class="page-link user-select-none <% if (pag == 1) { %> text-bg-success <% } else { %> text-success <% } %> fw-bold"
+          href="/novedades?pag=1<%=sortQueries%><%=searchFilter%>"
+          >1
+        </a>
+      </li>
+      <% } %>
+      <% if (pag - 5 > 2) { %>
+      <li class="page-item">
+        <a
+          class="page-link user-select-none text-success fw-bold"
+          >...
+        </a>
+      </li>
+      <% } %>      
+      <% for (let p = -5; p < 6 ; p++) { %> 
+        <% if (pag + p > 1 && pag + p < finalPage) {%>
+          <li class="page-item">
+            <a
+              class="page-link user-select-none <% if (pag == pag+p) { %> text-bg-success <% } else { %> text-success <% } %> fw-bold"
+              href="/novedades?pag=<%=pag+p%><%=sortQueries%><%=searchFilter%>"
+              ><%= pag+p %>
+            </a>
+          </li>
+      <% } } %>
+      <% nextPage = pag + 5%>
+      <% if (pag != nextPage){ %>
+        <% nextPage = pag + 1 %> 
+      <% } %>
+      <% if (finalPage > pag + 6 && finalPage != 1 ) { %>
+        <li class="page-item">
+          <a
+            class="page-link user-select-none text-success fw-bold"
+            >...
+          </a>
+        </li>
+        <% } %>
+      <% if (finalPage > 1) { %>
+        <li class="page-item">
+          <a
+            class="page-link user-select-none <% if (pag == finalPage) { %> text-bg-success <% } else { %> text-success <% } %> fw-bold"
+            href="/novedades?pag=<%=finalPage%><%=sortQueries%><%=searchFilter%>"
+            ><%=finalPage%>
+          </a>
+        </li>
+      
+        <li class="page-item">
+          <a
+            class="page-link"
+            href="/novedades?pag=<%=nextPage%><%=sortQueries%><%=searchFilter%>"
+            aria-label="Next"
+          >
+          <span aria-hidden="true" class="text-success fw-bold user-select-none"
+            >Siguiente</span
+          >
+          </a>
+        </li>
+      <% } %>
+    </ul>
+
+  </main>
+  <%- include('partials/scripts')%>
+<%- include('partials/foot'); %>

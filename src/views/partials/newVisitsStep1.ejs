@@ -5,12 +5,13 @@
     </section>
 
     <section class="row gy-3">
-        <section class="col-4 d-flex flex-column align-items-center p-0 gap-3">
+        <section class="col-4 d-flex flex-column align-items-center p-0 gap-1">
             <figure class="m-0 p-0 col-5 d-flex flex-column gap-1">
                 <img class="w-100 user-select-none" src="./public/assets/img/children.webp" alt="childrenImg">
-                <figcaption id="kidsTicket" class="fw-bold" value="<%=kidsPrice%>">Niños</figcaption>
+                
             </figure>
             <div class="col-9 text-start d-flex flex-column gap-2">
+                <figcaption id="kidsTicket" class="fw-bold text-center mb-2 user-select-none" value="<%=kidsPrice%>">Niños y Niñas</figcaption>
                 <label for="boysNumber" class="d-flex justify-content-evenly">
                     <img class="user-select-none col-2" src="./public/assets/img/male.png" alt="maleImg">
                     <input type="number" class="form-control p-0 text-center w-50" id="boysNumber" autocomplete="off" oninput="changeFamilyNumber()" name="boys" min="0"/>
@@ -26,12 +27,12 @@
             </div>
         </section>
         
-        <section class="col-4 d-flex flex-column align-items-center p-0 gap-3">
+        <section class="col-4 d-flex flex-column align-items-center p-0 gap-1">
             <figure class="m-0 p-0 col-5 d-flex flex-column gap-1">
                 <img class="w-100 user-select-none" src="./public/assets/img/adults.webp" alt="adultsImg">
-                <figcaption id="adultsTicket" class="fw-bold" value="<%=adultsPrice%>">Adultos</figcaption>
             </figure>
             <div class="col-9 text-start d-flex flex-column gap-2">
+                <figcaption id="adultsTicket" class="fw-bold text-center mb-2 user-select-none" value="<%=adultsPrice%>">Adultos</figcaption>
                 <label for="menNumber" class="d-flex justify-content-evenly">
                     <img class="user-select-none col-2" src="./public/assets/img/male.png" alt="maleImg">
                     <input type="number" class="form-control p-0 text-center w-50" id="menNumber" autocomplete="off" oninput="changeFamilyNumber()" name="men" min="0"/>
@@ -47,12 +48,12 @@
             </div>
         </section>
 
-        <section class="col-4 d-flex flex-column align-items-center p-0 gap-3">
+        <section class="col-4 d-flex flex-column align-items-center p-0 gap-1">
             <figure class="m-0 p-0 col-5 d-flex flex-column gap-1">
                 <img class="w-100 user-select-none" src="./public/assets/img/seniors.webp" alt="seniorsImg">
-                <figcaption class="fw-bold">Adultos Mayores</figcaption>
             </figure>
             <div class="col-9 text-start d-flex flex-column gap-2">
+                <figcaption class="fw-bold text-center mb-2 user-select-none">Adultos Mayores</figcaption>
                 <label for="elderMenNumber" class="d-flex justify-content-evenly">
                     <img class="user-select-none col-2" src="./public/assets/img/male.png" alt="maleImg">
                     <input type="number" class="form-control p-0 text-center w-50" id="elderMenNumber" autocomplete="off" oninput="changeFamilyNumber()" name="elderMen" min="0"/>

@@ -1,9 +1,7 @@
 * Permitir a los administradores modificar datos de los visitantes o eliminarlos
-* Crear 2 nuevas secciones: Una llamada Registro de Novedades y otra Historial de Novedades
-* La sección Registro de Novedades debe ser un formulario que permita generar una novedad. Una novedad es como un mensaje o correo donde se da a conocer una información. Cuenta con Asunto, Mensaje, Fecha y Hora
-* La sección Historial de Novedades debe enlistar todas las Novedades, y permitir mostrarlas cada una
-* Permitir que se genere y se descargue un PDF de toda la vista Estadísticas
-* Adaptar la paginación de la vista Historial (y Admin también) para que, a partir de números altos, se resuma, y no genere páginas infinitas
+* Crear la sección Novedades, que muestre un botón para crear una nueva novedad, una barra de búsqueda, y una tabla que debe enlistar todas las Novedades, y permitir mostrarlas cada una.  2 nuevas secciones: Una llamada Registro de Novedades y otra Historial de Novedades. Cada novedad debe contar con Asunto, Mensaje, Autor, Fecha y Hora
+* Mejorar el diseño del reporte general
+* Adaptar la paginación de la vista Historial (al igual que Admin y Novedades) para que, a partir de números altos, se resuma, y no genere páginas infinitas
 
 
 (LISTO) * Eliminar el precio de los adultos mayores, tanto en ajustes como en visitantes
@@ -14,3 +12,4 @@
 (LISTO) * Agregar en los Visitantes la opción de indicar la cantidad de visitas de cortesía de niños y adultos
 (NO AÑADIDO POR AFECTAR EL DISEÑO)* La tabla del Historial de Visitas debe mostrar adicionalmente las niñas, mujeres y entradas de cortesía de cada visita
 (LISTO) * Sustituir la base de datos MongoDB por MySQL
+(LISTO) * Permitir que se genere y se descargue un PDF de toda la vista Estadísticas

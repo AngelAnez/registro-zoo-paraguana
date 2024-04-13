@@ -13,7 +13,7 @@ const other = document.querySelector("#otherValue").value
 new Chart(visitsDistChart, {
   type: 'pie',
   data: {
-    labels: ['Niños', 'Adultos', 'Adultos Mayores'],
+    labels: ['Niños y Niñas', 'Adultos', 'Adultos Mayores'],
     datasets: [
         {
           label: 'Cantidad',
