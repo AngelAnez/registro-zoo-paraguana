@@ -1,7 +1,7 @@
-* Permitir a los administradores modificar datos de los visitantes o eliminarlos
 * Crear la sección Novedades, que muestre un botón para crear una nueva novedad, una barra de búsqueda, y una tabla que debe enlistar todas las Novedades, y permitir mostrarlas cada una.  2 nuevas secciones: Una llamada Registro de Novedades y otra Historial de Novedades. Cada novedad debe contar con Asunto, Mensaje, Autor, Fecha y Hora
 * Mejorar el diseño del reporte general
 
+(LISTO) * Permitir a los administradores modificar datos de los visitantes o eliminarlos
 (LISTO) * Eliminar el precio de los adultos mayores, tanto en ajustes como en visitantes
 (LISTO) * Dividir a los niños en varones y hembras, y adultos en hombres y mujeres
 (LISTO) * Optimizar el controlador de la vista Historial para aprovechar las características de MySQL

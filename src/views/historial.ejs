@@ -295,41 +295,15 @@
               >
             </th>
             <% } %>
-            <% if (admin) { %>
             <th scope="col">
               Acciones
             </th>
-            <% } %>
           </tr>
         </thead>
         <tbody>
           <% visits.forEach((visit) => { %>
           <tr
             class="user-select-none"
-            style="cursor: pointer"
-            title="Pulse aquí para ver más información de la visita"
-            data-bs-toggle="modal"
-            data-bs-target="#visitInfoModal"
-            data-bs-date="<%= visit.dateStyled %>"
-            data-bs-time="<%= visit.timeStyled %>"
-            data-bs-boys="<%= visit.boys %>"
-            data-bs-girls="<%= visit.girls %>"
-            data-bs-men="<%= visit.men%>"
-            data-bs-women="<%= visit.women%>"
-            data-bs-elderMen="<%= visit.elderMen %>"
-            data-bs-elderWomen="<%= visit.elderWomen %>"
-            data-bs-courtesyKids="<%= visit.courtesyKids %>"
-            data-bs-courtesyAdults="<%= visit.courtesyAdults %>"
-            data-bs-totalKids="<%= visit.totalKids %>"
-            data-bs-totalAdults="<%= visit.totalAdults %>"
-            data-bs-totalElders="<%= visit.totalElders %>"
-            data-bs-method="<%= visit.method %>"
-            data-bs-extraInfoTitle="<%= visit.extraInfoTitle %>"
-            data-bs-totalBolivars="<%= visit.totalBolivars %>"
-            data-bs-totalDolars="<%= visit.totalDolars %>"
-            data-bs-paymentInfo="<%= visit.paymentInfo %>"
-            data-bs-representativeName="<%= visit.representativeName %>"
-            data-bs-representativePhone="<%= visit.representativePhone %>"
           >
             <td><%= visit.dateStyled %></td>
             <td><%= visit.timeStyled %></td>
@@ -339,16 +313,71 @@
             <td><%= visit.method %></td>
             <td><%= visit.totalBolivars %></td>
             <td><%= visit.totalDolars %></td>
-            <% if (admin) { %>
             <td>
+              <a class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ver los detalles de la Visita">
+                <i class="text-dark opacityHover" data-bs-toggle="modal"             data-bs-target="#infoVisitModal" 
+                data-bs-action="view"
+                data-bs-_id="<%= visit.visit_id%>"
+                data-bs-kids_id="<%= visit.kids_id %>"
+                data-bs-adults_id="<%= visit.adults_id %>" 
+                data-bs-elders_id="<%= visit.elders_id %>"
+                data-bs-date="<%= visit.dateStyled %>"
+                data-bs-time="<%= visit.timeStyled %>"
+                data-bs-boys="<%= visit.boys %>"
+                data-bs-girls="<%= visit.girls %>"
+                data-bs-men="<%= visit.men%>"
+                data-bs-women="<%= visit.women%>"
+                data-bs-elderMen="<%= visit.elderMen %>"
+                data-bs-elderWomen="<%= visit.elderWomen %>"
+                data-bs-courtesyKids="<%= visit.courtesyKids %>"
+                data-bs-courtesyAdults="<%= visit.courtesyAdults %>"
+                data-bs-totalKids="<%= visit.totalKids %>"
+                data-bs-totalAdults="<%= visit.totalAdults %>"
+                data-bs-totalElders="<%= visit.totalElders %>"
+                data-bs-method="<%= visit.method %>"
+                data-bs-extraInfoTitle="<%= visit.extraInfoTitle %>"
+                data-bs-totalBolivars="<%= visit.totalBolivars %>"
+                data-bs-totalDolars="<%= visit.totalDolars %>"
+                data-bs-paymentInfo="<%= visit.paymentInfo %>"
+                data-bs-representativeName="<%= visit.representativeName %>"
+                data-bs-representativePhone="<%= visit.representativePhone %>" data-lucide="eye" alt="modify-icon"></i>
+              </a>
+
+            <% if (admin) { %>
               <a class="btn btn-link p-0" data-bs-toggle="tooltip"  data-bs-placement="top" data-bs-title="Modificar Visita">
-                <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#modifyVisitModal" data-bs-user="<%=visit._id%>" data-lucide="pencil" alt="modify-icon"></i>
+                <i class="text-dark opacityHover" data-bs-toggle="modal"             data-bs-target="#infoVisitModal" 
+                data-bs-action="modify"
+                data-bs-_id="<%= visit.visit_id%>"
+                data-bs-kids_id="<%= visit.kids_id %>"
+                data-bs-adults_id="<%= visit.adults_id %>" 
+                data-bs-elders_id="<%= visit.elders_id %>"
+                data-bs-date="<%= visit.dateStyled %>"
+                data-bs-time="<%= visit.timeStyled %>"
+                data-bs-boys="<%= visit.boys %>"
+                data-bs-girls="<%= visit.girls %>"
+                data-bs-men="<%= visit.men%>"
+                data-bs-women="<%= visit.women%>"
+                data-bs-elderMen="<%= visit.elderMen %>"
+                data-bs-elderWomen="<%= visit.elderWomen %>"
+                data-bs-courtesyKids="<%= visit.courtesyKids %>"
+                data-bs-courtesyAdults="<%= visit.courtesyAdults %>"
+                data-bs-totalKids="<%= visit.totalKids %>"
+                data-bs-totalAdults="<%= visit.totalAdults %>"
+                data-bs-totalElders="<%= visit.totalElders %>"
+                data-bs-method="<%= visit.method %>"
+                data-bs-extraInfoTitle="<%= visit.extraInfoTitle %>"
+                data-bs-totalBolivars="<%= visit.totalBolivars %>"
+                data-bs-totalDolars="<%= visit.totalDolars %>"
+                data-bs-paymentInfo="<%= visit.paymentInfo %>"
+                data-bs-representativeName="<%= visit.representativeName %>"
+                data-bs-representativePhone="<%= visit.representativePhone %>" data-lucide="pencil" alt="modify-icon"></i>
               </a>
               <a class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Eliminar Visita">
-                <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#deleteVisitModal" data-bs-user="<%=visit._id%>" data-lucide="trash-2" alt="delete-icon"></i>
+                <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#deleteVisitModal" data-bs-_id="<%=visit.visit_id%>" data-bs-kids_id="<%= visit.kids_id %>" data-bs-adults_id="<%= visit.adults_id %>" data-bs-elders_id="<%= visit.elders_id %>" data-lucide="trash-2" alt="delete-icon"></i>
               </a>
-            </td>
+            
             <% } %>
+            </td>
           </tr>
           <% }) %>
         </tbody>
@@ -441,44 +470,49 @@
     </ul>
 
     <!-- Modal de cada visitante  -->
-    <article class="modal fade" id="visitInfoModal" tabindex="-1" aria-hidden="true">
-      <section class="modal-dialog modal-dialog-centered">
+    <article class="modal fade" id="infoVisitModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+      <form method="post" class="modal-dialog modal-dialog-centered">
           <section class="modal-content">
               <header class="modal-header text-bg-success user-select-none">
                   <h1 class="modal-title fs-5">Información de la Visita</h1>
-                  <button class="btn text-light p-0 opacityHover" data-bs-dismiss="modal" aria-label="Close">
+                  <a class="btn text-light p-0 opacityHover" data-bs-dismiss="modal" aria-label="Close">
                       <i data-lucide="x" alt="close-icon"></i>
-                  </button>
+                  </a>
+                  <input type="number" name="_id" id="_idVisitValue" class="visually-hidden">
+                  <input type="number" name="kids_id" id="kids_idVisitValue" class="visually-hidden">
+                  <input type="number" name="adults_id" id="adults_idVisitValue" class="visually-hidden">
+                  <input type="number" name="elders_id" id="elders_idVisitValue" class="visually-hidden">
               </header>
               <section class="modal-body d-flex flex-column py-2 px-3">
                 <section class="d-flex px-2 user-select-none">
-                  <section class="col-9">
+                  <section class="col-9 d-flex flex-column">
                     <label for="representativeNameVisitValue">Representante:</label>
-                    <h6 id="representativeNameVisitValue">Angel Añez</h6>
+                    <div id="representativeNameVisitValue" class="mb-1"></div>
                     <label for="representativePhoneVisitValue">Número de Contacto:</label>
-                    <h6 id="representativePhoneVisitValue">04162135164</h6>
+                    <div id="representativePhoneVisitValue" class="mb-1"></div>
                   </section>
                   <section class="col-3">
                     <label for="dateVisitValue">Fecha:</label>
-                    <h6 id="dateVisitValue">Angel Añez</h6>
+                    <h6 id="dateVisitValue"></h6>
                     <label for="timeVisitValue">Hora:</label>
-                    <h6 id="timeVisitValue">04162135164</h6>
+                    <h6 id="timeVisitValue"></h6>
                   </section>
                 </section>
                 <hr class="p-0 my-2">
-                <section class="container-fluid d-flex flex-column justify-content-around user-select-none gap-3 py-2">
+                <section class="container-fluid d-flex flex-column justify-content-around user-select-none gap-3 py-1">
                   <section class="m-0 p-0 d-flex justify-content-start align-items-center gap-3">
                     <p class="text-center p-0 m-0 fw-bold col-2">Niños y Niñas</p>
                     <img class="col-2" src="./public/assets/img/children.webp" alt="childrenImg">
-                    <label for="boysNumber" class="d-flex justify-content-around col-2">
+                    <label class="d-flex justify-content-around col-2 gap-2">
                       <img class="user-select-none col-6" src="./public/assets/img/male.png" alt="maleImg">
-                      <h5 class="text-center" id="boysVisitValue"></h5>
+                      <section id="boysVisitValue">
+                      </section>
                     </label>
-                    <label for="boysNumber" class="d-flex justify-content-around col-2">
+                    <label class="d-flex justify-content-around col-2 gap-1">
                       <img class="user-select-none col-6" src="./public/assets/img/female.png" alt="femaleImg">
                       <h5 class="text-center" id="girlsVisitValue"></h5>
                     </label>
-                    <label for="boysNumber" class="d-flex justify-content-around col-2">
+                    <label class="d-flex justify-content-around col-2 gap-2">
                       <img class="user-select-none col-6" src="./public/assets/img/gift.png" alt="giftImg">
                       <h5 class="text-center" id="courtesyKidsVisitValue"></h5>
                     </label>
@@ -486,15 +520,15 @@
                   <section class="m-0 p-0 d-flex justify-content-start align-items-center gap-3">
                     <p class="text-center p-0 m-0 fw-bold col-2">Adultos</p>
                     <img class="col-2" src="./public/assets/img/adults.webp" alt="adultsImg">
-                    <label class="d-flex justify-content-around col-2">
+                    <label class="d-flex justify-content-around col-2 gap-2">
                       <img class="user-select-none col-6" src="./public/assets/img/male.png" alt="maleImg">
                       <h5 class="text-center" id="menVisitValue"></h5>
                     </label>
-                    <label class="d-flex justify-content-around col-2">
+                    <label class="d-flex justify-content-around col-2 gap-1">
                       <img class="user-select-none col-6" src="./public/assets/img/female.png" alt="femaleImg">
                       <h5 class="text-center" id="womenVisitValue"></h5>
                     </label>
-                    <label class="d-flex justify-content-around col-2">
+                    <label class="d-flex justify-content-around col-2 gap-2">
                       <img class="user-select-none col-6" src="./public/assets/img/gift.png" alt="giftImg">
                       <h5 class="text-center" id="courtesyAdultsVisitValue"></h5>
                     </label>
@@ -502,36 +536,68 @@
                   <section class="m-0 p-0 d-flex justify-content-start align-items-center gap-3">
                     <p class="text-center p-0 m-0 fw-bold col-2">Adultos Mayores</p>
                     <img class="col-2" src="./public/assets/img/seniors.webp" alt="seniorsImg">
-                    <label class="d-flex justify-content-around col-2">
+                    <label class="d-flex justify-content-around col-2 gap-2">
                       <img class="user-select-none col-6" src="./public/assets/img/male.png" alt="maleImg">
                       <h5 class="text-center" id="elderMenVisitValue"></h5>
                     </label>
-                    <label class="d-flex justify-content-around col-2">
+                    <label class="d-flex justify-content-around col-2 gap-1">
                       <img class="user-select-none col-6" src="./public/assets/img/female.png" alt="femaleImg">
                       <h5 class="text-center" id="elderWomenVisitValue"></h5>
                     </label>
+                    <button id="checkButtonVisit" class="btn btn-success offset-1 col-1 p-1 visually-hidden" type="submit">
+                      <i class="opacityHover" data-lucide="check" alt="checkIcon"></i>
+                    </button>
                   </section>
                 </section>
               </section>
               <footer class="modal-footer container-fluid p-0 d-flex align-items-start m-0 user-select-none">
                 <div class="row p-0 m-0 w-100">
                   <section class="col-8 d-flex flex-column m-0 py-2 px-3 text-justify text-bg-secondary gap-2" style="border-bottom-left-radius: 0.375rem;">
-                    <p class="m-0 fw-bold">Método de Pago: <span id="methodVisitValue" class="fw-normal"></span></p>
-                    <p class="m-0 fw-bold"><span id="extraInfoTitleVisitValue"></span> <span id="paymentInfoVisitValue" class="fw-normal"></span></p>
+                    <div id="methodVisitValue" class="d-flex gap-2"></div>
+                    <div id="extraInfoTitleVisitValue" class="d-flex flex-column"></div>
                   </section>
                   <section class="col-4 d-flex flex-column text-bg-success m-0 py-2 px-3 rounded-bottom-2 rounded-start-0">
                     <section class="d-flex flex-column gap-1">
                       <p class="text-start w-100 m-0 fw-bold">Total:</p>
-                      <h5 class="text-end w-100 m-0"><span id="totalBolivarsVisitValue"></span> Bs.</h5>
-                      <h5 class="text-end w-100 m-0"><span id="totalDolarsVisitValue"></span> $</h6>
+                      <div id="totalBolivarsVisitValue" class="w-100 d-flex fs-5 fw-semibold gap-2"></div>
+                      <div id="totalDolarsVisitValue" class="w-100 d-flex fs-5 fw-semibold gap-2"></div>
                     </section>
                   </section>
                 </div>
               </footer>
           </section>
-      </section>
+      </form>
   </article>
 
+  <article class="modal fade" id="deleteVisitModal" tabindex="-1" aria-hidden="true">
+    <section class="modal-dialog modal-dialog-centered">
+        <section class="modal-content">
+            <header class="modal-header text-bg-danger user-select-none">
+                <h1 class="modal-title fs-5">Eliminar Visita</h1>
+                <button class="btn text-light p-0 opacityHover" data-bs-dismiss="modal" aria-label="Close">
+                    <i data-lucide="x" alt="close-icon"></i>
+                </button>
+            </header>
+            <form method="post">
+                <section class="modal-body d-flex flex-column gap-2 py-3 px-3 user-select-none">
+                    <p class="text-center">¿Está seguro que desea eliminar esta visita?</p>
+                    <section class="d-flex justify-content-around mb-2">
+                        <a class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancelar</a>
+                        <input type="text" class="d-none" name="_id" value="">
+                        <input type="text" class="d-none" name="kids_id" value="">
+                        <input type="text" class="d-none" name="adults_id" value="">
+                        <input type="text" class="d-none" name="elders_id" value="">
+                        <input type="text" class="d-none" name="deleteVisit" value=true>
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </section>
+                </section>
+            </form>  
+        </section>
+    </section>
+</article>
+
   </main>
-  <%- include('partials/scripts')%>
+  <%- include('partials/alert', {messageAlert, typeAlert}); %> 
+  <%- include('partials/scripts') %> 
+  <%- include('partials/alertScript.ejs', {showAlert})%>
 <%- include('partials/foot'); %>

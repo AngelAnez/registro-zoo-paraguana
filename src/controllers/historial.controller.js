@@ -1,16 +1,29 @@
 import { pool } from "../db.js";
 
-export const renderHistorial = async (req, res) => {
+export const renderHistorial = async (req, res, alert) => {
   try {
     const { username, admin } = req.user;
+
+    let showAlert, messageAlert, typeAlert
+    if (alert){
+        showAlert = alert.showAlert
+        messageAlert = alert.messageAlert
+        typeAlert = alert.typeAlert
+    } else {
+        showAlert = false
+        messageAlert = ""
+        typeAlert = ""
+    }
+
     let pag = 1;
     let sort = ""; // Puede ser cualquier propiedad de las visitas
     let order = ""; // Puede ser asc o dec
     let searchFilter = "";
-    let query = `SELECT *, DATE_FORMAT(date, '%d/%m/%Y') AS dateStyled, TIME_FORMAT(time, "%h:%i %p") AS timeStyled FROM visits INNER JOIN paymentMethod ON visits.paymentMethod_id=paymentMethod._id
-    INNER JOIN kids ON visits.kids_id=kids._id
+    let query = `SELECT *, DATE_FORMAT(date, '%d/%m/%Y') AS dateStyled, TIME_FORMAT(time, "%h:%i %p") AS timeStyled, visits._id AS visit_id, kids._id AS kids_id, adults._id AS adults_id, elders._id AS elders_id FROM visits INNER JOIN paymentMethod ON visits.paymentMethod_id=paymentMethod._id
+    INNER JOIN elders ON visits.elders_id=elders._id
     INNER JOIN adults ON visits.adults_id=adults._id
-    INNER JOIN elders ON visits.elders_id=elders._id`
+    INNER JOIN kids ON visits.kids_id=kids._id
+    `
     let whereQuery = ""
     if (req.query.filter) {
       searchFilter = req.query.filter
@@ -84,8 +97,70 @@ export const renderHistorial = async (req, res) => {
       sort,
       order,
       searchFilter,
+      showAlert,
+      messageAlert,
+      typeAlert
     });
   } catch (error) {
     res.status(500).json({message: error.message})
   }
 };
+
+export const modifyVisit = async (req, res) => {
+  const {deleteVisit, _id, representativeName, representativePhone, boys, girls, courtesyKids, men, women, courtesyAdults, elderMen, elderWomen, method, paymentInfo, totalBolivars, totalDolars, kids_id, adults_id, elders_id} = req.body
+  const totalBolivarsValid = totalBolivars.replace(',', '.')
+  const totalDolarsValid = totalDolars.replace(',', '.')
+  if (parseInt(courtesyKids) > (parseInt(boys) + parseInt(girls))){
+    return renderHistorial(req, res, {
+      showAlert: true,
+      messageAlert: "El número de entradas de cortesía no puede ser mayor al total de niños y niñas",
+      typeAlert: "danger"
+    })
+  }
+  if (parseInt(courtesyAdults) > (parseInt(men) + parseInt(women))){
+    return renderHistorial(req, res, {
+      showAlert: true,
+      messageAlert: "El número de entradas de cortesía no puede ser mayor al total de adultos",
+      typeAlert: "danger"
+    })
+  }
+  if (method == "Efectivo" && paymentInfo != "Dolar" && paymentInfo != "Bolivar"){
+    return renderHistorial(req, res, {
+      showAlert: true,
+      messageAlert: 'El pago en Moneda debe registrarse como "Dolar" o "Bolivar"',
+      typeAlert: "danger"
+    })
+  }
+  try {
+    let message = ""
+    if (deleteVisit && _id){
+      await pool.query(`DELETE FROM visits WHERE _id = '${_id}'`)
+      await pool.query(`DELETE FROM kids WHERE _id = '${kids_id}'`)
+      await pool.query(`DELETE FROM adults WHERE _id = '${adults_id}'`)
+      await pool.query(`DELETE FROM elders WHERE _id = '${elders_id}'`)
+      message = "La visita ha sido eliminada exitosamente"
+    }
+    if (_id && !deleteVisit){
+      const paymentMethodQuery = await pool.query(`SELECT _id FROM paymentMethod WHERE method="${method}"`)
+      const paymentId = paymentMethodQuery[0][0]._id
+
+      await pool.query(`UPDATE kids SET boys = ${boys}, girls = ${girls}, courtesyKids = ${courtesyKids} WHERE _id = ${kids_id}`)
+
+      await pool.query(`UPDATE adults SET men = ${men}, women = ${women}, courtesyAdults = ${courtesyAdults} WHERE _id = ${adults_id}`)
+
+      await pool.query(`UPDATE elders SET elderMen = ${elderMen}, elderWomen = ${elderWomen} WHERE _id = ${elders_id}`)
+
+      await pool.query(`UPDATE visits SET representativeName = '${representativeName}', representativePhone = '${representativePhone}', totalBolivars = '${totalBolivarsValid}', totalDolars = '${totalDolarsValid}', paymentMethod_id = ${paymentId}, paymentInfo = '${paymentInfo}' WHERE _id = '${_id}'`)
+      
+      message = "Los cambios en la visita han sido realizados exitosamente"
+    }
+    const alert = {
+      showAlert: true,
+      messageAlert: message,
+      typeAlert: "success"
+    }
+    renderHistorial(req, res, alert)
+  } catch (error) {
+    res.status(500).json({message: error.message})
+  }
+}
