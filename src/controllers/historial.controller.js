@@ -108,8 +108,6 @@ export const renderHistorial = async (req, res, alert) => {
 
 export const modifyVisit = async (req, res) => {
   const {deleteVisit, _id, representativeName, representativePhone, boys, girls, courtesyKids, men, women, courtesyAdults, elderMen, elderWomen, method, paymentInfo, totalBolivars, totalDolars, kids_id, adults_id, elders_id} = req.body
-  const totalBolivarsValid = totalBolivars.replace(',', '.')
-  const totalDolarsValid = totalDolars.replace(',', '.')
   if (parseInt(courtesyKids) > (parseInt(boys) + parseInt(girls))){
     return renderHistorial(req, res, {
       showAlert: true,
@@ -150,7 +148,7 @@ export const modifyVisit = async (req, res) => {
 
       await pool.query(`UPDATE elders SET elderMen = ${elderMen}, elderWomen = ${elderWomen} WHERE _id = ${elders_id}`)
 
-      await pool.query(`UPDATE visits SET representativeName = '${representativeName}', representativePhone = '${representativePhone}', totalBolivars = '${totalBolivarsValid}', totalDolars = '${totalDolarsValid}', paymentMethod_id = ${paymentId}, paymentInfo = '${paymentInfo}' WHERE _id = '${_id}'`)
+      await pool.query(`UPDATE visits SET representativeName = '${representativeName}', representativePhone = '${representativePhone}', totalBolivars = '${totalBolivars}', totalDolars = '${totalDolars}', paymentMethod_id = ${paymentId}, paymentInfo = '${paymentInfo}' WHERE _id = '${_id}'`)
       
       message = "Los cambios en la visita han sido realizados exitosamente"
     }

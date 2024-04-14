@@ -24,9 +24,9 @@ export const buildPDF = async (dataCallback, endCallback, dates) => {
 
     const buildTable = async (table, y) => {
         await doc.table(table, {
-            prepareHeader: () => doc.font("Times-Bold").fontSize(12),
-            prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => doc.font("Times-Roman").fontSize(12),
-            x: 112,
+            prepareHeader: () => doc.font("Times-Bold").fontSize(14),
+            prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => doc.font("Times-Roman").fontSize(14),
+            x: 60,
             y,
             align: "center"
         });
@@ -52,15 +52,25 @@ export const buildPDF = async (dataCallback, endCallback, dates) => {
             align: "center"
         })
     }
+
+    doc.lineWidth(2);
+    doc.lineJoin('round')
+   .roundedRect(56, 208, 250, 50, 20).fillAndStroke("green")
+   .stroke("green")
+
+    doc.circle(87, 233, 22, 22).fillAndStroke("white")
+    doc.image(path.join(DIR_APP, '/public/assets/img/visitors.png'), 69, 215, {scale: 0.07})
     
-    doc.image(path.join(DIR_APP, '/public/assets/img/visitors.png'), 60, 212, {scale: 0.08}).fontSize(24).text(`Visitantes: ${totalKids + totalAdults + totalElders}`, 112, 224)
+    doc.fontSize(24).fillColor("white").text(`Visitantes: ${totalKids + totalAdults + totalElders}`, 116, 224)
+
+    doc.fillColor("black")
 
     let visitsData = {
         headers: [ 
-            {label: "", property: 'category', width: 100, align: "center", headerColor: "#198754"},
-            {label: "Niños", property: 'kids', width: 100, align: "center", headerColor: "#198754"},
-            {label: "Adultos", property: 'adults', width: 100, align: "center", headerColor: "#198754"},
-            {label: "Adultos Mayores", property: 'elders', width: 100, align: "center", headerColor: "#198754"}
+            {label: "", property: 'category', width: 125, align: "center", headerColor: "#198754"},
+            {label: "Niños", property: 'kids', width: 125, align: "center", headerColor: "#198754"},
+            {label: "Adultos", property: 'adults', width: 125, align: "center", headerColor: "#198754"},
+            {label: "Adultos Mayores", property: 'elders', width: 125, align: "center", headerColor: "#198754"}
         ],
         datas: [
           {category: {label: "Masculinos", options: {fontFamily: "Times-Bold"}}, 
@@ -76,17 +86,26 @@ export const buildPDF = async (dataCallback, endCallback, dates) => {
           adults: courtesyAdults},
         ]
       };
-    buildTable(visitsData, 268)
+    buildTable(visitsData, 280)
 
-    doc.image(path.join(DIR_APP, '/public/assets/img/income.png'), 60, 412, {scale: 0.08}).fontSize(24).text(`Ingresos Totales: ${totalDolars} $`, 112, 424)    
+    doc.lineWidth(2);
+    doc.lineJoin('round')
+    .roundedRect(56, 408, 332, 50, 20).fillAndStroke("green")
+
+    doc.circle(87, 433, 22, 22).fillAndStroke("white")
+    doc.image(path.join(DIR_APP, '/public/assets/img/income.png'), 69, 415, {scale: 0.07})
+
+    doc.fontSize(24).fillColor("white").text(`Ingresos Totales: ${totalDolars} $`, 116, 424)    
     
+    doc.fillColor("black")
+
     let incomeData = {
         headers: [ 
-            {label: "", property: 'category', width: 80, align: "center", headerColor: "#198754"},
-            {label: "Pago Móvil", property: 'mobilePay', width: 80, align: "center", headerColor: "#198754"},
-            {label: "Transferencia", property: 'bankTransfer', width: 80, align: "center", headerColor: "#198754"},
-            {label: "Efectivo", property: 'cash', width: 80, align: "center", headerColor: "#198754"},
-            {label: "Otro", property: 'other', width: 80, align: "center", headerColor: "#198754"}
+            {label: "", property: 'category', width: 100, align: "center", headerColor: "#198754"},
+            {label: "Pago Móvil", property: 'mobilePay', width: 100, align: "center", headerColor: "#198754"},
+            {label: "Transferencia", property: 'bankTransfer', width: 100, align: "center", headerColor: "#198754"},
+            {label: "Efectivo", property: 'cash', width: 100, align: "center", headerColor: "#198754"},
+            {label: "Otro", property: 'other', width: 100, align: "center", headerColor: "#198754"}
         ],
         datas: [
           {category: {label: "Dolares", options: {fontFamily: "Times-Bold"}}, 
@@ -101,7 +120,7 @@ export const buildPDF = async (dataCallback, endCallback, dates) => {
           other: other.bolivars}
         ]
       };
-    buildTable(incomeData, 468)
+    buildTable(incomeData, 480)
 
     doc.end()
 }

@@ -8,7 +8,7 @@
 
     <nav class="navbar m-0 user-select-none">
       <section class="container-fluid d-flex justify-content-around">
-        <a class="btn btn-primary fw-semibold fs-5 rounded-4" data-bs-toggle="modal" data-bs-target="#infoNewModal" data-bs-action="create" data-bs-user="<%=username%>">Crear Nueva Novedad</a>
+        <a class="btn btn-primary fw-semibold fs-5 rounded-4" data-bs-toggle="modal" data-bs-target="#infoNewModal" data-bs-action="create" data-bs-user="<%=username%>">Agregar Novedad</a>
         <form class="d-flex col-9 align-items-center justify-content-center gap-4" role="search">
           <section class="col-9 bg-light-subtle rounded-4 shadow py-2 d-flex justify-content-evenly align-items-center">
             <h6 class="m-0"> Buscar Novedad: </h6>
@@ -183,14 +183,14 @@
           href="/novedades?pag=<%=prevPag%><%=sortQueries%><%=searchFilter%>"
           aria-label="Previous"
         >
-          <span aria-hidden="true" class="text-success fw-bold user-select-none"
+          <span aria-hidden="true" class="text-primary fw-bold user-select-none"
             >Anterior</span
           >
         </a>
       </li>
       <li class="page-item">
         <a
-          class="page-link user-select-none <% if (pag == 1) { %> text-bg-success <% } else { %> text-success <% } %> fw-bold"
+          class="page-link user-select-none <% if (pag == 1) { %> text-bg-primary <% } else { %> text-primary <% } %> fw-bold"
           href="/novedades?pag=1<%=sortQueries%><%=searchFilter%>"
           >1
         </a>
@@ -199,7 +199,7 @@
       <% if (pag - 5 > 2) { %>
       <li class="page-item">
         <a
-          class="page-link user-select-none text-success fw-bold"
+          class="page-link user-select-none text-primary fw-bold"
           >...
         </a>
       </li>
@@ -208,7 +208,7 @@
         <% if (pag + p > 1 && pag + p < finalPage) {%>
           <li class="page-item">
             <a
-              class="page-link user-select-none <% if (pag == pag+p) { %> text-bg-success <% } else { %> text-success <% } %> fw-bold"
+              class="page-link user-select-none <% if (pag == pag+p) { %> text-bg-primary <% } else { %> text-primary <% } %> fw-bold"
               href="/novedades?pag=<%=pag+p%><%=sortQueries%><%=searchFilter%>"
               ><%= pag+p %>
             </a>
@@ -222,7 +222,7 @@
       <% if (finalPage > pag + 6 && finalPage != 1 ) { %>
         <li class="page-item">
           <a
-            class="page-link user-select-none text-success fw-bold"
+            class="page-link user-select-none text-primary fw-bold"
             >...
           </a>
         </li>
@@ -230,7 +230,7 @@
       <% if (finalPage > 1) { %>
         <li class="page-item">
           <a
-            class="page-link user-select-none <% if (pag == finalPage) { %> text-bg-success <% } else { %> text-success <% } %> fw-bold"
+            class="page-link user-select-none <% if (pag == finalPage) { %> text-bg-primary <% } else { %> text-primary <% } %> fw-bold"
             href="/novedades?pag=<%=finalPage%><%=sortQueries%><%=searchFilter%>"
             ><%=finalPage%>
           </a>
@@ -242,7 +242,7 @@
             href="/novedades?pag=<%=nextPage%><%=sortQueries%><%=searchFilter%>"
             aria-label="Next"
           >
-          <span aria-hidden="true" class="text-success fw-bold user-select-none"
+          <span aria-hidden="true" class="text-primary fw-bold user-select-none"
             >Siguiente</span
           >
           </a>
@@ -272,7 +272,7 @@
                     <img class="col-1" src="./public/assets/img/subject.png" alt="subjectIcon">
                     <label for="subjectNewValue" class="fw-bold">Asunto:</label>
                   </figure>
-                  <input type="text" id="subjectNewValue" class="form-control w-100 m-0" value="" name="subject" maxlength="60">
+                  <input type="text" id="subjectNewValue" class="form-control w-100 m-0" value="" name="subject" maxlength="60" autocomplete="off">
                 </div>
                 <div class="d-flex flex-column align-items-start gap-2">
                   <figure class="m-0 col-9 d-flex gap-2 align-items-center">
