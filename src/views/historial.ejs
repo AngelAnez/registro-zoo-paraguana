@@ -18,7 +18,7 @@
           </section>
           
           <button class="btn btn-success shadow" type="submit" title="Filtra las visitas según la palabra clave ingresada">Buscar</button>
-          <a class="btn btn-primary shadow" href="/historial" title="Elimina los filtros y muestra todas las visitas">Limpiar</a>
+          <a class="btn btn-secondary shadow" href="/historial" title="Elimina los filtros y muestra todas las visitas">Limpiar</a>
         </form>
       </section>
     </nav>
@@ -580,7 +580,7 @@
             </header>
             <form method="post">
                 <section class="modal-body d-flex flex-column gap-2 py-3 px-3 user-select-none">
-                    <p class="text-center">¿Está seguro que desea eliminar esta visita?</p>
+                    <p class="text-center">¿Está seguro que desea eliminar esta Visita?</p>
                     <section class="d-flex justify-content-around mb-2">
                         <a class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancelar</a>
                         <input type="text" class="d-none" name="_id" value="">
@@ -596,7 +596,7 @@
     </section>
 </article>
 
-  </main>
+</main>
   <%- include('partials/alert', {messageAlert, typeAlert}); %> 
   <%- include('partials/scripts') %> 
   <%- include('partials/alertScript.ejs', {showAlert})%>
