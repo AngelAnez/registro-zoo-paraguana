@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS users (
+﻿CREATE TABLE IF NOT EXISTS users (
         id INT(11) NOT NULL AUTO_INCREMENT,
         username VARCHAR(45) NOT NULL UNIQUE,
         password VARCHAR(45) NOT NULL,
@@ -21,7 +21,7 @@ SELECT * FROM users WHERE password='Freakin';
 
 CREATE TABLE IF NOT EXISTS paymentMethod(
     _id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    method VARCHAR(45) NOT NULL, /* Antes era name */
+    method VARCHAR(45) NOT NULL,
     extraInfoTitle VARCHAR(45) NOT NULL
 );
 

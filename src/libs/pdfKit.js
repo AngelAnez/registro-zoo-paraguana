@@ -1,4 +1,4 @@
-import PDFDocument from "pdfkit-table";
+﻿import PDFDocument from "pdfkit-table";
 import { getVisitStats } from "../controllers/estadisticas.controller.js";
 import { pool } from "../db.js";
 import { DIR_APP } from "../global.js";
@@ -18,14 +18,14 @@ export const buildPDF = async (dataCallback, endCallback, dates) => {
 
     const { boys, girls, courtesyKids, men, women, courtesyAdults, elderMen, elderWomen, totalKids, totalAdults, totalElders, totalBolivars, totalDolars, cash, bankTransfer, mobilePay, other } = getVisitStats(data)
 
-    const doc = new PDFDocument({font: 'Times-Roman', size: 'Letter', margin: 50})
+    const doc = new PDFDocument({font: 'Helvetica', size: 'Letter', margin: 50})
     doc.on("data", dataCallback)
     doc.on("end", endCallback)
 
     const buildTable = async (table, y) => {
         await doc.table(table, {
-            prepareHeader: () => doc.font("Times-Bold").fontSize(14),
-            prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => doc.font("Times-Roman").fontSize(14),
+            prepareHeader: () => doc.font("Helvetica-Bold").fontSize(14),
+            prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => doc.font("Helvetica").fontSize(14),
             x: 60,
             y,
             align: "center"
@@ -35,19 +35,19 @@ export const buildPDF = async (dataCallback, endCallback, dates) => {
     /* la anchura (x) es de 608px  */
     /* la altura (y) es de 784px  */
 
-    doc.image(path.join(DIR_APP, '/public/assets/img/zoo-logo.jpg'), 16, 8, {scale: 0.25})
+    doc.image(path.join(DIR_APP, '/public/assets/img/zoo-logo.png'), 16, 8, {width: 100})
 
-    doc.fontSize(20).font("Times-Bold").text(`Reporte General del Registro de Visitantes`, 0, 120, {
+    doc.fontSize(20).font("Helvetica-Bold").text(`Reporte General del Registro de Visitantes`, 0, 120, {
         width: 608,
         align: "center"
     })
     if (startDate == endDate){
-        doc.fontSize(16).font('Times-Roman').text(`${dateStyleDMY(startDate)}`, 0, 150, {
+        doc.fontSize(16).font('Helvetica').text(`${dateStyleDMY(startDate)}`, 0, 150, {
             width: 608,
             align: "center"
         })
     } else {
-        doc.fontSize(16).font('Times-Roman').text(`${dateStyleDMY(startDate)} - ${dateStyleDMY(endDate)}`, 0, 150, {
+        doc.fontSize(16).font('Helvetica').text(`${dateStyleDMY(startDate)} - ${dateStyleDMY(endDate)}`, 0, 150, {
             width: 608,
             align: "center"
         })
@@ -73,15 +73,15 @@ export const buildPDF = async (dataCallback, endCallback, dates) => {
             {label: "Adultos Mayores", property: 'elders', width: 125, align: "center", headerColor: "#198754"}
         ],
         datas: [
-          {category: {label: "Masculinos", options: {fontFamily: "Times-Bold"}}, 
+          {category: {label: "Masculinos", options: {fontFamily: "Helvetica-Bold"}}, 
           kids: boys, 
           adults: men, 
           elders: elderMen},
-          {category: {label: "Femeninos", options: {fontFamily: "Times-Bold"}}, 
+          {category: {label: "Femeninos", options: {fontFamily: "Helvetica-Bold"}}, 
           kids: girls, 
           adults: women, 
           elders: elderWomen},
-          {category: {label: "Cortesía", options: {fontFamily: "Times-Bold"}}, 
+          {category: {label: "Cortesía", options: {fontFamily: "Helvetica-Bold"}}, 
           kids: courtesyKids, 
           adults: courtesyAdults},
         ]
@@ -108,12 +108,12 @@ export const buildPDF = async (dataCallback, endCallback, dates) => {
             {label: "Otro", property: 'other', width: 100, align: "center", headerColor: "#198754"}
         ],
         datas: [
-          {category: {label: "Dolares", options: {fontFamily: "Times-Bold"}}, 
+          {category: {label: "Dolares", options: {fontFamily: "Helvetica-Bold"}}, 
           mobilePay: mobilePay.dolars, 
           bankTransfer: bankTransfer.dolars, 
           cash: cash.dolars,
           other: other.dolars},
-          {category: {label: "Bolivares", options: {fontFamily: "Times-Bold"}}, 
+          {category: {label: "Bolivares", options: {fontFamily: "Helvetica-Bold"}}, 
           mobilePay: mobilePay.bolivars, 
           bankTransfer: bankTransfer.bolivars, 
           cash: cash.bolivars,

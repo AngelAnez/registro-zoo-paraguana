@@ -1,9 +1,5 @@
-.headerContainer{
-    height: 10%;
-}
-
 .headerImg{
-    max-height: 8vh;
+    max-height: 50px;
     transform: scaleX(-1);
 }
 

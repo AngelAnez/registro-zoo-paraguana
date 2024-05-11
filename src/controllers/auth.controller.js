@@ -1,4 +1,4 @@
-import { createAccessToken } from "../libs/jwt.js";
+﻿import { createAccessToken } from "../libs/jwt.js";
 import bcryptjs from "bcryptjs";
 import { pool } from "../db.js";
 
@@ -38,7 +38,6 @@ export const renderLogin = (req, res) => {
 
 export const verifyUser = async (req, res) => {
   const { username, password } = req.body;
-
   try {
     const [userFoundQuery] = await pool.query(`SELECT * FROM users WHERE username="${username}"`)
     const userFound = userFoundQuery[0]
