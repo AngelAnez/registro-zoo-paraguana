@@ -3,15 +3,15 @@
 
     <!-- Menu Lateral y Main-->
     <%- include('partials/sidebar'); %>
-    <main class="container-fluid d-flex flex-column gap-5 p-0 m-0 vh-100">   
+    <main class="container-fluid d-flex flex-column p-0 m-0 min-vh-100">   
         <!-- Encabezado -->
         <%- include('partials/header'); %>
 
-        <form method="post" id="addNewVisit" class="d-flex align-items-center mt-2">
+        <form method="post" id="addNewVisit" class="d-flex align-items-center" style="flex: 1;">
             <!-- Evita que se envíe el Formulario con ENTER -->
             <button type="submit" disabled class="none" aria-hidden="true"></button> 
 
-            <article class="container-fluid row d-flex justify-content-center">
+            <article class="container-fluid d-flex justify-content-center">
 
                 <!-- Pasos -->
                 <%- include('partials/stepsMenuVisitantes'); %>

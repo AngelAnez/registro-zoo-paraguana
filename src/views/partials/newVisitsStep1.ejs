@@ -1,17 +1,16 @@
-<article id="addNewVisitStep1" class="d-flex col-7 row text-center ps-3 pe-0 m-0 bg-white shadow rounded-end-4">
-    <section class="col-12 text-start mt-3 px-2 user-select-none">
+<article id="addNewVisitStep1" class="d-flex flex-column text-center py-3 px-3 m-0 bg-white shadow rounded-end-4" style="min-width: 200px; gap: 28px">
+    <section class="col-12 text-start px-2 user-select-none">
         <h3>Visitantes</h3>
         <p class="m-0">Ingrese la cantidad de visitantes de acuerdo a su rango de edad.</p>
     </section>
 
-    <section class="row gy-3">
-        <section class="col-4 d-flex flex-column align-items-center p-0 gap-1">
-            <figure class="m-0 p-0 col-5 d-flex flex-column gap-1">
+    <section id="addNewVisitStep1Body" class="d-flex flex-wrap gy-3">
+        <section class="d-flex align-items-center p-0 gap-1">
+            <figure class="m-0 p-0 d-flex flex-column gap-1" style="flex: 1; max-width: 108px;">
                 <img class="w-100 user-select-none" src="./public/assets/img/children.webp" alt="childrenImg">
-                
-            </figure>
-            <div class="col-9 text-start d-flex flex-column gap-2">
                 <figcaption id="kidsTicket" class="fw-bold text-center mb-2 user-select-none" value="<%=kidsPrice%>">Niños y Niñas</figcaption>
+            </figure>
+            <div class="text-start d-flex flex-column gap-2" style="flex: 2; max-width: 180px;">
                 <label for="boysNumber" class="d-flex justify-content-evenly">
                     <img class="user-select-none col-2" src="./public/assets/img/male.png" alt="maleImg">
                     <input type="number" class="form-control p-0 text-center w-50" id="boysNumber" autocomplete="off" oninput="changeFamilyNumber()" name="boys" min="0"/>
@@ -27,12 +26,12 @@
             </div>
         </section>
         
-        <section class="col-4 d-flex flex-column align-items-center p-0 gap-1">
-            <figure class="m-0 p-0 col-5 d-flex flex-column gap-1">
+        <section class="d-flex align-items-center p-0 gap-1">
+            <figure class="m-0 p-0 d-flex flex-column gap-1" style="flex: 1; max-width: 108px;">
                 <img class="w-100 user-select-none" src="./public/assets/img/adults.webp" alt="adultsImg">
-            </figure>
-            <div class="col-9 text-start d-flex flex-column gap-2">
                 <figcaption id="adultsTicket" class="fw-bold text-center mb-2 user-select-none" value="<%=adultsPrice%>">Adultos</figcaption>
+            </figure>
+            <div class="col-9 text-start d-flex flex-column gap-2" style="flex: 2; max-width: 180px;">
                 <label for="menNumber" class="d-flex justify-content-evenly">
                     <img class="user-select-none col-2" src="./public/assets/img/male.png" alt="maleImg">
                     <input type="number" class="form-control p-0 text-center w-50" id="menNumber" autocomplete="off" oninput="changeFamilyNumber()" name="men" min="0"/>
@@ -48,12 +47,12 @@
             </div>
         </section>
 
-        <section class="col-4 d-flex flex-column align-items-center p-0 gap-1">
-            <figure class="m-0 p-0 col-5 d-flex flex-column gap-1">
+        <section class="d-flex align-items-center p-0 gap-1">
+            <figure class="m-0 p-0 d-flex flex-column gap-1" style="flex: 1; max-width: 108px;">
                 <img class="w-100 user-select-none" src="./public/assets/img/seniors.webp" alt="seniorsImg">
-            </figure>
-            <div class="col-9 text-start d-flex flex-column gap-2">
                 <figcaption class="fw-bold text-center mb-2 user-select-none">Adultos Mayores</figcaption>
+            </figure>
+            <div class="col-9 text-start d-flex flex-column gap-2" style="flex: 2; max-width: 180px;">
                 <label for="elderMenNumber" class="d-flex justify-content-evenly">
                     <img class="user-select-none col-2" src="./public/assets/img/male.png" alt="maleImg">
                     <input type="number" class="form-control p-0 text-center w-50" id="elderMenNumber" autocomplete="off" oninput="changeFamilyNumber()" name="elderMen" min="0"/>
@@ -67,7 +66,7 @@
         <input type="text" class="form-control p-0 text-center visually-hidden" readonly id="totalFamily" value=0 name="totalFamily" required/>
     </section>
 
-    <section class="row text-center mt-5 mb-4 d-flex justify-content-center align-items-center">
-        <button type="button" onclick="validateStep1()" class="btn btn-success col-2 p-1">Siguiente</button>
+    <section class="text-center px-0 d-flex justify-content-center align-items-center">
+        <button type="button" onclick="validateStep1()" class="btn btn-success col-2 p-1" style="min-width: 120px;">Siguiente</button>
     </section>
 </article>
