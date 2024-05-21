@@ -66,7 +66,7 @@ export const addNewVisit = async (req, res) => {
     const adultsId = adultsQuery[0].insertId
 
     const eldersQuery = await pool.query(`INSERT INTO elders (elderMen, elderWomen) VALUES 
-    ("${formData.men}","${formData.elderWomen}")`)
+    ("${formData.elderMen}","${formData.elderWomen}")`)
     const eldersId = eldersQuery[0].insertId
 
     const paymentMethodQuery = await pool.query(`SELECT _id FROM paymentMethod WHERE method="${formData.paymentMethod}"`)

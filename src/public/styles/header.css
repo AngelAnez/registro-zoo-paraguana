@@ -3,6 +3,31 @@
     transform: scaleX(-1);
 }
 
-.headerText{
+.headerText {
     font-size: larger;
+    font-weight: semibold;
+    margin: 0;
+    padding-left: 10px;
+}
+
+.collapse-button{
+    display: flex;
+    padding: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+@media (max-width: 800px){
+    .collapse-button{
+        display: none;
+    }
+}
+
+@media (max-width: 500px){
+    h6[class= "headerText"]{
+        display: none;
+    }
+    .header-user-name{
+        display: none;
+    }
 }
