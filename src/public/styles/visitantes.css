@@ -43,7 +43,7 @@ aside section h6{
     #stepsMenuVisitantes section{
         display: none;
     }
-    #addNewVisitStep1, #addNewVisitStep2, #addNewVisitStep3{
+    #addNewVisitStep1, #addNewVisitStep2, #addNewVisitStep3, #addNewVisitStep4{
         border-radius: 20px;
     }
 }

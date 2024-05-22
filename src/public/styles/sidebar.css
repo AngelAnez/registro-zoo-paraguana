@@ -45,7 +45,8 @@
     padding: 0;
     justify-content: center;
     margin: 0;
-    gap: 30px;
+    row-gap: 16px;
+    column-gap: 24px;
     height: 100%;
 }
 
