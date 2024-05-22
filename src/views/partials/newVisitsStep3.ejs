@@ -1,35 +1,35 @@
-<article id="addNewVisitStep3" class="d-none col-7 row text-center ps-3 pe-0 m-0 bg-white shadow rounded-end-4">
-    <section class="col-12 text-start mt-3 px-2 user-select-none">
+<article id="addNewVisitStep3" class="d-none flex-column text-center p-3 m-0 bg-white shadow rounded-end-4" style="min-width: 200px; gap: 28px;">
+    <section class="col-12 text-start px-2 user-select-none">
         <h3>Representante</h3>
         <p class="m-0">Ingrese los datos del representante de la visita.</p>
     </section>
 
-    <section class="row gy-3">
-        <label for="representativeName" class="offset-2 col-6 d-flex align-items-center p-0 gap-3">
+    <section class="d-flex gap-3 flex-wrap justify-content-center mx-lg-5" style="max-width: 540px;">
+        <label for="representativeName" class="d-flex align-items-center p-0 gap-3" style="max-width: 280px;">
             <figure class="m-0 p-0">
                 <img class="w-100 user-select-none" src="./public/assets/img/representative.webp" alt="representativeNameImg">
             </figure>
-            <div class="col-8 text-start d-flex flex-column gap-2">
+            <div class="text-start d-flex flex-column gap-2" style="min-width: 60%;">
                 <span class="fw-bold user-select-none">Nombre</span>
-                <input type="tel" class="form-control p-0 text-center" id="representativeName" autocomplete="off" name="representativeName" oninput="cleanInputs(step3Container)"/>
+                <input type="text" class="form-control p-0 text-center" id="representativeName" autocomplete="off" name="representativeName" oninput="cleanInputs(step3Container)"/>
             </div>
         </label>
     </section>
 
-    <section class="row gy-3">
-        <label for="representativePhone" class="offset-2 col-6 d-flex align-items-center p-0 gap-3">
+    <section class="d-flex gap-3 flex-wrap justify-content-center mx-lg-5">
+        <label for="representativePhone" class="d-flex align-items-center p-0 gap-3" style="max-width: 280px;">
             <figure class="m-0 p-0">
                 <img class="w-100 user-select-none" src="./public/assets/img/telephone.webp" alt="representativePhoneImg">
             </figure>
-            <div class="col-8 text-start d-flex flex-column gap-2">
+            <div class="text-start d-flex flex-column gap-2" style="min-width: 60%;">
                 <span class="fw-bold user-select-none">Teléfono</span>
                 <input type="tel" class="form-control p-0 text-center" id="representativePhone" autocomplete="off" name="representativePhone" oninput="cleanInputs(step3Container)"/>
             </div>
         </label>
     </section>
     
-    <section class="row text-center mt-5 mb-4 d-flex justify-content-center align-items-center gap-4">
-        <button type="button" onclick="changeStep(2)" class="btn btn-secondary col-2 p-1">Atrás</button>
-        <button type="button" onclick="validateStep3()" class="btn btn-success col-2 p-1">Siguiente</button>
+    <section class="text-center d-flex justify-content-center align-items-center gap-4">
+        <button type="button" onclick="changeStep(2)" class="btn btn-secondary col-2 p-1" style="min-width: 80px;">Atrás</button>
+        <button type="button" onclick="validateStep3()" class="btn btn-success col-2 p-1" style="min-width: 80px;">Siguiente</button>
     </section>
 </article>

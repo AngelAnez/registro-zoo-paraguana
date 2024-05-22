@@ -30,17 +30,20 @@ aside section h6{
 }
 
 @media (max-width: 800px){
-    #stepsMenuVisitantes section{
-        display: none;
-    }
-    #addNewVisitStep1, #addNewVisitStep2{
-        border-radius: 20px;
-    }
     aside section{
         justify-content: center;
-        padding-left: 0px;
+        padding: 0px 16px;
     }
     aside section h6{
         display: none;
+    }
+}
+
+@media (max-width: 760px){
+    #stepsMenuVisitantes section{
+        display: none;
+    }
+    #addNewVisitStep1, #addNewVisitStep2, #addNewVisitStep3{
+        border-radius: 20px;
     }
 }
