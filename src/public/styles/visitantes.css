@@ -7,6 +7,11 @@
     flex: 1;
 }
 
+#addNewVisitStep2Body section label{
+    min-width: 160px;
+    flex: 1;
+}
+
 aside section{
     justify-content: start;
     padding-left: 20px;
@@ -27,6 +32,9 @@ aside section h6{
 @media (max-width: 800px){
     #stepsMenuVisitantes section{
         display: none;
+    }
+    #addNewVisitStep1, #addNewVisitStep2{
+        border-radius: 20px;
     }
     aside section{
         justify-content: center;
