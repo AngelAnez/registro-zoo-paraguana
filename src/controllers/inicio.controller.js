@@ -24,7 +24,7 @@ export const getDolarValue = async (req, res) => {
       })
        const waitingTime = new Promise((resolve, reject) => {
         setTimeout(() => {
-          resolve(40);
+          resolve(defaultDolar);
         }, 5000);
       })
       return Promise.any([searchingDolar, waitingTime]).then((value) => {
