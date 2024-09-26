@@ -1,4 +1,4 @@
-import { bcvDolar } from "bcv-divisas";
+import { bcvDolar } from "../libs/bcv-divisas.js";
 import { pool } from "../db.js";
 
 export const renderInicio = (req, res) => {
@@ -12,7 +12,7 @@ export const renderInicio = (req, res) => {
 export const getDolarValue = async (req, res) => {
   const [dolarQuery] = await pool.query('SELECT * FROM configs LIMIT 1')
   const {internetDolar, defaultDolar} = dolarQuery[0]
-  if (internetDolar == "on") {
+   if (internetDolar == "on") {
     try {
       const searchingDolar = new Promise(async (resolve, reject) => {
         try {
@@ -22,9 +22,9 @@ export const getDolarValue = async (req, res) => {
           reject(error)
         }
       })
-      const waitingTime = new Promise((resolve, reject) => {
+       const waitingTime = new Promise((resolve, reject) => {
         setTimeout(() => {
-          resolve(defaultDolar);
+          resolve(40);
         }, 5000);
       })
       return Promise.any([searchingDolar, waitingTime]).then((value) => {
