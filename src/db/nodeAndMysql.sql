@@ -1,10 +1,9 @@
-﻿CREATE TABLE IF NOT EXISTS users (
-        id INT(11) NOT NULL AUTO_INCREMENT,
-        username VARCHAR(45) NOT NULL UNIQUE,
-        password VARCHAR(45) NOT NULL,
-        email VARCHAR(45) NOT NULL,
-        role VARCHAR(45) DEFAULT "Por Asignar",
-        PRIMARY KEY(id) 
+﻿CREATE TABLE IF NOT EXISTS users ( 
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(45) NOT NULL UNIQUE,
+    password VARCHAR(45) NOT NULL,
+    email VARCHAR(45) NOT NULL,
+    role VARCHAR(45) DEFAULT "Por Asignar",
 );
 
 INSERT INTO users (username, password, email) VALUES
@@ -164,3 +163,12 @@ INSERT INTO configs (internetDolar, defaultDolar, kidsPrice, adultsPrice ) VALUE
 SELECT * FROM configs LIMIT 1;
 
 SELECT *, DATE_FORMAT(date, '%d/%m/%Y') AS date FROM visits;
+
+CREATE TABLE news (
+    _id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    subject VARCHAR(60) NOT NULL, 
+    body VARCHAR(255) NOT NULL,
+    author VARCHAR(60) NOT NULL,
+    date VARCHAR(10) NOT NULL,
+    time VARCHAR(10) NOT NULL
+);

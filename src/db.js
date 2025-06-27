@@ -1,9 +1,13 @@
-import { createPool } from "mysql2/promise";
+import mysql from "mysql2/promise";
 
-export const pool = createPool({
-    host: "localhost",
-    user: "root",
-    password: "",
-    port: 3306,
-    database: "registrozoo"
-})
+export const pool = mysql.createPool({
+  host: "localhost",
+  user: "root",
+  password: "my-secret-pw",
+  port: 33060,
+  database: "registrozoo",
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+  multipleStatements: true,
+});
