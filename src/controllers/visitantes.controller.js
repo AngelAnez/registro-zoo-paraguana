@@ -1,4 +1,3 @@
-import { dateStyleYMD } from "../libs/date.js";
 import { pool } from "../db.js";
 
 export const getVisitantes = (req, res) => {
@@ -38,7 +37,6 @@ export const addNewVisit = async (req, res) => {
     totalBolivars,
     representativeName,
     representativePhone,
-    date
   } = req.body;
 
   let formData = {
@@ -53,7 +51,6 @@ export const addNewVisit = async (req, res) => {
     totalBolivars: +(totalBolivars.replace(" Bs.", "")),
     representativeName: representativeName != "" ? representativeName : "Sin Asignar",
     representativePhone: representativePhone != "" ? representativePhone : "+580000000000",
-    date: dateStyleYMD(date)
   }
   
   try {
@@ -72,8 +69,8 @@ export const addNewVisit = async (req, res) => {
     const paymentMethodQuery = await pool.query(`SELECT _id FROM paymentMethod WHERE method="${formData.paymentMethod}"`)
     const paymentId = paymentMethodQuery[0][0]._id
 
-    await pool.query(`INSERT INTO visits (kids_id, adults_id, elders_id, totalFamily, totalDolars, totalBolivars, paymentMethod_id, paymentInfo, representativeName, representativePhone, date, time) VALUES
-    (${kidsId},${adultsId},${eldersId},${+formData.totalFamily},${formData.totalDolars},${formData.totalBolivars},${paymentId},"${formData.extraInfoPayment}","${formData.representativeName}","${formData.representativePhone}","${formData.date}","${formData.time}");`)
+    await pool.query(`INSERT INTO visits (kids_id, adults_id, elders_id, totalFamily, totalDolars, totalBolivars, paymentMethod_id, paymentInfo, representativeName, representativePhone) VALUES
+    (${kidsId},${adultsId},${eldersId},${+formData.totalFamily},${formData.totalDolars},${formData.totalBolivars},${paymentId},"${formData.extraInfoPayment}","${formData.representativeName}","${formData.representativePhone}");`)
 
   } catch (error) {
     res.status(500).json({message: error.message})

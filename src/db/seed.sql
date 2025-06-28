@@ -70,13 +70,16 @@ CREATE TABLE
         paymentInfo VARCHAR(255) NOT NULL,
         representativeName VARCHAR(100) NOT NULL,
         representativePhone VARCHAR(20) NOT NULL,
-        date VARCHAR(10) NOT NULL,
-        time VARCHAR(10) NOT NULL,
+        date_time DATETIME,
         FOREIGN KEY (paymentMethod_id) REFERENCES paymentMethod (_id),
         FOREIGN KEY (kids_id) REFERENCES kids (_id),
         FOREIGN KEY (adults_id) REFERENCES adults (_id),
         FOREIGN KEY (elders_id) REFERENCES elders (_id)
     );
+
+CREATE TRIGGER IF NOT EXISTS visits_timezone_venezuela BEFORE INSERT ON visits FOR EACH ROW
+SET
+    NEW.date_time = CONVERT_TZ (NOW (), 'UTC', 'America/Caracas');
 
 CREATE TABLE
     IF NOT EXISTS configs (
@@ -105,6 +108,6 @@ CREATE TABLE
         date_time DATETIME
     );
 
-CREATE TRIGGER datetime_tmz_to_venezuela BEFORE INSERT ON news FOR EACH ROW
+CREATE TRIGGER IF NOT EXISTS datetime_tmz_to_venezuela BEFORE INSERT ON news FOR EACH ROW
 SET
     NEW.date_time = CONVERT_TZ (NOW (), 'UTC', 'America/Caracas');

@@ -19,7 +19,7 @@ export const renderHistorial = async (req, res, alert) => {
     let sort = ""; // Puede ser cualquier propiedad de las visitas
     let order = ""; // Puede ser asc o dec
     let searchFilter = "";
-    let query = `SELECT *, DATE_FORMAT(date, '%d/%m/%Y') AS dateStyled, TIME_FORMAT(time, "%h:%i %p") AS timeStyled, visits._id AS visit_id, kids._id AS kids_id, adults._id AS adults_id, elders._id AS elders_id FROM visits INNER JOIN paymentMethod ON visits.paymentMethod_id=paymentMethod._id
+    let query = `SELECT *, DATE_FORMAT(date_time, '%h:%i %p') as time, DATE_FORMAT(date_time, '%d/%m/%Y') as date, visits._id AS visit_id, kids._id AS kids_id, adults._id AS adults_id, elders._id AS elders_id FROM visits INNER JOIN paymentMethod ON visits.paymentMethod_id=paymentMethod._id
     INNER JOIN elders ON visits.elders_id=elders._id
     INNER JOIN adults ON visits.adults_id=adults._id
     INNER JOIN kids ON visits.kids_id=kids._id
@@ -35,8 +35,8 @@ export const renderHistorial = async (req, res, alert) => {
       visits.paymentInfo LIKE '%${searchFilter}%' OR
       visits.representativeName LIKE '%${searchFilter}%' OR
       visits.representativePhone LIKE '%${searchFilter}%' OR
-      DATE_FORMAT(visits.date, '%d/%m/%Y') LIKE '%${searchFilter}%' OR
-      TIME_FORMAT(visits.time, "%h:%i %p") LIKE '%${searchFilter}%' OR
+      DATE_FORMAT(date_time, '%d/%m/%Y') LIKE '%${searchFilter}%' OR
+      DATE_FORMAT(date_time, "%h:%i %p") LIKE '%${searchFilter}%' OR
       paymentMethod.method LIKE '%${searchFilter}%' OR
       paymentMethod.extraInfoTitle LIKE '%${searchFilter}%' OR
       kids.boys LIKE '%${searchFilter}%' OR
@@ -50,7 +50,7 @@ export const renderHistorial = async (req, res, alert) => {
       elders.elderMen LIKE '%${searchFilter}%' OR
       elders.elderWomen LIKE '%${searchFilter}%' OR
       elders.totalElders LIKE '%${searchFilter}%'`;
-      query += whereQuery + " GROUP BY visits.date;";
+      query += whereQuery;
     }
 
     const totalVisitsQuery = await pool.query(query);
@@ -77,9 +77,9 @@ export const renderHistorial = async (req, res, alert) => {
         table = "visits";
       }
       if (sort == "date") {
-        query += ` ORDER BY ${table}.${sort} ${order.toUpperCase()}, time DESC`;
+        query += `  ORDER BY DATE(visits.date_time) ${order.toUpperCase()}`;
       } else {
-        query += ` ORDER BY ${table}.${sort} ${order.toUpperCase()}, date DESC`;
+        query += ` ORDER BY TIME(visits.date_time) ${order.toUpperCase()}`;
       }
     } else {
       query += " ORDER BY visits._id DESC";

@@ -23,7 +23,7 @@ export const renderEstadisticas = async (req, res, startDate, endDate) => {
     INNER JOIN kids ON visits.kids_id=kids._id
     INNER JOIN adults ON visits.adults_id=adults._id
     INNER JOIN elders ON visits.elders_id=elders._id
-    WHERE date BETWEEN '${startDate}' AND '${endDate}'`);
+    WHERE DATE(date_time) BETWEEN '${startDate}' AND '${endDate}'`);
 
     const data = dataQuery[0];
 
