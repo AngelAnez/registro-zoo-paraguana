@@ -142,16 +142,16 @@
           <tr
             class="user-select-none"
           >
-            <td><%= element.dateStyled %></td>
-            <td><%= element.timeStyled %></td>
+            <td><%= element.date %></td>
+            <td><%= element.time %></td>
             <td><%= element.subject %></td>
             <td>
               <a class="btn btn-link p-0" data-bs-toggle="tooltip"  data-bs-placement="top" data-bs-title="Ver los detalles de la Novedad">
-                <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#infoNewModal" data-bs-_id="<%=element._id%>" data-bs-date="<%= element.dateStyled %>" data-bs-time="<%= element.timeStyled %>" data-bs-subject="<%= element.subject %>" data-bs-body="<%= element.body %>" data-bs-author="<%= element.author %>" data-bs-action="view" data-lucide="eye" alt="eye-icon"></i>
+                <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#infoNewModal" data-bs-_id="<%=element._id%>" data-bs-date="<%= element.date %>" data-bs-time="<%= element.time %>" data-bs-subject="<%= element.subject %>" data-bs-body="<%= element.body %>" data-bs-author="<%= element.author %>" data-bs-action="view" data-lucide="eye" alt="eye-icon"></i>
               </a>
             <% if (admin) { %>
                 <a class="btn btn-link p-0" data-bs-toggle="tooltip"  data-bs-placement="top" data-bs-title="Modificar Novedad">
-                  <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#infoNewModal" data-bs-_id="<%=element._id%>" data-bs-date="<%= element.dateStyled %>" data-bs-time="<%= element.timeStyled %>" data-bs-subject="<%= element.subject %>" data-bs-body="<%= element.body %>" data-bs-author="<%= element.author %>" data-bs-action="modify" data-lucide="pencil" alt="modify-icon"></i>
+                  <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#infoNewModal" data-bs-_id="<%=element._id%>" data-bs-date="<%= element.date %>" data-bs-time="<%= element.time %>" data-bs-subject="<%= element.subject %>" data-bs-body="<%= element.body %>" data-bs-author="<%= element.author %>" data-bs-action="modify" data-lucide="pencil" alt="modify-icon"></i>
                 </a>
                 <a class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Eliminar Novedad">
                   <i class="text-dark opacityHover" data-bs-toggle="modal" data-bs-target="#deleteNewModal" data-bs-_id="<%=element._id%>" data-bs-action="delete" data-lucide="trash-2" alt="delete-icon"></i>

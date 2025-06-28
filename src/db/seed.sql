@@ -87,13 +87,12 @@ CREATE TABLE
         adultsPrice VARCHAR(10) NOT NULL
     );
 
-INSERT IGNORE INTO
-    configs (
-        internetDolar,
-        defaultDolar,
-        kidsPrice,
-        adultsPrice
-    )
+INSERT IGNORE INTO configs (
+    internetDolar,
+    defaultDolar,
+    kidsPrice,
+    adultsPrice
+)
 VALUES
     ("on", "36.50", "1.50", "2");
 
@@ -103,6 +102,9 @@ CREATE TABLE
         subject VARCHAR(60) NOT NULL,
         body VARCHAR(255) NOT NULL,
         author VARCHAR(60) NOT NULL,
-        date VARCHAR(10) NOT NULL,
-        time VARCHAR(10) NOT NULL
+        date_time DATETIME
     );
+
+CREATE TRIGGER datetime_tmz_to_venezuela BEFORE INSERT ON news FOR EACH ROW
+SET
+    NEW.date_time = CONVERT_TZ (NOW (), 'UTC', 'America/Caracas');
