@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node src/app.js",
-    "dev": "nodemon src/app.js"
+    "dev": "node --watch src/app.js"
   },
   "keywords": [
     "Registro",
@@ -26,8 +26,5 @@
     "mysql2": "^3.9.8",
     "pdfkit": "^0.15.0",
     "pdfkit-table": "^0.1.99"
-  },
-  "devDependencies": {
-    "nodemon": "^3.0.1"
   }
 }
