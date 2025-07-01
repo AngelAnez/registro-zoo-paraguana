@@ -11,12 +11,16 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <title><%= title %></title>
     <link rel="icon" type="image/png" href="./public/assets/img/zoo-icon.png" />
-    <% if (css) { %> 
+    <% if (css) { %>
     <link href="./public/styles/<%=css%>" rel="stylesheet" type="text/css" />
     <% } %>
-    <link href="./public/styles/generalStyles.css" rel="stylesheet" type="text/css">
-    <link href="./public/styles/sidebar.css" rel="stylesheet" type="text/css">
-    <link href="./public/styles/header.css" rel="stylesheet" type="text/css">
+    <link
+      href="./public/styles/generalStyles.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="./public/styles/sidebar.css" rel="stylesheet" type="text/css" />
+    <link href="./public/styles/header.css" rel="stylesheet" type="text/css" />
     <link
       href="./public/plugins/bootstrap/css/bootstrap.css"
       rel="stylesheet"
@@ -24,9 +28,8 @@
     />
     <% if (js) { %>
     <script defer src="./public/js/<%=js%>"></script>
-    <% } %>
-    <% if (header) { %>
+    <% } %> <% if (header) { %>
     <script defer src="./public/js/header.js"></script>
     <% } %>
   </head>
-</html>
+  <body class="min-vh-100">

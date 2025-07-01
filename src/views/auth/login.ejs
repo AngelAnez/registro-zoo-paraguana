@@ -1,0 +1,25 @@
+<%- include('layout-head', {title : "Login", js :"login.js"} ); %>
+<article class="dark-container">
+  <section class="form-container">
+    <form class="auth-form" method="post" action="/login">
+      <h4 class="auth-form-title">Inicio de Sesión</h4>
+
+      <%- include('partials/input-text', {label : "Nombre de Usuario",
+      id:"usernameLogin", name: 'username', formType: "Login"} ); %>
+      <%-include('partials/input-password', {label : "Contraseña", id
+      :"passwordLogin", name: 'password', formType: "Login"} ); %>
+      <div
+        id="invalidUserText"
+        class="<% if (invalidUser) { %> is-invalid <% } %>"
+        aria-describedby="validationLoginFeedback"
+      ></div>
+      <button class="btn btn-success mt-4 mb-2 py-2" type="submit">
+        Iniciar Sesión
+      </button>
+      <span class="user-select-none my-2 text-center">
+        ¿No tienes una cuenta? <a href="/register">Regístrate</a>
+      </span>
+    </form>
+  </section>
+</article>
+<%- include('layout-foot', {messageAlert, typeAlert, showAlert} ); %>

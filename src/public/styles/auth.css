@@ -1,0 +1,31 @@
+.dark-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.315);
+}
+
+.form-container {
+    background-color: rgb(248, 249, 250);
+    margin-right: 1rem;
+    margin-left: 1rem;
+    width: 100%;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    border-radius: 0.375rem;
+    min-width: 200px;
+    max-width: 400px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem;
+}
+
+.auth-form-title {
+    font-size: 1.5rem;
+    padding: 0.375rem 0rem;
+    user-select: none;
+}

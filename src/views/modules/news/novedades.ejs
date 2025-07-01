@@ -1,0 +1,464 @@
+<%- include('partials/general/head', {title : "Novedades", css : "", js :
+"novedades.js", header: true}); %>
+<body class="d-flex bg-body-secondary">
+  <!-- Menu Lateral y Main-->
+  <%- include('partials/nav/sidebar'); %>
+  <main
+    class="container-fluid row d-flex flex-column p-0 m-0 gap-3 vh-100 w-100"
+  >
+    <!-- Encabezado -->
+    <%- include('partials/nav/header'); %>
+
+    <nav class="navbar m-0 user-select-none">
+      <section class="container-fluid d-flex justify-content-around">
+        <a
+          class="btn btn-primary fw-semibold fs-5 rounded-4"
+          data-bs-toggle="modal"
+          data-bs-target="#infoNewModal"
+          data-bs-action="create"
+          data-bs-user="<%=username%>"
+          >Agregar Novedad</a
+        >
+        <form
+          class="d-flex col-9 align-items-center justify-content-center gap-4"
+          role="search"
+        >
+          <section
+            class="col-9 bg-light-subtle rounded-4 shadow py-2 d-flex justify-content-evenly align-items-center"
+          >
+            <h6 class="m-0">Buscar Novedad:</h6>
+            <section class="col-8">
+              <input
+                class="form-control"
+                type="search"
+                aria-label="Search"
+                name="filter"
+                value="<%=searchFilter%>"
+                autocomplete="off"
+                title="Ingrese una palabra clave para realizar una búsqueda"
+              />
+            </section>
+          </section>
+
+          <button
+            class="btn btn-success shadow"
+            type="submit"
+            title="Filtra las novedades según la palabra clave ingresada"
+          >
+            Buscar
+          </button>
+          <a
+            class="btn btn-secondary shadow"
+            href="/novedades"
+            title="Elimina los filtros y muestra todas las novedades"
+            >Limpiar</a
+          >
+        </form>
+      </section>
+    </nav>
+
+    <section class="container py-2 px-4 table-responsive">
+      <table
+        class="table text-center table-hover table-sm table-rounded rounded-2 overflow-hidden shadow border"
+      >
+        <thead class="table-primary">
+          <tr class="user-select-none">
+            <% if (searchFilter != "") { %> <% searchFilter = "&filter=" +
+            searchFilter %> <% } %> <% if (sort == "date" && order == "asc"){ %>
+            <th scope="col">
+              <a
+                href="/novedades?pag=<%=pag%>&sort=date&order=desc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Fecha de la Novedad (Orden Ascendente)"
+                >Fecha &uarr;</a
+              >
+            </th>
+            <% } else if (sort == "date" && order == "desc"){%>
+            <th scope="col">
+              <a
+                href="/novedades?pag=<%=pag%>&sort=date&order=asc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Fecha de la Novedad (Orden Descendente)"
+                >Fecha &darr;</a
+              >
+            </th>
+            <% } else {%>
+            <th scope="col">
+              <a
+                href="/novedades?pag=<%=pag%>&sort=date&order=asc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Fecha de la Novedad"
+                >Fecha</a
+              >
+            </th>
+            <% } %> <% if (sort == "time" && order == "asc"){ %>
+            <th scope="col">
+              <a
+                href="/novedades?pag=<%=pag%>&sort=time&order=desc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Hora de la Novedad (Orden Ascendente)"
+                >Hora &uarr;</a
+              >
+            </th>
+            <% } else if (sort == "time" && order == "desc") { %>
+            <th scope="col">
+              <a
+                href="/novedades?pag=<%=pag%>&sort=time&order=asc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Hora de la Novedad (Orden Descendente)"
+                >Hora &darr;</a
+              >
+            </th>
+            <% } else { %>
+            <th scope="col">
+              <a
+                href="/novedades?pag=<%=pag%>&sort=time&order=asc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Hora de la Novedad"
+                >Hora</a
+              >
+            </th>
+            <% } %> <% if (sort == "subject" && order == "asc"){ %>
+            <th scope="col" class="col-8">
+              <a
+                href="/novedades?pag=<%=pag%>&sort=subject&order=desc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Asunto o Título de la Novedad (Orden Ascendente)"
+                >Asunto &uarr;</a
+              >
+            </th>
+            <% } else if (sort == "subject" && order == "desc"){ %>
+            <th scope="col" class="col-8">
+              <a
+                href="/novedades?pag=<%=pag%>&sort=subject&order=asc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Asunto o Título de la Novedad (Orden Descendente)"
+                >Asunto &darr;</a
+              >
+            </th>
+            <% } else { %>
+            <th scope="col" class="col-8">
+              <a
+                href="/novedades?pag=<%=pag%>&sort=subject&order=asc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Asunto o Título de la Novedad"
+                >Asunto</a
+              >
+            </th>
+            <% } %>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% news.forEach(element => { %>
+          <tr class="user-select-none">
+            <td><%= element.date %></td>
+            <td><%= element.time %></td>
+            <td><%= element.subject %></td>
+            <td>
+              <a
+                class="btn btn-link p-0"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Ver los detalles de la Novedad"
+              >
+                <i
+                  class="text-dark opacityHover"
+                  data-bs-toggle="modal"
+                  data-bs-target="#infoNewModal"
+                  data-bs-_id="<%=element._id%>"
+                  data-bs-date="<%= element.date %>"
+                  data-bs-time="<%= element.time %>"
+                  data-bs-subject="<%= element.subject %>"
+                  data-bs-body="<%= element.body %>"
+                  data-bs-author="<%= element.author %>"
+                  data-bs-action="view"
+                  data-lucide="eye"
+                  alt="eye-icon"
+                ></i>
+              </a>
+              <% if (admin) { %>
+              <a
+                class="btn btn-link p-0"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Modificar Novedad"
+              >
+                <i
+                  class="text-dark opacityHover"
+                  data-bs-toggle="modal"
+                  data-bs-target="#infoNewModal"
+                  data-bs-_id="<%=element._id%>"
+                  data-bs-date="<%= element.date %>"
+                  data-bs-time="<%= element.time %>"
+                  data-bs-subject="<%= element.subject %>"
+                  data-bs-body="<%= element.body %>"
+                  data-bs-author="<%= element.author %>"
+                  data-bs-action="modify"
+                  data-lucide="pencil"
+                  alt="modify-icon"
+                ></i>
+              </a>
+              <a
+                class="btn btn-link p-0"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Eliminar Novedad"
+              >
+                <i
+                  class="text-dark opacityHover"
+                  data-bs-toggle="modal"
+                  data-bs-target="#deleteNewModal"
+                  data-bs-_id="<%=element._id%>"
+                  data-bs-action="delete"
+                  data-lucide="trash-2"
+                  alt="delete-icon"
+                ></i>
+              </a>
+              <% } %>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </section>
+
+    <% if (pag == 1){ %> <% prevPag = 1 %> <% } else { %> <% prevPag = pag-1 %>
+    <% } %> <% if (sort != "" && order != "") { %> <% sortQueries = "&sort=" +
+    sort + "&order=" + order %> <% } else { %> <% sortQueries = "" %> <% } %>
+    <ul class="pagination d-flex justify-content-center">
+      <% finalPage = Math.ceil(total / 8 )%> <% if (finalPage > 1) { %>
+      <li class="page-item">
+        <a
+          class="page-link"
+          href="/novedades?pag=<%=prevPag%><%=sortQueries%><%=searchFilter%>"
+          aria-label="Previous"
+        >
+          <span aria-hidden="true" class="text-primary fw-bold user-select-none"
+            >Anterior</span
+          >
+        </a>
+      </li>
+      <li class="page-item">
+        <a
+          class="page-link user-select-none <% if (pag == 1) { %> text-bg-primary <% } else { %> text-primary <% } %> fw-bold"
+          href="/novedades?pag=1<%=sortQueries%><%=searchFilter%>"
+          >1
+        </a>
+      </li>
+      <% } %> <% if (pag - 5 > 2) { %>
+      <li class="page-item">
+        <a class="page-link user-select-none text-primary fw-bold">... </a>
+      </li>
+      <% } %> <% for (let p = -5; p < 6 ; p++) { %> <% if (pag + p > 1 && pag +
+      p < finalPage) {%>
+      <li class="page-item">
+        <a
+          class="page-link user-select-none <% if (pag == pag+p) { %> text-bg-primary <% } else { %> text-primary <% } %> fw-bold"
+          href="/novedades?pag=<%=pag+p%><%=sortQueries%><%=searchFilter%>"
+          ><%= pag+p %>
+        </a>
+      </li>
+      <% } } %> <% if (pag == finalPage){ %> <% nextPage = finalPage %> <% }
+      else { %> <% nextPage = pag + 1 %> <% } %> <% if (finalPage > pag + 6 &&
+      finalPage != 1 ) { %>
+      <li class="page-item">
+        <a class="page-link user-select-none text-primary fw-bold">... </a>
+      </li>
+      <% } %> <% if (finalPage > 1) { %>
+      <li class="page-item">
+        <a
+          class="page-link user-select-none <% if (pag == finalPage) { %> text-bg-primary <% } else { %> text-primary <% } %> fw-bold"
+          href="/novedades?pag=<%=finalPage%><%=sortQueries%><%=searchFilter%>"
+          ><%=finalPage%>
+        </a>
+      </li>
+
+      <li class="page-item">
+        <a
+          class="page-link"
+          href="/novedades?pag=<%=nextPage%><%=sortQueries%><%=searchFilter%>"
+          aria-label="Next"
+        >
+          <span aria-hidden="true" class="text-primary fw-bold user-select-none"
+            >Siguiente</span
+          >
+        </a>
+      </li>
+      <% } %>
+    </ul>
+
+    <article
+      class="modal fade"
+      id="infoNewModal"
+      tabindex="-1"
+      aria-hidden="true"
+      data-bs-backdrop="static"
+    >
+      <form method="post" class="modal-dialog modal-dialog-centered">
+        <section class="modal-content">
+          <header class="modal-header text-bg-primary user-select-none">
+            <h1 id="modalTitle" class="modal-title fs-5"></h1>
+            <a
+              class="btn text-light p-0 opacityHover"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <i data-lucide="x" alt="close-icon"></i>
+            </a>
+          </header>
+          <section class="modal-body d-flex flex-column gap-3 mb-2">
+            <div class="d-flex flex-column align-items-start gap-2">
+              <figure class="m-0 col-9 d-flex gap-2 align-items-center">
+                <img
+                  class="col-1"
+                  src="./public/assets/img/author.png"
+                  alt="authorIcon"
+                />
+                <label for="authorNewValue" class="fw-bold">Autor:</label>
+              </figure>
+              <input
+                type="text"
+                readonly
+                id="authorNewValue"
+                class="form-control w-100 m-0"
+                value=""
+                name="author"
+                maxlength="45"
+              />
+            </div>
+            <div class="d-flex flex-column align-items-start gap-2">
+              <figure class="m-0 col-9 d-flex gap-2 align-items-center">
+                <img
+                  class="col-1"
+                  src="./public/assets/img/subject.png"
+                  alt="subjectIcon"
+                />
+                <label for="subjectNewValue" class="fw-bold">Asunto:</label>
+              </figure>
+              <input
+                type="text"
+                id="subjectNewValue"
+                class="form-control w-100 m-0"
+                value=""
+                name="subject"
+                maxlength="60"
+                autocomplete="off"
+              />
+            </div>
+            <div class="d-flex flex-column align-items-start gap-2">
+              <figure class="m-0 col-9 d-flex gap-2 align-items-center">
+                <img
+                  class="col-1"
+                  src="./public/assets/img/message.png"
+                  alt="messageIcon"
+                />
+                <label for="bodyNewValue" class="fw-bold">Mensaje:</label>
+              </figure>
+              <textarea
+                id="bodyNewValue"
+                class="form-control w-100 m-0"
+                style="resize: none"
+                rows="5"
+                name="body"
+                maxlength="255"
+              ></textarea>
+            </div>
+          </section>
+          <footer
+            id="footerNewModal"
+            class="modal-footer container-fluid pb-3 p-0 d-flex justify-content-around user-select-none border-0"
+          >
+            <a
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              >Cancelar</a
+            >
+            <button class="btn btn-primary" type="submit">
+              Guardar Cambios
+            </button>
+          </footer>
+        </section>
+        <input
+          type="number"
+          name="_id"
+          id="_idNewValue"
+          class="visually-hidden"
+        />
+        <div id="actionConfirm"></div>
+      </form>
+    </article>
+
+    <article
+      class="modal fade"
+      id="deleteNewModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <section class="modal-dialog modal-dialog-centered">
+        <section class="modal-content">
+          <header class="modal-header text-bg-danger user-select-none">
+            <h1 class="modal-title fs-5">Eliminar Novedad</h1>
+            <button
+              class="btn text-light p-0 opacityHover"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <i data-lucide="x" alt="close-icon"></i>
+            </button>
+          </header>
+          <form method="post">
+            <section
+              class="modal-body d-flex flex-column gap-2 py-3 px-3 user-select-none"
+            >
+              <p class="text-center">
+                ¿Está seguro que desea eliminar esta Novedad?
+              </p>
+              <section class="d-flex justify-content-around mb-2">
+                <a
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                  >Cancelar</a
+                >
+                <input
+                  id="_idNewValueDelete"
+                  type="text"
+                  class="d-none"
+                  name="_id"
+                  value=""
+                />
+                <input
+                  type="text"
+                  class="d-none"
+                  name="deleteNew"
+                  value="true"
+                />
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+              </section>
+            </section>
+          </form>
+        </section>
+      </section>
+    </article>
+  </main>
+  <%- include('partials/general/foot', {messageAlert, typeAlert, showAlert}); %>

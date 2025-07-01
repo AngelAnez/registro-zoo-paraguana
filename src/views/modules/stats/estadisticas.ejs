@@ -1,11 +1,11 @@
-<%- include('partials/head', {title : "Estadísticas", css :
+<%- include('partials/general/head', {title : "Estadísticas", css :
 "estadisticas.css", js : "estadisticas.js", header: true}); %>
 <body class="d-flex bg-body-secondary">
   <!-- Menu Lateral y Main-->
-  <%- include('partials/sidebar'); %>
+  <%- include('partials/nav/sidebar'); %>
   <main class="container-fluid d-flex flex-column gap-2 p-0 m-0 vh-100">
     <!-- Encabezado -->
-    <%- include('partials/header'); %>
+    <%- include('partials/nav/header'); %>
 
     <article class="container-fluid user-select-none">
       <section class="row mb-2 d-flex justify-content-around">
@@ -93,5 +93,5 @@
     </article>
   </main>
   <script src="./public/plugins/chartjs/chart.min.js"></script>
-  <%- include('partials/scripts')%> <%- include('partials/foot'); %>
+<%- include('partials/general/foot', {messageAlert: '', typeAlert: '', showAlert: false}); %>
 </body>

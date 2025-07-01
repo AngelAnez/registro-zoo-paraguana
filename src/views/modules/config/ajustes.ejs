@@ -1,0 +1,128 @@
+<%- include('partials/general/head', {title : "Ajustes", css
+:"registro_visitantes.css", js : "", header: true}); %>
+<body class="d-flex bg-body-secondary">
+  <!-- Menu Lateral y Main-->
+  <%- include('partials/nav/sidebar'); %>
+  <main class="container-fluid row d-flex p-0 m-0 align-items-start vh-100">
+    <!-- Encabezado -->
+    <%- include('partials/nav/header'); %>
+
+    <article
+      class="d-flex flex-column justify-content-center align-items-center bg-white rounded-4 w-75 mx-auto p-0 shadow"
+    >
+      <section
+        class="border-bottom w-100 text-center text-bg-success rounded-top-3 py-1"
+      >
+        <h3 class="user-select-none">Ajustes Generales</h3>
+      </section>
+      <form class="w-100" method="post">
+        <section
+          class="d-flex flex-column justify-content-center align-items-center w-100"
+        >
+          <ul class="w-100 p-2 d-flex flex-column gap-1">
+            <li class="container row">
+              <section class="offset-1 col-6 p-0 fw-bold my-2 user-select-none">
+                <label for="internetDolarValue"
+                  >Buscar el valor del dólar en el BCV</label
+                >
+              </section>
+              <section class="col-5 my-2 px-2">
+                <input class="form-check m-0" type="checkbox"
+                name="internetDolar" id="internetDolar" <% if (internetDolar ==
+                "on") { %> checked <% } %> >
+                <sub class="user-select-none lh-base"
+                  >Determina si se desea buscar por internet la tasa actual del
+                  dolar en el BCV</sub
+                >
+              </section>
+            </li>
+            <li class="container row">
+              <section class="offset-1 col-6 p-0 fw-bold my-2 user-select-none">
+                <label for="defaultDolar">Valor del dólar</label>
+              </section>
+              <section class="col-5 my-2 px-2 d-flex flex-column gap-2">
+                <div class="w-75 position-relative">
+                  <input
+                    class="form-control py-0 pe-0 d-inline w-75 text-dark ps-2 ps-1"
+                    type="number"
+                    min="1"
+                    step="any"
+                    required
+                    name="defaultDolar"
+                    id="defaultDolar"
+                    value="<%=defaultDolar%>"
+                  />
+                  <span class="position-absolute end-25 ms-1 user-select-none"
+                    >Bs.</span
+                  >
+                </div>
+                <sub class="user-select-none lh-base"
+                  >Valor del dólar en bolívares que toma el sistema por
+                  defecto</sub
+                >
+              </section>
+            </li>
+            <% if (admin) { %>
+            <li class="container row">
+              <section class="offset-1 col-6 p-0 fw-bold my-2 user-select-none">
+                <label for="kidsPrice">Entrada de Niños y Niñas</label>
+              </section>
+              <section
+                class="col-5 my-2 px-2 d-flex flex-column gap-2 position-relative"
+              >
+                <div class="w-75 position-relative">
+                  <input
+                    class="form-control py-0 pe-0 d-inline w-75 text-dark ps-2"
+                    type="number"
+                    min="1"
+                    step="any"
+                    required
+                    name="kidsPrice"
+                    id="kidsPrice"
+                    value="<%=kidsPrice%>"
+                  />
+                  <span class="position-absolute end-25 ms-1 user-select-none"
+                    >$</span
+                  >
+                </div>
+                <sub class="user-select-none lh-base"
+                  >Valor de la entrada de cada niño en dólares</sub
+                >
+              </section>
+            </li>
+            <li class="container row">
+              <section class="offset-1 col-6 p-0 fw-bold my-2 user-select-none">
+                <label for="adultsPrice">Entrada de Adultos</label>
+              </section>
+              <section
+                class="col-5 my-2 px-2 d-flex flex-column gap-2 position-relative"
+              >
+                <div class="w-75 position-relative">
+                  <input
+                    class="form-control py-0 pe-0 d-inline w-75 text-dark ps-2"
+                    type="number"
+                    min="1"
+                    step="any"
+                    required
+                    name="adultsPrice"
+                    id="adultsPrice"
+                    value="<%=adultsPrice%>"
+                  />
+                  <span class="position-absolute end-25 ms-1 user-select-none"
+                    >$</span
+                  >
+                </div>
+                <sub class="user-select-none lh-base"
+                  >Valor de la entrada de cada adulto en dólares</sub
+                >
+              </section>
+            </li>
+            <% } %>
+          </ul>
+          <button class="btn btn-success mb-3">Guardar Cambios</button>
+        </section>
+      </form>
+    </article>
+  </main>
+
+  <%- include('partials/general/foot', {messageAlert, typeAlert, showAlert}); %>

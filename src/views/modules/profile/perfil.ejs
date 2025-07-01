@@ -1,10 +1,10 @@
-<%- include('partials/head', {title: "Perfil", css : "perfil.css",
+<%- include('partials/general/head', {title: "Perfil", css : "perfil.css",
 js : "perfil.js", header: true}); %>
 <body class="d-flex bg-body-secondary">
   <!-- Menu Lateral y Main-->
-  <%- include('partials/sidebar'); %>
+  <%- include('partials/nav/sidebar'); %>
   <main class="container-fluid row d-flex p-0 m-0 align-items-start vh-100">
-    <%- include('partials/header'); %>
+    <%- include('partials/nav/header'); %>
     <article class="d-flex flex-column justify-content-center align-items-center bg-white rounded-4 w-50 mx-auto p-0 shadow">
       <section class="p-4 w-100 user-select-none">
         <form method="post" class="d-flex flex-column align-items-center gap-4 w-100">
@@ -81,7 +81,7 @@ js : "perfil.js", header: true}); %>
 </article>
 
   </main>
-  <%- include('partials/alert', {messageAlert, typeAlert}); %> 
-  <%- include('partials/scripts') %> 
-  <%- include('partials/alertScript.ejs', {showAlert})%>
-<%- include('partials/foot.ejs') %>
+  <%- include('partials/general/alert', {messageAlert, typeAlert}); %> 
+  
+  <%- include('partials/general/alertScript.ejs', {showAlert})%>
+<%- include('partials/general/foot.ejs') %>

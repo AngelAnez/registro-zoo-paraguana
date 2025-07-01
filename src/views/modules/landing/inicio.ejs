@@ -1,11 +1,11 @@
-<%- include('partials/head', {title : "Inicio", css : "inicio.css",
+<%- include('partials/general/head', {title : "Inicio", css : "inicio.css",
 js : "", header : true}); %>
 <body class="d-flex bg-body-secondary">
   <!-- Menu Lateral y Main-->
-  <%- include('partials/sidebar'); %>
+  <%- include('partials/nav/sidebar'); %>
   <main class="container-fluid d-flex flex-column p-0 m-0 vh-100">
     <!-- Encabezado -->
-    <%- include('partials/header'); %>
+    <%- include('partials/nav/header'); %>
 
     <article class="d-flex flex-column justify-content-around mainArticle position-relative text-white align-items-center user-select-none" style="flex: 1;">
       <header class="d-flex flex-column align-items-center justify-content-center rounded-5 text-center z-1 w-100 mx-auto mt-4 px-md-5" style="z-index: 0; max-width: 900px; flex: 3;">
@@ -25,5 +25,5 @@ js : "", header : true}); %>
     </article>
     
   </main>
-  <%- include('partials/scripts')%> <%- include('partials/foot') %>
+<%- include('partials/general/foot') %>
 </body>

@@ -1,26 +1,26 @@
-.menu-header{
+.menu-header {
     user-select: none;
 }
 
-.menu-header img{
+.menu-header img {
     pointer-events: none;
     height: 8vh;
 }
 
-.menu-header h5{
+.menu-header h5 {
     font-size: 1.3rem;
 }
 
-.menu-list{
+.menu-list {
     list-style: none;
     padding: 0;
     margin-top: 0.5rem;
     user-select: none;
 }
 
-.options-menu{
-    padding: 0.7rem 0rem 0.7rem 0rem; 
-    display: flex; 
+.options-menu {
+    padding: 0.7rem 0rem 0.7rem 0rem;
+    display: flex;
     gap: 0.8rem;
     border-radius: 20px;
     align-items: center;
@@ -29,7 +29,7 @@
     font-size: 1rem;
 }
 
-.options-menu-icon{
+.options-menu-icon {
     min-width: 32px;
     min-height: 32px;
     pointer-events: none;
@@ -37,7 +37,7 @@
     color: white;
 }
 
-.social-media{
+.social-media {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
@@ -50,30 +50,33 @@
     height: 100%;
 }
 
-.social-media-img{
+.social-media-img {
     min-width: 32px;
     min-height: 32px;
-    cursor: pointer; /* Cambia el cursor a una mano señalando */
+    cursor: pointer;
     transition: 0.3s;
     color: white;
     flex: 1;
 }
 
-.social-media-img:hover{
-   opacity: 70%;
+.social-media-img:hover {
+    opacity: 70%;
 }
 
-@media (max-width: 800px){
-    .social-media{
+@media (max-width: 800px) {
+    .social-media {
         padding: 10px;
     }
-    .menu-header h5{
+
+    .menu-header h5 {
         display: none;
     }
-    .options-menu{
+
+    .options-menu {
         justify-content: center;
     }
-    .options-menu span{
+
+    .options-menu span {
         display: none;
     }
 }

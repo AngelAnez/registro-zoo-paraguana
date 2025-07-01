@@ -1,0 +1,768 @@
+<%- include('partials/general/head', {title : "Historial", css : "", js :
+"historial.js", header: true}); %>
+<body class="d-flex bg-body-secondary">
+  <!-- Menu Lateral y Main-->
+  <%- include('partials/nav/sidebar'); %>
+  <main
+    class="container-fluid row d-flex flex-column p-0 m-0 gap-3 vh-100 w-100"
+  >
+    <!-- Encabezado -->
+    <%- include('partials/nav/header'); %>
+
+    <nav class="navbar m-0 user-select-none">
+      <section class="container-fluid">
+        <form
+          class="d-flex w-100 align-items-center justify-content-center gap-4"
+          role="search"
+        >
+          <section
+            class="col-8 bg-light-subtle rounded-4 shadow py-2 d-flex justify-content-evenly align-items-center"
+          >
+            <h6 class="m-0">Buscar Visita:</h6>
+            <section class="col-8">
+              <input
+                class="form-control"
+                type="search"
+                aria-label="Search"
+                name="filter"
+                value="<%=searchFilter%>"
+                autocomplete="off"
+                title="Ingrese una palabra clave para realizar una búsqueda"
+              />
+            </section>
+          </section>
+
+          <button
+            class="btn btn-success shadow"
+            type="submit"
+            title="Filtra las visitas según la palabra clave ingresada"
+          >
+            Buscar
+          </button>
+          <a
+            class="btn btn-secondary shadow"
+            href="/historial"
+            title="Elimina los filtros y muestra todas las visitas"
+            >Limpiar</a
+          >
+        </form>
+      </section>
+    </nav>
+
+    <section class="container py-2 px-4 table-responsive">
+      <table
+        class="table text-center table-hover table-sm table-rounded rounded-2 overflow-hidden shadow border"
+      >
+        <thead class="table-success">
+          <tr class="user-select-none">
+            <% if (searchFilter != "") { %> <% searchFilter = "&filter=" +
+            searchFilter %> <% } %> <% if (sort == "date" && order == "asc"){ %>
+            <th scope="col">
+              <a
+                href="/historial?pag=<%=pag%>&sort=date&order=desc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Fecha de cada Visita (Orden Ascendente)"
+                >Fecha &uarr;</a
+              >
+            </th>
+            <% } else if (sort == "date" && order == "desc"){ %>
+            <th scope="col">
+              <a
+                href="/historial?pag=<%=pag%>&sort=date&order=asc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Fecha de cada Visita (Orden Descendente)"
+                >Fecha &darr;</a
+              >
+            </th>
+            <% } else { %>
+            <th scope="col">
+              <a
+                href="/historial?pag=<%=pag%>&sort=date&order=asc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Fecha de cada Visita"
+                >Fecha</a
+              >
+            </th>
+            <% } %> <% if (sort == "time" && order == "asc"){ %>
+            <th scope="col">
+              <a
+                href="/historial?pag=<%=pag%>&sort=time&order=desc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Hora de Llegada de cada Visita (Orden Ascendente)"
+                >Hora &uarr;
+              </a>
+            </th>
+            <% } else if (sort == "time" && order == "desc"){ %>
+            <th scope="col">
+              <a
+                href="/historial?pag=<%=pag%>&sort=time&order=asc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Hora de Llegada de cada Visita (Orden Descendente)"
+                >Hora &darr;</a
+              >
+            </th>
+            <% } else { %>
+            <th scope="col">
+              <a
+                href="/historial?pag=<%=pag%>&sort=time&order=asc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Hora de Llegada de cada Visita"
+                >Hora</a
+              >
+            </th>
+            <% } %> <% if (sort == "totalKids" && order == "asc"){ %>
+            <th scope="col">
+              <a
+                href="/historial?pag=<%=pag%>&sort=totalKids&order=desc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Cantidad de Niños y Niñas por Visita (Orden Ascendente)"
+                >Niños y Niñas &uarr;</a
+              >
+            </th>
+            <% } else if (sort == "totalKids" && order == "desc"){ %>
+            <th scope="col">
+              <a
+                href="/historial?pag=<%=pag%>&sort=totalKids&order=asc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Cantidad de Niños y Niñas por Visita (Orden Descendente)"
+                >Niños y Niñas &darr;</a
+              >
+            </th>
+            <% } else { %>
+            <th scope="col">
+              <a
+                href="/historial?pag=<%=pag%>&sort=totalKids&order=asc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Cantidad de Niños y Niñas por Visita"
+                >Niños y Niñas</a
+              >
+            </th>
+            <% } %> <% if (sort == "totalAdults" && order == "asc"){ %>
+            <th scope="col">
+              <a
+                href="/historial?pag=<%=pag%>&sort=totalAdults&order=desc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Cantidad de Adultos por Visita (Orden Ascendente)"
+                >Adultos &uarr;</a
+              >
+            </th>
+            <% } else if (sort == "totalAdults" && order == "desc"){ %>
+            <th scope="col">
+              <a
+                href="/historial?pag=<%=pag%>&sort=totalAdults&order=asc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Cantidad de Adultos por Visita (Orden Descendente)"
+                >Adultos &darr;</a
+              >
+            </th>
+            <% } else { %>
+            <th scope="col">
+              <a
+                href="/historial?pag=<%=pag%>&sort=totalAdults&order=asc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Cantidad de Adultos por Visita"
+                >Adultos</a
+              >
+            </th>
+            <% } %> <% if (sort == "totalElders" && order == "asc"){ %>
+            <th scope="col">
+              <a
+                href="/historial?pag=<%=pag%>&sort=totalElders&order=desc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Cantidad de Adultos Mayores por Visita (Orden Ascendente)"
+                >Adultos M. &uarr;</a
+              >
+            </th>
+            <% } else if (sort == "totalElders" && order == "desc"){ %>
+            <th scope="col">
+              <a
+                href="/historial?pag=<%=pag%>&sort=totalElders&order=asc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Cantidad de Adultos Mayores por Visita (Orden Descendente)"
+                >Adultos M. &darr;</a
+              >
+            </th>
+            <% } else { %>
+            <th scope="col">
+              <a
+                href="/historial?pag=<%=pag%>&sort=totalElders&order=asc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Cantidad de Adultos Mayores por Visita"
+                >Adultos M.</a
+              >
+            </th>
+            <% } %> <% if (sort == "method" && order == "asc"){ %>
+            <th scope="col">
+              <a
+                href="/historial?pag=<%=pag%>&sort=method&order=desc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Método de Pago Utilizado (Orden Ascendente)"
+                >Método de Pago &uarr;</a
+              >
+            </th>
+            <% } else if (sort == "method" && order == "desc"){ %>
+            <th scope="col">
+              <a
+                href="/historial?pag=<%=pag%>&sort=method&order=asc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Método de Pago Utilizado (Orden Descendente)"
+                >Método de Pago &darr;</a
+              >
+            </th>
+            <% } else { %>
+            <th scope="col">
+              <a
+                href="/historial?pag=<%=pag%>&sort=method&order=asc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Método de Pago Utilizado"
+                >Método de Pago</a
+              >
+            </th>
+            <% } %> <% if (sort == "totalBolivars" && order == "asc"){ %>
+            <th scope="col">
+              <a
+                href="/historial?pag=<%=pag%>&sort=totalBolivars&order=desc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Monto Total en Bolivares (Orden Ascendente)"
+                >Monto (Bs.) &uarr;</a
+              >
+            </th>
+            <% } else if (sort == "totalBolivars" && order == "desc"){ %>
+            <th scope="col">
+              <a
+                href="/historial?pag=<%=pag%>&sort=totalBolivars&order=asc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Monto Total en Bolivares (Orden Descendente)"
+                >Monto (Bs.) &darr;</a
+              >
+            </th>
+            <% } else { %>
+            <th scope="col">
+              <a
+                href="/historial?pag=<%=pag%>&sort=totalBolivars&order=asc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Monto Total en Bolivares"
+                >Monto (Bs.)</a
+              >
+            </th>
+            <% } %> <% if (sort == "totalDolars" && order == "asc"){ %>
+            <th scope="col">
+              <a
+                href="/historial?pag=<%=pag%>&sort=totalDolars&order=desc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Monto Total en Dólares (Orden Ascendente)"
+                >Monto ($) &uarr;</a
+              >
+            </th>
+            <% } else if (sort == "totalDolars" && order == "desc"){ %>
+            <th scope="col">
+              <a
+                href="/historial?pag=<%=pag%>&sort=totalDolars&order=asc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Monto Total en Dólares (Orden Descendente)"
+                >Monto ($) &darr;</a
+              >
+            </th>
+            <% } else { %>
+            <th scope="col">
+              <a
+                href="/historial?pag=<%=pag%>&sort=totalDolars&order=asc<%=searchFilter%>"
+                class="text-decoration-none text-black"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Monto Total en Dólares"
+                >Monto ($)</a
+              >
+            </th>
+            <% } %>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% visits.forEach((visit) => { %>
+          <tr class="user-select-none">
+            <td><%= visit.date %></td>
+            <td><%= visit.time %></td>
+            <td><%= visit.totalKids %></td>
+            <td><%= visit.totalAdults %></td>
+            <td><%= visit.totalElders %></td>
+            <td><%= visit.method %></td>
+            <td><%= visit.totalBolivars %></td>
+            <td><%= visit.totalDolars %></td>
+            <td>
+              <a
+                class="btn btn-link p-0"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Ver los detalles de la Visita"
+              >
+                <i
+                  class="text-dark opacityHover"
+                  data-bs-toggle="modal"
+                  data-bs-target="#infoVisitModal"
+                  data-bs-action="view"
+                  data-bs-_id="<%= visit.visit_id%>"
+                  data-bs-kids_id="<%= visit.kids_id %>"
+                  data-bs-adults_id="<%= visit.adults_id %>"
+                  data-bs-elders_id="<%= visit.elders_id %>"
+                  data-bs-date="<%= visit.date %>"
+                  data-bs-time="<%= visit.time %>"
+                  data-bs-boys="<%= visit.boys %>"
+                  data-bs-girls="<%= visit.girls %>"
+                  data-bs-men="<%= visit.men%>"
+                  data-bs-women="<%= visit.women%>"
+                  data-bs-elderMen="<%= visit.elderMen %>"
+                  data-bs-elderWomen="<%= visit.elderWomen %>"
+                  data-bs-courtesyKids="<%= visit.courtesyKids %>"
+                  data-bs-courtesyAdults="<%= visit.courtesyAdults %>"
+                  data-bs-totalKids="<%= visit.totalKids %>"
+                  data-bs-totalAdults="<%= visit.totalAdults %>"
+                  data-bs-totalElders="<%= visit.totalElders %>"
+                  data-bs-method="<%= visit.method %>"
+                  data-bs-extraInfoTitle="<%= visit.extraInfoTitle %>"
+                  data-bs-totalBolivars="<%= visit.totalBolivars %>"
+                  data-bs-totalDolars="<%= visit.totalDolars %>"
+                  data-bs-paymentInfo="<%= visit.paymentInfo %>"
+                  data-bs-representativeName="<%= visit.representativeName %>"
+                  data-bs-representativePhone="<%= visit.representativePhone %>"
+                  data-lucide="eye"
+                  alt="modify-icon"
+                ></i>
+              </a>
+
+              <% if (admin) { %>
+              <a
+                class="btn btn-link p-0"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Modificar Visita"
+              >
+                <i
+                  class="text-dark opacityHover"
+                  data-bs-toggle="modal"
+                  data-bs-target="#infoVisitModal"
+                  data-bs-action="modify"
+                  data-bs-_id="<%= visit.visit_id%>"
+                  data-bs-kids_id="<%= visit.kids_id %>"
+                  data-bs-adults_id="<%= visit.adults_id %>"
+                  data-bs-elders_id="<%= visit.elders_id %>"
+                  data-bs-date="<%= visit.date %>"
+                  data-bs-time="<%= visit.time %>"
+                  data-bs-boys="<%= visit.boys %>"
+                  data-bs-girls="<%= visit.girls %>"
+                  data-bs-men="<%= visit.men%>"
+                  data-bs-women="<%= visit.women%>"
+                  data-bs-elderMen="<%= visit.elderMen %>"
+                  data-bs-elderWomen="<%= visit.elderWomen %>"
+                  data-bs-courtesyKids="<%= visit.courtesyKids %>"
+                  data-bs-courtesyAdults="<%= visit.courtesyAdults %>"
+                  data-bs-totalKids="<%= visit.totalKids %>"
+                  data-bs-totalAdults="<%= visit.totalAdults %>"
+                  data-bs-totalElders="<%= visit.totalElders %>"
+                  data-bs-method="<%= visit.method %>"
+                  data-bs-extraInfoTitle="<%= visit.extraInfoTitle %>"
+                  data-bs-totalBolivars="<%= visit.totalBolivars %>"
+                  data-bs-totalDolars="<%= visit.totalDolars %>"
+                  data-bs-paymentInfo="<%= visit.paymentInfo %>"
+                  data-bs-representativeName="<%= visit.representativeName %>"
+                  data-bs-representativePhone="<%= visit.representativePhone %>"
+                  data-lucide="pencil"
+                  alt="modify-icon"
+                ></i>
+              </a>
+              <a
+                class="btn btn-link p-0"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Eliminar Visita"
+              >
+                <i
+                  class="text-dark opacityHover"
+                  data-bs-toggle="modal"
+                  data-bs-target="#deleteVisitModal"
+                  data-bs-_id="<%=visit.visit_id%>"
+                  data-bs-kids_id="<%= visit.kids_id %>"
+                  data-bs-adults_id="<%= visit.adults_id %>"
+                  data-bs-elders_id="<%= visit.elders_id %>"
+                  data-lucide="trash-2"
+                  alt="delete-icon"
+                ></i>
+              </a>
+
+              <% } %>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </section>
+
+    <% if (pag == 1){ %> <% prevPag = 1 %> <% } else { %> <% prevPag = pag-1 %>
+    <% } %> <% if (sort != "" && order != "") { %> <% sortQueries = "&sort=" +
+    sort + "&order=" + order %> <% } else { %> <% sortQueries = "" %> <% } %>
+    <ul class="pagination d-flex justify-content-center">
+      <% finalPage = Math.ceil(total / 8 )%> <% if (finalPage > 1) { %>
+      <li class="page-item">
+        <a
+          class="page-link"
+          href="/historial?pag=<%=prevPag%><%=sortQueries%><%=searchFilter%>"
+          aria-label="Previous"
+        >
+          <span aria-hidden="true" class="text-success fw-bold user-select-none"
+            >Anterior</span
+          >
+        </a>
+      </li>
+      <li class="page-item">
+        <a
+          class="page-link user-select-none <% if (pag == 1) { %> text-bg-success <% } else { %> text-success <% } %> fw-bold"
+          href="/historial?pag=1<%=sortQueries%><%=searchFilter%>"
+          >1
+        </a>
+      </li>
+      <% } %> <% if (pag - 5 > 2) { %>
+      <li class="page-item">
+        <a class="page-link user-select-none text-success fw-bold">... </a>
+      </li>
+      <% } %> <% for (let p = -5; p < 6 ; p++) { %> <% if (pag + p > 1 && pag +
+      p < finalPage) {%>
+      <li class="page-item">
+        <a
+          class="page-link user-select-none <% if (pag == pag+p) { %> text-bg-success <% } else { %> text-success <% } %> fw-bold"
+          href="/historial?pag=<%=pag+p%><%=sortQueries%><%=searchFilter%>"
+          ><%= pag+p %>
+        </a>
+      </li>
+      <% } } %> <% if (pag == finalPage){ %> <% nextPage = finalPage %> <% }
+      else { %> <% nextPage = pag + 1 %> <% } %> <% if (finalPage > pag + 6 ) {
+      %>
+      <li class="page-item">
+        <a class="page-link user-select-none text-success fw-bold">... </a>
+      </li>
+      <% } %> <% if (finalPage > 1) {%>
+      <li class="page-item">
+        <a
+          class="page-link user-select-none <% if (pag == finalPage) { %> text-bg-success <% } else { %> text-success <% } %> fw-bold"
+          href="/historial?pag=<%=finalPage%><%=sortQueries%><%=searchFilter%>"
+          ><%=finalPage%>
+        </a>
+      </li>
+      <li class="page-item">
+        <a
+          class="page-link"
+          href="/historial?pag=<%=nextPage%><%=sortQueries%><%=searchFilter%>"
+          aria-label="Next"
+        >
+          <span aria-hidden="true" class="text-success fw-bold user-select-none"
+            >Siguiente</span
+          >
+        </a>
+      </li>
+      <% } %>
+    </ul>
+
+    <!-- Modal de cada visitante  -->
+    <article
+      class="modal fade"
+      id="infoVisitModal"
+      tabindex="-1"
+      aria-hidden="true"
+      data-bs-backdrop="static"
+    >
+      <form method="post" class="modal-dialog modal-dialog-centered">
+        <section class="modal-content">
+          <header class="modal-header text-bg-success user-select-none">
+            <h1 class="modal-title fs-5">Información de la Visita</h1>
+            <a
+              class="btn text-light p-0 opacityHover"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <i data-lucide="x" alt="close-icon"></i>
+            </a>
+            <input
+              type="number"
+              name="_id"
+              id="_idVisitValue"
+              class="visually-hidden"
+            />
+            <input
+              type="number"
+              name="kids_id"
+              id="kids_idVisitValue"
+              class="visually-hidden"
+            />
+            <input
+              type="number"
+              name="adults_id"
+              id="adults_idVisitValue"
+              class="visually-hidden"
+            />
+            <input
+              type="number"
+              name="elders_id"
+              id="elders_idVisitValue"
+              class="visually-hidden"
+            />
+          </header>
+          <section class="modal-body d-flex flex-column py-2 px-3">
+            <section class="d-flex px-2 user-select-none">
+              <section class="col-9 d-flex flex-column">
+                <label for="representativeNameVisitValue">Representante:</label>
+                <div id="representativeNameVisitValue" class="mb-1"></div>
+                <label for="representativePhoneVisitValue"
+                  >Número de Contacto:</label
+                >
+                <div id="representativePhoneVisitValue" class="mb-1"></div>
+              </section>
+              <section class="col-3">
+                <label for="dateVisitValue">Fecha:</label>
+                <h6 id="dateVisitValue"></h6>
+                <label for="timeVisitValue">Hora:</label>
+                <h6 id="timeVisitValue"></h6>
+              </section>
+            </section>
+            <hr class="p-0 my-2" />
+            <section
+              class="container-fluid d-flex flex-column justify-content-around user-select-none gap-3 py-1"
+            >
+              <section
+                class="m-0 p-0 d-flex justify-content-start align-items-center gap-3"
+              >
+                <p class="text-center p-0 m-0 fw-bold col-2">Niños y Niñas</p>
+                <img
+                  class="col-2"
+                  src="./public/assets/img/children.webp"
+                  alt="childrenImg"
+                />
+                <label class="d-flex justify-content-around col-2 gap-2">
+                  <img
+                    class="user-select-none col-6"
+                    src="./public/assets/img/male.png"
+                    alt="maleImg"
+                  />
+                  <section id="boysVisitValue"></section>
+                </label>
+                <label class="d-flex justify-content-around col-2 gap-1">
+                  <img
+                    class="user-select-none col-6"
+                    src="./public/assets/img/female.png"
+                    alt="femaleImg"
+                  />
+                  <h5 class="text-center" id="girlsVisitValue"></h5>
+                </label>
+                <label class="d-flex justify-content-around col-2 gap-2">
+                  <img
+                    class="user-select-none col-6"
+                    src="./public/assets/img/gift.png"
+                    alt="giftImg"
+                  />
+                  <h5 class="text-center" id="courtesyKidsVisitValue"></h5>
+                </label>
+              </section>
+              <section
+                class="m-0 p-0 d-flex justify-content-start align-items-center gap-3"
+              >
+                <p class="text-center p-0 m-0 fw-bold col-2">Adultos</p>
+                <img
+                  class="col-2"
+                  src="./public/assets/img/adults.webp"
+                  alt="adultsImg"
+                />
+                <label class="d-flex justify-content-around col-2 gap-2">
+                  <img
+                    class="user-select-none col-6"
+                    src="./public/assets/img/male.png"
+                    alt="maleImg"
+                  />
+                  <h5 class="text-center" id="menVisitValue"></h5>
+                </label>
+                <label class="d-flex justify-content-around col-2 gap-1">
+                  <img
+                    class="user-select-none col-6"
+                    src="./public/assets/img/female.png"
+                    alt="femaleImg"
+                  />
+                  <h5 class="text-center" id="womenVisitValue"></h5>
+                </label>
+                <label class="d-flex justify-content-around col-2 gap-2">
+                  <img
+                    class="user-select-none col-6"
+                    src="./public/assets/img/gift.png"
+                    alt="giftImg"
+                  />
+                  <h5 class="text-center" id="courtesyAdultsVisitValue"></h5>
+                </label>
+              </section>
+              <section
+                class="m-0 p-0 d-flex justify-content-start align-items-center gap-3"
+              >
+                <p class="text-center p-0 m-0 fw-bold col-2">Adultos Mayores</p>
+                <img
+                  class="col-2"
+                  src="./public/assets/img/seniors.webp"
+                  alt="seniorsImg"
+                />
+                <label class="d-flex justify-content-around col-2 gap-2">
+                  <img
+                    class="user-select-none col-6"
+                    src="./public/assets/img/male.png"
+                    alt="maleImg"
+                  />
+                  <h5 class="text-center" id="elderMenVisitValue"></h5>
+                </label>
+                <label class="d-flex justify-content-around col-2 gap-1">
+                  <img
+                    class="user-select-none col-6"
+                    src="./public/assets/img/female.png"
+                    alt="femaleImg"
+                  />
+                  <h5 class="text-center" id="elderWomenVisitValue"></h5>
+                </label>
+                <button
+                  id="checkButtonVisit"
+                  class="btn btn-success offset-1 col-1 p-1 visually-hidden"
+                  type="submit"
+                >
+                  <i
+                    class="opacityHover"
+                    data-lucide="check"
+                    alt="checkIcon"
+                  ></i>
+                </button>
+              </section>
+            </section>
+          </section>
+          <footer
+            class="modal-footer container-fluid p-0 d-flex align-items-start m-0 user-select-none"
+          >
+            <div class="row p-0 m-0 w-100">
+              <section
+                class="col-8 d-flex flex-column m-0 py-2 px-3 text-justify text-bg-secondary gap-2"
+                style="border-bottom-left-radius: 0.375rem"
+              >
+                <div id="methodVisitValue" class="d-flex gap-2"></div>
+                <div
+                  id="extraInfoTitleVisitValue"
+                  class="d-flex flex-column"
+                ></div>
+              </section>
+              <section
+                class="col-4 d-flex flex-column text-bg-success m-0 py-2 px-3 rounded-bottom-2 rounded-start-0"
+              >
+                <section class="d-flex flex-column gap-1">
+                  <p class="text-start w-100 m-0 fw-bold">Total:</p>
+                  <div
+                    id="totalBolivarsVisitValue"
+                    class="w-100 d-flex fs-5 fw-semibold gap-2"
+                  ></div>
+                  <div
+                    id="totalDolarsVisitValue"
+                    class="w-100 d-flex fs-5 fw-semibold gap-2"
+                  ></div>
+                </section>
+              </section>
+            </div>
+          </footer>
+        </section>
+      </form>
+    </article>
+
+    <article
+      class="modal fade"
+      id="deleteVisitModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <section class="modal-dialog modal-dialog-centered">
+        <section class="modal-content">
+          <header class="modal-header text-bg-danger user-select-none">
+            <h1 class="modal-title fs-5">Eliminar Visita</h1>
+            <button
+              class="btn text-light p-0 opacityHover"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <i data-lucide="x" alt="close-icon"></i>
+            </button>
+          </header>
+          <form method="post">
+            <section
+              class="modal-body d-flex flex-column gap-2 py-3 px-3 user-select-none"
+            >
+              <p class="text-center">
+                ¿Está seguro que desea eliminar esta Visita?
+              </p>
+              <section class="d-flex justify-content-around mb-2">
+                <a
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                  >Cancelar</a
+                >
+                <input type="text" class="d-none" name="_id" value="" />
+                <input type="text" class="d-none" name="kids_id" value="" />
+                <input type="text" class="d-none" name="adults_id" value="" />
+                <input type="text" class="d-none" name="elders_id" value="" />
+                <input
+                  type="text"
+                  class="d-none"
+                  name="deleteVisit"
+                  value="true"
+                />
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+              </section>
+            </section>
+          </form>
+        </section>
+      </section>
+    </article>
+  </main>
+  <%- include('partials/general/foot', {messageAlert, typeAlert, showAlert}); %>
+</body>
