@@ -1,13 +1,12 @@
 ﻿import { createAccessToken } from "../libs/jwt.js";
 import bcryptjs from "bcryptjs";
 import { pool } from "../db.js";
+import { DEFAULT_ALERT } from "../libs/default-alert.js";
 
 export const renderRegister = (req, res) => {
   res.render("auth/register", {
     invalidUser: false,
-    showAlert: false,
-    messageAlert: "",
-    typeAlert: "",
+    ...DEFAULT_ALERT,
   });
 };
 
@@ -39,9 +38,7 @@ export const userRegister = async (req, res) => {
 export const renderLogin = (req, res) => {
   res.render("auth/login", {
     invalidUser: false,
-    showAlert: false,
-    messageAlert: "",
-    typeAlert: "",
+    ...DEFAULT_ALERT,
   });
 };
 

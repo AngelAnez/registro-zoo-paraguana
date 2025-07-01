@@ -8,7 +8,7 @@ import fs from "fs";
 
 import AuthRoutes from "./routes/auth.routes.js";
 import AdminRoutes from "./routes/admin.routes.js";
-import InicioRoutes from "./routes/inicio.routes.js";
+import HomeRoutes from "./routes/home.routes.js";
 import PerfilRoutes from "./routes/perfil.routes.js";
 import VisitantesRoutes from "./routes/visitantes.routes.js";
 import HistorialRoutes from "./routes/historial.routes.js";
@@ -44,7 +44,7 @@ app.get("/seed", async (_, res) => {
 
 app.use(AuthRoutes);
 app.use(AdminRoutes);
-app.use(InicioRoutes);
+app.use(HomeRoutes);
 app.use(PerfilRoutes);
 app.use(VisitantesRoutes);
 app.use(HistorialRoutes);

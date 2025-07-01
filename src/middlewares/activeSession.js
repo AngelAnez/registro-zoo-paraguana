@@ -4,7 +4,7 @@ export const activeSession = (req, res, next) => {
   const {token} = req.cookies
     if (token && verifyAccessToken(token)){
       req.user = verifyAccessToken(token)
-      return res.redirect("/inicio");        
+      return res.redirect("/home");        
     }
     next();
 };
