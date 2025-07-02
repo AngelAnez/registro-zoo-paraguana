@@ -1,7 +1,5 @@
-<aside id="sidebar" class="collapse collapse-horizontal show">
-  <nav
-    class="sidebar-container"
-  >
+<aside id="sidebar" class="relative sidebar">
+  <nav class="sidebar-container">
     <header class="sidebar-header">
       <i
         class="sidebar-header-icon"
@@ -9,6 +7,9 @@
         alt="logo-zoo-icon"
       ></i>
       <h1 class="sidebar-header-title">Zoo Paraguaná</h1>
+      <button class="sidebar-header-close-button" data-bs-target="#sidebar" data-bs-toggle="collapse">
+        <i data-lucide="x" alt="close-sidebar-icon"></i>
+      </button>
     </header>
 
     <ul class="sidebar-nav-list">
@@ -56,6 +57,12 @@
           'https://www.instagram.com/mizooparaguana/', title :"Instagram", icon:
           'instagram'} ); %>
         </li>
+      </ul>
+      <ul class="sidebar-footer-section-mobile">
+        <%-include('partials/sidebar-nav-link', {link : '/perfil', title
+        :"Ver Perfil", icon: 'user'} ); %>
+        <%-include('partials/sidebar-nav-link', {link : '/logout', title
+        :"Cerrar Sesión", icon: 'log-out'} ); %>
       </ul>
     </footer>
   </nav>

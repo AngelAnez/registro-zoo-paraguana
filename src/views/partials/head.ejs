@@ -28,8 +28,9 @@
     />
     <% if (js) { %>
     <script defer src="./public/js/<%=js%>"></script>
-    <% } %> <% if (header) { %>
-    <script defer src="./public/js/header.js"></script>
+    <% } %> 
+    <% if (nav) { %>
+    <script defer src="./public/js/nav.js"></script>
     <% } %>
   </head>
   <body class="min-vh-100">
