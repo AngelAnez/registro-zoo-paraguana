@@ -13,33 +13,33 @@
     </header>
 
     <ul class="sidebar-nav-list">
-      <li class="sidebar-nav-list-element">
+      <li class="sidebar-nav-list-element opacity-hover">
         <%-include('partials/sidebar-nav-link', {link : '/home', title :"Home",
         icon: 'home'} ); %>
       </li>
-      <li class="sidebar-nav-list-element">
+      <li class="sidebar-nav-list-element opacity-hover">
         <%-include('partials/sidebar-nav-link', {link : '/visitantes', title
         :"Registrar Visitantes", icon: 'notebook-pen'} ); %>
       </li>
-      <li class="sidebar-nav-list-element">
+      <li class="sidebar-nav-list-element opacity-hover">
         <%-include('partials/sidebar-nav-link', {link : '/historial', title
         :"Historial de Visitas", icon: 'calendar-days'} ); %>
       </li>
-      <li class="sidebar-nav-list-element">
+      <li class="sidebar-nav-list-element opacity-hover">
         <%-include('partials/sidebar-nav-link', {link : '/estadisticas', title
         :"Estadísticas", icon: 'bar-chart-4'} ); %>
       </li>
-      <li class="sidebar-nav-list-element">
+      <li class="sidebar-nav-list-element opacity-hover">
         <%-include('partials/sidebar-nav-link', {link : '/novedades', title
         :"Novedades", icon: 'mail-plus'} ); %>
       </li>
       <% if (admin) { %>
-      <li class="sidebar-nav-list-element">
+      <li class="sidebar-nav-list-element opacity-hover">
         <%-include('partials/sidebar-nav-link', {link : '/admin', title
         :"Administración", icon: 'user-round-cog'} ); %>
       </li>
       <% } %>
-      <li class="sidebar-nav-list-element">
+      <li class="sidebar-nav-list-element opacity-hover">
         <%-include('partials/sidebar-nav-link', {link : '/ajustes', title
         :"Ajustes", icon: 'settings'} ); %>
       </li>

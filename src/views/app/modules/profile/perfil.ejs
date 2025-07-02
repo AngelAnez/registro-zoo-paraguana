@@ -16,7 +16,7 @@ js : "perfil.js", header: true}); %>
             <label class="fw-bold col-4">Nombre de Usuario</label>
             <section class="d-flex gap-2 col-6">
               <input id="usernameInput" class="form-control border-white bg-transparent" type="text" disabled required name="newUsername" value="<%= username %>">
-              <a class="opacityHover d-flex align-items-center text-secondary" onclick="toggleProfileInput('usernameInput')">
+              <a class="opacity-hover d-flex align-items-center text-secondary" onclick="toggleProfileInput('usernameInput')">
                 <i id="usernameInputModify" data-lucide="pencil" alt="modifyIcon"></i>
                 <i id="usernameInputCheck" class="d-none" data-lucide="check" alt="checkIcon"></i>
               </a>       
@@ -26,7 +26,7 @@ js : "perfil.js", header: true}); %>
             <label class="fw-bold col-4">Correo Electrónico</label>
             <section class="d-flex gap-2 col-6">
               <input id="emailInput" class="form-control border-white bg-transparent" type="email" disabled required name="email" value="<%= email%>">
-              <a class="opacityHover d-flex align-items-center text-secondary" onclick="toggleProfileInput('emailInput')">
+              <a class="opacity-hover d-flex align-items-center text-secondary" onclick="toggleProfileInput('emailInput')">
                 <i id="emailInputModify" data-lucide="pencil" alt="modifyIcon"></i>
                 <i id="emailInputCheck" class="d-none" data-lucide="check" alt="checkIcon"></i>
               </a>       
@@ -45,7 +45,7 @@ js : "perfil.js", header: true}); %>
         <section class="modal-content">
             <header class="modal-header text-bg-primary user-select-none">
                 <h1 class="modal-title fs-5">Cambiar Contraseña</h1>
-                <button class="btn text-light p-0 opacityHover" data-bs-dismiss="modal" aria-label="Close">
+                <button class="btn text-light p-0 opacity-hover" data-bs-dismiss="modal" aria-label="Close">
                     <i data-lucide="x" alt="close-icon"></i>
                 </button>
             </header>

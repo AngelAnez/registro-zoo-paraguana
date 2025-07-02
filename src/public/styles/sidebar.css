@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: space-around;
   user-select: none;
-  padding-bottom: 0.7rem;
+  padding-bottom: 0.8rem;
   border-bottom: 1px solid white;
   gap: 10px;
 }
@@ -43,10 +43,6 @@
   list-style: none;
   padding: 0.5rem 0rem;
   user-select: none;
-}
-
-.sidebar-nav-list-element:hover {
-  opacity: 0.7;
 }
 
 .sidebar-nav-list-link {
@@ -87,10 +83,6 @@
   cursor: pointer;
   transition: 0.3s;
   color: white;
-}
-
-.sidebar-social-media-link:hover {
-  opacity: 70%;
 }
 
 .sidebar-footer-section-mobile {

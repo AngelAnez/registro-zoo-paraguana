@@ -1,7 +1,9 @@
+const sidebar = document.getElementById("sidebar");
+sidebar.classList.add("collapse", "collapse-horizontal");
 if (window.screen.width <= 450) {
-  const sidebar = document.getElementById("sidebar");
-  sidebar.classList.add("collapse", "collapse-horizontal");
   sidebar.classList.remove("sidebar");
+} else {
+  sidebar.classList.add("collapse", "collapse-horizontal", "show");
 }
 
 const dolarToday = document.getElementById("dolarToday");

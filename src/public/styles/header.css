@@ -1,33 +1,86 @@
-.headerImg{
-    max-height: 50px;
+.header {
+    display: flex;
+    background-color: whitesmoke;
+    padding: 0.8rem 1rem;
+    position: sticky;
+    justify-content: space-between;
+    z-index: 2;
+}
+
+.header-icon {
+    height: 40px;
+    aspect-ratio: 1/1;
     transform: scaleX(-1);
 }
 
-.headerText {
-    font-size: larger;
-    font-weight: semibold;
-    margin: 0;
-    padding-left: 10px;
-}
-
-.collapse-button{
+.header-dolar-section {
     display: flex;
+    align-items: center;
+    gap: 0.4rem;
     padding: 0;
-    margin-left: 10px;
-    margin-right: 10px;
+    min-width: 140px;
 }
 
-@media (max-width: 800px){
-    .collapse-button{
-        display: none;
+.header-dolar-title, .header-user-button {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.header-dolar-value {
+    color: rgb(var(--bs-success-rgb));
+}
+
+.header-user-section {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    text-align: end;
+    justify-content: end;
+    min-width: 90px;
+}
+
+.header-user-button {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    border: 0px;
+}
+
+.sidebar-toggle-button {
+    display: none;
+}
+
+
+
+@media (max-width: 800px) {
+
+    .header-dolar-title,
+    .header-user-button {
+        font-size: 1rem;
     }
 }
 
-@media (max-width: 500px){
-    h6[class= "headerText"]{
+@media (max-width: 450px) {
+    .header-icon {
+        height: 32px;
+    }
+
+    .header-user-section {
         display: none;
     }
-    .header-user-name{
+
+    .sidebar-toggle-button {
+        display: flex;
+        border: 0px;
+        place-items: center;
+    }
+
+    h6[class="headerText"] {
+        display: none;
+    }
+
+    .header-user-name {
         display: none;
     }
 }

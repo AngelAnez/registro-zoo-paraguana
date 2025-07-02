@@ -4,8 +4,8 @@
     box-sizing: border-box;
 }
 
-.opacityHover:hover{
-    opacity: 40%;
+.opacity-hover:hover{
+    opacity: 60%;
     transition: 0.3s;
     cursor: pointer;
 }
