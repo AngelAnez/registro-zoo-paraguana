@@ -1,0 +1,87 @@
+<article id="addNewVisitStep3" class="new-visit-form-container d-none">
+  <header class="new-visit-form-header">
+    <div class="new-visit-form-header-title">
+      <i data-lucide="user" alt="Representative section icon"></i>
+      <h2>Representante</h2>
+    </div>
+    <p class="new-visit-form-header-subtitle">Ingrese los datos del representante de la visita.</p>
+  </header>
+
+  <section
+    class="d-flex gap-3 flex-wrap justify-content-center px-md-5 mx-md-5"
+    style="max-width: 540px"
+  >
+    <label
+      for="representativeName"
+      class="d-flex align-items-center p-0 gap-3"
+      style="max-width: 280px"
+    >
+      <figure class="m-0 p-0">
+        <img
+          class="w-100 user-select-none"
+          src="./public/assets/img/representative.webp"
+          alt="representativeNameImg"
+        />
+      </figure>
+      <div class="text-start d-flex flex-column gap-2" style="min-width: 60%">
+        <span class="fw-bold user-select-none">Nombre</span>
+        <input
+          type="text"
+          class="form-control p-0 text-center"
+          id="representativeName"
+          autocomplete="off"
+          name="representativeName"
+          oninput="cleanInputs(step3Container)"
+        />
+      </div>
+    </label>
+  </section>
+
+  <section class="d-flex gap-3 flex-wrap justify-content-center mx-lg-5">
+    <label
+      for="representativePhone"
+      class="d-flex align-items-center p-0 gap-3"
+      style="max-width: 280px"
+    >
+      <figure class="m-0 p-0">
+        <img
+          class="w-100 user-select-none"
+          src="./public/assets/img/telephone.webp"
+          alt="representativePhoneImg"
+        />
+      </figure>
+      <div class="text-start d-flex flex-column gap-2" style="min-width: 60%">
+        <span class="fw-bold user-select-none">Teléfono</span>
+        <input
+          type="tel"
+          class="form-control p-0 text-center"
+          id="representativePhone"
+          autocomplete="off"
+          name="representativePhone"
+          oninput="cleanInputs(step3Container)"
+        />
+      </div>
+    </label>
+  </section>
+
+  <section
+    class="text-center d-flex justify-content-center align-items-center gap-4"
+  >
+    <button
+      type="button"
+      onclick="changeStep(2)"
+      class="btn btn-secondary col-2 p-1"
+      style="min-width: 80px"
+    >
+      Atrás
+    </button>
+    <button
+      type="button"
+      onclick="validateStep3()"
+      class="btn btn-success col-2 p-1"
+      style="min-width: 80px"
+    >
+      Siguiente
+    </button>
+  </section>
+</article>

@@ -1,0 +1,126 @@
+<article id="addNewVisitStep2" class="new-visit-form-container d-none">
+  <header class="new-visit-form-header">
+    <div class="new-visit-form-header-title">
+      <i data-lucide="dollar-sign" alt="Payment section icon"></i>
+      <h2>Pago</h2>
+    </div>
+    <p class="new-visit-form-header-subtitle">Ingrese los datos de pago.</p>
+  </header>
+
+  <section
+    id="addNewVisitStep2Body"
+    class="new-visit-form-body"
+  >
+      <label
+        for="totalDolars"
+        class="d-flex align-items-center p-0 gap-3"
+        style="flex: 1"
+      >
+        <figure class="m-0 p-0">
+          <img
+            class="w-100 user-select-none"
+            src="./public/assets/img/unitedStatesFlag.webp"
+            alt="dolarsImg"
+          />
+        </figure>
+        <div class="text-start d-flex flex-column gap-2" style="min-width: 60%">
+          <span class="fw-bold user-select-none">Monto en Dolares</span>
+          <input
+            readonly
+            type="text"
+            id="totalDolars"
+            class="form-control p-0 text-center"
+            name="totalDolars"
+          />
+        </div>
+      </label>
+
+      <label
+        for="totalBolivars"
+        class="d-flex align-items-center p-0 gap-3"
+        style="flex: 1"
+      >
+        <figure class="m-0 p-0" style="max-width: 88px">
+          <img
+            class="w-100 user-select-none"
+            src="./public/assets/img/venezuelaFlag.webp"
+            alt="bolivarsImg"
+          />
+        </figure>
+        <div
+          class="col-7 text-start d-flex flex-column gap-2"
+          style="min-width: 60%"
+        >
+          <span class="fw-bold user-select-none">Monto en Bolívares</span>
+          <input
+            readonly
+            type="text"
+            id="totalBolivars"
+            class="form-control p-0 text-center"
+            name="totalBolivars"
+          />
+        </div>
+      </label>
+    <section class="d-flex w-100 gap-3 flex-wrap">
+      <label
+        for="paymentMethod"
+        class="d-flex align-items-center p-0 gap-3"
+        style="flex: 1"
+      >
+        <figure class="m-0 p-0" style="max-width: 88px">
+          <img
+            class="w-100 user-select-none"
+            src="./public/assets/img/paymentMethod.webp"
+            alt="paymentMethodImg"
+          />
+        </figure>
+        <div
+          class="col-7 text-start d-flex flex-column gap-2"
+          style="min-width: 60%"
+        >
+          <span class="fw-bold user-select-none">Método de Pago</span>
+          <select
+            name="paymentMethod"
+            id="paymentMethod"
+            class="form-select py-0 ps-2"
+            onchange="dinamicPaymentMethod()"
+          >
+            <option selected disabled></option>
+            <option>Transferencia</option>
+            <option>Pago Móvil</option>
+            <option>Efectivo</option>
+            <option>Otro</option>
+          </select>
+        </div>
+      </label>
+
+      <label
+        id="methodSelected"
+        class="d-flex align-items-center p-0 gap-3 justify-content-end"
+        style="flex: 1; min-height: 88px"
+      >
+      </label>
+    </section>
+  </section>
+
+  <section
+    class="text-center px-0 d-flex justify-content-center align-items-center gap-4"
+  >
+    <button
+      type="button"
+      onclick="changeStep(1)"
+      class="btn btn-secondary col-2 p-1"
+      style="min-width: 80px"
+    >
+      Atrás
+    </button>
+    <button
+      type="button"
+      onclick="validateStep2()"
+      class="btn btn-success col-2 p-1"
+      style="min-width: 80px"
+    >
+      Siguiente
+    </button>
+  </section>
+</article>

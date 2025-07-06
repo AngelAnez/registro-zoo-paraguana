@@ -125,7 +125,8 @@
 
   .sidebar-header-close-button {
     display: flex;
-    place-items: center;
+    align-items: center;
+    justify-content: end;
     width: 32px;
     height: 32px;
     background-color: transparent;

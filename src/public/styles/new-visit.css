@@ -1,0 +1,206 @@
+.new-visit-section {
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
+
+.new-visit-form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1rem 1rem;
+}
+
+.new-visit-steps-container {
+    margin: 0;
+    padding: 0rem 0.7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(var(--bs-success-rgb));
+    user-select: none;
+    border: 1px solid black;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    gap: 1rem;
+    list-style: none;
+    color: white;
+}
+
+.new-visit-steps-element {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.new-visit-steps-circle-on,
+.new-visit-steps-circle-off {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.new-visit-steps-circle-on {
+    background-color: white;
+    color: black;
+}
+
+.new-visit-steps-text {
+    font-size: 0.9rem;
+
+}
+
+.new-visit-steps-circle-off {
+    background-color: rgb(var(--bs-success-rgb));
+}
+
+.new-visit-form-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem 1rem;
+    margin: 0;
+    background: white;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    max-width: 600px;
+    min-height: 550px;
+    justify-content: space-between;
+    gap: 28px;
+    width: 100%;
+}
+
+.new-visit-form-header {
+    width: 100%;
+    text-align: start;
+    user-select: none;
+}
+
+.new-visit-form-header-title {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.6rem 0rem;
+}
+
+.new-visit-form-header-title i {
+    height: 40px;
+    width: 40px;
+}
+
+.new-visit-form-header-title h2 {
+    font-size: 1.4rem;
+    font-weight: semibold;
+    margin: 0;
+}
+
+
+.new-visit-form-header-subtitle {
+    margin: 0;
+}
+
+.new-visit-form-body {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 1.8rem;
+    column-gap: 1rem;
+    justify-content: space-around;
+    max-width: 600px;
+}
+
+.new-visit-form-element-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 0.5rem;
+    max-width: 250px;
+}
+
+.new-visit-form-element-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.new-visit-form-element-icon {
+    width: clamp(48px, 6vw, 60px);
+    height: clamp(48px, 6vw, 60px);
+}
+
+.new-visit-form-element-title {
+    font-size: clamp(1rem, 1.8vw, 1.1rem);
+    margin: 0;
+}
+
+.new-visit-form-element-body {
+    display: flex;
+    gap: 1rem;
+    text-align: start;
+    padding: 0.4rem 0rem;
+}
+
+.new-visit-form-body-label {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.5rem;
+}
+
+@media (max-width: 800px) {
+    aside section {
+        justify-content: center;
+        padding: 0px 16px;
+    }
+
+    aside section h6 {
+        display: none;
+    }
+}
+
+@media (max-width: 1000px) {
+    .new-visit-form {
+        flex-direction: column;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .new-visit-steps-container {
+        flex-direction: row;
+        padding: 1rem 0rem;
+        border-radius: 20px 20px 0px 0px;
+    }
+
+    .new-visit-steps-text {
+        display: none;
+    }
+
+    .new-visit-form-container {
+        border-radius: 0px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+
+    .new-visit-form-body {
+        justify-content: start;
+    }
+
+}
+
+@media (max-width: 660px) {
+    .new-visit-form {
+        max-width: 400px;
+    }
+
+    .new-visit-form-element-container {
+        max-width: 100%;
+    }
+}
+
+
+@media (max-width: 800px) {}
+
+@media (max-width: 450px) {}

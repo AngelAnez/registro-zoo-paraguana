@@ -1,0 +1,196 @@
+<article id="addNewVisitStep1" class="new-visit-form-container d-flex">
+  <header class="new-visit-form-header">
+    <div class="new-visit-form-header-title">
+      <i data-lucide="users" alt="Visitors section icon"></i>
+      <h2>Visitantes</h2>
+    </div>
+    <p class="new-visit-form-header-subtitle">
+      Ingrese la cantidad de visitantes de acuerdo a su rango de edad.
+    </p>
+  </header>
+
+  <section id="addNewVisitStep1Body" class="new-visit-form-body">
+    <article class="new-visit-form-element-container">
+      <header class="new-visit-form-element-header">
+        <img
+          class="new-visit-form-element-icon"
+          src="./public/assets/img/children.webp"
+          alt="childrenImg"
+        />
+        <h3
+          id="kidsTicket"
+          class="new-visit-form-element-title"
+          data-ticket-value="<%=kidsPrice%>"
+        >
+          Niños
+        </h3>
+      </header>
+      <section class="new-visit-form-element-body">
+        <label for="girlsNumber" class="new-visit-form-body-label">
+          <span>Niñas</span>
+          <input
+            type="number"
+            class="form-control py-1 px-2"
+            id="girlsNumber"
+            autocomplete="off"
+            oninput="changeFamilyNumber()"
+            name="girls"
+            min="0"
+          />
+        </label>
+        <label for="boysNumber" class="new-visit-form-body-label">
+          <span>Niños</span>
+          <input
+            type="number"
+            class="form-control py-1 px-2"
+            id="boysNumber"
+            autocomplete="off"
+            oninput="changeFamilyNumber()"
+            name="boys"
+            min="0"
+          />
+        </label>
+      </section>
+    </article>
+
+    <article class="new-visit-form-element-container">
+      <header class="new-visit-form-element-header">
+        <img
+          class="new-visit-form-element-icon"
+          src="./public/assets/img/adults.webp"
+          alt="adultsImg"
+        />
+        <h3
+          id="adultsTicket"
+          class="new-visit-form-element-title"
+          data-ticket-value="<%=adultsPrice%>"
+        >
+          Adultos
+        </h3>
+      </header>
+      <section class="new-visit-form-element-body">
+        <label for="womenNumber" class="new-visit-form-body-label">
+          <span>Mujeres</span>
+          <input
+            type="number"
+            class="form-control py-1 px-2"
+            id="womenNumber"
+            autocomplete="off"
+            oninput="changeFamilyNumber()"
+            name="women"
+            min="0"
+          />
+        </label>
+        <label for="menNumber" class="new-visit-form-body-label">
+          <span>Hombres</span>
+          <input
+            type="number"
+            class="form-control py-1 px-2"
+            id="menNumber"
+            autocomplete="off"
+            oninput="changeFamilyNumber()"
+            name="men"
+            min="0"
+          />
+        </label>
+      </section>
+    </article>
+
+    <article class="new-visit-form-element-container">
+      <header class="new-visit-form-element-header">
+        <img
+          class="new-visit-form-element-icon"
+          src="./public/assets/img/seniors.webp"
+          alt="seniorsImg"
+        />
+        <h3 class="new-visit-form-element-title">Adultos Mayores</h3>
+      </header>
+      <section class="new-visit-form-element-body">
+        <label for="elderWomenNumber" class="new-visit-form-body-label">
+          <span>Mujeres</span>
+          <input
+            type="number"
+            class="form-control py-1 px-2"
+            id="elderWomenNumber"
+            autocomplete="off"
+            oninput="changeFamilyNumber()"
+            name="elderWomen"
+            min="0"
+          />
+        </label>
+        <label for="elderMenNumber" class="new-visit-form-body-label">
+          <span>Hombres</span>
+          <input
+            type="number"
+            class="form-control py-1 px-2"
+            id="elderMenNumber"
+            autocomplete="off"
+            oninput="changeFamilyNumber()"
+            name="elderMen"
+            min="0"
+          />
+        </label>
+      </section>
+    </article>
+
+    <article class="new-visit-form-element-container">
+      <header class="new-visit-form-element-header">
+        <img
+          class="new-visit-form-element-icon"
+          src="./public/assets/img/gift.png"
+          alt="courtesyImg"
+        />
+        <h3 class="new-visit-form-element-title">Entradas de Cortesía</h3>
+      </header>
+      <section class="new-visit-form-element-body">
+        <label for="courtesyKidsNumber" class="new-visit-form-body-label">
+          <span>Niños</span>
+          <input
+            type="number"
+            class="form-control py-1 px-2"
+            id="courtesyKidsNumber"
+            autocomplete="off"
+            oninput="changeFamilyNumber()"
+            name="courtesyKids"
+            min="0"
+          />
+        </label>
+        <label for="courtesyAdultsNumber" class="new-visit-form-body-label">
+          <span>Adultos</span>
+          <input
+            type="number"
+            class="form-control py-1 px-2"
+            id="courtesyAdultsNumber"
+            autocomplete="off"
+            oninput="changeFamilyNumber()"
+            name="courtesyAdults"
+            min="0"
+          />
+        </label>
+      </section>
+    </article>
+
+    <input
+      type="text"
+      class="form-control p-0 text-center visually-hidden"
+      readonly
+      id="totalFamily"
+      value="0"
+      name="totalFamily"
+      required
+    />
+  </section>
+
+  <footer
+    class="text-center px-0 d-flex justify-content-center align-items-center"
+  >
+    <button
+      type="button"
+      onclick="validateStep1()"
+      class="btn btn-success col-2 p-1"
+      style="min-width: 120px"
+    >
+      Siguiente
+    </button>
+  </footer>
+</article>
