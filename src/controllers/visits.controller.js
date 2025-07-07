@@ -15,7 +15,7 @@ export const renderVisitantes = async (req, res, alert) => {
     const { kidsPrice, adultsPrice } = pricesQuery[0];
 
     const { showAlert, messageAlert, typeAlert } = alert;
-    res.render("app/modules/visitors/new-visit", {
+    res.render("app/modules/visits/new-visit", {
       username,
       admin,
       kidsPrice,
