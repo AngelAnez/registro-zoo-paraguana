@@ -1,0 +1,7 @@
+<% if (type === "link") { %>
+<a href="<%=href%>" class="btn btn-<%=color%> general-button"> <%=text%> </a>
+<% } else { %>
+<button class="btn btn-<%=color%> general-button" type="<%=type%>">
+  <%=text%>
+</button>
+<% } %>

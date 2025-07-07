@@ -1,0 +1,27 @@
+<% if (sort === name) { if (order === "asc") {orderText = '(Orden Ascendente)';
+order = 'desc'} else {orderText = '(Orden Descendente)'; order = 'asc'} %>
+
+<th scope="col">
+  <a
+    href="/history?pag=<%=pag%>&sort=<%=name%>&order=<%=order%><%=searchFilter%>"
+    class="text-decoration-none text-black"
+    data-bs-toggle="tooltip"
+    data-bs-placement="top"
+    data-bs-title="<%=tooltipTitle%> <%=orderText%>"
+    ><%=title%> <% if (order === 'desc') { %> &uarr; <% } else { %> &darr; <%
+    }%>
+  </a>
+</th>
+
+<% } else { %>
+<th scope="col">
+  <a
+    href="/history?pag=<%=pag%>&sort=<%=name%>&order=asc<%=searchFilter%>"
+    class="text-decoration-none text-black"
+    data-bs-toggle="tooltip"
+    data-bs-placement="top"
+    data-bs-title="<%=tooltipTitle%>"
+    ><%=title%></a
+  >
+</th>
+<% } %>

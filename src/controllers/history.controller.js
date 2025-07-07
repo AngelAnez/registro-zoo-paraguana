@@ -1,6 +1,6 @@
 import { pool } from "../db.js";
 
-export const renderHistorial = async (req, res, alert) => {
+export const renderHistory = async (req, res, alert) => {
   try {
     const { username, admin } = req.user;
 
@@ -30,15 +30,15 @@ export const renderHistorial = async (req, res, alert) => {
         .replaceAll(/[^a-zA-Z0-9áéíóúÁÉÍÓÚÑñ/.:\- ]+/g, "")
         .toLowerCase();
       whereQuery = ` WHERE visits.totalFamily LIKE '%${searchFilter}%' OR 
-      visits.totalDolars LIKE '%${searchFilter}%' OR
+      visits.totalDollars LIKE '%${searchFilter}%' OR
       visits.totalBolivars LIKE '%${searchFilter}%' OR
-      visits.paymentInfo LIKE '%${searchFilter}%' OR
+      visits.paymentData LIKE '%${searchFilter}%' OR
       visits.representativeName LIKE '%${searchFilter}%' OR
       visits.representativePhone LIKE '%${searchFilter}%' OR
       DATE_FORMAT(date_time, '%d/%m/%Y') LIKE '%${searchFilter}%' OR
       DATE_FORMAT(date_time, "%h:%i %p") LIKE '%${searchFilter}%' OR
       paymentMethod.method LIKE '%${searchFilter}%' OR
-      paymentMethod.extraInfoTitle LIKE '%${searchFilter}%' OR
+      paymentMethod.methodValidation LIKE '%${searchFilter}%' OR
       kids.boys LIKE '%${searchFilter}%' OR
       kids.girls LIKE '%${searchFilter}%' OR
       kids.courtesyKids LIKE '%${searchFilter}%' OR
@@ -96,7 +96,8 @@ export const renderHistorial = async (req, res, alert) => {
     if (!visits) {
       visits = [];
     }
-    res.render("historial", {
+
+    res.render("app/modules/history/history", {
       username,
       admin,
       visits,
@@ -129,15 +130,15 @@ export const modifyVisit = async (req, res) => {
     elderMen,
     elderWomen,
     method,
-    paymentInfo,
+    paymentData,
     totalBolivars,
-    totalDolars,
+    totalDollars,
     kids_id,
     adults_id,
     elders_id,
   } = req.body;
   if (parseInt(courtesyKids) > parseInt(boys) + parseInt(girls)) {
-    return renderHistorial(req, res, {
+    return renderHistory(req, res, {
       showAlert: true,
       messageAlert:
         "El número de entradas de cortesía no puede ser mayor al total de niños y niñas",
@@ -145,7 +146,7 @@ export const modifyVisit = async (req, res) => {
     });
   }
   if (parseInt(courtesyAdults) > parseInt(men) + parseInt(women)) {
-    return renderHistorial(req, res, {
+    return renderHistory(req, res, {
       showAlert: true,
       messageAlert:
         "El número de entradas de cortesía no puede ser mayor al total de adultos",
@@ -154,10 +155,10 @@ export const modifyVisit = async (req, res) => {
   }
   if (
     method == "Efectivo" &&
-    paymentInfo != "Dolar" &&
-    paymentInfo != "Bolivar"
+    paymentData != "Dolar" &&
+    paymentData != "Bolivar"
   ) {
-    return renderHistorial(req, res, {
+    return renderHistory(req, res, {
       showAlert: true,
       messageAlert:
         'El pago en Moneda debe registrarse como "Dolar" o "Bolivar"',
@@ -192,7 +193,7 @@ export const modifyVisit = async (req, res) => {
       );
 
       await pool.query(
-        `UPDATE visits SET representativeName = '${representativeName}', representativePhone = '${representativePhone}', totalBolivars = '${totalBolivars}', totalDolars = '${totalDolars}', paymentMethod_id = ${paymentId}, paymentInfo = '${paymentInfo}' WHERE _id = '${_id}'`
+        `UPDATE visits SET representativeName = '${representativeName}', representativePhone = '${representativePhone}', totalBolivars = '${totalBolivars}', totalDollars = '${totalDollars}', paymentMethod_id = ${paymentId}, paymentData = '${paymentData}' WHERE _id = '${_id}'`
       );
 
       message = "Los cambios en la visita han sido realizados exitosamente";
@@ -202,7 +203,7 @@ export const modifyVisit = async (req, res) => {
       messageAlert: message,
       typeAlert: "success",
     };
-    renderHistorial(req, res, alert);
+    renderHistory(req, res, alert);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

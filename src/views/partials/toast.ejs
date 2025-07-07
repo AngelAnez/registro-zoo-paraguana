@@ -1,0 +1,30 @@
+<article class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div
+    id="alertInfo"
+    class="toast"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
+    <section
+      id="alertHeader"
+      class="toast-header text-bg-<%=typeAlert%> user-select-none"
+    >
+      <i
+        style="transform: scaleX(-1); margin-right: 0.7rem;"
+        data-lucide="paw-print"
+        alt="logo-zoo-icon"
+      ></i>
+      <strong class="me-auto">Zoológico Paraguaná</strong>
+      <button
+        type="button"
+        data-bs-dismiss="toast"
+        aria-label="Close"
+        data-lucide="x"
+      ></button>
+    </section>
+    <section id="alertMessage" class="toast-body user-select-none">
+      <%= messageAlert %>
+    </section>
+  </div>
+</article>

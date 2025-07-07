@@ -1,0 +1,198 @@
+<article
+  class="modal fade"
+  id="infoVisitModal"
+  tabindex="-1"
+  aria-hidden="true"
+  data-bs-backdrop="static"
+>
+  <form method="post" class="modal-dialog modal-dialog-centered">
+    <section class="modal-content">
+      <header class="modal-header text-bg-success user-select-none">
+        <h1 class="modal-title fs-5">Información de la Visita</h1>
+        <a
+          class="btn text-light p-0 opacity-hover"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <i data-lucide="x" alt="close-icon"></i>
+        </a>
+        <input
+          type="number"
+          name="_id"
+          id="_idVisitValue"
+          class="visually-hidden"
+        />
+        <input
+          type="number"
+          name="kids_id"
+          id="kids_idVisitValue"
+          class="visually-hidden"
+        />
+        <input
+          type="number"
+          name="adults_id"
+          id="adults_idVisitValue"
+          class="visually-hidden"
+        />
+        <input
+          type="number"
+          name="elders_id"
+          id="elders_idVisitValue"
+          class="visually-hidden"
+        />
+      </header>
+      <section class="modal-body d-flex flex-column py-2 px-3">
+        <section class="d-flex px-2 user-select-none">
+          <section class="col-9 d-flex flex-column">
+            <label for="representativeNameVisitValue">Representante:</label>
+            <div id="representativeNameVisitValue" class="mb-1"></div>
+            <label for="representativePhoneVisitValue"
+              >Número de Contacto:</label
+            >
+            <div id="representativePhoneVisitValue" class="mb-1"></div>
+          </section>
+          <section class="col-3">
+            <label for="dateVisitValue">Fecha:</label>
+            <h6 id="dateVisitValue"></h6>
+            <label for="timeVisitValue">Hora:</label>
+            <h6 id="timeVisitValue"></h6>
+          </section>
+        </section>
+        <hr class="p-0 my-2" />
+        <section
+          class="container-fluid d-flex flex-column justify-content-around user-select-none gap-3 py-1"
+        >
+          <section
+            class="m-0 p-0 d-flex justify-content-start align-items-center gap-3"
+          >
+            <p class="text-center p-0 m-0 fw-bold col-2">Niños y Niñas</p>
+            <img
+              class="col-2"
+              src="./public/assets/img/children.webp"
+              alt="childrenImg"
+            />
+            <label class="d-flex justify-content-around col-2 gap-2">
+              <img
+                class="user-select-none col-6"
+                src="./public/assets/img/male.png"
+                alt="maleImg"
+              />
+              <section id="boysVisitValue"></section>
+            </label>
+            <label class="d-flex justify-content-around col-2 gap-1">
+              <img
+                class="user-select-none col-6"
+                src="./public/assets/img/female.png"
+                alt="femaleImg"
+              />
+              <h5 class="text-center" id="girlsVisitValue"></h5>
+            </label>
+            <label class="d-flex justify-content-around col-2 gap-2">
+              <img
+                class="user-select-none col-6"
+                src="./public/assets/img/gift.png"
+                alt="giftImg"
+              />
+              <h5 class="text-center" id="courtesyKidsVisitValue"></h5>
+            </label>
+          </section>
+          <section
+            class="m-0 p-0 d-flex justify-content-start align-items-center gap-3"
+          >
+            <p class="text-center p-0 m-0 fw-bold col-2">Adultos</p>
+            <img
+              class="col-2"
+              src="./public/assets/img/adults.webp"
+              alt="adultsImg"
+            />
+            <label class="d-flex justify-content-around col-2 gap-2">
+              <img
+                class="user-select-none col-6"
+                src="./public/assets/img/male.png"
+                alt="maleImg"
+              />
+              <h5 class="text-center" id="menVisitValue"></h5>
+            </label>
+            <label class="d-flex justify-content-around col-2 gap-1">
+              <img
+                class="user-select-none col-6"
+                src="./public/assets/img/female.png"
+                alt="femaleImg"
+              />
+              <h5 class="text-center" id="womenVisitValue"></h5>
+            </label>
+            <label class="d-flex justify-content-around col-2 gap-2">
+              <img
+                class="user-select-none col-6"
+                src="./public/assets/img/gift.png"
+                alt="giftImg"
+              />
+              <h5 class="text-center" id="courtesyAdultsVisitValue"></h5>
+            </label>
+          </section>
+          <section
+            class="m-0 p-0 d-flex justify-content-start align-items-center gap-3"
+          >
+            <p class="text-center p-0 m-0 fw-bold col-2">Adultos Mayores</p>
+            <img
+              class="col-2"
+              src="./public/assets/img/seniors.webp"
+              alt="seniorsImg"
+            />
+            <label class="d-flex justify-content-around col-2 gap-2">
+              <img
+                class="user-select-none col-6"
+                src="./public/assets/img/male.png"
+                alt="maleImg"
+              />
+              <h5 class="text-center" id="elderMenVisitValue"></h5>
+            </label>
+            <label class="d-flex justify-content-around col-2 gap-1">
+              <img
+                class="user-select-none col-6"
+                src="./public/assets/img/female.png"
+                alt="femaleImg"
+              />
+              <h5 class="text-center" id="elderWomenVisitValue"></h5>
+            </label>
+            <button
+              id="checkButtonVisit"
+              class="btn btn-success offset-1 col-1 p-1 visually-hidden"
+              type="submit"
+            >
+              <i class="opacity-hover" data-lucide="check" alt="checkIcon"></i>
+            </button>
+          </section>
+        </section>
+      </section>
+      <footer
+        class="modal-footer container-fluid p-0 d-flex align-items-start m-0 user-select-none"
+      >
+        <div class="row p-0 m-0 w-100">
+          <section
+            class="col-8 d-flex flex-column m-0 py-2 px-3 text-justify text-bg-secondary gap-2"
+            style="border-bottom-left-radius: 0.375rem"
+          >
+            <div id="methodVisitValue" class="d-flex gap-2"></div>
+            <div id="methodValidationVisitValue" class="d-flex flex-column"></div>
+          </section>
+          <section
+            class="col-4 d-flex flex-column text-bg-success m-0 py-2 px-3 rounded-bottom-2 rounded-start-0"
+          >
+            <section class="d-flex flex-column gap-1">
+              <p class="text-start w-100 m-0 fw-bold">Total:</p>
+              <div
+                id="totalBolivarsVisitValue"
+                class="w-100 d-flex fs-5 fw-semibold gap-2"
+              ></div>
+              <div
+                id="totalDolarsVisitValue"
+                class="w-100 d-flex fs-5 fw-semibold gap-2"
+              ></div>
+            </section>
+          </section>
+        </div>
+      </footer>
+    </section>
+  </form>
+</article>

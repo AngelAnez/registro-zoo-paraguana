@@ -12,7 +12,7 @@ infoVisitModal.addEventListener('show.bs.modal', event => {
     document.getElementById('kids_idVisitValue').value = visitCompleteInfo.getAttribute(`data-bs-kids_id`)
     document.getElementById('adults_idVisitValue').value = visitCompleteInfo.getAttribute(`data-bs-adults_id`)
     document.getElementById('elders_idVisitValue').value = visitCompleteInfo.getAttribute(`data-bs-elders_id`)
-    const visitData = ['date', 'time','boys', 'girls', 'courtesyKids',, 'men', 'women','courtesyAdults', 'elderMen', 'elderWomen', 'method', 'extraInfoTitle', 'totalBolivars', 'totalDolars', 'paymentInfo', 'representativeName', 'representativePhone']
+    const visitData = ['date', 'time','boys', 'girls', 'courtesyKids',, 'men', 'women','courtesyAdults', 'elderMen', 'elderWomen', 'method', 'methodValidation', 'totalBolivars', 'totalDollars', 'paymentData', 'representativeName', 'representativePhone']
     visitData.forEach(data => {
         let value = visitCompleteInfo.getAttribute(`data-bs-${data.toLowerCase()}`)
         if (document.getElementById(`${data}VisitValue`)){
@@ -23,12 +23,12 @@ infoVisitModal.addEventListener('show.bs.modal', event => {
                     document.getElementById(`${data}VisitValue`).innerHTML = value
                 } else if (data == "method") {
                     document.getElementById(`${data}VisitValue`).innerHTML = `<p class="m-0 fw-bold">Método de Pago: </p> <span>${value}</span>`
-                } else if (data == "extraInfoTitle"){
-                    document.getElementById(`${data}VisitValue`).innerHTML = `<p class="m-0 fw-bold">${value}</p>
-                    <p class="m-0" id="paymentInfoVisitValue"></p>`
-                } else if (data == "paymentInfo"){
+                } else if (data == "methodValidation"){
+                    document.getElementById(`${data}VisitValue`).innerHTML = `<p class="m-0 fw-bold">${value}:</p>
+                    <p class="m-0" id="paymentDataVisitValue"></p>`
+                } else if (data == "paymentData"){
                     document.getElementById(`${data}VisitValue`).innerHTML = value
-                } else if (data == "totalBolivars" || data == "totalDolars") {
+                } else if (data == "totalBolivars" || data == "totalDollars") {
                     document.getElementById(`${data}VisitValue`).innerHTML = `<p type="number" class="p-0 text-end fw-semibold fs-5 w-75 m-0">${value}</p> <span>${data == "totalDolars" ? "$" : "Bs."}</span>`
                 } else {
                     document.getElementById(`${data}VisitValue`).innerHTML = `<h5 class="text-center">${value}</h5>`

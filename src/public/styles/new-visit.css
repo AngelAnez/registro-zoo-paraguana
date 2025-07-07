@@ -168,11 +168,6 @@
     gap: 20px;
 }
 
-.new-visit-form-button{
-    padding: 0.5rem;
-    min-width: 120px;
-}
-
 @media (max-width: 800px) {
     aside section {
         justify-content: center;

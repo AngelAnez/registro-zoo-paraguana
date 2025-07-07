@@ -1,20 +1,25 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-.opacity-hover:hover{
+.opacity-hover:hover {
     opacity: 60%;
     transition: 0.3s;
     cursor: pointer;
 }
 
-img{
+img {
     pointer-events: none;
 }
 
-.passwordIconContainer:hover{
+.passwordIconContainer:hover {
     opacity: 50%;
     cursor: pointer;
+}
+
+.general-button {
+    padding: 0.5rem;
+    min-width: 120px;
 }

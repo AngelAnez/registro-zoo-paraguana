@@ -1,0 +1,68 @@
+<%- include('../../layout-head', {title : "Historial de Visitas", css :
+"history.css", js : "history.js"}); %>
+
+    <%- include('partials/search-visit-bar', {searchFilter}); %>
+
+    <section class="container py-2 px-4 table-responsive">
+      <table
+        class="table text-center table-hover table-sm table-rounded rounded-2 overflow-hidden shadow border"
+      >
+        <thead class="table-success">
+          <tr class="user-select-none">
+            <% if (searchFilter != "") { searchFilter = "&filter=" +
+            searchFilter } %> 
+            
+            <%- include('partials/table-header', {title: "Fecha", tooltipTitle: "Fecha de la visita", name: "date", sort, order}); %>
+
+            <%- include('partials/table-header', {title: "Hora", tooltipTitle: "Hora de la visita", name: "time", sort, order}); %>
+
+            <%- include('partials/table-header', {title: "Niños", tooltipTitle: "Cantidad de Niños y Niñas", name: "totalKids", sort, order}); %>
+
+            <%- include('partials/table-header', {title: "Adultos", tooltipTitle: "Cantidad de Adultos", name: "totalAdults", sort, order}); %>
+
+            <%- include('partials/table-header', {title: "Adultos M.", tooltipTitle: "Cantidad de Adultos Mayores", name: "totalElders", sort, order}); %>
+
+            <%- include('partials/table-header', {title: "M. de Pago", tooltipTitle: "Método de Pago de la visita", name: "method", sort, order}); %>
+
+            <%- include('partials/table-header', {title: "Monto (Bs.)", tooltipTitle: "Monto Total en Bolívares", name: "totalBolivars", sort, order}); %>
+
+            <%- include('partials/table-header', {title: "Monto ($)", tooltipTitle: "Monto Total en Dólares", name: "totalDollars", sort, order}); %>
+    
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% visits.forEach((visit) => { %>
+          <tr class="user-select-none">
+            <td><%= visit.date %></td>
+            <td><%= visit.time %></td>
+            <td><%= visit.totalKids %></td>
+            <td><%= visit.totalAdults %></td>
+            <td><%= visit.totalElders %></td>
+            <td><%= visit.method %></td>
+            <td><%= visit.totalBolivars %></td>
+            <td><%= visit.totalDollars %></td>
+            <td>
+              <%- include('partials/table-action', {tooltipTitle: "Ver detalles de la Visita", target: "#infoVisitModal", action: "view", icon: "eye", visit}); %>
+              
+              <% if (admin) { %>
+            
+                <%- include('partials/table-action', {tooltipTitle: "Modificar Visita", target: "#infoVisitModal", action: "modify", icon: "pencil", visit}); %>
+
+                <%- include('partials/table-action', {tooltipTitle: "Eliminar Visita", target: "#deleteVisitModal", action: "delete", icon: "trash-2", visit}); %>
+
+              <% } %>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </section>
+
+    <%- include('partials/table-pagination-bar', {pag}) %>
+
+  <%- include('partials/view-visit-modal') %>
+        
+  <%- include('partials/delete-visit-modal') %>
+    
+<%- include('../../layout-foot', {messageAlert, typeAlert, showAlert}) %>
