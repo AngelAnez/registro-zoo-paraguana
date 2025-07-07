@@ -1,64 +1,73 @@
 <article id="addNewVisitStep4" class="new-visit-form-container d-none">
-      <header class="new-visit-form-header">
+  <header class="new-visit-form-header">
     <div class="new-visit-form-header-title">
       <i data-lucide="check" alt="Confirmation section icon"></i>
       <h2>Confirmación</h2>
     </div>
-    <p class="new-visit-form-header-subtitle">Verifique los datos ingresados.</p>
+    <p class="new-visit-form-header-subtitle">
+      Verifique los datos ingresados.
+    </p>
   </header>
 
-    <section class="d-flex flex-column px-2 user-select-none px-md-5 mx-md-5">
-        <section class="d-flex flex-wrap justify-content-start column-gap-5 row-gap-0" style="min-width: 200px;">
-            <label class="fw-bold p-0" style="min-width: 150px; flex: 1;">Fecha:</label>
-            <span class="p-0" style="min-width: 100px; flex: 1;" id="dateInvoice"></span>
-            <input type="text" name="date" class="d-none" id="dateInput">
-        </section>
+  <ul class="new-visit-form-body flex-wrap p-0 gap-2">
+    <li class="new-visit-form-element-container">
+      <header class="new-visit-form-element-header">
+        <h3 class="new-visit-form-element-title">Fecha y Hora</h3>
+      </header>
+      <section class="new-visit-form-element-body">
+        <span class="px-2 py-1 form-control" id="datetimeInvoice"></span>
+        <input type="text" name="date" class="d-none" id="dateInput" />
+        <input type="text" name="time" class="d-none" id="timeInput" />
+      </section>
+    </li>
 
-        <section class="d-flex flex-wrap justify-content-start column-gap-5 row-gap-0" style="min-width: 200px;">
-            <label class="fw-bold p-0" style="min-width: 150px; flex: 1;">Hora:</label>
-            <span class="p-0" style="min-width: 100px; flex: 1;" id="timeInvoice"></span>
-            <input type="text" name="time" class="d-none" id="timeInput">
-        </section>
+    <%-include('form-confirmation-element', {title : 'Total Niños', id : "kidsInvoice"} ); %>
+    <%-include('form-confirmation-element', {title : 'Total Adultos', id : "adultsInvoice"} ); %>
+    <%-include('form-confirmation-element', {title : 'Total Adultos Mayores', id: "eldersInvoice"} ); %>
+    <%-include('form-confirmation-element', {title : 'Representante', id : "representativeInvoice"} ); %>
+    <%-include('form-confirmation-element', {title : 'Método de Pago', id : "methodInvoice"} ); %>
 
-        <section class="d-flex flex-wrap justify-content-start column-gap-5 row-gap-0" style="min-width: 200px;">
-            <label class="fw-bold p-0" style="min-width: 150px; flex: 1;">Niños y Niñas:</label>
-            <span class="p-0" style="min-width: 100px; flex: 1;" id="kidsInvoice"></span>
-        </section>
+    <li class="new-visit-form-element-container">
+      <header class="new-visit-form-element-header">
+        <h3 id="extraInfoTitle" class="new-visit-form-element-title">
+          Número de Referencia
+        </h3>
+      </header>
+      <section class="new-visit-form-element-body">
+        <span
+          class="px-2 py-1 form-control"
+          id="extraInfoInvoice"
+          style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap"
+        >
+        </span>
+      </section>
+    </li>
 
-        <section class="d-flex flex-wrap justify-content-start column-gap-5 row-gap-0" style="min-width: 200px;">
-            <label class="fw-bold p-0" style="min-width: 150px; flex: 1;">Adultos:</label>
-            <span class="p-0" style="min-width: 100px; flex: 1;" id="adultsInvoice"></span>
-        </section>
-
-        <section class="d-flex flex-wrap justify-content-start column-gap-5 row-gap-0" style="min-width: 200px;">
-            <label class="fw-bold p-0" style="min-width: 150px; flex: 1;">Adultos Mayores:</label>
-            <span class="p-0" style="min-width: 100px; flex: 1;" id="eldersInvoice"></span>
-        </section>
-
-        <section class="d-flex flex-wrap justify-content-start column-gap-5 row-gap-0" style="min-width: 200px;">
-            <label class="fw-bold p-0" style="min-width: 150px; flex: 1;">Representante:</label>
-            <span class="p-0" style="min-width: 100px; flex: 1;" id="representativeInvoice"></span>
-        </section>
-
-        <section class="d-flex flex-wrap justify-content-start column-gap-5 row-gap-0" style="min-width: 200px;">
-            <label class="fw-bold p-0" style="min-width: 150px; flex: 1;">Método de Pago:</label>
-            <span class="p-0" style="min-width: 100px; flex: 1;" id="methodInvoice"></span>
-        </section>
-
-        <section class="d-flex flex-wrap justify-content-start column-gap-5 row-gap-0" style="min-width: 200px;">
-            <label class="fw-bold p-0" style="min-width: 150px; flex: 1;" id="extraInfoTitle">Número de Referencia:</label>
-            <span class="p-0" style="min-width: 100px; flex: 1;" id="extraInfoInvoice"></span>
-        </section>
-
-        <section class="d-flex flex-wrap justify-content-start column-gap-5 row-gap-0" style="min-width: 200px;">
-            <label class="fw-bold p-0" style="min-width: 150px; flex: 1;">Monto:</label>
-            <span class="p-0 text-success fw-bold" style="min-width: 100px; flex: 1;" id="totalInvoice"></span>
-        </section>
-
-    </section>
-
-    <section class="text-center d-flex justify-content-center align-items-center gap-4">
-        <button type="button" onclick="changeStep(3)" class="btn btn-secondary col-2 p-1" style="min-width: 80px;">Atrás</button>
-        <button type="submit" class="btn btn-success col-2 p-1" style="min-width: 80px;">Finalizar</button>
-    </section>
-</article> 
+    <li class="new-visit-form-element-container">
+      <header class="new-visit-form-element-header">
+        <h3 class="new-visit-form-element-title">Monto</h3>
+      </header>
+      <section class="new-visit-form-element-body">
+        <span
+          class="px-2 py-1 form-control text-success fw-bold"
+          id="totalInvoice"
+          style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap"
+        ></span>
+      </section>
+    </li>
+  </ul>
+  <input type="text" name="totalDollars" class="d-none" id="dollarsInput" />
+  <input type="text" name="totalBolivars" class="d-none" id="bolivarsInput" />
+  <footer class="new-visit-form-footer">
+    <button
+      type="button"
+      onclick="changeStep(3)"
+      class="new-visit-form-button btn btn-secondary"
+    >
+      Atrás
+    </button>
+    <button type="submit" class="new-visit-form-button btn btn-success">
+      Finalizar
+    </button>
+  </footer>
+</article>

@@ -2,86 +2,71 @@
   <header class="new-visit-form-header">
     <div class="new-visit-form-header-title">
       <i data-lucide="user" alt="Representative section icon"></i>
-      <h2>Representante</h2>
+      <h2>Representante (Opcional)</h2>
     </div>
-    <p class="new-visit-form-header-subtitle">Ingrese los datos del representante de la visita.</p>
+    <p class="new-visit-form-header-subtitle">
+      Ingrese los datos de la persona o empresa representante de la visita.
+    </p>
   </header>
 
-  <section
-    class="d-flex gap-3 flex-wrap justify-content-center px-md-5 mx-md-5"
-    style="max-width: 540px"
-  >
-    <label
-      for="representativeName"
-      class="d-flex align-items-center p-0 gap-3"
-      style="max-width: 280px"
-    >
-      <figure class="m-0 p-0">
+  <section class="new-visit-form-body flex-column">
+    <article class="new-visit-form-element-container" style="min-width: 100%">
+      <header class="new-visit-form-element-header">
         <img
-          class="w-100 user-select-none"
+          class="new-visit-form-element-icon"
           src="./public/assets/img/representative.webp"
-          alt="representativeNameImg"
+          alt="representativeImg"
         />
-      </figure>
-      <div class="text-start d-flex flex-column gap-2" style="min-width: 60%">
-        <span class="fw-bold user-select-none">Nombre</span>
+        <h3 class="new-visit-form-element-title">Nombre</h3>
+      </header>
+      <section class="new-visit-form-element-body">
         <input
           type="text"
-          class="form-control p-0 text-center"
+          class="form-control px-2 py-1"
           id="representativeName"
           autocomplete="off"
           name="representativeName"
           oninput="cleanInputs(step3Container)"
         />
-      </div>
-    </label>
-  </section>
+      </section>
+    </article>
 
-  <section class="d-flex gap-3 flex-wrap justify-content-center mx-lg-5">
-    <label
-      for="representativePhone"
-      class="d-flex align-items-center p-0 gap-3"
-      style="max-width: 280px"
-    >
-      <figure class="m-0 p-0">
+    <article class="new-visit-form-element-container" style="min-width: 100%">
+      <header class="new-visit-form-element-header">
         <img
-          class="w-100 user-select-none"
+          class="new-visit-form-element-icon"
           src="./public/assets/img/telephone.webp"
           alt="representativePhoneImg"
         />
-      </figure>
-      <div class="text-start d-flex flex-column gap-2" style="min-width: 60%">
-        <span class="fw-bold user-select-none">Teléfono</span>
+        <h3 class="new-visit-form-element-title">Número de Teléfono</h3>
+      </header>
+      <section class="new-visit-form-element-body">
         <input
           type="tel"
-          class="form-control p-0 text-center"
+          class="form-control px-2 py-1"
           id="representativePhone"
           autocomplete="off"
           name="representativePhone"
           oninput="cleanInputs(step3Container)"
         />
-      </div>
-    </label>
+      </section>
+    </article>
   </section>
 
-  <section
-    class="text-center d-flex justify-content-center align-items-center gap-4"
-  >
+  <footer class="new-visit-form-footer">
     <button
       type="button"
       onclick="changeStep(2)"
-      class="btn btn-secondary col-2 p-1"
-      style="min-width: 80px"
+      class="new-visit-form-button btn btn-secondary"
     >
       Atrás
     </button>
     <button
       type="button"
       onclick="validateStep3()"
-      class="btn btn-success col-2 p-1"
-      style="min-width: 80px"
+      class="new-visit-form-button btn btn-success"
     >
       Siguiente
     </button>
-  </section>
+  </footer>
 </article>

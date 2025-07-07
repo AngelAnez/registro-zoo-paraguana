@@ -93,7 +93,7 @@ function changeStep(step) {
         );
       document
         .getElementById("addNewVisitStep" + i)
-        .classList.replace("d-none", "d-flex")
+        .classList.replace("d-none", "d-flex");
     } else {
       document
         .getElementById("step" + i + "Circle")
@@ -103,7 +103,7 @@ function changeStep(step) {
         );
       document
         .getElementById("addNewVisitStep" + i)
-        .classList.replace("d-flex", "d-none")
+        .classList.replace("d-flex", "d-none");
     }
   }
 }
@@ -137,14 +137,12 @@ function changeFamilyNumber() {
   let kidsFinalValue = kidsTotalValue - courtesyKidsValue;
   let adultsFinalValue = adultsTotalValue - courtesyAdultsValue;
 
-  totalDolars.value =
+  totalDolars.innerText =
     kidsFinalValue * kidsTicket + adultsFinalValue * adultsTicket;
-  totalBolivars.value = totalDolars.value * dolarToday.value;
+  totalBolivars.innerText = totalDolars.innerText * dolarToday.value;
 
-  totalBolivars.value = parseFloat(totalBolivars.value).toFixed(2);
-
-  totalDolars.value += "$";
-  totalBolivars.value += " Bs.";
+  totalDolars.innerText = parseFloat(totalDolars.innerText).toFixed(2);
+  totalBolivars.innerText = parseFloat(totalBolivars.innerText).toFixed(2);
 }
 
 function validateStep1() {
@@ -218,27 +216,28 @@ function dinamicPaymentMethod() {
     step2Container.querySelectorAll("#" + paymentMethod.id)
   );
 
-  let indexMethodSelected = paymentMethod.selectedIndex;
-  let textMethodSelected = paymentMethod.options[indexMethodSelected].text;
-  let methodHTML = "";
-  switch (textMethodSelected) {
-    case "Efectivo":
-      methodHTML = `<section class="d-flex flex-column gap-2 w-100"><span class="fw-bold user-select-none text-center">Moneda</span><section class="d-flex align-items-center justify-content-around"><label for="dolarOption" class="d-flex justify-content-center gap-2" style="min-width: 0px;"><span class="user-select-none">Dólar</span><input type="radio" id="dolarOption" value="Dolar" class="form-check-input" name="extraInfoPayment" required oninput="cleanInputs(step2Container)"/></label><label for="bolivarOption" class="d-flex justify-content-center gap-2" style="min-width: 0px;"><span for="bolivarOption" class="user-select-none">Bolívar</span><input type="radio" id="bolivarOption" value="Bolivar" class="form-check-input" name="extraInfoPayment" required oninput="cleanInputs(step2Container)"/></label></section></section>`;
-      break;
-    case "Otro":
-      methodHTML = `<label for="alternativeMethodInfo" class="col-12 text-start d-flex flex-column gap-2"><span class="fw-bold user-select-none">Información del Pago</span><textarea rows="2" id="alternativeMethodInfo" class="form-control px-1 py-0 text-start" style="resize: none;" autocomplete="off" name="extraInfoPayment" oninput="cleanInputs(step2Container)"></textarea></label>`;
-      break;
-    default:
-      methodHTML = `<label for="referenceNumberOption" class="col-9 text-start d-flex flex-column gap-2"><span class="fw-bold user-select-none">Número de Referencia</span><input type="text" id="referenceNumberOption" class="form-control px-1 py-0 test-start" autocomplete="off" name="extraInfoPayment" oninput="cleanInputs(step2Container)" /></label>`;
-      break;
-  }
-  methodSelected.innerHTML = methodHTML;
+  const methodsId = {
+    "Pago Móvil": "referenceMethod",
+    Transferencia: "referenceMethod",
+    Efectivo: "currencyMethod",
+    Otro: "anotherMethod",
+  };
+
+  const methods = ["currencyMethod", "anotherMethod", "referenceMethod"];
+  methods.forEach((method) => {
+    const methodElement = document.getElementById(method);
+    if (method === methodsId[paymentMethod.value]) {
+      methodElement.classList.replace("d-none", "d-flex");
+    } else {
+      methodElement.classList.replace("d-flex", "d-none");
+    }
+  });
 }
 
 function validateStep2() {
   let invalid = true;
   let inputsStep2 = step2Container.querySelectorAll(
-    'input[name="extraInfoPayment"]'
+    'input[name="paymentData"]'
   );
 
   let indexMethodSelected = paymentMethod.selectedIndex;
@@ -252,9 +251,9 @@ function validateStep2() {
     );
   }
   if (textMethodSelected == "Efectivo") {
-    let dolarOption = document.querySelector("#dolarOption");
-    let bolivarOption = document.querySelector("#bolivarOption");
-    if (!dolarOption.checked && !bolivarOption.checked) {
+    const currencyOption = document.querySelector("#currencyOption");
+    const currencies = ["Dolar", "Bolivar"];
+    if (!currencies.includes(currencyOption.value)) {
       return formValidator(
         "error",
         inputsStep2,
@@ -334,8 +333,7 @@ function validateStep3() {
 
 function all_values() {
   const { date, time } = getDateandTime();
-  document.querySelector("#dateInvoice").innerHTML = date;
-  document.querySelector("#timeInvoice").innerHTML = time;
+  document.querySelector("#datetimeInvoice").innerHTML = `${date} - ${time}`;
 
   document.querySelector("#kidsInvoice").innerHTML =
     +boysNumber.value + +girlsNumber.value;
@@ -346,32 +344,32 @@ function all_values() {
   document.querySelector("#representativeInvoice").innerHTML =
     representativeName.value == "" ? "Sin Asignar" : representativeName.value;
   document.querySelector("#methodInvoice").innerHTML = paymentMethod.value;
-  document.querySelector("#totalInvoice").innerHTML = totalBolivars.value;
+  document.querySelector("#dollarsInput").value = totalDolars.innerText;
+  document.querySelector("#bolivarsInput").value = totalBolivars.innerText;
+  document.querySelector("#totalInvoice").innerHTML =
+    totalBolivars.innerText + " Bs.";
 
   let extraInfoTitle = document.querySelector("#extraInfoTitle");
   let extraInfoInvoice = document.querySelector("#extraInfoInvoice");
 
   if (paymentMethod.value == "Efectivo") {
-    let dolarOption = document.querySelector("#dolarOption");
-    let bolivarOption = document.querySelector("#bolivarOption");
-    extraInfoTitle.innerHTML = "Moneda:";
-    if (dolarOption.checked) {
-      extraInfoInvoice.innerHTML = dolarOption.value;
-      document.querySelector("#totalInvoice").innerHTML = totalDolars.value;
-    } else {
-      extraInfoInvoice.innerHTML = bolivarOption.value;
+    extraInfoTitle.innerHTML = "Moneda";
+    let currencySelected = document.querySelector("#currencyOption").value;
+    extraInfoInvoice.innerHTML = currencySelected;
+    if (currencySelected === "Dolar") {
+      document.querySelector("#totalInvoice").innerHTML = totalDolars.innerText + " $"; 
     }
   } else if (paymentMethod.value == "Otro") {
     let alternativeMethodInfo = document.querySelector(
       "#alternativeMethodInfo"
     );
-    extraInfoTitle.innerHTML = "Información del Pago:";
+    extraInfoTitle.innerHTML = "Información del Pago";
     extraInfoInvoice.innerHTML = alternativeMethodInfo.value;
   } else {
     let referenceNumberOption = document.querySelector(
       "#referenceNumberOption"
     );
-    extraInfoTitle.innerHTML = "Número de Referencia:";
+    extraInfoTitle.innerHTML = "Número de Referencia";
     extraInfoInvoice.innerHTML = referenceNumberOption.value;
   }
 }

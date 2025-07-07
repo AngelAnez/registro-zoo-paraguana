@@ -21,10 +21,10 @@ CREATE TABLE
     IF NOT EXISTS paymentMethod (
         _id INT (11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
         method VARCHAR(45) NOT NULL,
-        extraInfoTitle VARCHAR(45) NOT NULL
+        methodValidation VARCHAR(45) NOT NULL
     );
 
-INSERT IGNORE INTO paymentMethod (method, extraInfoTitle)
+INSERT IGNORE INTO paymentMethod (method, methodValidation)
 VALUES
     ('Pago Móvil', 'Número de Referencia'),
     ('Transferencia', 'Número de Referencia'),
@@ -64,10 +64,10 @@ CREATE TABLE
         adults_id INT (11) NOT NULL,
         elders_id INT (11) NOT NULL,
         totalFamily INT (5) NOT NULL DEFAULT 1,
-        totalDolars DEC(6, 2) NOT NULL,
+        totalDollars DEC(6, 2) NOT NULL,
         totalBolivars DEC(8, 2) NOT NULL,
         paymentMethod_id INT (11) NOT NULL,
-        paymentInfo VARCHAR(255) NOT NULL,
+        paymentData VARCHAR(255) NOT NULL,
         representativeName VARCHAR(100) NOT NULL,
         representativePhone VARCHAR(20) NOT NULL,
         date_time DATETIME,
