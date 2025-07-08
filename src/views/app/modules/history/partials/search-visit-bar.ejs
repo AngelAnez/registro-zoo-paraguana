@@ -1,7 +1,7 @@
-<nav class="navbar m-0 user-select-none">
+<nav class="navbar m-0 user-select-none my-2">
   <section class="container-fluid">
     <form
-      class="d-flex w-100 align-items-center justify-content-center gap-4"
+      class="d-flex flex-wrap w-100 align-items-center justify-content-center gap-4"
       role="search"
     >
       <section
@@ -21,9 +21,12 @@
         </section>
       </section>
 
-      <%- include('../../../../partials/button', {text: "Buscar", type: "submit", color: 'success'}); %>
-
-      <%- include('../../../../partials/button', {text: "Limpiar", type: "link", color: 'secondary', href: '/history'}); %>
+      <section>
+        <%- include('../../../../partials/button', {text: "Buscar", type:
+        "submit", color: 'success'}); %> <%-
+        include('../../../../partials/button', {text: "Limpiar", type: "link",
+        color: 'secondary', href: '/history'}); %>
+      </section>
     </form>
   </section>
 </nav>

@@ -14,23 +14,16 @@
     <% if (css) { %>
     <link href="./public/styles/<%=css%>" rel="stylesheet" type="text/css" />
     <% } %>
-    <link
-      href="./public/styles/general.css"
-      rel="stylesheet"
-      type="text/css"
-    />
+    <link href="./public/styles/general.css" rel="stylesheet" type="text/css" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <% if (nav) { %>
     <link href="./public/styles/sidebar.css" rel="stylesheet" type="text/css" />
     <link href="./public/styles/header.css" rel="stylesheet" type="text/css" />
-    <link
-      href="./public/plugins/bootstrap/css/bootstrap.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <% if (js) { %>
-    <script defer src="./public/js/<%=js%>"></script>
-    <% } %> 
-    <% if (nav) { %>
     <script defer src="./public/js/nav.js"></script>
     <% } %>
+    <% if (js) { %>
+    <script defer src="./public/js/<%=js%>"></script>
+    <% } %>
   </head>
-  <body class="min-vh-100">
+  <body class="min-vh-100"></body>
+</html>

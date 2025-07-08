@@ -1,0 +1,19 @@
+<li class="modal-list-element">
+  <label class="modal-list-element-label" for="<%=name%>Editing"
+    ><%=title%></label
+  >
+  <% if (readonly){ %>
+  <input
+    name="<%=name%>"
+    id="<%=name%>Editing"
+    class="px-2 py-1 form-control modal-list-element-input"
+    readonly
+  />
+  <% } else { %>
+  <input
+    name="<%=name%>"
+    id="<%=name%>Editing"
+    class="px-2 py-1 form-control modal-list-element-input"
+  />
+  <% } %>
+</li>
