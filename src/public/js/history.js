@@ -108,7 +108,7 @@ editVisitModal.addEventListener("show.bs.modal", (event) => {
     "representativePhone",
   ];
   ids.forEach((element) => {
-    let idInput = editVisitModal.querySelector(`input[name="${element}"]`);
+    let idInput = editVisitModal.querySelector(`[name="${element}"]`);
     element = element.toLowerCase();
     let value = button.getAttribute(`data-bs-${element}`);
     idInput.value = value;
@@ -127,26 +127,27 @@ deleteVisitModal.addEventListener("show.bs.modal", (event) => {
   });
 });
 
-const dinamicPaymentInfo = () => {
-  const dinamicSelect = document.getElementById("dinamicSelectVisit");
-  const methodSubtitle = document.getElementById("methodSubtitle");
-  const methodInfo = document.getElementById("methodInfo");
-  let indexMethodSelected = dinamicSelect.selectedIndex;
-  let textMethodSelected = dinamicSelect.options[indexMethodSelected].text;
+const dynamicPaymentMethod = () => {
+  const methodSelected = document.getElementById("methodEditing").value;
+  const methodValidationTitle = document.getElementById("methodValidationEditing");
+  const paymentDataElement = document.getElementById("paymentDataEditing");
+  console.log(methodSelected.value)
+  console.log(methodValidationTitle.value)
+  console.log(paymentDataElement.value)
   let subtitleText = "";
-  switch (textMethodSelected) {
+  switch (methodSelected) {
     case "Efectivo":
-      subtitleText = "Moneda:";
-      methodInfo.value = "";
+      subtitleText = "Moneda";
+      paymentDataElement.value = "";
       break;
     case "Otro":
-      subtitleText = "Información del Pago:";
-      methodInfo.value = "";
+      subtitleText = "Información del Pago";
+      paymentDataElement.value = "";
       break;
     default:
-      subtitleText = `Número de Referencia:`;
-      methodInfo.value = "";
+      subtitleText = `Número de Referencia`;
+      paymentDataElement.value = "";
       break;
   }
-  methodSubtitle.innerHTML = subtitleText;
+  methodValidationTitle.value = subtitleText;
 };

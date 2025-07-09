@@ -5,7 +5,7 @@
   aria-hidden="true"
   data-bs-backdrop="static"
 >
-  <form method="post" class="modal-dialog modal-lg">
+  <form method="post" class="modal-dialog modal-dialog-scrollable">
     <section class="modal-content">
       <header class="modal-header text-bg-success user-select-none">
         <h1 class="modal-title fs-5">Información de la Visita</h1>
@@ -21,14 +21,14 @@
         <input type="number" name="adults_id" class="visually-hidden" />
         <input type="number" name="elders_id" class="visually-hidden" />
       </header>
-      <section class="modal-body d-flex flex-wrap">
+      <section class="modal-body d-flex flex-column">
         <ul class="modal-list">
           <%- include('edit-visit-list-element', {title: "Fecha", name: "date",
           readonly: true});%> <%- include('edit-visit-list-element', {title:
           "Hora", name: "time", readonly: true});%>
         </ul>
 
-        <div>
+        <div class="modal-section-container">
           <header class="d-flex gap-2 align-items-center">
             <img
               class="modal-list-icon"
@@ -40,11 +40,13 @@
           <ul class="modal-list">
             <%- include('edit-visit-list-element', {title: "Niños", name:
             "boys", readonly: false});%> <%- include('edit-visit-list-element',
-            {title: "Niñas", name: "girls", readonly: false});%>
+            {title: "Niñas", name: "girls", readonly: false});%> <%-
+            include('edit-visit-list-element', {title: "Total", name:
+            "totalKids", readonly: false});%>
           </ul>
         </div>
 
-        <div>
+        <div class="modal-section-container">
           <header class="d-flex gap-2 align-items-center">
             <img
               class="modal-list-icon"
@@ -56,11 +58,13 @@
           <ul class="modal-list">
             <%- include('edit-visit-list-element', {title: "Hombres", name:
             "men", readonly: false});%> <%- include('edit-visit-list-element',
-            {title: "Mujeres", name: "women", readonly: false});%>
+            {title: "Mujeres", name: "women", readonly: false});%> <%-
+            include('edit-visit-list-element', {title: "Total", name:
+            "totalAdults", readonly: false});%>
           </ul>
         </div>
 
-        <div>
+        <div class="modal-section-container">
           <header class="d-flex gap-2 align-items-center">
             <img
               class="modal-list-icon"
@@ -73,11 +77,13 @@
             <%- include('edit-visit-list-element', {title: "Hombres", name:
             "elderMen", readonly: false});%> <%-
             include('edit-visit-list-element', {title: "Mujeres", name:
-            "elderWomen", readonly: false});%>
+            "elderWomen", readonly: false});%> <%-
+            include('edit-visit-list-element', {title: "Total", name:
+            "totalElders", readonly: false});%>
           </ul>
         </div>
 
-        <div>
+        <div class="modal-section-container">
           <header class="d-flex gap-2 align-items-center">
             <img
               class="modal-list-icon"
@@ -93,37 +99,99 @@
             "courtesyAdults", readonly: false});%>
           </ul>
         </div>
+
+        <div class="modal-section-container">
+          <header class="d-flex gap-2 align-items-center">
+            <img
+              class="modal-list-icon"
+              src="./public/assets/img/paymentMethod.webp"
+              alt="Icono para los métodos de pago disponibles"
+            />
+            <h2 class="modal-list-title">Método de Pago</h2>
+          </header>
+          <ul class="modal-list">
+            <li class="modal-list-element">
+              <label
+                class="modal-list-element-label"
+                for="methodEditing"
+              >Método de Pago</label>
+              <select
+                name="method"
+                id="methodEditing"
+                class="px-2 py-1 form-control modal-list-element-input"
+                onchange="dynamicPaymentMethod()"
+              >
+              <option>Pago Móvil</option>
+              <option>Transferencia</option>
+              <option>Efectivo</option>
+              <option>Otro</option>
+            </select>
+            </li>
+            <li class="modal-list-element" style="flex: 1;">
+              <input
+                name="methodValidation"
+                id="methodValidationEditing"
+                class="modal-list-element-label"
+                for="paymentDataEditing"
+                readonly
+              />
+              <input
+                name="paymentData"
+                id="paymentDataEditing"
+                class="px-2 py-1 form-control modal-list-element-input"
+                style="min-width: 100%; flex: 1"
+              />
+            </li>
+          </ul>
+        </div>
+
+        <div class="modal-section-container">
+          <header class="d-flex gap-2 align-items-center">
+            <img
+              class="modal-list-icon"
+              src="./public/assets/img/dolar.webp"
+              alt="Icono para la tasa dolar/bolivar"
+            />
+            <h2 class="modal-list-title">Monto</h2>
+          </header>
+          <ul class="modal-list">
+            <%- include('edit-visit-list-element', {title: "Bolívares", name:
+            "totalBolivars", readonly: false});%> <%-
+            include('edit-visit-list-element', {title: "Dólares", name:
+            "totalDollars", readonly: false});%>
+          </ul>
+        </div>
+
+        <div class="modal-section-container">
+          <header class="d-flex gap-2 align-items-center">
+            <img
+              class="modal-list-icon"
+              src="./public/assets/img/representative.webp"
+              alt="Icono para el representante de la visita"
+            />
+            <h2 class="modal-list-title">Representante</h2>
+          </header>
+          <ul class="modal-list">
+            <%- include('edit-visit-list-element', {title: "Nombre", name:
+            "representativeName", readonly: false});%> <%-
+            include('edit-visit-list-element', {title: "Número de Teléfono",
+            name: "representativePhone", readonly: false});%>
+          </ul>
+        </div>
       </section>
       <footer
-        class="modal-footer container-fluid p-0 d-flex align-items-start m-0 user-select-none"
+        class="modal-footer"
       >
-        <div class="row p-0 m-0 w-100">
-          <section
-            class="col-8 d-flex flex-column m-0 py-2 px-3 text-justify text-bg-secondary gap-2"
-            style="border-bottom-left-radius: 0.375rem"
-          >
-            <div id="methodVisitValue" class="d-flex gap-2"></div>
-            <div
-              id="methodValidationVisitValue"
-              class="d-flex flex-column"
-            ></div>
-          </section>
-          <section
-            class="col-4 d-flex flex-column text-bg-success m-0 py-2 px-3 rounded-bottom-2 rounded-start-0"
-          >
-            <section class="d-flex flex-column gap-1">
-              <p class="text-start w-100 m-0 fw-bold">Total:</p>
-              <div
-                id="totalBolivarsVisitValue"
-                class="w-100 d-flex fs-5 fw-semibold gap-2"
-              ></div>
-              <div
-                id="totalDolarsVisitValue"
-                class="w-100 d-flex fs-5 fw-semibold gap-2"
-              ></div>
-            </section>
-          </section>
-        </div>
+        <button
+          class="btn btn-secondary general-button"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          type="button"
+        >
+          Cancelar
+        </button>
+        <%- include('../../../../partials/button', {text: "Guardar cambios",
+        type: "submit", color: 'success'}); %>
       </footer>
     </section>
   </form>

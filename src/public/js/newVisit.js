@@ -210,7 +210,7 @@ const cleanInputs = (container) => {
   formValidator("clean", container.querySelectorAll(".is-invalid"));
 };
 
-function dinamicPaymentMethod() {
+function dynamicPaymentMethod() {
   formValidator(
     "clean",
     step2Container.querySelectorAll("#" + paymentMethod.id)

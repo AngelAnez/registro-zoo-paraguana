@@ -23,3 +23,9 @@ img {
     padding: 0.5rem;
     min-width: 120px;
 }
+
+@media (max-width: 450px){
+    .general-button{
+        width: 80%
+    }
+}

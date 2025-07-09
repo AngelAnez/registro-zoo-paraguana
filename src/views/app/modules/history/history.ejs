@@ -3,10 +3,9 @@
 
     <%- include('partials/search-visit-bar', {searchFilter}); %>
 
-    <section class="table-responsive-lg container">
+    <section class="history-table-container">
       <table
-        class="table "
-      >
+        class="table history-table">
         <thead class="table-success">
           <tr class="user-select-none">
             <% if (searchFilter != "") { searchFilter = "&filter=" +

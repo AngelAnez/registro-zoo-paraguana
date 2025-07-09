@@ -83,7 +83,7 @@ export const verifyUser = async (req, res) => {
 
     const token = await createAccessToken({ username, admin });
     res.cookie("token", token);
-    res.redirect("/inicio");
+    res.redirect("/home");
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
