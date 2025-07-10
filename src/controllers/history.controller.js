@@ -1,32 +1,44 @@
 import { pool } from "../db.js";
+import { DEFAULT_ALERT } from "../libs/default-alert.js";
+
+export const getHistory = async (req, res) => {
+  renderHistory(req, res, DEFAULT_ALERT);
+};
 
 export const renderHistory = async (req, res, alert) => {
   try {
     const { username, admin } = req.user;
 
-    let showAlert, messageAlert, typeAlert;
-    if (alert) {
-      showAlert = alert.showAlert;
-      messageAlert = alert.messageAlert;
-      typeAlert = alert.typeAlert;
-    } else {
-      showAlert = false;
-      messageAlert = "";
-      typeAlert = "";
+    let searchFilter = "";
+    const { pag = 1, sort = "", order = "ASC", filter } = req.query;
+
+    const [totalVisitsQuery] = await pool.query(
+      "SELECT COUNT(*) as total FROM visits;"
+    );
+    const { total } = totalVisitsQuery[0];
+
+    if (total === 0) {
+      return res.render("app/modules/history/history", {
+        username,
+        admin,
+        visits,
+        total,
+        pag,
+        sort,
+        order,
+        searchFilter,
+        ...alert,
+      });
     }
 
-    let pag = 1;
-    let sort = ""; // Puede ser cualquier propiedad de las visitas
-    let order = ""; // Puede ser asc o dec
-    let searchFilter = "";
     let query = `SELECT *, DATE_FORMAT(date_time, '%h:%i %p') as time, DATE_FORMAT(date_time, '%d/%m/%Y') as date, visits._id AS visit_id, kids._id AS kids_id, adults._id AS adults_id, elders._id AS elders_id FROM visits INNER JOIN paymentMethod ON visits.paymentMethod_id=paymentMethod._id
     INNER JOIN elders ON visits.elders_id=elders._id
     INNER JOIN adults ON visits.adults_id=adults._id
     INNER JOIN kids ON visits.kids_id=kids._id
     `;
     let whereQuery = "";
-    if (req.query.filter) {
-      searchFilter = req.query.filter
+    if (filter) {
+      searchFilter = filter
         .replaceAll(/[^a-zA-Z0-9áéíóúÁÉÍÓÚÑñ/.:\- ]+/g, "")
         .toLowerCase();
       whereQuery = ` WHERE visits.totalFamily LIKE '%${searchFilter}%' OR 
@@ -53,43 +65,32 @@ export const renderHistory = async (req, res, alert) => {
       query += whereQuery;
     }
 
-    const totalVisitsQuery = await pool.query(query);
-    let total;
-    if (!totalVisitsQuery[0][0]) {
-      total = [];
-    } else {
-      total = Object.values(totalVisitsQuery[0][0])[0];
-    }
-
-    if (req.query.sort && req.query.order) {
-      sort = req.query.sort;
-      order = req.query.order;
-      let table;
-      if (
-        sort == "totalKids" ||
-        sort == "totalAdults" ||
-        sort == "totalElders"
-      ) {
-        table = sort.slice(5).toLowerCase();
-      } else if (sort == "method") {
-        table = "paymentMethod";
-      } else {
-        table = "visits";
-      }
+    if (sort.length > 0 && order.length > 0) {
       if (sort == "date") {
-        query += `  ORDER BY DATE(visits.date_time) ${order.toUpperCase()}`;
-      } else {
+        query += ` ORDER BY DATE(visits.date_time) ${order.toUpperCase()}`;
+      } else if (sort === "time") {
         query += ` ORDER BY TIME(visits.date_time) ${order.toUpperCase()}`;
+      } else {
+        let table;
+        if (
+          sort == "totalKids" ||
+          sort == "totalAdults" ||
+          sort == "totalElders"
+        ) {
+          table = sort.slice(5).toLowerCase();
+        } else if (sort == "method") {
+          table = "paymentMethod";
+        } else {
+          table = "visits";
+        }
+        query += ` ORDER BY ${table}.${sort} ${order.toUpperCase()}`;
       }
     } else {
       query += " ORDER BY visits._id DESC";
     }
     query += ` LIMIT 8`;
-    if (req.query.pag) {
-      pag = parseInt(req.query.pag);
-      if (pag > 1) {
-        query += ` OFFSET ${8 * (pag - 1)}`;
-      }
+    if (parseInt(pag) > 1) {
+      query += ` OFFSET ${8 * (parseInt(pag) - 1)}`;
     }
     const visitsQuery = await pool.query(query + ";");
     const visits = visitsQuery[0];
@@ -102,13 +103,11 @@ export const renderHistory = async (req, res, alert) => {
       admin,
       visits,
       total,
-      pag,
+      pag: parseInt(pag),
       sort,
       order,
       searchFilter,
-      showAlert,
-      messageAlert,
-      typeAlert,
+      ...alert,
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -137,6 +136,11 @@ export const modifyVisit = async (req, res) => {
     adults_id,
     elders_id,
   } = req.body;
+
+  if (deleteVisit) {
+    return removeVisit(req, res);
+  }
+
   if (parseInt(courtesyKids) > parseInt(boys) + parseInt(girls)) {
     return renderHistory(req, res, {
       showAlert: true,
@@ -165,45 +169,59 @@ export const modifyVisit = async (req, res) => {
       typeAlert: "danger",
     });
   }
+  if (method === "Transferencia" || method === "Pago Móvil") {
+    if (isNaN(paymentData))
+      return renderHistory(req, res, {
+        showAlert: true,
+        messageAlert:
+          "El pago por medios digitales debe registrarse con un número de referencia válido",
+        typeAlert: "danger",
+      });
+  }
   try {
-    let message = "";
-    if (deleteVisit && _id) {
-      await pool.query(`DELETE FROM visits WHERE _id = '${_id}'`);
-      await pool.query(`DELETE FROM kids WHERE _id = '${kids_id}'`);
-      await pool.query(`DELETE FROM adults WHERE _id = '${adults_id}'`);
-      await pool.query(`DELETE FROM elders WHERE _id = '${elders_id}'`);
-      message = "La visita ha sido eliminada exitosamente";
-    }
-    if (_id && !deleteVisit) {
-      const paymentMethodQuery = await pool.query(
-        `SELECT _id FROM paymentMethod WHERE method="${method}"`
-      );
-      const paymentId = paymentMethodQuery[0][0]._id;
+    const paymentMethodQuery = await pool.query(
+      `SELECT _id FROM paymentMethod WHERE method="${method}"`
+    );
+    const paymentId = paymentMethodQuery[0][0]._id;
 
-      await pool.query(
-        `UPDATE kids SET boys = ${boys}, girls = ${girls}, courtesyKids = ${courtesyKids} WHERE _id = ${kids_id}`
-      );
+    await pool.query(
+      `UPDATE kids SET boys = ${boys}, girls = ${girls}, courtesyKids = ${courtesyKids} WHERE _id = ${kids_id}`
+    );
 
-      await pool.query(
-        `UPDATE adults SET men = ${men}, women = ${women}, courtesyAdults = ${courtesyAdults} WHERE _id = ${adults_id}`
-      );
+    await pool.query(
+      `UPDATE adults SET men = ${men}, women = ${women}, courtesyAdults = ${courtesyAdults} WHERE _id = ${adults_id}`
+    );
 
-      await pool.query(
-        `UPDATE elders SET elderMen = ${elderMen}, elderWomen = ${elderWomen} WHERE _id = ${elders_id}`
-      );
+    await pool.query(
+      `UPDATE elders SET elderMen = ${elderMen}, elderWomen = ${elderWomen} WHERE _id = ${elders_id}`
+    );
 
-      await pool.query(
-        `UPDATE visits SET representativeName = '${representativeName}', representativePhone = '${representativePhone}', totalBolivars = '${totalBolivars}', totalDollars = '${totalDollars}', paymentMethod_id = ${paymentId}, paymentData = '${paymentData}' WHERE _id = '${_id}'`
-      );
+    await pool.query(
+      `UPDATE visits SET representativeName = '${representativeName}', representativePhone = '${representativePhone}', totalBolivars = '${totalBolivars}', totalDollars = '${totalDollars}', paymentMethod_id = ${paymentId}, paymentData = '${paymentData}' WHERE _id = '${_id}'`
+    );
 
-      message = "Los cambios en la visita han sido realizados exitosamente";
-    }
-    const alert = {
+    renderHistory(req, res, {
       showAlert: true,
-      messageAlert: message,
+      messageAlert: "Los cambios en la visita han sido realizados exitosamente",
       typeAlert: "success",
-    };
-    renderHistory(req, res, alert);
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const removeVisit = async (req, res) => {
+  const { _id, kids_id, adults_id, elders_id } = req.body;
+  try {
+    await pool.query(`DELETE FROM visits WHERE _id = '${_id}'`);
+    await pool.query(`DELETE FROM kids WHERE _id = '${kids_id}'`);
+    await pool.query(`DELETE FROM adults WHERE _id = '${adults_id}'`);
+    await pool.query(`DELETE FROM elders WHERE _id = '${elders_id}'`);
+    return renderHistory(req, res, {
+      showAlert: true,
+      messageAlert: "La visita ha sido eliminada exitosamente",
+      typeAlert: "success",
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

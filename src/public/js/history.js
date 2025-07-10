@@ -26,7 +26,6 @@ infoVisitModal.addEventListener("show.bs.modal", (event) => {
     "boys",
     "girls",
     "courtesyKids",
-    ,
     "men",
     "women",
     "courtesyAdults",

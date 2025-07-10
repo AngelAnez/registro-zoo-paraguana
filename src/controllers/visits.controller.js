@@ -1,11 +1,8 @@
 import { pool } from "../db.js";
+import { DEFAULT_ALERT } from "../libs/default-alert.js";
 
 export const getVisitantes = (req, res) => {
-  renderVisitantes(req, res, {
-    showAlert: false,
-    messageAlert: "",
-    typeAlert: "",
-  });
+  renderVisitantes(req, res, DEFAULT_ALERT);
 };
 
 export const renderVisitantes = async (req, res, alert) => {

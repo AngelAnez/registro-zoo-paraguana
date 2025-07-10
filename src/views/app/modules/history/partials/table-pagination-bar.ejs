@@ -1,60 +1,60 @@
-<% if (pag == 1){ %> <% prevPag = 1 %> <% } else { %> <% prevPag = pag-1 %> <% }
-%> <% if (sort != "" && order != "") { %> <% sortQueries = "&sort=" + sort +
-"&order=" + order %> <% } else { %> <% sortQueries = "" %> <% } %>
-<ul class="pagination d-flex justify-content-center">
-  <% finalPage = Math.ceil(total / 8 )%> <% if (finalPage > 1) { %>
+<% if (pag == 1) { prevPag = 1 } else { prevPag = pag-1 } %> 
+<% if (sort != "" && order != "") { sortQueries = "&sort=" + sort + "&order=" + order } else {
+sortQueries = "" } %>
+<ul class="pagination d-flex justify-content-center flex-wrap px-5 row-gap-2">
+  <% totalPages = Math.ceil(total / 8 )%> 
+  <% if (totalPages > 1) { %>
   <li class="page-item">
     <a
       class="page-link"
-      href="/historial?pag=<%=prevPag%><%=sortQueries%><%=searchFilter%>"
+      href="/history?pag=<%=prevPag%><%=sortQueries%><%=searchFilter%>"
       aria-label="Previous"
     >
       <span aria-hidden="true" class="text-success fw-bold user-select-none"
-        >Anterior</span
+        ><i data-lucide="arrow-left" alt="left-arrow" style="width: 20px; height: 20px;"></i></span
       >
     </a>
   </li>
   <li class="page-item">
     <a
       class="page-link user-select-none <% if (pag == 1) { %> text-bg-success <% } else { %> text-success <% } %> fw-bold"
-      href="/historial?pag=1<%=sortQueries%><%=searchFilter%>"
+      href="/history?pag=1<%=sortQueries%><%=searchFilter%>"
       >1
     </a>
   </li>
-  <% } %> <% if (pag - 5 > 2) { %>
+  <% } %> <% if (pag - 4 > 2) { %>
   <li class="page-item">
     <a class="page-link user-select-none text-success fw-bold">... </a>
   </li>
-  <% } %> <% for (let p = -5; p < 6 ; p++) { %> <% if (pag + p > 1 && pag + p <
-  finalPage) {%>
+  <% } for (let p = -4; p < 5 ; p++) { if (pag + p > 1 && pag + p < totalPages) { %>
   <li class="page-item">
     <a
       class="page-link user-select-none <% if (pag == pag+p) { %> text-bg-success <% } else { %> text-success <% } %> fw-bold"
-      href="/historial?pag=<%=pag+p%><%=sortQueries%><%=searchFilter%>"
+      href="/history?pag=<%=pag+p%><%=sortQueries%><%=searchFilter%>"
       ><%= pag+p %>
     </a>
   </li>
-  <% } } %> <% if (pag == finalPage){ %> <% nextPage = finalPage %> <% } else {
-  %> <% nextPage = pag + 1 %> <% } %> <% if (finalPage > pag + 6 ) { %>
+  <% } } %> <% if (pag == totalPages){ %> <% nextPage = totalPages %> <% } else {
+  %> <% nextPage = pag + 1 %> <% } %> <% if (totalPages > pag + 5 ) { %>
   <li class="page-item">
     <a class="page-link user-select-none text-success fw-bold">... </a>
   </li>
-  <% } %> <% if (finalPage > 1) {%>
+  <% } %> <% if (totalPages > 1) {%>
   <li class="page-item">
     <a
-      class="page-link user-select-none <% if (pag == finalPage) { %> text-bg-success <% } else { %> text-success <% } %> fw-bold"
-      href="/historial?pag=<%=finalPage%><%=sortQueries%><%=searchFilter%>"
-      ><%=finalPage%>
+      class="page-link user-select-none <% if (pag == totalPages) { %> text-bg-success <% } else { %> text-success <% } %> fw-bold"
+      href="/history?pag=<%=totalPages%><%=sortQueries%><%=searchFilter%>"
+      ><%=totalPages%>
     </a>
   </li>
   <li class="page-item">
     <a
       class="page-link"
-      href="/historial?pag=<%=nextPage%><%=sortQueries%><%=searchFilter%>"
+      href="/history?pag=<%=nextPage%><%=sortQueries%><%=searchFilter%>"
       aria-label="Next"
     >
       <span aria-hidden="true" class="text-success fw-bold user-select-none"
-        >Siguiente</span
+        ><i data-lucide="arrow-right" alt="right-arrow" style="width: 20px; height: 20px;"></i></span
       >
     </a>
   </li>

@@ -1,10 +1,10 @@
 import { Router } from "express"
-import { modifyVisit, renderHistory } from "../controllers/history.controller.js";
+import { modifyVisit, getHistory } from "../controllers/history.controller.js";
 import { validateToken } from "../middlewares/validateToken.js";
 
 const router = Router()
 
-router.get("/history", validateToken, renderHistory)
+router.get("/history", validateToken, getHistory)
 
 router.post("/history", validateToken, modifyVisit)
 
