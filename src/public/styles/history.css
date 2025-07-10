@@ -1,3 +1,27 @@
+.history-search-container {
+    display: flex;
+    position: relative;
+    flex: 1;
+    padding: 0rem 1rem;
+    max-width: 74vw;
+    margin: 0 auto;
+}
+
+.history-search-input {
+    padding-right: 6rem;
+}
+
+.history-search-button {
+    border: 1px solid transparent;
+    background-color: transparent;
+    margin: 0;
+    position: absolute;
+    right: 1.5rem;
+    align-items: center;
+    top: 4px;
+    cursor: pointer;
+}
+
 .history-table-container {
     width: 100%;
     overflow-x: auto;
@@ -58,7 +82,7 @@
     white-space: nowrap;
 }
 
-.modal-footer{
+.modal-footer {
     display: flex;
     padding: 0rem 1rem 1rem 1rem;
     align-items: center;
@@ -73,11 +97,19 @@
 }
 
 @media (max-width: 450px) {
+    .history-search-container {
+        max-width: 95vw;
+    }
+
+    .history-table-container {
+        max-width: 90vw;
+    }
+
     .modal-list {
         flex-direction: column;
     }
 
-    .modal-footer{
+    .modal-footer {
         flex-direction: column-reverse;
         flex: 1;
     }
