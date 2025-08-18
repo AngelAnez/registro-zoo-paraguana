@@ -5,6 +5,7 @@ import CookieParser from "cookie-parser";
 import { DIR_APP } from "./global.js";
 import { pool } from "./db.js";
 import fs from "fs";
+import dotenv from "dotenv";
 
 import AuthRoutes from "./routes/auth.routes.js";
 import AdminRoutes from "./routes/admin.routes.js";
@@ -19,7 +20,9 @@ import ReporteRoutes from "./routes/reporte.routes.js";
 
 const app = express();
 
-app.set("port", 8040);
+dotenv.config();
+
+app.set("port", process.env.APP_PORT);
 app.set("view engine", "ejs");
 app.set("views", path.join(DIR_APP, "views"));
 
@@ -28,8 +31,8 @@ app.set("views", path.join(DIR_APP, "views"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(CookieParser());
-app.use("/css",express.static("./node_modules/bootstrap/dist/css"));
-app.use("/js",express.static("./node_modules/bootstrap/dist/js"));
+app.use("/css", express.static("./node_modules/bootstrap/dist/css"));
+app.use("/js", express.static("./node_modules/bootstrap/dist/js"));
 
 /* Rutas del Servidor */
 
@@ -58,9 +61,9 @@ app.use(ReporteRoutes);
 /* Archivos Estáticos*/
 
 app.use("/public", express.static(path.join(DIR_APP, "public")));
-app.use((req, res, next) => {
+app.use((req, res) => {
   res.redirect("/login");
 });
 
-app.listen(app.get("port"));
-console.log(`Server on port ${app.get("port")}`);
+app.listen(process.env.APP_PORT);
+console.log(`Server on port ${process.env.APP_PORT}`);
