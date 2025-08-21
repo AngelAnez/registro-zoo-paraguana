@@ -81,12 +81,12 @@ export const addNewVisit = async (req, res) => {
     );
     const paymentId = paymentMethodQuery[0][0]._id;
 
-    await pool.query(`INSERT INTO visits (kids_id, adults_id, elders_id, totalFamily, totalDollars, totalBolivars, paymentMethod_id, paymentData, representativeName, representativePhone) VALUES
+    await pool.query(`INSERT INTO visits (kids_id, adults_id, elders_id, totalFamily, totalDollars, totalBolivars, paymentMethod_id, paymentData, representativeName, representativePhone, date_time) VALUES
     (${kidsId},${adultsId},${eldersId},${+formData.totalFamily},${
       formData.totalDollars
     },${formData.totalBolivars},${paymentId},"${formData.paymentData}","${
       formData.representativeName
-    }","${formData.representativePhone}");`);
+    }","${formData.representativePhone}", STR_TO_DATE('${formData.date_time}', '%d/%m/%Y, %H:%i:%s' ));`);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

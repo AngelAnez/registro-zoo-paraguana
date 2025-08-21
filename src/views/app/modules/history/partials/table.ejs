@@ -44,7 +44,7 @@
         <td><%= visit.totalDollars %></td>
         <td>
             <%- include('table-action', {tooltipTitle: "Ver detalles de la Visita",
-            target: "#infoVisitModal", action: "view", icon: "eye", visit}); %>
+            target: "#viewVisitModal", action: "view", icon: "eye", visit}); %>
             <% if (admin) { %>
                 <%- include('table-action', {tooltipTitle: "Modificar Visita",
                 target: "#editVisitModal", action: "edit", icon: "pencil", visit}); %>

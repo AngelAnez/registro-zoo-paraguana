@@ -31,7 +31,7 @@ export const renderHistory = async (req, res, alert) => {
       });
     }
 
-    let query = `SELECT *, DATE_FORMAT(date_time, '%h:%i %p') as time, DATE_FORMAT(date_time, '%d/%m/%Y') as date, visits._id AS visit_id, kids._id AS kids_id, adults._id AS adults_id, elders._id AS elders_id FROM visits INNER JOIN paymentMethod ON visits.paymentMethod_id=paymentMethod._id
+    let query = `SELECT *, DATE_FORMAT(date_time, '%d/%m/%Y') as date, TIME_FORMAT(date_time, '%h:%i %p') as time, visits._id AS visit_id, kids._id AS kids_id, adults._id AS adults_id, elders._id AS elders_id FROM visits INNER JOIN paymentMethod ON visits.paymentMethod_id=paymentMethod._id
     INNER JOIN elders ON visits.elders_id=elders._id
     INNER JOIN adults ON visits.adults_id=adults._id
     INNER JOIN kids ON visits.kids_id=kids._id

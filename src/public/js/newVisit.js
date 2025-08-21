@@ -44,17 +44,17 @@ function addZero(number) {
   if (number < 10) {
     number = "0" + number;
   }
-  return number;
+  return String(number);
 }
 
 const getDateandTime = () => {
-  let hoy = new Date();
-  let hour = hoy.getHours();
-  let minutes = hoy.getMinutes();
+  let todayDate = new Date();
+  let hour = todayDate.getHours();
+  let minutes = todayDate.getMinutes();
   let period = "";
-  let day = hoy.getDate();
-  let month = hoy.getMonth() + 1;
-  let year = hoy.getFullYear();
+  let day = todayDate.getDate();
+  let month = todayDate.getMonth() + 1;
+  let year = todayDate.getFullYear();
 
   if (hour >= 12) {
     period = "pm";
@@ -72,13 +72,21 @@ const getDateandTime = () => {
   day = addZero(day);
   month = addZero(month);
 
-  document.getElementById("dateInput").value = `${day}/${month}/${year}`;
-  document.getElementById(
-    "timeInput"
-  ).value = `${hoy.getHours()}:${hoy.getMinutes()}`;
+  const options = {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+};
+
+  const formattedDate = new Intl.DateTimeFormat(undefined, options).format(todayDate);
+
   return {
     date: `${day}/${month}/${year}`,
-    time: `${hour}:${minutes} ${period}`,
+    time: `${hour}:${minutes} ${period.toLocaleUpperCase()}`,
+    date_time: formattedDate
   };
 };
 
@@ -332,8 +340,9 @@ function validateStep3() {
 /* Paso 4 */
 
 function all_values() {
-  const { date, time } = getDateandTime();
+  const { date, time, date_time } = getDateandTime();
   document.querySelector("#datetimeInvoice").innerHTML = `${date} - ${time}`;
+  document.querySelector("#datetimeInput").value = date_time;
 
   document.querySelector("#kidsInvoice").innerHTML =
     +boysNumber.value + +girlsNumber.value;

@@ -1,11 +1,11 @@
-<article
+<div
   class="modal fade"
-  id="infoVisitModal"
+  id="viewVisitModal"
   tabindex="-1"
   aria-hidden="true"
   data-bs-backdrop="static"
 >
-  <form method="post" class="modal-dialog modal-dialog-centered">
+  <article class="modal-dialog modal-dialog-scrollable">
     <section class="modal-content">
       <header class="modal-header text-bg-success user-select-none">
         <h1 class="modal-title fs-5">Información de la Visita</h1>
@@ -16,183 +16,167 @@
         >
           <i data-lucide="x" alt="close-icon"></i>
         </a>
-        <input
-          type="number"
-          name="_id"
-          id="_idVisitValue"
-          class="visually-hidden"
-        />
-        <input
-          type="number"
-          name="kids_id"
-          id="kids_idVisitValue"
-          class="visually-hidden"
-        />
-        <input
-          type="number"
-          name="adults_id"
-          id="adults_idVisitValue"
-          class="visually-hidden"
-        />
-        <input
-          type="number"
-          name="elders_id"
-          id="elders_idVisitValue"
-          class="visually-hidden"
-        />
       </header>
-      <section class="modal-body d-flex flex-column py-2 px-3">
-        <section class="d-flex px-2 user-select-none">
-          <section class="col-9 d-flex flex-column">
-            <label for="representativeNameVisitValue">Representante:</label>
-            <div id="representativeNameVisitValue" class="mb-1"></div>
-            <label for="representativePhoneVisitValue"
-              >Número de Contacto:</label
-            >
-            <div id="representativePhoneVisitValue" class="mb-1"></div>
-          </section>
-          <section class="col-3">
-            <label for="dateVisitValue">Fecha:</label>
-            <h6 id="dateVisitValue"></h6>
-            <label for="timeVisitValue">Hora:</label>
-            <h6 id="timeVisitValue"></h6>
-          </section>
-        </section>
-        <hr class="p-0 my-2" />
-        <section
-          class="container-fluid d-flex flex-column justify-content-around user-select-none gap-3 py-1"
-        >
-          <section
-            class="m-0 p-0 d-flex justify-content-start align-items-center gap-3"
-          >
-            <p class="text-center p-0 m-0 fw-bold col-2">Niños y Niñas</p>
+      <section class="modal-body d-flex flex-column">
+        <ul class="modal-list">
+          <%- include('view-visit-list-element', {title: "Fecha", name: "date",
+          readonly: true});%> <%- include('view-visit-list-element', {title:
+          "Hora", name: "time", readonly: true});%>
+        </ul>
+
+        <div class="modal-section-container">
+          <header class="d-flex gap-2 align-items-center">
             <img
-              class="col-2"
+              class="modal-list-icon"
               src="./public/assets/img/children.webp"
               alt="Icono para los Niños"
             />
-            <label class="d-flex justify-content-around col-2 gap-2">
-              <img
-                class="user-select-none col-6"
-                src="./public/assets/img/male.png"
-                alt="maleImg"
-              />
-              <section id="boysVisitValue"></section>
-            </label>
-            <label class="d-flex justify-content-around col-2 gap-1">
-              <img
-                class="user-select-none col-6"
-                src="./public/assets/img/female.png"
-                alt="femaleImg"
-              />
-              <h5 class="text-center" id="girlsVisitValue"></h5>
-            </label>
-            <label class="d-flex justify-content-around col-2 gap-2">
-              <img
-                class="user-select-none col-6"
-                src="./public/assets/img/gift.png"
-                alt="giftImg"
-              />
-              <h5 class="text-center" id="courtesyKidsVisitValue"></h5>
-            </label>
-          </section>
-          <section
-            class="m-0 p-0 d-flex justify-content-start align-items-center gap-3"
-          >
-            <p class="text-center p-0 m-0 fw-bold col-2">Adultos</p>
+            <h2 class="modal-list-title">Niños</h2>
+          </header>
+          <ul class="modal-list">
+            <%- include('view-visit-list-element', {title: "Niños", name:
+            "boys", readonly: false});%> <%- include('view-visit-list-element',
+            {title: "Niñas", name: "girls", readonly: false});%> <%-
+            include('view-visit-list-element', {title: "Total", name:
+            "totalKids", readonly: false});%>
+          </ul>
+        </div>
+
+        <div class="modal-section-container">
+          <header class="d-flex gap-2 align-items-center">
             <img
-              class="col-2"
+              class="modal-list-icon"
               src="./public/assets/img/adults.webp"
               alt="Icono para los Adultos"
             />
-            <label class="d-flex justify-content-around col-2 gap-2">
-              <img
-                class="user-select-none col-6"
-                src="./public/assets/img/male.png"
-                alt="maleImg"
-              />
-              <h5 class="text-center" id="menVisitValue"></h5>
-            </label>
-            <label class="d-flex justify-content-around col-2 gap-1">
-              <img
-                class="user-select-none col-6"
-                src="./public/assets/img/female.png"
-                alt="femaleImg"
-              />
-              <h5 class="text-center" id="womenVisitValue"></h5>
-            </label>
-            <label class="d-flex justify-content-around col-2 gap-2">
-              <img
-                class="user-select-none col-6"
-                src="./public/assets/img/gift.png"
-                alt="giftImg"
-              />
-              <h5 class="text-center" id="courtesyAdultsVisitValue"></h5>
-            </label>
-          </section>
-          <section
-            class="m-0 p-0 d-flex justify-content-start align-items-center gap-3"
-          >
-            <p class="text-center p-0 m-0 fw-bold col-2">Adultos Mayores</p>
-            <img
-              class="col-2"
-              src="./public/assets/img/seniors.webp"
-              alt="seniorsImg"
-            />
-            <label class="d-flex justify-content-around col-2 gap-2">
-              <img
-                class="user-select-none col-6"
-                src="./public/assets/img/male.png"
-                alt="maleImg"
-              />
-              <h5 class="text-center" id="elderMenVisitValue"></h5>
-            </label>
-            <label class="d-flex justify-content-around col-2 gap-1">
-              <img
-                class="user-select-none col-6"
-                src="./public/assets/img/female.png"
-                alt="femaleImg"
-              />
-              <h5 class="text-center" id="elderWomenVisitValue"></h5>
-            </label>
-            <button
-              id="checkButtonVisit"
-              class="btn btn-success offset-1 col-1 p-1 visually-hidden"
-              type="submit"
-            >
-              <i class="opacity-hover" data-lucide="check" alt="checkIcon"></i>
-            </button>
-          </section>
-        </section>
-      </section>
-      <footer
-        class="modal-footer container-fluid p-0 d-flex align-items-start m-0 user-select-none"
-      >
-        <div class="row p-0 m-0 w-100">
-          <section
-            class="col-8 d-flex flex-column m-0 py-2 px-3 text-justify text-bg-secondary gap-2"
-            style="border-bottom-left-radius: 0.375rem"
-          >
-            <div id="methodVisitValue" class="d-flex gap-2"></div>
-            <div id="methodValidationVisitValue" class="d-flex flex-column"></div>
-          </section>
-          <section
-            class="col-4 d-flex flex-column text-bg-success m-0 py-2 px-3 rounded-bottom-2 rounded-start-0"
-          >
-            <section class="d-flex flex-column gap-1">
-              <p class="text-start w-100 m-0 fw-bold">Total:</p>
-              <div
-                id="totalBolivarsVisitValue"
-                class="w-100 d-flex fs-5 fw-semibold gap-2"
-              ></div>
-              <div
-                id="totalDolarsVisitValue"
-                class="w-100 d-flex fs-5 fw-semibold gap-2"
-              ></div>
-            </section>
-          </section>
+            <h2 class="modal-list-title">Adultos</h2>
+          </header>
+          <ul class="modal-list">
+            <%- include('view-visit-list-element', {title: "Hombres", name:
+            "men", readonly: false});%> <%- include('view-visit-list-element',
+            {title: "Mujeres", name: "women", readonly: false});%> <%-
+            include('view-visit-list-element', {title: "Total", name:
+            "totalAdults", readonly: false});%>
+          </ul>
         </div>
+
+        <div class="modal-section-container">
+          <header class="d-flex gap-2 align-items-center">
+            <img
+              class="modal-list-icon"
+              src="./public/assets/img/seniors.webp"
+              alt="Icono para los Adultos Mayores"
+            />
+            <h2 class="modal-list-title">Adultos Mayores</h2>
+          </header>
+          <ul class="modal-list">
+            <%- include('view-visit-list-element', {title: "Hombres", name:
+            "elderMen", readonly: false});%> <%-
+            include('view-visit-list-element', {title: "Mujeres", name:
+            "elderWomen", readonly: false});%> <%-
+            include('view-visit-list-element', {title: "Total", name:
+            "totalElders", readonly: false});%>
+          </ul>
+        </div>
+
+        <div class="modal-section-container">
+          <header class="d-flex gap-2 align-items-center">
+            <img
+              class="modal-list-icon"
+              src="./public/assets/img/gift.png"
+              alt="Icono para las entradas de cortesía"
+            />
+            <h2 class="modal-list-title">Entradas de Cortesía</h2>
+          </header>
+          <ul class="modal-list">
+            <%- include('view-visit-list-element', {title: "Niños", name:
+            "courtesyKids", readonly: false});%> <%-
+            include('view-visit-list-element', {title: "Adultos", name:
+            "courtesyAdults", readonly: false});%>
+          </ul>
+        </div>
+
+        <div class="modal-section-container">
+          <header class="d-flex gap-2 align-items-center">
+            <img
+              class="modal-list-icon"
+              src="./public/assets/img/paymentMethod.webp"
+              alt="Icono para los métodos de pago disponibles"
+            />
+            <h2 class="modal-list-title">Método de Pago</h2>
+          </header>
+          <ul class="modal-list">
+            <li class="modal-list-element">
+              <label class="modal-list-element-label" for="methodView"
+                >Método de Pago</label
+              >
+              <span
+                name="method"
+                id="methodView"
+                class="px-2 py-1 form-control modal-list-element-input"
+              >
+              </span>
+            </li>
+            <li class="modal-list-element" style="flex: 1">
+              <label
+                id="methodValidationView"
+                class="modal-list-element-label"
+                for="paymentDataView"
+                readonly
+              ></label>
+              <span
+                id="paymentDataView"
+                class="px-2 py-1 form-control modal-list-element-input"
+                style="min-width: 100%; flex: 1"
+              ></span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="modal-section-container">
+          <header class="d-flex gap-2 align-items-center">
+            <img
+              class="modal-list-icon"
+              src="./public/assets/img/dolar.webp"
+              alt="Icono para la tasa dolar/bolivar"
+            />
+            <h2 class="modal-list-title">Monto</h2>
+          </header>
+          <ul class="modal-list">
+            <%- include('view-visit-list-element', {title: "Bolívares", name:
+            "totalBolivars", readonly: false});%> <%-
+            include('view-visit-list-element', {title: "Dólares", name:
+            "totalDollars", readonly: false});%>
+          </ul>
+        </div>
+
+        <div class="modal-section-container">
+          <header class="d-flex gap-2 align-items-center">
+            <img
+              class="modal-list-icon"
+              src="./public/assets/img/representative.webp"
+              alt="Icono para el representante de la visita"
+            />
+            <h2 class="modal-list-title">Representante</h2>
+          </header>
+          <ul class="modal-list">
+            <%- include('view-visit-list-element', {title: "Nombre", name:
+            "representativeName", readonly: false});%> <%-
+            include('view-visit-list-element', {title: "Número de Teléfono",
+            name: "representativePhone", readonly: false});%>
+          </ul>
+        </div>
+      </section>
+      <footer class="modal-footer">
+        <button
+          class="btn btn-secondary general-button"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          type="button"
+        >
+          Cerrar
+        </button>
       </footer>
     </section>
-  </form>
-</article>
+  </article>
+</div>

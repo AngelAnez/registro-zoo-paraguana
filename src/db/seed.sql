@@ -77,10 +77,6 @@ CREATE TABLE
         FOREIGN KEY (elders_id) REFERENCES elders (_id)
     );
 
-CREATE TRIGGER IF NOT EXISTS visits_timezone_venezuela BEFORE INSERT ON visits FOR EACH ROW
-SET
-    NEW.date_time = CONVERT_TZ (NOW (), 'UTC', 'America/Caracas');
-
 CREATE TABLE
     IF NOT EXISTS configs (
         _id INT (11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -107,7 +103,3 @@ CREATE TABLE
         author VARCHAR(60) NOT NULL,
         date_time DATETIME
     );
-
-CREATE TRIGGER IF NOT EXISTS datetime_tmz_to_venezuela BEFORE INSERT ON news FOR EACH ROW
-SET
-    NEW.date_time = CONVERT_TZ (NOW (), 'UTC', 'America/Caracas');
