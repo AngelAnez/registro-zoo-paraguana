@@ -1,0 +1,6 @@
+name: Deploy on VPS
+on: push
+
+jobs:
+    hola_mundo:
+        runs-on: ubuntu-latest
