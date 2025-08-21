@@ -106,7 +106,7 @@
     display: flex;
     row-gap: 1.8rem;
     column-gap: 1rem;
-    justify-content: space-around;
+    justify-content: space-between;
     max-width: 600px;
 }
 
