@@ -26,7 +26,8 @@ jobs:
                 username: ${{ secrets.SSH_USER }}
                 password: ${{ secrets.SSH_PASSWORD }}
                 script: |
+                    export PATH=$PATH:/usr/local/bin:/usr/bin
                     cd /var/app/registro_zoo_paraguana
                     git pull origin dev
-                    /usr/bin/npm install install
-                    /usr/bin/pm2 restart registro_zoo
+                    npm install install
+                    pm2 restart registro_zoo
