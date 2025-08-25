@@ -1,0 +1,31 @@
+name: Deploy on VPS
+on: 
+    push:
+        branches: ["dev"]
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v4
+              with:
+                node-version: '22'
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Deploy with SSH
+              uses: appleboy/ssh-action@master
+              with:
+                host: ${{ secrets.SSH_HOST }}
+                username: ${{ secrets.SSH_USER }}
+                key: ${{ secrets.SSH_PRIVATE_KEY }}
+                script: |
+                    cd /var/app/registro_zoo_paraguana
+                    git pull origin dev
+                    npm install
+                    pm2 restart registro_zoo
