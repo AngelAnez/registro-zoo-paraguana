@@ -26,8 +26,15 @@ jobs:
                 username: ${{ secrets.SSH_USER }}
                 password: ${{ secrets.SSH_PASSWORD }}
                 script: |
-                    export PATH=$PATH:/usr/local/bin:/usr/bin
-                    cd /var/app/registro_zoo_paraguana
-                    git pull origin dev
-                    ~/.nvm/versions/node/v22.18.0/bin/npm install
-                    ~/.nvm/versions/node/v22.18.0/bin/pm2 restart registro_zoo
+                  # Source the .bashrc file to load nvm environment
+                  source ~/.bashrc
+            
+                  # Change to the application directory
+                  cd /var/app/registro_zoo_paraguana
+            
+                  # Git pull the latest changes
+                  git pull origin dev
+            
+                  # Install dependencies and restart the application
+                  npm install
+                  pm2 restart registro_zoo
