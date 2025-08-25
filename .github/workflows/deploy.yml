@@ -28,9 +28,5 @@ jobs:
                 script: |
                     cd /var/app/registro_zoo_paraguana
                     git pull origin dev
-                    pwd
-                    whoami
-                    npm --version
-                    pm2 --version
-                    npm install
-                    pm2 restart registro_zoo
+                    /usr/bin/npm install install
+                    /usr/bin/pm2 restart registro_zoo
