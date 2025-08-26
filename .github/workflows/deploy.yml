@@ -26,16 +26,16 @@ jobs:
                 username: ${{ secrets.SSH_USER }}
                 password: ${{ secrets.SSH_PASSWORD }}
                 script: |
-                  # Load nvm and its environment
+                  # Cargar el entorno de nvm
                   export NVM_DIR="$HOME/.nvm"
                   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
                   
-                  # Change to the application directory
+                  # Moverse a la carpeta de la aplicación
                   cd /var/app/registro_zoo_paraguana
                   
-                  # Git pull the latest changes
+                  # Hacer Git Pull para traer los últimos cambios
                   git pull origin dev
                   
-                  # Install dependencies and restart the application
+                  # Instalar las dependencias y reiniciar la aplicación
                   npm install
                   pm2 restart registro_zoo
