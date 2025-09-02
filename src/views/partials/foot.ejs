@@ -1,7 +1,7 @@
 <%- include('toast', {messageAlert, typeAlert}) %>
 
 <script src="/js/bootstrap.bundle.min.js"></script>
-
+<script src="/chartjs/chart.umd.min.js"></script>
 
 <script src="./public/plugins/lucide/lucide.min.js" type="text/javascript"></script>
 <script>
@@ -13,9 +13,6 @@
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 </script>
 
-<script src="
-https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js
-"></script>
 
 <script> // Evita que los usuarios puedan retroceder con el navegador
   if (history.forward(1)){

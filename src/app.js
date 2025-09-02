@@ -33,6 +33,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(CookieParser());
 app.use("/css", express.static("./node_modules/bootstrap/dist/css"));
 app.use("/js", express.static("./node_modules/bootstrap/dist/js"));
+app.use("/chartjs", express.static("./node_modules/chart.js/dist"));
 
 /* Rutas del Servidor */
 
