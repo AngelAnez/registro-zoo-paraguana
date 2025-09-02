@@ -1,18 +1,29 @@
 import { getDateandTime, dateStyleYMD, dateStyleDMY } from "../libs/date.js";
 import decimal from "decimal.js-light";
 import { pool } from "../db.js";
+import { DEFAULT_ALERT } from "../libs/default-alert.js";
 
-export const getEstadisticas = (req, res) => {
-  renderEstadisticas(req, res, getDateandTime().date, getDateandTime().date);
+export const getStats = (req, res) => {
+  const data = {
+    startDate: getDateandTime().date,
+    endDate: getDateandTime().date,
+  };
+  renderStats(req, res, data);
 };
 
-export const postEstadisticas = (req, res) => {
-  const startDate = dateStyleDMY(req.body.startDate);
-  const endDate = dateStyleDMY(req.body.endDate);
-  renderEstadisticas(req, res, startDate, endDate);
+export const postStats = (req, res) => {
+  const data = {
+    startDate: dateStyleDMY(req.body.startDate),
+    endDate: dateStyleDMY(req.body.endDate),
+  };
+  renderStats(req, res, data);
 };
 
-export const renderEstadisticas = async (req, res, startDate, endDate) => {
+export const renderStats = async (
+  req,
+  res,
+  { startDate, endDate, alert = DEFAULT_ALERT }
+) => {
   try {
     const { username, admin } = req.user;
     const today = dateStyleYMD(getDateandTime().date);
@@ -38,7 +49,7 @@ export const renderEstadisticas = async (req, res, startDate, endDate) => {
       mobilePay,
       other,
     } = getVisitStats(data);
-    res.render("estadisticas", {
+    res.render("app/modules/stats/stats", {
       username,
       admin,
       totalKids,
@@ -53,8 +64,10 @@ export const renderEstadisticas = async (req, res, startDate, endDate) => {
       bankTransfer,
       mobilePay,
       other,
+      ...alert,
     });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -105,7 +118,7 @@ export const getVisitStats = (data) => {
     dataStats.totalAdults += parseInt(visit.totalAdults);
     dataStats.totalElders += parseInt(visit.totalElders);
     let bolivarsValue = new decimal(visit.totalBolivars);
-    let dolarsValue = new decimal(visit.totalDolars);
+    let dolarsValue = new decimal(visit.totalDollars);
     if (visit.method == "Efectivo") {
       dataStats.cash.dolars = dolarsValue
         .plus(new decimal(dataStats.cash.dolars))

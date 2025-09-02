@@ -26,11 +26,11 @@
         :"Historial de Visitas", icon: 'calendar-days'} ); %>
       </li>
       <li class="sidebar-nav-list-element opacity-hover">
-        <%-include('partials/sidebar-nav-link', {link : '/estadisticas', title
+        <%-include('partials/sidebar-nav-link', {link : '/stats', title
         :"Estadísticas", icon: 'bar-chart-4'} ); %>
       </li>
       <li class="sidebar-nav-list-element opacity-hover">
-        <%-include('partials/sidebar-nav-link', {link : '/novedades', title
+        <%-include('partials/sidebar-nav-link', {link : '/news', title
         :"Novedades", icon: 'mail-plus'} ); %>
       </li>
       <% if (admin) { %>
@@ -40,7 +40,7 @@
       </li>
       <% } %>
       <li class="sidebar-nav-list-element opacity-hover">
-        <%-include('partials/sidebar-nav-link', {link : '/ajustes', title
+        <%-include('partials/sidebar-nav-link', {link : '/settings', title
         :"Ajustes", icon: 'settings'} ); %>
       </li>
     </ul>
@@ -59,7 +59,7 @@
         </li>
       </ul>
       <ul class="sidebar-footer-section-mobile">
-        <%-include('partials/sidebar-nav-link', {link : '/perfil', title
+        <%-include('partials/sidebar-nav-link', {link : '/profile', title
         :"Ver Perfil", icon: 'user'} ); %>
         <%-include('partials/sidebar-nav-link', {link : '/logout', title
         :"Cerrar Sesión", icon: 'log-out'} ); %>

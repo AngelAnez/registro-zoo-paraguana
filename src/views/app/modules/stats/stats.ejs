@@ -1,11 +1,5 @@
-<%- include('partials/general/head', {title : "Estadísticas", css :
-"estadisticas.css", js : "estadisticas.js", header: true}); %>
-<body class="d-flex bg-body-secondary">
-  <!-- Menu Lateral y Main-->
-  <%- include('partials/nav/sidebar'); %>
-  <main class="container-fluid d-flex flex-column gap-2 p-0 m-0 vh-100">
-    <!-- Encabezado -->
-    <%- include('partials/nav/header'); %>
+<%- include('../../layout-head', {title : "Estadísticas", css :
+"stats.css", js : "stats.js"}); %>
 
     <article class="container-fluid user-select-none">
       <section class="row mb-2 d-flex justify-content-around">
@@ -22,17 +16,7 @@
             </figure>
           </div>
         </div>
-<!--         <div class="offset-1 col-3 px-3 py-4">
-          <div class="bg-light-subtle rounded-4 shadow px-1 pt-2 pb-3 d-flex justify-content-between align-items-center">
-            <label class="d-flex flex-column align-items-center w-50 text-center ms-3">
-              <p class="text-primary fs-2 m-0 fw-semibold"><%= totalBolivars %></p>
-              <small class="text-secondary">Ingresos (Bs.)</small>
-            </label>
-            <figure class="text-secondary d-flex justify-content-center w-50 mb-0">
-              <i class="w-50 h-50" data-lucide="banknote" alt="circle-dolar-icon"></i>
-            </figure>
-          </div>
-        </div> -->
+
         <div class="col-3 px-3 py-4">
           <div class="bg-light-subtle rounded-4 shadow px-1 pt-2 pb-3 d-flex justify-content-evenly align-items-center">
             <label class="d-flex flex-column align-items-center col-6 text-center ms-3">
@@ -70,7 +54,7 @@
         <li id="otherValue" value="<%= other.dolars %>"></li>
       </ul>
 
-      <form method="post" action="/estadisticas" class="d-flex justify-content-center align-items-center gap-4 mt-4">
+      <form method="post" action="/stats" class="d-flex justify-content-center align-items-center gap-4 mt-4">
         <section class="bg-light-subtle rounded-4 shadow py-2 d-flex justify-content-around align-items-center w-75 user-select-none">
           <h6 class="m-0"> Seleccionar Período: </h6>
           <section class="d-flex gap-4">
@@ -91,7 +75,5 @@
       </form>
 
     </article>
-  </main>
   <script src="./public/plugins/chartjs/chart.min.js"></script>
-<%- include('partials/general/foot', {messageAlert: '', typeAlert: '', showAlert: false}); %>
-</body>
+<%- include('../../layout-foot', {messageAlert, typeAlert, showAlert}) %>
