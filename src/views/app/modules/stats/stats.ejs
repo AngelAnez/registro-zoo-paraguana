@@ -1,78 +1,37 @@
 <%- include('../../layout-head', {title : "Estadísticas", css :
 "stats.css", js : "stats.js"}); %>
 
-    <article class="container-fluid user-select-none">
-      <section class="row mb-2 d-flex justify-content-around">
-        <div class="col-3 px-3 py-4">
-          <div class="bg-light-subtle rounded-4 shadow px-1 pt-2 pb-3 d-flex justify-content-between align-items-center">
-            <label class="d-flex flex-column align-items-center col-6 text-center ms-3">
-              <p class="text-primary fs-3 m-0 fw-semibold">
-                <%= totalKids+totalAdults+totalElders %>
-              </p>
-              <small class="text-secondary">Visitantes</small>
-            </label>
-            <figure class="text-secondary d-flex justify-content-center w-50 mb-0">
-              <img class="w-50 h-50" src="./public/assets/img/visitors.png" alt="circle-dolar-icon"></img>
-            </figure>
-          </div>
-        </div>
+  <div class="stats">
+    <form method="post" action="/stats" class="actions-container">
+      <%- include('../../../partials/button', {text: "Cambiar Fecha", type: "button", color: "success", icon: 'calendar-days', extraClass: 'stats-button', modalTarget: "#selectDateModal"}) %>
+      <%- include('../../../partials/button', {text: "Descargar en PDF", type: "submit", color: "primary", icon: 'download', extraClass: 'stats-button', formaction: '/reporte'}) %>
+      <%- include('partials/select-date-modal') %>
+    </form>
 
-        <div class="col-3 px-3 py-4">
-          <div class="bg-light-subtle rounded-4 shadow px-1 pt-2 pb-3 d-flex justify-content-evenly align-items-center">
-            <label class="d-flex flex-column align-items-center col-6 text-center ms-3">
-              <p class="text-primary fs-3 m-0 fw-semibold"><%= totalDolars %> $</p>
-              <small class="text-secondary">Ingresos Totales</small>
-            </label>
-            <figure class="text-secondary d-flex justify-content-center col-5 mb-0">
-              <img class="w-50 h-50" src="./public/assets/img/income.png" alt="circle-dolar-icon"></img>
-            </figure>
-          </div>
-        </div>
+    <div class="d-flex flex-column">
+      <section class="stats-section">
+        <%- include('partials/stats-card', {label: "Visitantes", value: totalKids+totalAdults+totalElders, imageFile: 
+        "visitors.png", imageName: "visitors-icon"}) %>
+        <%- include('partials/stats-card', {label: "Ingresos Totales", value: totalDolars+"$", imageFile: 
+        "income.png", imageName: "income-icon"}) %>
       </section>
-      <section class="row d-flex gap-5 justify-content-evenly">
-        <section class="col-4 bg-light-subtle rounded-4 shadow h-100 py-2">
-          <h6 class="text-secondary-emphasis text-center fw-bold py-1">Distribución de los Visitantes según su Edad</h6>
-          <figure class="chartContainer">
-            <canvas id="visitsDistChart" aria-label="visitsDistChart" role="img"></canvas>
-          </figure>
-        </section>
-        <section class="col-4 bg-light-subtle rounded-4 shadow h-100 py-2">
-          <h6 class="text-secondary-emphasis text-center fw-bold py-1">Ingresos en Dólares por cada Método de Pago</h6>
-          <figure class="chartContainer">
-            <canvas id="paymentDistChart" aria-label="paymentDistChart" role="img"></canvas>
-          </figure>
-        </section>
-      </section>
-
-      <ul class="d-none">
-        <li id="kidsValue" value="<%= totalKids %>"></li>
-        <li id="adultsValue" value="<%= totalAdults %>"></li>
-        <li id="eldersValue" value="<%= totalElders %>"></li>
-        <li id="cashValue" value="<%= cash.dolars %>"></li>
-        <li id="bankTransferValue" value="<%= bankTransfer.dolars %>"></li>
-        <li id="mobilePayValue" value="<%= mobilePay.dolars %>"></li>
-        <li id="otherValue" value="<%= other.dolars %>"></li>
-      </ul>
-
-      <form method="post" action="/stats" class="d-flex justify-content-center align-items-center gap-4 mt-4">
-        <section class="bg-light-subtle rounded-4 shadow py-2 d-flex justify-content-around align-items-center w-75 user-select-none">
-          <h6 class="m-0"> Seleccionar Período: </h6>
-          <section class="d-flex gap-4">
-            <section class="d-flex align-items-center justify-content-center gap-3">
-              <label for="startDate">Desde</label>
-              <input id="startDate" class="form-control w-75" type="date" value="<%=startDate%>" max="<%=today%>" name="startDate">
-            </section>
   
-            <section class="d-flex align-items-center justify-content-center gap-3">
-              <label for="endDate">Hasta</label>
-              <input id="endDate" class="form-control w-75" type="date" value="<%=endDate%>" max="<%=today%>" name="endDate">
-            </section>
-            
-          </section>
-        </section>
-        <button class="btn btn-success shadow" type="submit">Buscar</button>
-        <button class="btn btn-primary" type="submit" formaction="/reporte" >Descargar</button>
-      </form>
+      <section class="chart-section">
+        <%- include('partials/chart', {title: "Distribución de Visitantes por su Edad", id: "visitsDistChart"}) %>
+        <%- include('partials/chart', {title: "Distribución de Ingresos por método de pago", id: "paymentDistChart"}) %>
+      </section>
+    </div>
 
-    </article>
+    <ul class="d-none">
+      <li id="kidsValue" value="<%= totalKids %>"></li>
+      <li id="adultsValue" value="<%= totalAdults %>"></li>
+      <li id="eldersValue" value="<%= totalElders %>"></li>
+      <li id="cashValue" value="<%= cash.dolars %>"></li>
+      <li id="bankTransferValue" value="<%= bankTransfer.dolars %>"></li>
+      <li id="mobilePayValue" value="<%= mobilePay.dolars %>"></li>
+      <li id="otherValue" value="<%= other.dolars %>"></li>
+    </ul>
+  </div>
+  
+
 <%- include('../../layout-foot', {messageAlert, typeAlert, showAlert}) %>

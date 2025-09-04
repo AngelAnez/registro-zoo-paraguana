@@ -1,7 +1,22 @@
 <% if (type === "link") { %>
-<a href="<%=href%>" class="btn btn-<%=color%> general-button"> <%=text%> </a>
+<a
+  href="<%=href%>"
+  class="btn btn-<%=color%> general-button <%= typeof extraClass != 'undefined' ? extraClass : '' %>"
+>
+  <%=text%> <% if (typeof icon !== 'undefined' && icon) { %>
+  <i data-lucide="<%= icon %>" alt="<%= icon %> icon"></i>
+  <% } %>
+</a>
 <% } else { %>
-<button class="btn btn-<%=color%> general-button" type="<%=type%>">
-  <%=text%>
+<button
+  class="btn btn-<%=color%> general-button <%= typeof extraClass != 'undefined' ? extraClass : '' %>"
+  type="<%=type%>"
+  formaction="<%= typeof formaction != 'undefined' ? formaction : '' %>"
+  data-bs-toggle="modal"
+  data-bs-target="<%= typeof modalTarget != 'undefined' ? modalTarget : '' %>"
+>
+  <%=text%> <% if (typeof icon !== 'undefined' && icon) { %>
+  <i data-lucide="<%= icon %>" alt="<%= icon %> icon"></i>
+  <% } %>
 </button>
 <% } %>
