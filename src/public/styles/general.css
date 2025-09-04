@@ -87,6 +87,7 @@ img {
     align-items: center;
     gap: 0.6rem;
     user-select: none;
+    margin-top: 1rem;
 }
 
 @media (max-width: 450px) {
