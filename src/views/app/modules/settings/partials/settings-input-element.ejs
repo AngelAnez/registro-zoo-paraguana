@@ -1,0 +1,19 @@
+<li class="settings-element">
+  <header class="settings-element-header">
+    <h6 class="settings-element-title"><%= title %></h6>
+    <sub class="settings-element-subtitle"><%= description %></sub>
+  </header>
+  <label class="settings-element-label" for="<%= id %>">
+    <input
+      class="form-control py-1 px-2 text-end"
+      type="number"
+      min="1"
+      step="any"
+      required
+      name="<%= name %>"
+      id="<%= id %>"
+      value="<%=value%>"
+    />
+    <span class=""><%= symbol %></span>
+  </label>
+</li>

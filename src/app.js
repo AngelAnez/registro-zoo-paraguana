@@ -15,7 +15,7 @@ import VisitsRoutes from "./routes/visits.routes.js";
 import HistoryRoutes from "./routes/history.routes.js";
 import StatsRoutes from "./routes/stats.routes.js";
 import NovedadesRoutes from "./routes/novedades.routes.js";
-import AjustesRoutes from "./routes/ajustes.routes.js";
+import SettingsRoutes from "./routes/settings.routes.js";
 import ReporteRoutes from "./routes/reporte.routes.js";
 
 const app = express();
@@ -56,7 +56,7 @@ app.use(VisitsRoutes);
 app.use(HistoryRoutes);
 app.use(StatsRoutes);
 app.use(NovedadesRoutes);
-app.use(AjustesRoutes);
+app.use(SettingsRoutes);
 app.use(ReporteRoutes);
 
 /* Archivos Estáticos*/

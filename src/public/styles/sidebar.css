@@ -3,7 +3,7 @@
   flex-direction: column;
   border-right: 1px solid black;
   padding: 1rem;
-  background-color: rgb(var(--bs-success-rgb));
+  background-color: var(--color-success);
   color: white;
   height: 100%;
 }

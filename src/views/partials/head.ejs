@@ -11,7 +11,7 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <title><%= title %></title>
     <link rel="icon" type="image/png" href="./public/assets/img/zoo-icon.png" />
-    <% if (css) { %>
+    <% if (typeof css != "undefined") { %>
     <link href="./public/styles/<%=css%>" rel="stylesheet" type="text/css" />
     <% } %>
     <link href="./public/styles/general.css" rel="stylesheet" type="text/css" />
@@ -21,7 +21,7 @@
     <link href="./public/styles/header.css" rel="stylesheet" type="text/css" />
     <script defer src="./public/js/nav.js"></script>
     <% } %>
-    <% if (js) { %>
+    <% if (typeof js != "undefined") { %>
     <script defer src="./public/js/<%=js%>"></script>
     <% } %>
   </head>

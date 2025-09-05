@@ -1,0 +1,41 @@
+<%- include('../../layout-head', {title : "Ajustes", css :"settings.css"}); %>
+<article class="settings">
+  <header class="settings-header">
+    <h3 class="user-select-none">Ajustes Generales</h3>
+  </header>
+  <form class="settings-body" method="post">
+    <ul class="settings-list">
+      <li class="settings-element">
+        <header class="settings-element-header">
+          <h6 class="settings-element-title">
+            Activar tasa actualizada del BCV
+          </h6>
+          <sub
+            >Determina si se desea buscar por internet la tasa actual del dolar
+            en el BCV</sub
+          >
+        </header>
+        <label class="settings-element-label" for="internetDolar">
+          <input class="settings-check" type="checkbox" name="internetDolar"
+          id="internetDolar" <% if (internetDolar == "on") { %> checked <% } %>
+          >
+          <span class="settings-switch"></span>
+        </label>
+      </li>
+
+      <%- include('partials/settings-input-element', {title: "Tasa predeterminada del dólar", description: "Tasa que debe utilizar el sistema en caso de desactivar la tasa oficial", id: "defaultDolar", name: "defaultDolar", value: defaultDolar, symbol: "Bs."}) %>
+
+      <% if (admin) { %>
+
+        <%- include('partials/settings-input-element', {title: "Precio de Entrada de Niños y Niñas", description: "Valor de la entrada de los niños", id: "kidsPrice", name: "kidsPrice", value: kidsPrice, symbol: "$"}) %>
+
+        <%- include('partials/settings-input-element', {title: "Precio de Entrada de Adultos", description: "Valor de la entrada de los adultos", id: "adultsPrice", name: "adultsPrice", value: adultsPrice, symbol: "$"}) %>
+
+      <% } %>
+    </ul>
+    <%- include('../../../partials/button', {text: "Guardar cambios", type:
+    "submit", color: "success"}) %>
+  </form>
+</article>
+
+<%- include('../../layout-foot', {messageAlert, typeAlert, showAlert}) %>

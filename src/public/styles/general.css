@@ -1,3 +1,10 @@
+:root {
+    --color-primary: #0d6efd;
+    --color-success: #198754;
+    --color-gray: #6c757d;
+    --color-subtitle: #616161;
+}
+
 * {
     padding: 0;
     margin: 0;
