@@ -1,4 +1,4 @@
-<section class="history-table-container">
+<section id="history-table" class="history-table-container">
   <table class="table history-table">
     <thead class="table-success">
       <tr class="user-select-none">
@@ -44,13 +44,13 @@
         <td><%= visit.totalDollars %></td>
         <td>
             <%- include('table-action', {tooltipTitle: "Ver detalles de la Visita",
-            target: "#viewVisitModal", action: "view", icon: "eye", visit}); %>
+            target: "#viewVisitModal", icon: "eye", visit}); %>
             <% if (admin) { %>
                 <%- include('table-action', {tooltipTitle: "Modificar Visita",
-                target: "#editVisitModal", action: "edit", icon: "pencil", visit}); %>
+                target: "#editVisitModal", icon: "pencil", visit}); %>
                 
                 <%- include('table-action', {tooltipTitle: "Eliminar Visita",
-                target: "#deleteVisitModal", action: "delete", icon: "trash-2",
+                target: "#deleteVisitModal", icon: "trash-2",
                 visit}); %>
             <% } %>
         </td>

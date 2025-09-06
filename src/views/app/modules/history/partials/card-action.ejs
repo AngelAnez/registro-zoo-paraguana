@@ -1,0 +1,34 @@
+<button
+  class="btn btn-<%=color%> history-cards-item-button %>"
+  type="button"
+  data-bs-toggle="modal"
+  data-bs-target="<%=target%>"
+  data-bs-_id="<%= visit.visit_id%>"
+  data-bs-kids_id="<%= visit.kids_id %>"
+  data-bs-adults_id="<%= visit.adults_id %>"
+  data-bs-elders_id="<%= visit.elders_id %>"
+  data-bs-date="<%= visit.date %>"
+  data-bs-time="<%= visit.time %>"
+  data-bs-boys="<%= visit.boys %>"
+  data-bs-girls="<%= visit.girls %>"
+  data-bs-men="<%= visit.men%>"
+  data-bs-women="<%= visit.women%>"
+  data-bs-elderMen="<%= visit.elderMen %>"
+  data-bs-elderWomen="<%= visit.elderWomen %>"
+  data-bs-courtesyKids="<%= visit.courtesyKids %>"
+  data-bs-courtesyAdults="<%= visit.courtesyAdults %>"
+  data-bs-totalKids="<%= visit.totalKids %>"
+  data-bs-totalAdults="<%= visit.totalAdults %>"
+  data-bs-totalElders="<%= visit.totalElders %>"
+  data-bs-method="<%= visit.method %>"
+  data-bs-methodValidation="<%= visit.methodValidation %>"
+  data-bs-totalBolivars="<%= visit.totalBolivars %>"
+  data-bs-totalDollars="<%= visit.totalDollars %>"
+  data-bs-paymentData="<%= visit.paymentData %>"
+  data-bs-representativeName="<%= visit.representativeName %>"
+  data-bs-representativePhone="<%= visit.representativePhone %>"
+>
+  <% if (typeof icon !== 'undefined' && icon) { %>
+  <i data-lucide="<%= icon %>" alt="<%= icon %> icon"></i>
+  <% } %> <%=text%>
+</button>

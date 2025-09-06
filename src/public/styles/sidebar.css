@@ -1,3 +1,7 @@
+.sidebar {
+  min-height: 100dvh;
+}
+
 .sidebar-container {
   display: flex;
   flex-direction: column;
@@ -5,7 +9,10 @@
   padding: 1rem;
   background-color: var(--color-success);
   color: white;
-  height: 100%;
+  height: 100dvh;
+  position: sticky;
+  z-index: 50;
+  top: 0;
 }
 
 .sidebar-header {
@@ -111,7 +118,7 @@
   }
 
   .sidebar-container {
-    position: absolute;
+    position: fixed;
     width: 100vw;
     left: 0;
     z-index: 10;

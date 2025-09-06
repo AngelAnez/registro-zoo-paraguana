@@ -1,3 +1,13 @@
+/* const table = document.getElementById("history-table");
+const cards = document.getElementById("history-cards");
+if (window.screen.width <= 450) {
+  table.classList.replace("d-flex", "d-none");
+  cards.classList.replace("d-none", "d-flex");
+} else {
+  table.classList.replace("d-flex", "d-none");
+  cards.classList.replace("d-none", "d-flex");
+} */
+
 const viewVisitModal = document.getElementById("viewVisitModal");
 const editVisitModal = document.getElementById("editVisitModal");
 const deleteVisitModal = document.getElementById("deleteVisitModal");

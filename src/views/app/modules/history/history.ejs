@@ -7,7 +7,10 @@
 
     <%- include('partials/table', {searchFilter, visits}) %>
 
-    <%- include('partials/table-pagination-bar', {pag}) %>
+    <%- include('partials/cards', {searchFilter, visits}) %>
+
+
+    <%- include('partials/pagination-bar', {pag}) %>
 
     <% } else { %>
       <h6 class="text-center mt-2">No se ha encontrado ninguna visita</h6>

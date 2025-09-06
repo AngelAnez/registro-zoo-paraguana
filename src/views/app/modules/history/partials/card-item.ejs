@@ -1,0 +1,38 @@
+<li class="history-cards-item">
+  <header class="history-cards-item-header">
+    <div class="history-cards-item-icon-container">
+      <i data-lucide="clock" alt="Clock icon"></i>
+      <span class="history-cards-item-title"><%= visit.time %></span>
+    </div>
+    <span class="history-cards-item-secondary"> <%= visit.date %> </span>
+  </header>
+  <section class="d-flex justify-content-between align-items-center mt-2">
+    <span class="history-cards-item-icon-container">
+      <i data-lucide="users" alt="Total visits icon"></i>
+      <%= visit.totalElders + visit.totalAdults + visit.totalKids %> personas
+    </span>
+    <span>
+      <%= visit.totalKids %>N • <%= visit.totalAdults %>A • <%=
+      visit.totalElders %>AM
+    </span>
+  </section>
+
+  <section class="d-flex justify-content-between align-items-center">
+    <div class="history-cards-item-icon-container">
+      <i data-lucide="dollar-sign" alt="Dollars icon"></i>
+      <span class="fw-bold">$<%= visit.totalDollars %></span>
+    </div>
+    <span class="history-cards-item-method">
+      <i data-lucide="credit-card" alt="credit-card icon"></i>
+      <%= visit.method %>
+    </span>
+  </section>
+
+  <footer class="history-cards-item-footer">
+    <%- include('card-action', {text: "Ver detalles", color: 'success', icon:
+    'eye', target: '#viewVisitModal'}); %> <%- include('card-action', {text:
+    "Editar", color: 'primary', icon: 'pencil', target: '#editVisitModal'}); %>
+    <%- include('card-action', {text: "Eliminar", color: 'danger', icon:
+    'trash-2', target: '#deleteVisitModal'}); %>
+  </footer>
+</li>

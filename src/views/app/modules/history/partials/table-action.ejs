@@ -8,7 +8,6 @@
     class="text-dark opacity-hover"
     data-bs-toggle="modal"
     data-bs-target="<%=target%>"
-    data-bs-action="<%=action%>"
     data-bs-_id="<%= visit.visit_id%>"
     data-bs-kids_id="<%= visit.kids_id %>"
     data-bs-adults_id="<%= visit.adults_id %>"
@@ -33,7 +32,7 @@
     data-bs-paymentData="<%= visit.paymentData %>"
     data-bs-representativeName="<%= visit.representativeName %>"
     data-bs-representativePhone="<%= visit.representativePhone %>"
-    data-lucide="<%=icon%>"
-    alt="<%=action%>-icon"
+    data-lucide="<%=typeof icon != 'undefined' ? icon : ''%>"
+    alt="<%=icon%> icon"
   ></i>
 </a>
