@@ -96,7 +96,7 @@
 .history-cards-item-footer {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem 1.05rem;
+    gap: 0.8rem;
     align-items: center;
     justify-content: center;
 }
@@ -106,8 +106,8 @@
 }
 
 .history-cards-item-button svg {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
 }
 
 
