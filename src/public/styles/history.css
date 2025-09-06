@@ -89,7 +89,7 @@
 }
 
 .history-cards-item-method svg{
-    width: 18px;
+    width: 16px;
     height: 16px;
 }
 
@@ -103,11 +103,14 @@
 
 .history-cards-item-button {
     font-size: smaller !important;
+    display: flex !important;
+    gap: 0.25rem;
+    align-items: center;
 }
 
 .history-cards-item-button svg {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
 }
 
 
