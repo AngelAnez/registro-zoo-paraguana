@@ -120,14 +120,6 @@ export const modifyVisit = async (req, res) => {
     _id,
     representativeName,
     representativePhone,
-    boys,
-    girls,
-    courtesyKids,
-    men,
-    women,
-    courtesyAdults,
-    elderMen,
-    elderWomen,
     method,
     paymentData,
     totalBolivars,
@@ -136,6 +128,31 @@ export const modifyVisit = async (req, res) => {
     adults_id,
     elders_id,
   } = req.body;
+
+  const {
+    boys,
+    girls,
+    courtesyKids,
+    men,
+    women,
+    courtesyAdults,
+    elderMen,
+    elderWomen,
+  } = {
+    boys: typeof +req.body.boys == "number" && +req.body.boys >= 0 ? +req.body.boys : 0,
+    girls: typeof +req.body.girls == "number" && +req.body.girls >= 0 ? +req.body.girls : 0,
+    courtesyKids:
+      typeof +req.body.courtesyKids == "number" && +req.body.courtesyKids >= 0 ? +req.body.courtesyKids : 0,
+    men: typeof +req.body.men == "number" && +req.body.men >= 0 ? +req.body.men : 0,
+    women: typeof +req.body.women == "number" && +req.body.women >= 0 ? +req.body.women : 0,
+    courtesyAdults:
+      typeof +req.body.courtesyAdults == "number" && +req.body.courtesyAdults >= 0
+        ? +req.body.courtesyAdults
+        : 0,
+    elderMen: typeof +req.body.elderMen == "number" && +req.body.elderMen >= 0 ? +req.body.elderMen : 0,
+    elderWomen:
+      typeof +req.body.elderWomen == "number" && +req.body.elderWomen >= 0 ? +req.body.elderWomen : 0,
+  };
 
   if (deleteVisit) {
     return removeVisit(req, res);

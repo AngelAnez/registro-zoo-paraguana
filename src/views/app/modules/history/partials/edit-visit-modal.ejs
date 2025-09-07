@@ -39,10 +39,10 @@
           </header>
           <ul class="modal-list">
             <%- include('edit-visit-list-element', {title: "Niños", name:
-            "boys", readonly: false});%> <%- include('edit-visit-list-element',
-            {title: "Niñas", name: "girls", readonly: false});%> <%-
+            "boys", readonly: false, type: 'number'});%> <%- include('edit-visit-list-element',
+            {title: "Niñas", name: "girls", readonly: false, type: 'number'});%> <%-
             include('edit-visit-list-element', {title: "Total", name:
-            "totalKids", readonly: false});%>
+            "totalKids", readonly: true, type: 'number'});%>
           </ul>
         </div>
 
@@ -57,10 +57,10 @@
           </header>
           <ul class="modal-list">
             <%- include('edit-visit-list-element', {title: "Hombres", name:
-            "men", readonly: false});%> <%- include('edit-visit-list-element',
-            {title: "Mujeres", name: "women", readonly: false});%> <%-
+            "men", readonly: false, type: 'number'});%> <%- include('edit-visit-list-element',
+            {title: "Mujeres", name: "women", readonly: false, type: 'number'});%> <%-
             include('edit-visit-list-element', {title: "Total", name:
-            "totalAdults", readonly: false});%>
+            "totalAdults", readonly: true, type: 'number'});%>
           </ul>
         </div>
 
@@ -75,11 +75,11 @@
           </header>
           <ul class="modal-list">
             <%- include('edit-visit-list-element', {title: "Hombres", name:
-            "elderMen", readonly: false});%> <%-
+            "elderMen", readonly: false, type: 'number'});%> <%-
             include('edit-visit-list-element', {title: "Mujeres", name:
-            "elderWomen", readonly: false});%> <%-
+            "elderWomen", readonly: false, type: 'number'});%> <%-
             include('edit-visit-list-element', {title: "Total", name:
-            "totalElders", readonly: false});%>
+            "totalElders", readonly: true, type: 'number'});%>
           </ul>
         </div>
 
@@ -94,9 +94,9 @@
           </header>
           <ul class="modal-list">
             <%- include('edit-visit-list-element', {title: "Niños", name:
-            "courtesyKids", readonly: false});%> <%-
+            "courtesyKids", readonly: false, type: 'number'});%> <%-
             include('edit-visit-list-element', {title: "Adultos", name:
-            "courtesyAdults", readonly: false});%>
+            "courtesyAdults", readonly: false, type: 'number'});%>
           </ul>
         </div>
 
@@ -156,9 +156,9 @@
           </header>
           <ul class="modal-list">
             <%- include('edit-visit-list-element', {title: "Bolívares", name:
-            "totalBolivars", readonly: false});%> <%-
+            "totalBolivars", readonly: false, type: 'number'});%> <%-
             include('edit-visit-list-element', {title: "Dólares", name:
-            "totalDollars", readonly: false});%>
+            "totalDollars", readonly: false, type: 'number'});%>
           </ul>
         </div>
 
@@ -175,7 +175,7 @@
             <%- include('edit-visit-list-element', {title: "Nombre", name:
             "representativeName", readonly: false});%> <%-
             include('edit-visit-list-element', {title: "Número de Teléfono",
-            name: "representativePhone", readonly: false});%>
+            name: "representativePhone", readonly: false, type: 'tel'});%>
           </ul>
         </div>
       </section>

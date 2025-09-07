@@ -13,6 +13,8 @@ const editVisitModal = document.getElementById("editVisitModal");
 const deleteVisitModal = document.getElementById("deleteVisitModal");
 
 const idKeys = ["_id", "kids_id", "adults_id", "elders_id"];
+const people = ["boys", "girls", "men", "women", "elderMen", "elderWomen"];
+const totals = ["totalKids", "totalAdults", "totalElders"];
 
 const inputKeys = [
   "date",
@@ -81,6 +83,49 @@ editVisitModal.addEventListener("show.bs.modal", (event) => {
     element = element.toLowerCase();
     let value = button.getAttribute(`data-bs-${element}`);
     idInput.value = value;
+  });
+
+  const boysInput = editVisitModal.querySelector("#boysEditing");
+  const girlsInput = editVisitModal.querySelector("#girlsEditing");
+  const menInput = editVisitModal.querySelector("#menEditing");
+  const womenInput = editVisitModal.querySelector("#womenEditing");
+  const elderMenInput = editVisitModal.querySelector("#elderMenEditing");
+  const elderWomenInput = editVisitModal.querySelector("#elderWomenEditing");
+
+  const kidsInput = [boysInput, girlsInput];
+  const adultsInput = [menInput, womenInput];
+  const eldersInput = [elderMenInput, elderWomenInput];
+
+  kidsInput.forEach((element) => {
+    element.addEventListener("input", () => {
+      const boysValue =
+        typeof +boysInput.value != "number" ? 0 : +boysInput.value;
+      const girlsValue =
+        typeof +girlsInput.value != "number" ? 0 : +girlsInput.value;
+      const totalKids = editVisitModal.querySelector("#totalKidsEditing");
+      totalKids.value = boysValue + girlsValue;
+    });
+  });
+
+  adultsInput.forEach((element) => {
+    element.addEventListener("input", () => {
+      const menValue = typeof +menInput.value != "number" ? 0 : +menInput.value;
+      const womenValue =
+        typeof +womenInput.value != "number" ? 0 : +womenInput.value;
+      const totalAdults = editVisitModal.querySelector("#totalAdultsEditing");
+      totalAdults.value = menValue + womenValue;
+    });
+  });
+
+  eldersInput.forEach((element) => {
+    element.addEventListener("input", () => {
+      const elderMenValue =
+        typeof +elderMenInput.value != "number" ? 0 : +elderMenInput.value;
+      const elderWomenValue =
+        typeof +elderWomenInput.value != "number" ? 0 : +elderWomenInput.value;
+      const totalElders = editVisitModal.querySelector("#totalEldersEditing");
+      totalElders.value = elderMenValue + elderWomenValue;
+    });
   });
 });
 
