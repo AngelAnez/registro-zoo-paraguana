@@ -37,7 +37,7 @@ export const addNewVisit = async (req, res) => {
     representativeName,
     representativePhone,
     paymentData,
-    paymentMethod
+    paymentMethod,
   } = req.body;
 
   let formData = {
@@ -86,14 +86,16 @@ export const addNewVisit = async (req, res) => {
       formData.totalDollars
     },${formData.totalBolivars},${paymentId},"${formData.paymentData}","${
       formData.representativeName
-    }","${formData.representativePhone}", STR_TO_DATE('${formData.date_time}', '%d/%m/%Y, %H:%i:%s' ));`);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+    }","${formData.representativePhone}", STR_TO_DATE('${
+      formData.date_time
+    }', '%d/%m/%Y, %H:%i:%s' ));`);
 
-  renderVisitantes(req, res, {
-    showAlert: true,
-    messageAlert: "Los visitantes han sido guardados exitosamente",
-    typeAlert: "success",
-  });
+    renderVisitantes(req, res, {
+      showAlert: true,
+      messageAlert: "Los visitantes han sido guardados exitosamente",
+      typeAlert: "success",
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
 };

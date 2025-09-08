@@ -79,10 +79,23 @@ editVisitModal.addEventListener("show.bs.modal", (event) => {
     "representativePhone",
   ];
   ids.forEach((element) => {
-    let idInput = editVisitModal.querySelector(`[name="${element}"]`);
-    element = element.toLowerCase();
-    let value = button.getAttribute(`data-bs-${element}`);
-    idInput.value = value;
+    let idInput;
+    if (element === "paymentData") {
+      dynamicPaymentMethod();
+      let method = button.getAttribute(`data-bs-method`);
+      let paymentData = button.getAttribute(`data-bs-paymentdata`);
+      if (method === "Efectivo") {
+        idInput = document.getElementById("paymentDataSelectEditing");
+      } else {
+        idInput = document.getElementById("paymentDataInputEditing");
+      }
+      idInput.value = paymentData;
+    } else {
+      idInput = editVisitModal.querySelector(`[name="${element}"]`);
+      element = element.toLowerCase();
+      let value = button.getAttribute(`data-bs-${element}`);
+      idInput.value = value;
+    }
   });
 
   const boysInput = editVisitModal.querySelector("#boysEditing");
@@ -144,20 +157,30 @@ const dynamicPaymentMethod = () => {
   const methodValidationTitle = document.getElementById(
     "methodValidationEditing"
   );
-  const paymentDataElement = document.getElementById("paymentDataEditing");
+  const paymentDataSelect = document.getElementById("paymentDataSelectEditing");
+  const paymentDataInput = document.getElementById("paymentDataInputEditing");
+
   let subtitleText = "";
   switch (methodSelected) {
     case "Efectivo":
       subtitleText = "Moneda";
-      paymentDataElement.value = "";
+      paymentDataInput.classList.replace("d-flex", "d-none");
+      paymentDataSelect.classList.replace("d-none", "d-flex");
+      paymentDataSelect.value = "Dolar";
       break;
     case "Otro":
       subtitleText = "Información del Pago";
-      paymentDataElement.value = "";
+      paymentDataInput.classList.replace("d-none", "d-flex");
+      paymentDataSelect.classList.replace("d-flex", "d-none");
+      paymentDataInput.type = "text";
+      paymentDataInput.value = "";
       break;
     default:
       subtitleText = `Número de Referencia`;
-      paymentDataElement.value = "";
+      paymentDataInput.classList.replace("d-none", "d-flex");
+      paymentDataSelect.classList.replace("d-flex", "d-none");
+      paymentDataInput.type = "number";
+      paymentDataInput.value = "";
       break;
   }
   methodValidationTitle.value = subtitleText;
