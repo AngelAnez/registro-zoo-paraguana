@@ -1,6 +1,84 @@
-.mainArticle{
+.home {
+    position: relative;
     background-image: url("/public/assets/img/zoo-bridge.webp");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    user-select: none;
+    flex: 1;
+    padding: 1rem;
+}
+
+.home-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+    padding: 1rem 0rem;
+    z-index: 1;
+}
+
+.home-title {
+    font-size: clamp(24px, 4vw, 32px);
+    font-weight: bold;
+    letter-spacing: 1.2px;
+    margin: 0;
+    max-width: 30ch;
+}
+
+.home-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.2rem;
+    z-index: 1;
+    padding: 1rem 0rem;
+    margin: 0;
+}
+
+.home-nav-card{
+    text-decoration: none;
+    background-color: white;
+    padding: 1rem;
+    color: black;
+    border-radius: 10px;
+    box-shadow: var(--shadow-default);
+    display: flex;
+    flex-direction: column;
+    max-width: 280px;
+}
+
+.home-nav-card-header{
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.home-nav-card-title{
+    font-size: clamp(18px, 2vw, 24px);
+    margin: 0;
+}
+
+.home-nav-card-icon{
+    width: clamp(18px, 2vw, 24px);
+    height: clamp(18px, 2vw, 24px);
+}
+
+.home-nav-card-description{
+    color: var(--color-subtitle);
+}
+
+
+.home-footer{
+    display: flex;
+    align-items: center;
+    z-index: 1;
 }

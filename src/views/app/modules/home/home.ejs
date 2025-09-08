@@ -1,19 +1,22 @@
 <%- include('../../layout-head', {title : "Home", css : "home.css", js : ""}); %>
 
-    <section class="d-flex flex-column justify-content-around mainArticle position-relative text-white align-items-center user-select-none" style="flex: 1;">
-      <header class="d-flex flex-column align-items-center justify-content-center rounded-5 text-center z-1 w-100 mx-auto mt-4 px-md-5" style="z-index: 0; max-width: 900px; flex: 3;">
-        <h4 style="z-index: 0;">Bienvenido, <span class="text-info"><%= username %></span></h4>
-        <p class="m-0 p-0">al</p>
-        <h2>Sistema de Registro y Control de Visitantes e Ingresos del Zoológico Paraguaná</h2>
+    <section class="home">
+      <header class="home-header">
+        <h1 class="home-title">Sistema de Control de Visitas del Zoológico Paraguaná</h1>
       </header>
-      <ul class="d-flex flex-column justify-content-around gap-3 z-1" style="flex: 3;">
-        <a class="btn btn-light" href="/visits">Registro de Visitantes</a>
-        <a class="btn btn-light" href="/history">Historial de Visitas</a>
-        <a class="btn btn-light" href="/stats">Estadísticas</a>
-        <a class="btn btn-light" href="/news">Novedades</a>
-        <a class="btn btn-light" href="/settings">Ajustes</a>
+      <ul class="home-list">
+        <%- include('partials/home-nav-card', {title: 'Registrar Visita', description: 'Módulo para registrar las visitas que llegan al zoológico.', icon: 'notebook-pen', href: "/visits"}) %>
+
+        <%- include('partials/home-nav-card', {title: 'Historial de Visitas', description: 'Módulo para detallar, editar y eliminar todas las visitas registradas', icon: 'calendar-days', href: "/history"}) %>
+
+        <%- include('partials/home-nav-card', {title: 'Estadísticas', description: 'Módulo para conocer las estadísticas del sistema en relación a la distribución de visitantes y métodos de pago.', icon: 'bar-chart-4', href: "/stats"}) %>
+
+        <%- include('partials/home-nav-card', {title: 'Novedades', description: 'Módulo para crear y observar novedades ocurridas en el zoológico', icon: 'mail-plus', href: "/news"}) %>
+
+        <%- include('partials/home-nav-card', {title: 'Ajustes', description: 'Módulo para cambiar las configuraciones del sistema, como los precios de las entradas', icon: 'settings', href: "/settings"}) %>
+
       </ul>
-      <footer class="z-1 mt-2 d-flex align-items-center" style="flex: 1;">Creado con &#128154 por Angel Añez</footer>
+      <footer class="home-footer">Creado con &#128154 por Angel Añez</footer>
       <div class="position-absolute text-bg-dark bg-opacity-75 w-100 h-100"></div>
     </section>
     
