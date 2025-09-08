@@ -1,7 +1,7 @@
 .settings {
     display: flex;
     flex-direction: column;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow-default);
     border-radius: 10px 10px;
     margin: 2rem auto;
     width: 90%;

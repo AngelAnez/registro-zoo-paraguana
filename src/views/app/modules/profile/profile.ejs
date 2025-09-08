@@ -1,0 +1,34 @@
+<%- include('../../layout-head', {title : "Perfil", css :"profile.css", js:
+"profile.js"}); %>
+
+<article class="profile">
+  <section class="profile-card">
+    <form
+      method="post"
+      class="d-flex flex-column align-items-center gap-4 w-100"
+    >
+      <header class="d-flex flex-column align-items-center gap-2">
+        <img
+          class="profile-card-header-img"
+          src="/public/assets/img/parrot.png"
+          alt="Profile icon"
+        />
+        <h3><%= username %></h3>
+      </header>
+      <%- include('partials/editable-input', {label: 'Nombre de Usuario', id:
+      'usernameInput', name: 'newUsername', value: username, type: 'text'}) %>
+      <%- include('partials/editable-input', {label: 'Correo Electrónico', id:
+      'emailInput', name: 'email', value: email, type: 'email'}) %>
+      <footer class="profile-card-footer">
+        <%- include('../../../partials/button', {text: "Cambiar contraseña",
+        type: "button", color: "primary", icon: "lock", modalTarget:
+        "#changePasswordModal"}) %> <%- include('../../../partials/button',
+        {text: "Guardar cambios", type: "submit", color: "success", icon:
+        "save"}) %>
+      </footer>
+    </form>
+  </section>
+</article>
+
+<%- include('partials/change-password-modal') %> <%-
+include('../../layout-foot', {messageAlert, typeAlert, showAlert}) %>

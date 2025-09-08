@@ -10,7 +10,7 @@ import dotenv from "dotenv";
 import AuthRoutes from "./routes/auth.routes.js";
 import AdminRoutes from "./routes/admin.routes.js";
 import HomeRoutes from "./routes/home.routes.js";
-import PerfilRoutes from "./routes/perfil.routes.js";
+import ProfileRoutes from "./routes/profile.routes.js";
 import VisitsRoutes from "./routes/visits.routes.js";
 import HistoryRoutes from "./routes/history.routes.js";
 import StatsRoutes from "./routes/stats.routes.js";
@@ -51,7 +51,7 @@ app.get("/seed", async (_, res) => {
 app.use(AuthRoutes);
 app.use(AdminRoutes);
 app.use(HomeRoutes);
-app.use(PerfilRoutes);
+app.use(ProfileRoutes);
 app.use(VisitsRoutes);
 app.use(HistoryRoutes);
 app.use(StatsRoutes);

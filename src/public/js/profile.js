@@ -14,9 +14,8 @@ const hidePassword = (id) => {
 
 const toggleProfileInput = (id) => {
     let elementInput = document.querySelector("#" + id)
-    elementInput.toggleAttribute("disabled")
-    elementInput.classList.toggle("border-white")
-    elementInput.classList.toggle("bg-transparent")
+    elementInput.focus()
+    elementInput.toggleAttribute("readonly")
     let modifyBtn = document.querySelector("#" + id + "Modify")
     let checkBtn = document.querySelector("#" + id + "Check")
     modifyBtn.classList.toggle("d-none")
@@ -31,7 +30,6 @@ const toggleProfileInput = (id) => {
 const validateUserData = () => {
     const usernameValue = document.querySelector("#usernameInput")
     const emailValue = document.querySelector("#emailInput")
-    const passwordValue = document.querySelector("#passwordInput")
     
     const formData = [usernameValue, emailValue]
 
