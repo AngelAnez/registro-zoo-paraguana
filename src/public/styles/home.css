@@ -41,6 +41,7 @@
     z-index: 1;
     padding: 1rem 0rem;
     margin: 0;
+    max-width: 900px;
 }
 
 .home-nav-card{
@@ -53,6 +54,16 @@
     display: flex;
     flex-direction: column;
     max-width: 280px;
+    transition: all 0.5s;
+}
+
+.home-nav-card:hover{
+    background-color: var(--color-success);
+    color: white;
+}
+
+.home-nav-card:hover .home-nav-card-description{
+    color: lightgray;
 }
 
 .home-nav-card-header{
@@ -63,13 +74,13 @@
 }
 
 .home-nav-card-title{
-    font-size: clamp(18px, 2vw, 24px);
+    font-size: clamp(18px, 2vw, 20px);
     margin: 0;
 }
 
 .home-nav-card-icon{
-    width: clamp(18px, 2vw, 24px);
-    height: clamp(18px, 2vw, 24px);
+    width: clamp(18px, 2vw, 22px);
+    height: clamp(18px, 2vw, 22px);
 }
 
 .home-nav-card-description{
