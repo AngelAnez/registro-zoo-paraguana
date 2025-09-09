@@ -1,0 +1,47 @@
+<article
+  class="modal fade"
+  id="deleteNewModal"
+  tabindex="-1"
+  aria-hidden="true"
+>
+  <section class="modal-dialog modal-dialog-centered">
+    <section class="modal-content">
+      <header class="modal-header text-bg-danger user-select-none">
+        <h1 class="modal-title fs-5">Eliminar Novedad</h1>
+        <button
+          class="btn text-light p-0 opacity-hover"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <i data-lucide="x" alt="close-icon"></i>
+        </button>
+      </header>
+      <form method="post">
+        <section
+          class="modal-body d-flex flex-column gap-2 py-3 px-3 user-select-none"
+        >
+          <p class="text-center">
+            ¿Está seguro que desea eliminar esta Novedad?
+          </p>
+          <section class="d-flex justify-content-around mb-2">
+            <a
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              >Cancelar</a
+            >
+            <input
+              id="_idNewValueDelete"
+              type="text"
+              class="d-none"
+              name="_id"
+              value=""
+            />
+            <input type="text" class="d-none" name="deleteNew" value="true" />
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+          </section>
+        </section>
+      </form>
+    </section>
+  </section>
+</article>

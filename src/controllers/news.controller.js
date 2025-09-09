@@ -1,21 +1,30 @@
 import { pool } from "../db.js";
+import { DEFAULT_ALERT } from "../libs/default-alert.js";
+import { getDateandTime } from "../libs/date.js";
 
-export const getNews = async (req, res, alert) => {
+const renderNews = async (
+  req,
+  res,
+  { news, total, pag, sort, order, alert = DEFAULT_ALERT, searchFilter }
+) => {
   const { username, admin } = req.user;
 
-  let showAlert, messageAlert, typeAlert;
-  if (alert) {
-    showAlert = alert.showAlert;
-    messageAlert = alert.messageAlert;
-    typeAlert = alert.typeAlert;
-  } else {
-    showAlert = false;
-    messageAlert = "";
-    typeAlert = "";
-  }
+  return res.render("app/modules/news/news", {
+    username,
+    admin,
+    news,
+    total,
+    pag,
+    sort,
+    order,
+    searchFilter,
+    ...alert,
+  });
+};
+
+export const getNews = async (req, res) => {
   try {
-    let pag = 1;
-    let sort = ""; // Puede ser cualquier propiedad de las visitas
+    let sort = "";
     let order = ""; // Puede ser asc o dec
     let searchFilter = "";
     let query = `SELECT *, DATE_FORMAT(date_time, '%h:%i %p') as time, DATE_FORMAT(date_time, '%d/%m/%Y') as date FROM news
@@ -53,33 +62,19 @@ export const getNews = async (req, res, alert) => {
       query += " ORDER BY _id DESC";
     }
     query += ` LIMIT 8`;
-    if (req.query.pag) {
-      pag = parseInt(req.query.pag);
-      if (pag > 1) {
-        query += ` OFFSET ${8 * (pag - 1)}`;
-      }
+
+    const pag = req.query.pag ? parseInt(req.query.pag) : 1;
+    if (pag > 1) {
+      query += ` OFFSET ${8 * (pag - 1)}`;
     }
     const newsQuery = await pool.query(query + ";");
     const news = newsQuery[0];
     if (!news) {
       news = [];
     }
-
-    res.render("novedades", {
-      username,
-      admin,
-      news,
-      total,
-      pag,
-      sort,
-      order,
-      searchFilter,
-      showAlert,
-      messageAlert,
-      typeAlert,
-    });
+    renderNews(req, res, { news, pag, sort, total, order, searchFilter });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 };
 
@@ -89,8 +84,9 @@ export const postNews = async (req, res) => {
   let message = "";
   try {
     if (createNew) {
-      await pool.query(`INSERT INTO news (author, subject, body) 
-            VALUES ('${author}', '${subject}', '${body}')`);
+      const { date_time } = getDateandTime();
+      await pool.query(`INSERT INTO news (author, subject, body, date_time) 
+            VALUES ('${author}', '${subject}', '${body}', STR_TO_DATE('${date_time}', '%m/%d/%Y, %I:%i:%s %p' ));`);
       message = "La Novedad ha sido guardada existosamente";
     }
     if (modifyNew) {

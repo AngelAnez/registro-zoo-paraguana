@@ -6,21 +6,21 @@ const addZero = (number) => {
 };
 
 export const getDateandTime = () => {
-  let hoy = new Date();
-  let hour = hoy.getHours();
-  let minutes = hoy.getMinutes();
+  let todayDate = new Date();
+  let hour = todayDate.getHours();
+  let minutes = todayDate.getMinutes();
   let period = "";
-  let day = hoy.getDate();
-  let month = hoy.getMonth() + 1;
-  let year = hoy.getFullYear();
+  let day = todayDate.getDate();
+  let month = todayDate.getMonth() + 1;
+  let year = todayDate.getFullYear();
 
   if (hour >= 12) {
-    period = "PM";
+    period = "pm";
     if (hour > 12) {
       hour = hour - 12;
     }
   } else {
-    period = "AM";
+    period = "am";
     if (hour == 0) {
       hour = 12;
     }
@@ -30,9 +30,23 @@ export const getDateandTime = () => {
   day = addZero(day);
   month = addZero(month);
 
+  const options = {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  };
+
+  const formattedDate = new Intl.DateTimeFormat(undefined, options).format(
+    todayDate
+  );
+
   return {
     date: `${day}/${month}/${year}`,
     time: `${hour}:${minutes} ${period}`,
+    date_time: formattedDate,
   };
 };
 

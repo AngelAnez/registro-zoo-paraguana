@@ -1,0 +1,91 @@
+<article
+  class="modal fade"
+  id="infoNewModal"
+  tabindex="-1"
+  aria-hidden="true"
+  data-bs-backdrop="static"
+>
+  <form method="post" class="modal-dialog modal-dialog-centered">
+    <section class="modal-content">
+      <header class="modal-header text-bg-primary user-select-none">
+        <h1 id="modalTitle" class="modal-title fs-5"></h1>
+        <a
+          class="btn text-light p-0 opacity-hover"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <i data-lucide="x" alt="close-icon"></i>
+        </a>
+      </header>
+      <section class="modal-body d-flex flex-column gap-3 mb-2">
+        <div class="d-flex flex-column align-items-start gap-2">
+          <figure class="m-0 col-9 d-flex gap-2 align-items-center">
+            <img
+              class="col-1"
+              src="./public/assets/img/author.png"
+              alt="authorIcon"
+            />
+            <label for="authorNewValue" class="fw-bold">Autor</label>
+          </figure>
+          <input
+            type="text"
+            readonly
+            id="authorNewValue"
+            class="form-control w-100 m-0"
+            value=""
+            name="author"
+            maxlength="45"
+          />
+        </div>
+        <div class="d-flex flex-column align-items-start gap-2">
+          <figure class="m-0 col-9 d-flex gap-2 align-items-center">
+            <img
+              class="col-1"
+              src="./public/assets/img/subject.png"
+              alt="subjectIcon"
+            />
+            <label for="subjectNewValue" class="fw-bold">Asunto</label>
+          </figure>
+          <input
+            type="text"
+            id="subjectNewValue"
+            class="form-control w-100 m-0"
+            value=""
+            name="subject"
+            maxlength="60"
+            autocomplete="off"
+          />
+        </div>
+        <div class="d-flex flex-column align-items-start gap-2">
+          <figure class="m-0 col-9 d-flex gap-2 align-items-center">
+            <img
+              class="col-1"
+              src="./public/assets/img/message.png"
+              alt="messageIcon"
+            />
+            <label for="bodyNewValue" class="fw-bold">Mensaje</label>
+          </figure>
+          <textarea
+            id="bodyNewValue"
+            class="form-control w-100 m-0"
+            style="resize: none"
+            rows="5"
+            name="body"
+            maxlength="255"
+          ></textarea>
+        </div>
+      </section>
+      <footer
+        id="footerNewModal"
+        class="modal-footer container-fluid pb-3 p-0 d-flex justify-content-around user-select-none border-0"
+      >
+        <a class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close"
+          >Cancelar</a
+        >
+        <button class="btn btn-primary" type="submit">Guardar Cambios</button>
+      </footer>
+    </section>
+    <input type="number" name="_id" id="_idNewValue" class="visually-hidden" />
+    <div id="actionConfirm"></div>
+  </form>
+</article>

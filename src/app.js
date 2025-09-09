@@ -14,7 +14,7 @@ import ProfileRoutes from "./routes/profile.routes.js";
 import VisitsRoutes from "./routes/visits.routes.js";
 import HistoryRoutes from "./routes/history.routes.js";
 import StatsRoutes from "./routes/stats.routes.js";
-import NovedadesRoutes from "./routes/novedades.routes.js";
+import NewsRoutes from "./routes/news.routes.js";
 import SettingsRoutes from "./routes/settings.routes.js";
 import ReporteRoutes from "./routes/reporte.routes.js";
 
@@ -55,7 +55,7 @@ app.use(ProfileRoutes);
 app.use(VisitsRoutes);
 app.use(HistoryRoutes);
 app.use(StatsRoutes);
-app.use(NovedadesRoutes);
+app.use(NewsRoutes);
 app.use(SettingsRoutes);
 app.use(ReporteRoutes);
 
