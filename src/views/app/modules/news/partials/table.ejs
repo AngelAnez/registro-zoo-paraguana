@@ -15,8 +15,8 @@
     <tbody>
       <% news.forEach(element => { %>
       <tr class="user-select-none">
-        <td><%= element.date %></td>
-        <td><%= element.time %></td>
+        <td><%= new Date(element.date_time).toLocaleDateString(); %></td>
+        <td><%= new Date(element.date_time).toLocaleTimeString(); %></td>
         <td><%= element.subject %></td>
         <td>
           <%- include('table-action', {element, tooltipTitle: 'Ver detalles', target: '#infoNewModal', action: 'view', icon: 'eye'}) %>

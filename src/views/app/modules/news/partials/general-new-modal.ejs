@@ -5,7 +5,7 @@
   aria-hidden="true"
   data-bs-backdrop="static"
 >
-  <form method="post" class="modal-dialog modal-dialog-centered">
+  <form id="newsModalForm" method="post" class="modal-dialog modal-dialog-centered">
     <section class="modal-content">
       <header class="modal-header text-bg-primary user-select-none">
         <h1 id="modalTitle" class="modal-title fs-5"></h1>
@@ -75,6 +75,7 @@
           ></textarea>
         </div>
       </section>
+      <input type="text" name="date_time" class="d-none" id="datetimeInput" />
       <footer
         id="footerNewModal"
         class="modal-footer container-fluid pb-3 p-0 d-flex justify-content-around user-select-none border-0"

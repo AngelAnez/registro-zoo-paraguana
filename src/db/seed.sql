@@ -101,5 +101,5 @@ CREATE TABLE
         subject VARCHAR(60) NOT NULL,
         body VARCHAR(255) NOT NULL,
         author VARCHAR(60) NOT NULL,
-        date_time DATETIME
+        date_time BIGINT
     );

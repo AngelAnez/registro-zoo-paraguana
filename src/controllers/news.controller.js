@@ -27,8 +27,24 @@ export const getNews = async (req, res) => {
     let sort = "";
     let order = ""; // Puede ser asc o dec
     let searchFilter = "";
-    let query = `SELECT *, DATE_FORMAT(date_time, '%h:%i %p') as time, DATE_FORMAT(date_time, '%d/%m/%Y') as date FROM news
-    `;
+    const pag = req.query.pag ? parseInt(req.query.pag) : 1;
+    const [totalNewsQuery] = await pool.query(
+      "SELECT COUNT(*) as total FROM news;"
+    );
+    const { total } = totalNewsQuery[0];
+
+    if (total === 0) {
+      return renderNews(req, res, {
+        news: [],
+        pag,
+        sort,
+        total,
+        order,
+        searchFilter,
+      });
+    }
+
+    let query = `SELECT * FROM news`;
     let whereQuery = "";
     if (req.query.filter) {
       searchFilter = req.query.filter
@@ -37,33 +53,27 @@ export const getNews = async (req, res) => {
       whereQuery = ` WHERE subject LIKE '%${searchFilter}%' OR
         body LIKE '%${searchFilter}%' OR
         author LIKE '%${searchFilter}%' OR
-        DATE_FORMAT(date_time, '%d/%m/%Y') LIKE '%${searchFilter}%' OR
-        DATE_FORMAT(date_time, "%h:%i %p") LIKE '%${searchFilter}%'`;
+        DATE_FORMAT(FROM_UNIXTIME(date_time / 1000), '%d/%m/%Y') LIKE '%${searchFilter}%' OR
+        DATE_FORMAT(FROM_UNIXTIME(date_time / 1000), "%h:%i %p") LIKE '%${searchFilter}%'`;
       query += whereQuery;
-    }
-
-    const totalNewsQuery = await pool.query(query);
-    let total;
-    if (!totalNewsQuery[0][0]) {
-      total = [];
-    } else {
-      total = Object.values(totalNewsQuery[0][0])[0];
     }
 
     if (req.query.sort && req.query.order) {
       sort = req.query.sort;
       order = req.query.order;
+      const timezone = req.cookies.timezone;
       if (sort == "date") {
-        query += ` ORDER BY DATE(date_time) ${order.toUpperCase()}`;
+        query += ` ORDER BY CONVERT_TZ(FROM_UNIXTIME(date_time / 1000), 'UTC', '${timezone}') ${order.toUpperCase()}`;
+      } else if (sort === "time") {
+        query += ` ORDER BY STR_TO_DATE(TIME(CONVERT_TZ(FROM_UNIXTIME(date_time / 1000), 'UTC', '${timezone}')), '%H:%i:%s') ${order.toUpperCase()}`;
       } else {
-        query += ` ORDER BY TIME(date_time) ${order.toUpperCase()}`;
+        query += ` ORDER BY ${sort} ${order.toUpperCase()}`;
       }
     } else {
       query += " ORDER BY _id DESC";
     }
     query += ` LIMIT 8`;
 
-    const pag = req.query.pag ? parseInt(req.query.pag) : 1;
     if (pag > 1) {
       query += ` OFFSET ${8 * (pag - 1)}`;
     }
@@ -79,14 +89,24 @@ export const getNews = async (req, res) => {
 };
 
 export const postNews = async (req, res) => {
-  const { _id, author, subject, body, createNew, modifyNew, deleteNew } =
-    req.body;
+  const {
+    _id,
+    author,
+    subject,
+    body,
+    date_time,
+    createNew,
+    modifyNew,
+    deleteNew,
+  } = req.body;
   let message = "";
+  // No se puede guardar el date_time directamente como un UNIX Timestamp ya que eso impide ordenar por hora (aunque quizá se puede transformar durante el ordenamiento)
   try {
     if (createNew) {
-      const { date_time } = getDateandTime();
       await pool.query(`INSERT INTO news (author, subject, body, date_time) 
-            VALUES ('${author}', '${subject}', '${body}', STR_TO_DATE('${date_time}', '%m/%d/%Y, %I:%i:%s %p' ));`);
+            VALUES ('${author}', '${subject}', '${body}', ${Number(
+        date_time
+      )});`);
       message = "La Novedad ha sido guardada existosamente";
     }
     if (modifyNew) {
