@@ -34,8 +34,8 @@
     <tbody>
       <% visits.forEach((visit) => { %>
       <tr class="user-select-none">
-        <td><%= visit.date %></td>
-        <td><%= visit.time %></td>
+        <td><%= new Date(visit.date_time).toLocaleDateString(); %></td>
+        <td><%= new Date(visit.date_time).toLocaleTimeString(); %></td>
         <td><%= visit.totalKids %></td>
         <td><%= visit.totalAdults %></td>
         <td><%= visit.totalElders %></td>

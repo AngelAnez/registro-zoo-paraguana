@@ -86,9 +86,7 @@ export const addNewVisit = async (req, res) => {
       formData.totalDollars
     },${formData.totalBolivars},${paymentId},"${formData.paymentData}","${
       formData.representativeName
-    }","${formData.representativePhone}", STR_TO_DATE('${
-      formData.date_time
-    }', '%d/%m/%Y, %H:%i:%s' ));`);
+    }","${formData.representativePhone}", FROM_UNIXTIME(${formData.date_time} / 1000));`);
 
     renderVisitantes(req, res, {
       showAlert: true,

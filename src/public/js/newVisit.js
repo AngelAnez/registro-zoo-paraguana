@@ -72,21 +72,10 @@ const getDateandTime = () => {
   day = addZero(day);
   month = addZero(month);
 
-  const options = {
-  year: 'numeric',
-  month: '2-digit',
-  day: '2-digit',
-  hour: '2-digit',
-  minute: '2-digit',
-  second: '2-digit',
-};
-
-  const formattedDate = new Intl.DateTimeFormat(undefined, options).format(todayDate);
-
   return {
     date: `${day}/${month}/${year}`,
     time: `${hour}:${minutes} ${period.toLocaleUpperCase()}`,
-    date_time: formattedDate
+    date_time: todayDate.getTime()
   };
 };
 

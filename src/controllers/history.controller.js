@@ -31,7 +31,9 @@ export const renderHistory = async (req, res, alert) => {
       });
     }
 
-    let query = `SELECT *, DATE_FORMAT(date_time, '%d/%m/%Y') as date, TIME_FORMAT(date_time, '%h:%i %p') as time, visits._id AS visit_id, kids._id AS kids_id, adults._id AS adults_id, elders._id AS elders_id FROM visits INNER JOIN paymentMethod ON visits.paymentMethod_id=paymentMethod._id
+    const { timezone } = req.cookies;
+
+    let query = `SELECT *, CONVERT_TZ(date_time, 'UTC', '${timezone}') as date_time , visits._id AS visit_id, kids._id AS kids_id, adults._id AS adults_id, elders._id AS elders_id FROM visits INNER JOIN paymentMethod ON visits.paymentMethod_id=paymentMethod._id
     INNER JOIN elders ON visits.elders_id=elders._id
     INNER JOIN adults ON visits.adults_id=adults._id
     INNER JOIN kids ON visits.kids_id=kids._id
@@ -47,8 +49,8 @@ export const renderHistory = async (req, res, alert) => {
       visits.paymentData LIKE '%${searchFilter}%' OR
       visits.representativeName LIKE '%${searchFilter}%' OR
       visits.representativePhone LIKE '%${searchFilter}%' OR
-      DATE_FORMAT(date_time, '%d/%m/%Y') LIKE '%${searchFilter}%' OR
-      DATE_FORMAT(date_time, "%h:%i %p") LIKE '%${searchFilter}%' OR
+      DATE_FORMAT(CONVERT_TZ(date_time, 'UTC', '${timezone}'), '%d/%m/%Y') LIKE '%${searchFilter}%' OR
+      DATE_FORMAT(CONVERT_TZ(date_time, 'UTC', '${timezone}'), "%h:%i %p") LIKE '%${searchFilter}%' OR
       paymentMethod.method LIKE '%${searchFilter}%' OR
       paymentMethod.methodValidation LIKE '%${searchFilter}%' OR
       kids.boys LIKE '%${searchFilter}%' OR
@@ -67,9 +69,9 @@ export const renderHistory = async (req, res, alert) => {
 
     if (sort.length > 0 && order.length > 0) {
       if (sort == "date") {
-        query += ` ORDER BY DATE(visits.date_time) ${order.toUpperCase()}`;
+        query += ` ORDER BY DATE(CONVERT_TZ(visits.date_time, 'UTC', '${timezone}')) ${order.toUpperCase()}`;
       } else if (sort === "time") {
-        query += ` ORDER BY TIME(visits.date_time) ${order.toUpperCase()}`;
+        query += ` ORDER BY TIME(CONVERT_TZ(visits.date_time, 'UTC', '${timezone}')) ${order.toUpperCase()}`;
       } else {
         let table;
         if (
@@ -139,19 +141,39 @@ export const modifyVisit = async (req, res) => {
     elderMen,
     elderWomen,
   } = {
-    boys: typeof +req.body.boys == "number" && +req.body.boys >= 0 ? +req.body.boys : 0,
-    girls: typeof +req.body.girls == "number" && +req.body.girls >= 0 ? +req.body.girls : 0,
+    boys:
+      typeof +req.body.boys == "number" && +req.body.boys >= 0
+        ? +req.body.boys
+        : 0,
+    girls:
+      typeof +req.body.girls == "number" && +req.body.girls >= 0
+        ? +req.body.girls
+        : 0,
     courtesyKids:
-      typeof +req.body.courtesyKids == "number" && +req.body.courtesyKids >= 0 ? +req.body.courtesyKids : 0,
-    men: typeof +req.body.men == "number" && +req.body.men >= 0 ? +req.body.men : 0,
-    women: typeof +req.body.women == "number" && +req.body.women >= 0 ? +req.body.women : 0,
+      typeof +req.body.courtesyKids == "number" && +req.body.courtesyKids >= 0
+        ? +req.body.courtesyKids
+        : 0,
+    men:
+      typeof +req.body.men == "number" && +req.body.men >= 0
+        ? +req.body.men
+        : 0,
+    women:
+      typeof +req.body.women == "number" && +req.body.women >= 0
+        ? +req.body.women
+        : 0,
     courtesyAdults:
-      typeof +req.body.courtesyAdults == "number" && +req.body.courtesyAdults >= 0
+      typeof +req.body.courtesyAdults == "number" &&
+      +req.body.courtesyAdults >= 0
         ? +req.body.courtesyAdults
         : 0,
-    elderMen: typeof +req.body.elderMen == "number" && +req.body.elderMen >= 0 ? +req.body.elderMen : 0,
+    elderMen:
+      typeof +req.body.elderMen == "number" && +req.body.elderMen >= 0
+        ? +req.body.elderMen
+        : 0,
     elderWomen:
-      typeof +req.body.elderWomen == "number" && +req.body.elderWomen >= 0 ? +req.body.elderWomen : 0,
+      typeof +req.body.elderWomen == "number" && +req.body.elderWomen >= 0
+        ? +req.body.elderWomen
+        : 0,
   };
 
   if (deleteVisit) {
