@@ -33,7 +33,7 @@ export const renderHistory = async (req, res, alert) => {
 
     const { timezone } = req.cookies;
 
-    let query = `SELECT *, CONVERT_TZ(date_time, 'UTC', '${timezone}') as date_time , visits._id AS visit_id, kids._id AS kids_id, adults._id AS adults_id, elders._id AS elders_id FROM visits INNER JOIN paymentMethod ON visits.paymentMethod_id=paymentMethod._id
+    let query = `SELECT *, CONVERT_TZ(date_time, @@session.time_zone, '${timezone}') as date_time , visits._id AS visit_id, kids._id AS kids_id, adults._id AS adults_id, elders._id AS elders_id FROM visits INNER JOIN paymentMethod ON visits.paymentMethod_id=paymentMethod._id
     INNER JOIN elders ON visits.elders_id=elders._id
     INNER JOIN adults ON visits.adults_id=adults._id
     INNER JOIN kids ON visits.kids_id=kids._id
@@ -49,8 +49,8 @@ export const renderHistory = async (req, res, alert) => {
       visits.paymentData LIKE '%${searchFilter}%' OR
       visits.representativeName LIKE '%${searchFilter}%' OR
       visits.representativePhone LIKE '%${searchFilter}%' OR
-      DATE_FORMAT(CONVERT_TZ(date_time, 'UTC', '${timezone}'), '%d/%m/%Y') LIKE '%${searchFilter}%' OR
-      DATE_FORMAT(CONVERT_TZ(date_time, 'UTC', '${timezone}'), "%h:%i %p") LIKE '%${searchFilter}%' OR
+      DATE_FORMAT(CONVERT_TZ(date_time, @@session.time_zone, '${timezone}'), '%d/%m/%Y') LIKE '%${searchFilter}%' OR
+      DATE_FORMAT(CONVERT_TZ(date_time, @@session.time_zone, '${timezone}'), "%h:%i %p") LIKE '%${searchFilter}%' OR
       paymentMethod.method LIKE '%${searchFilter}%' OR
       paymentMethod.methodValidation LIKE '%${searchFilter}%' OR
       kids.boys LIKE '%${searchFilter}%' OR
@@ -69,9 +69,9 @@ export const renderHistory = async (req, res, alert) => {
 
     if (sort.length > 0 && order.length > 0) {
       if (sort == "date") {
-        query += ` ORDER BY DATE(CONVERT_TZ(visits.date_time, 'UTC', '${timezone}')) ${order.toUpperCase()}`;
+        query += ` ORDER BY DATE(CONVERT_TZ(visits.date_time, @@session.time_zone, '${timezone}')) ${order.toUpperCase()}`;
       } else if (sort === "time") {
-        query += ` ORDER BY TIME(CONVERT_TZ(visits.date_time, 'UTC', '${timezone}')) ${order.toUpperCase()}`;
+        query += ` ORDER BY TIME(CONVERT_TZ(visits.date_time, @@session.time_zone, '${timezone}')) ${order.toUpperCase()}`;
       } else {
         let table;
         if (

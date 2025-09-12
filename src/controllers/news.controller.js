@@ -45,7 +45,7 @@ export const getNews = async (req, res) => {
       });
     }
 
-    let query = `SELECT *, CONVERT_TZ(date_time, 'UTC', '${timezone}') as date_time FROM news`;
+    let query = `SELECT *, CONVERT_TZ(date_time, @@session.time_zone, '${timezone}') as date_time FROM news`;
     let whereQuery = "";
     if (req.query.filter) {
       searchFilter = req.query.filter
@@ -54,8 +54,8 @@ export const getNews = async (req, res) => {
       whereQuery = ` WHERE subject LIKE '%${searchFilter}%' OR
         body LIKE '%${searchFilter}%' OR
         author LIKE '%${searchFilter}%' OR
-        DATE_FORMAT(CONVERT_TZ(date_time, 'UTC', '${timezone}'), '%d/%m/%Y') LIKE '%${searchFilter}%' OR
-        DATE_FORMAT(CONVERT_TZ(date_time, 'UTC', '${timezone}'), "%h:%i %p") LIKE '%${searchFilter}%'`;
+        DATE_FORMAT(CONVERT_TZ(date_time, @@session.time_zone, '${timezone}'), '%d/%m/%Y') LIKE '%${searchFilter}%' OR
+        DATE_FORMAT(CONVERT_TZ(date_time, @@session.time_zone, '${timezone}'), "%h:%i %p") LIKE '%${searchFilter}%'`;
       query += whereQuery;
     }
 
@@ -63,9 +63,9 @@ export const getNews = async (req, res) => {
       sort = req.query.sort;
       order = req.query.order;
       if (sort == "date") {
-        query += ` ORDER BY DATE(CONVERT_TZ(date_time, 'UTC', '${timezone}')) ${order.toUpperCase()}`;
+        query += ` ORDER BY DATE(CONVERT_TZ(date_time, @@session.time_zone, '${timezone}')) ${order.toUpperCase()}`;
       } else if (sort === "time") {
-        query += ` ORDER BY TIME(CONVERT_TZ(date_time, 'UTC', '${timezone}')) ${order.toUpperCase()}`;
+        query += ` ORDER BY TIME(CONVERT_TZ(date_time, @@session.time_zone, '${timezone}')) ${order.toUpperCase()}`;
       } else {
         query += ` ORDER BY ${sort} ${order.toUpperCase()}`;
       }
