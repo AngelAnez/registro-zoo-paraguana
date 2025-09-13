@@ -1,6 +1,5 @@
 import { pool } from "../db.js";
 import { DEFAULT_ALERT } from "../libs/default-alert.js";
-import { getDateandTime } from "../libs/date.js";
 
 const renderNews = async (
   req,
@@ -122,8 +121,8 @@ export const postNews = async (req, res) => {
       typeAlert: "success",
     };
 
-    getNews(req, res, alert);
+    return getNews(req, res, alert);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 };

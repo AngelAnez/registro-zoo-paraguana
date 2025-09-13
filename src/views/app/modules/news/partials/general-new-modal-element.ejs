@@ -1,0 +1,14 @@
+<article class="d-flex flex-column align-items-start gap-2">
+  <div class="m-0 d-flex gap-2 align-items-center">
+    <i data-lucide="<%=icon%>" alt="<%=name%> icon"></i>
+    <label for="<%=name%>NewValue" class="fw-bold"><%=label%></label>
+  </div>
+  <input
+    type="text"
+    id="<%=name%>NewValue"
+    class="form-control w-100 m-0"
+    value=""
+    name="<%=name%>"
+    maxlength="<%=typeof maxLength != 'undefined' ? maxLength : '100'%>"
+  />
+</article>

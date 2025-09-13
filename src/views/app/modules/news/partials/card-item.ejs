@@ -1,0 +1,29 @@
+<li class="news-cards-item">
+  <header class="news-cards-item-header">
+    <span class="news-cards-item-title"><%= element.subject %></span>
+  </header>
+
+  <section class="d-flex justify-content-between align-items-center">
+    <div class="news-cards-item-icon-container">
+      <i data-lucide="calendar-days" alt="Calendar icon"></i>
+      <span class="news-cards-item-secondary"
+        ><%= new Date(element.date_time).toLocaleDateString() %></span
+      >
+    </div>
+    <div class="news-cards-item-icon-container">
+      <i data-lucide="clock" alt="Clock icon"></i>
+      <span class="news-cards-item-secondary"
+        ><%= new Date(element.date_time).toLocaleTimeString() %></span
+      >
+    </div>
+  </section>
+
+  <footer class="news-cards-item-footer">
+    <%- include('card-action', {text: "Ver detalles", color: 'success', icon:
+    'eye', target: '#generalNewModal', action: 'view'}); %> <%-
+    include('card-action', {text: "Editar", color: 'primary', icon: 'pencil',
+    target: '#generalNewModal', action: 'modify'}); %> <%-
+    include('card-action', {text: "Eliminar", color: 'danger', icon: 'trash-2',
+    target: '#deleteNewModal', action: 'delete'}); %>
+  </footer>
+</li>

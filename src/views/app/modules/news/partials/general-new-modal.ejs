@@ -5,9 +5,13 @@
   aria-hidden="true"
   data-bs-backdrop="static"
 >
-  <form id="newsModalForm" method="post" class="modal-dialog modal-dialog-centered">
+  <form
+    id="newsModalForm"
+    method="post"
+    class="modal-dialog modal-dialog-centered"
+  >
     <section class="modal-content">
-      <header class="modal-header text-bg-primary user-select-none">
+      <header class="modal-header text-bg-success user-select-none">
         <h1 id="modalTitle" class="modal-title fs-5"></h1>
         <a
           class="btn text-light p-0 opacity-hover"
@@ -18,53 +22,22 @@
         </a>
       </header>
       <section class="modal-body d-flex flex-column gap-3 mb-2">
-        <div class="d-flex flex-column align-items-start gap-2">
-          <figure class="m-0 col-9 d-flex gap-2 align-items-center">
-            <img
-              class="col-1"
-              src="./public/assets/img/author.png"
-              alt="authorIcon"
-            />
-            <label for="authorNewValue" class="fw-bold">Autor</label>
-          </figure>
-          <input
-            type="text"
-            readonly
-            id="authorNewValue"
-            class="form-control w-100 m-0"
-            value=""
-            name="author"
-            maxlength="45"
-          />
+        <div id="datetimeModalSection" class="d-flex flex-column gap-3">
+          <%- include('general-new-modal-element', {name: 'date', label:
+          'Fecha', icon: 'calendar-days', maxLength: '45'}); %> <%-
+          include('general-new-modal-element', {name: 'time', label: 'Hora',
+          icon: 'clock', maxLength: '45'}); %>
         </div>
-        <div class="d-flex flex-column align-items-start gap-2">
-          <figure class="m-0 col-9 d-flex gap-2 align-items-center">
-            <img
-              class="col-1"
-              src="./public/assets/img/subject.png"
-              alt="subjectIcon"
-            />
-            <label for="subjectNewValue" class="fw-bold">Asunto</label>
-          </figure>
-          <input
-            type="text"
-            id="subjectNewValue"
-            class="form-control w-100 m-0"
-            value=""
-            name="subject"
-            maxlength="60"
-            autocomplete="off"
-          />
-        </div>
-        <div class="d-flex flex-column align-items-start gap-2">
-          <figure class="m-0 col-9 d-flex gap-2 align-items-center">
-            <img
-              class="col-1"
-              src="./public/assets/img/message.png"
-              alt="messageIcon"
-            />
+        <%- include('general-new-modal-element', {name: 'author', label:
+        'Autor', icon: 'user', maxLength: '45'}); %> <%-
+        include('general-new-modal-element', {name: 'subject', label: 'Asunto',
+        icon: 'target', maxLength: '60'}); %>
+
+        <article class="d-flex flex-column align-items-start gap-2">
+          <div class="m-0 col-9 d-flex gap-2 align-items-center">
+            <i data-lucide="mail" alt="body icon"></i>
             <label for="bodyNewValue" class="fw-bold">Mensaje</label>
-          </figure>
+          </div>
           <textarea
             id="bodyNewValue"
             class="form-control w-100 m-0"
@@ -73,7 +46,7 @@
             name="body"
             maxlength="255"
           ></textarea>
-        </div>
+        </article>
       </section>
       <input type="text" name="date_time" class="d-none" id="datetimeInput" />
       <footer
@@ -83,7 +56,7 @@
         <a class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close"
           >Cancelar</a
         >
-        <button class="btn btn-primary" type="submit">Guardar Cambios</button>
+        <button class="btn btn-success" type="submit">Guardar Cambios</button>
       </footer>
     </section>
     <input type="number" name="_id" id="_idNewValue" class="visually-hidden" />
