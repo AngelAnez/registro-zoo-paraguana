@@ -2,9 +2,9 @@
   <header class="history-cards-item-header">
     <div class="history-cards-item-icon-container">
       <i data-lucide="clock" alt="Clock icon"></i>
-      <span class="history-cards-item-title"><%= visit.time %></span>
+      <span class="history-cards-item-title"><%= new Date(visit.date_time).toLocaleTimeString() %></span>
     </div>
-    <span class="history-cards-item-secondary"> <%= visit.date %> </span>
+    <span class="history-cards-item-secondary"> <%= new Date(visit.date_time).toLocaleDateString() %> </span>
   </header>
   <section class="d-flex justify-content-between align-items-center">
     <span class="history-cards-item-icon-container">
