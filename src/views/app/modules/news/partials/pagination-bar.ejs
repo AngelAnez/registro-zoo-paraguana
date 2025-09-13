@@ -6,31 +6,31 @@
   <li class="page-item">
     <a
       class="page-link"
-      href="/novedades?pag=<%=prevPag%><%=sortQueries%><%=searchFilter%>"
+      href="/news?pag=<%=prevPag%><%=sortQueries%><%=searchFilter%>"
       aria-label="Previous"
     >
-      <span aria-hidden="true" class="text-primary fw-bold user-select-none"
-        >Anterior</span
+      <span aria-hidden="true" class="text-success fw-bold user-select-none"
+        ><i data-lucide="arrow-left" alt="left-arrow" style="width: 20px; height: 20px;"></i></span
       >
     </a>
   </li>
   <li class="page-item">
     <a
-      class="page-link user-select-none <% if (pag == 1) { %> text-bg-primary <% } else { %> text-primary <% } %> fw-bold"
-      href="/novedades?pag=1<%=sortQueries%><%=searchFilter%>"
+      class="page-link user-select-none <% if (pag == 1) { %> text-bg-success <% } else { %> text-success <% } %> fw-bold"
+      href="/news?pag=1<%=sortQueries%><%=searchFilter%>"
       >1
     </a>
   </li>
   <% } %> <% if (pag - 5 > 2) { %>
   <li class="page-item">
-    <a class="page-link user-select-none text-primary fw-bold">... </a>
+    <a class="page-link user-select-none text-success fw-bold">... </a>
   </li>
   <% } %> <% for (let p = -5; p < 6 ; p++) { %> <% if (pag + p > 1 && pag + p <
   finalPage) {%>
   <li class="page-item">
     <a
-      class="page-link user-select-none <% if (pag == pag+p) { %> text-bg-primary <% } else { %> text-primary <% } %> fw-bold"
-      href="/novedades?pag=<%=pag+p%><%=sortQueries%><%=searchFilter%>"
+      class="page-link user-select-none <% if (pag == pag+p) { %> text-bg-success <% } else { %> text-success <% } %> fw-bold"
+      href="/news?pag=<%=pag+p%><%=sortQueries%><%=searchFilter%>"
       ><%= pag+p %>
     </a>
   </li>
@@ -38,13 +38,13 @@
   %> <% nextPage = pag + 1 %> <% } %> <% if (finalPage > pag + 6 && finalPage !=
   1 ) { %>
   <li class="page-item">
-    <a class="page-link user-select-none text-primary fw-bold">... </a>
+    <a class="page-link user-select-none text-success fw-bold">... </a>
   </li>
   <% } %> <% if (finalPage > 1) { %>
   <li class="page-item">
     <a
-      class="page-link user-select-none <% if (pag == finalPage) { %> text-bg-primary <% } else { %> text-primary <% } %> fw-bold"
-      href="/novedades?pag=<%=finalPage%><%=sortQueries%><%=searchFilter%>"
+      class="page-link user-select-none <% if (pag == finalPage) { %> text-bg-success <% } else { %> text-success <% } %> fw-bold"
+      href="/news?pag=<%=finalPage%><%=sortQueries%><%=searchFilter%>"
       ><%=finalPage%>
     </a>
   </li>
@@ -52,11 +52,11 @@
   <li class="page-item">
     <a
       class="page-link"
-      href="/novedades?pag=<%=nextPage%><%=sortQueries%><%=searchFilter%>"
+      href="/news?pag=<%=nextPage%><%=sortQueries%><%=searchFilter%>"
       aria-label="Next"
     >
-      <span aria-hidden="true" class="text-primary fw-bold user-select-none"
-        >Siguiente</span
+      <span aria-hidden="true" class="text-success fw-bold user-select-none"
+        ><i data-lucide="arrow-right" alt="right-arrow" style="width: 20px; height: 20px;"></i></span
       >
     </a>
   </li>

@@ -1,47 +1,33 @@
-<nav class="navbar m-0 user-select-none">
-  <section class="container-fluid d-flex justify-content-around">
-    <a
-      class="btn btn-primary fw-semibold fs-5 rounded-4"
+<nav class="navbar my-2 user-select-none">
+  <section class="news-search">
+    <form class="news-search-container" role="search">
+      <input
+        class="form-control"
+        type="search"
+        aria-label="Search"
+        name="filter"
+        value="<%=searchFilter%>"
+        autocomplete="off"
+        title="Ingrese una palabra clave para realizar una búsqueda"
+        placeholder="Buscar..."
+      />
+
+      <button type="submit" class="news-search-button">
+        <i data-lucide="search" alt="search"></i>
+      </button>
+    </form>
+    <button
+      class="btn btn-success d-flex align-items-center justify-content-center gap-2"
       data-bs-toggle="modal"
-      data-bs-target="#infoNewModal"
+      data-bs-target="#generalNewModal"
       data-bs-action="create"
       data-bs-user="<%=username%>"
-      >Agregar Novedad</a
     >
-    <form
-      class="d-flex col-9 align-items-center justify-content-center gap-4"
-      role="search"
-    >
-      <section
-        class="col-9 bg-light-subtle rounded-4 shadow py-2 d-flex justify-content-evenly align-items-center"
-      >
-        <h6 class="m-0">Buscar Novedad:</h6>
-        <section class="col-8">
-          <input
-            class="form-control"
-            type="search"
-            aria-label="Search"
-            name="filter"
-            value="<%=searchFilter%>"
-            autocomplete="off"
-            title="Ingrese una palabra clave para realizar una búsqueda"
-          />
-        </section>
-      </section>
-
-      <button
-        class="btn btn-success shadow"
-        type="submit"
-        title="Filtra las novedades según la palabra clave ingresada"
-      >
-        Buscar
-      </button>
-      <a
-        class="btn btn-secondary shadow"
-        href="/novedades"
-        title="Elimina los filtros y muestra todas las novedades"
-        >Limpiar</a
-      >
-    </form>
+      <i
+        data-lucide="plus"
+        alt="plus"
+      ></i>
+      Agregar Novedad
+    </button>
   </section>
 </nav>

@@ -1,5 +1,5 @@
-const infoNewModal = document.getElementById("infoNewModal");
-infoNewModal.addEventListener("show.bs.modal", (event) => {
+const generalNewModal = document.getElementById("generalNewModal");
+generalNewModal.addEventListener("show.bs.modal", (event) => {
   const newCompleteInfo = event.relatedTarget;
   const action = newCompleteInfo.getAttribute(`data-bs-action`);
   const date = newCompleteInfo.getAttribute(`data-bs-date`);

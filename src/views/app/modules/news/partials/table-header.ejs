@@ -1,7 +1,7 @@
 <% if (sort === name) { if (order === "asc") {orderText = '(Orden Ascendente)';
 order = 'desc'} else {orderText = '(Orden Descendente)'; order = 'asc'} %>
 
-<th scope="col">
+<th scope="col" <% if (typeof width != "undefined") { %> style='width: <%=width%>%;' <% } %> >
   <a
     href="/news?pag=<%=pag%>&sort=<%=name%>&order=<%=order%><%=searchFilter%>"
     class="text-decoration-none text-black"
@@ -14,7 +14,7 @@ order = 'desc'} else {orderText = '(Orden Descendente)'; order = 'asc'} %>
 </th>
 
 <% } else { %>
-<th scope="col">
+<th scope="col" <% if (typeof width != "undefined") { %> style='width: <%=width%>%;' <% } %> >
   <a
     href="/news?pag=<%=pag%>&sort=<%=name%>&order=asc<%=searchFilter%>"
     class="text-decoration-none text-black"
