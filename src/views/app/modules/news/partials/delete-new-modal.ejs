@@ -20,26 +20,28 @@
         <section
           class="modal-body d-flex flex-column gap-2 py-3 px-3 user-select-none"
         >
-          <p class="text-center">
+          <p class="text-center mb-0">
             ¿Está seguro que desea eliminar esta Novedad?
           </p>
-          <section class="d-flex justify-content-around mb-2">
-            <a
-              class="btn btn-secondary"
+          <input
+            id="_idNewValueDelete"
+            type="text"
+            class="d-none"
+            name="_id"
+            value=""
+          />
+          <input type="text" class="d-none" name="deleteNew" value="true" />
+          <footer class="modal-footer d-flex justify-content-around mb-2">
+            <button
+              class="btn btn-secondary general-button"
               data-bs-dismiss="modal"
               aria-label="Close"
-              >Cancelar</a
             >
-            <input
-              id="_idNewValueDelete"
-              type="text"
-              class="d-none"
-              name="_id"
-              value=""
-            />
-            <input type="text" class="d-none" name="deleteNew" value="true" />
-            <button type="submit" class="btn btn-danger">Eliminar</button>
-          </section>
+              Cancelar
+            </button>
+
+            <button type="submit" class="btn btn-danger general-button">Eliminar</button>
+          </footer>
         </section>
       </form>
     </section>

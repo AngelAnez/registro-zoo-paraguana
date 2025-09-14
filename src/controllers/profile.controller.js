@@ -31,8 +31,6 @@ export const updateProfile = async (req, res) => {
   let { username, admin } = req.user;
   const { newUsername, email, actualPassword, newPassword } = req.body;
 
-  console.log(newUsername, email)
-
   const [originalUserQuery] = await pool.query(
     `SELECT * FROM users WHERE username='${username}'`
   );

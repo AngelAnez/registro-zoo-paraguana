@@ -53,10 +53,15 @@
         id="footerNewModal"
         class="modal-footer container-fluid pb-3 p-0 d-flex justify-content-around user-select-none border-0"
       >
-        <a class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close"
-          >Cancelar</a
+        <button
+          class="btn btn-secondary general-button"
+          data-bs-dismiss="modal"
+          aria-label="Close"
         >
-        <button class="btn btn-success" type="submit">Guardar Cambios</button>
+          Cancelar
+        </button>
+        <%- include('../../../../partials/button', {text: "Guardar cambios",
+        type: "submit", color: 'success', icon: 'save'}); %>
       </footer>
     </section>
     <input type="number" name="_id" id="_idNewValue" class="visually-hidden" />
