@@ -21,7 +21,7 @@
           class="modal-body d-flex flex-column gap-2 py-3 px-3 user-select-none"
         >
           <p class="text-center mb-0">
-            ¿Está seguro que desea eliminar esta Novedad?
+            ¿Está seguro que desea eliminar la novedad seleccionada?
           </p>
           <input
             id="_idNewValueDelete"
@@ -31,7 +31,7 @@
             value=""
           />
           <input type="text" class="d-none" name="deleteNew" value="true" />
-          <footer class="modal-footer d-flex justify-content-around mb-2">
+          <footer class="modal-footer">
             <button
               class="btn btn-secondary general-button"
               data-bs-dismiss="modal"
@@ -40,7 +40,8 @@
               Cancelar
             </button>
 
-            <button type="submit" class="btn btn-danger general-button">Eliminar</button>
+            <%- include('../../../../partials/button', {text: "Eliminar",
+            type: "submit", color: 'danger', icon: 'trash-2'}); %>
           </footer>
         </section>
       </form>
