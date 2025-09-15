@@ -1,0 +1,50 @@
+<article
+  class="modal fade"
+  id="aceptRequestModal"
+  tabindex="-1"
+  aria-hidden="true"
+>
+  <section class="modal-dialog modal-dialog-centered">
+    <section class="modal-content">
+      <header class="modal-header text-bg-success user-select-none">
+        <h1 class="modal-title fs-5"></h1>
+        <button
+          class="btn text-light p-0 opacity-hover"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <i data-lucide="x" alt="close-icon"></i>
+        </button>
+      </header>
+      <form method="post">
+        <section
+          class="modal-body d-flex flex-column gap-2 py-3 px-3 user-select-none"
+        >
+          <p class="text-center m-0">
+            ¿Está seguro que desea aceptar la creación del usuario
+            <span id="aceptRequestModalUser" class="fw-bold"></span>?
+            <input type="text" class="d-none" name="username" value="" />
+            <input
+              type="text"
+              class="d-none"
+              name="changeRole"
+              value="Moderador"
+            />
+          </p>
+          <section class="modal-footer">
+            <button
+              class="btn btn-secondary general-button"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              Cancelar
+            </button>
+            <%- include('../../../../partials/button', {text: "Aprobar",
+            type: "submit", color: 'success', icon: 'check'});
+            %>
+          </section>
+        </section>
+      </form>
+    </section>
+  </section>
+</article>

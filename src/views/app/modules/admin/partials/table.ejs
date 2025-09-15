@@ -1,0 +1,32 @@
+<section class="admin-table-container">
+  <table class="table admin-table">
+    <thead class="table-success">
+      <tr>
+        <th>Nombre de Usuario</th>
+        <th>Rol</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.forEach((user) => { %> <% if (user.username != username &&
+      user.username != "root") {%>
+      <tr>
+        <td><%= user.username %></td>
+        <td><%= user.role %></td>
+        <td>
+          <% if (user.role != "Por Asignar") { %>
+            <%- include('action-button', {id: '#changePasswordModal', icon: 'key-round', title: 'Cambiar Contraseña', container: 'table', user } ) %> 
+          <% } if (user.role == "Moderador") { %>
+            <%- include('action-button', {id: '#promoteAdminModal', icon: 'shield-plus', title: 'Promover a Administrador', container: 'table', user } ) %> 
+          <% } if (user.role == "Administrador") { %>
+            <%- include('action-button', {id: '#returnModeratorModal', icon: 'shield-minus', title: 'Cambiar a Moderador', container: 'table', user } ) %> 
+          <% } if (user.role == "Por Asignar") { %> 
+            <%- include('action-button', {id: '#aceptRequestModal', icon: 'check', title: 'Aprobar Solicitud', container: 'table', user } ) %> 
+          <% } %> 
+        <%- include('action-button', {id: '#deleteUserModal', icon: 'trash-2', title: 'Eliminar Usuario', container: 'table', user } ) %>
+        </td>
+      </tr>
+      <% }}) %>
+    </tbody>
+  </table>
+</section>

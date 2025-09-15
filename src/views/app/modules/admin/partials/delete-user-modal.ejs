@@ -1,0 +1,45 @@
+<article
+  class="modal fade"
+  id="deleteUserModal"
+  tabindex="-1"
+  aria-hidden="true"
+>
+  <section class="modal-dialog modal-dialog-centered">
+    <section class="modal-content">
+      <header class="modal-header text-bg-danger user-select-none">
+        <h1 class="modal-title fs-5"></h1>
+        <button
+          class="btn text-light p-0 opacity-hover"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <i data-lucide="x" alt="close-icon"></i>
+        </button>
+      </header>
+      <form method="post">
+        <section
+          class="modal-body d-flex flex-column gap-2 py-3 px-3 user-select-none"
+        >
+          <p class="text-center m-0">
+            ¿Está seguro que desea eliminar a
+            <span id="deleteUserModalUser" class="fw-bold"></span>?
+          </p>
+          <input type="text" class="d-none" name="username" value="" />
+          <input type="text" class="d-none" name="eraseUser" value="true" />
+        </section>
+        <footer class="modal-footer">
+          <button
+            class="btn btn-secondary general-button"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            Cancelar
+          </button>
+
+          <%- include('../../../../partials/button', {text: "Eliminar", type:
+          "submit", color: 'danger', icon: 'trash-2'}); %>
+        </footer>
+      </form>
+    </section>
+  </section>
+</article>
