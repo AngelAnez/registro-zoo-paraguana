@@ -27,6 +27,13 @@ img {
     cursor: pointer;
 }
 
+.title {
+    font-size: clamp(20px, 3vw, 28px);
+    text-align: center;
+    padding: 1rem 0rem;
+    margin: 0;
+}
+
 .general-button {
     min-width: 120px;
     display: inline-flex !important;

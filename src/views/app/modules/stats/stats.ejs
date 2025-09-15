@@ -1,7 +1,8 @@
 <%- include('../../layout-head', {title : "Estadísticas", css :
 "stats.css", js : "stats.js"}); %>
 
-  <div class="stats">
+<h2 class="title">Estadísticas</h2>
+<article class="stats">  
     <form method="post" action="/stats" class="actions-container">
       <%- include('../../../partials/button', {text: "Cambiar Fecha", type: "button", color: "success", icon: 'calendar-days', extraClass: 'stats-button', modalTarget: "#selectDateModal"}) %>
       <%- include('../../../partials/button', {text: "Descargar en PDF", type: "submit", color: "primary", icon: 'download', extraClass: 'stats-button', formaction: '/reporte'}) %>
