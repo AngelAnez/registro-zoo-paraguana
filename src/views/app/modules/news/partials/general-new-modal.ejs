@@ -1,0 +1,70 @@
+<article
+  class="modal fade"
+  id="generalNewModal"
+  tabindex="-1"
+  aria-hidden="true"
+  data-bs-backdrop="static"
+>
+  <form
+    id="newsModalForm"
+    method="post"
+    class="modal-dialog modal-dialog-centered"
+  >
+    <section class="modal-content">
+      <header class="modal-header text-bg-success user-select-none">
+        <h1 id="modalTitle" class="modal-title fs-5"></h1>
+        <a
+          class="btn text-light p-0 opacity-hover"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <i data-lucide="x" alt="close-icon"></i>
+        </a>
+      </header>
+      <section class="modal-body d-flex flex-column gap-3 mb-2">
+        <div id="datetimeModalSection" class="d-flex flex-column gap-3">
+          <%- include('general-new-modal-element', {name: 'date', label:
+          'Fecha', icon: 'calendar-days', maxLength: '45'}); %> <%-
+          include('general-new-modal-element', {name: 'time', label: 'Hora',
+          icon: 'clock', maxLength: '45'}); %>
+        </div>
+        <%- include('general-new-modal-element', {name: 'author', label:
+        'Autor', icon: 'user', maxLength: '45'}); %> <%-
+        include('general-new-modal-element', {name: 'subject', label: 'Asunto',
+        icon: 'target', maxLength: '60'}); %>
+
+        <article class="d-flex flex-column align-items-start gap-2">
+          <div class="m-0 col-9 d-flex gap-2 align-items-center">
+            <i data-lucide="mail" alt="body icon"></i>
+            <label for="bodyNewValue" class="fw-bold">Mensaje</label>
+          </div>
+          <textarea
+            id="bodyNewValue"
+            class="form-control w-100 m-0"
+            style="resize: none"
+            rows="5"
+            name="body"
+            maxlength="255"
+          ></textarea>
+        </article>
+      </section>
+      <input type="text" name="date_time" class="d-none" id="datetimeInput" />
+      <footer
+        id="footerNewModal"
+        class="modal-footer container-fluid pb-3 p-0 d-flex justify-content-around user-select-none border-0"
+      >
+        <button
+          class="btn btn-secondary general-button"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          Cancelar
+        </button>
+        <%- include('../../../../partials/button', {text: "Guardar cambios",
+        type: "submit", color: 'success', icon: 'save'}); %>
+      </footer>
+    </section>
+    <input type="number" name="_id" id="_idNewValue" class="visually-hidden" />
+    <div id="actionConfirm"></div>
+  </form>
+</article>

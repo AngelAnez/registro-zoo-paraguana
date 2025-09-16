@@ -1,0 +1,72 @@
+<article id="addNewVisitStep3" class="new-visit-form-container d-none">
+  <header class="new-visit-form-header">
+    <div class="new-visit-form-header-title">
+      <i data-lucide="user" alt="Representative section icon"></i>
+      <h2>Representante (Opcional)</h2>
+    </div>
+    <p class="new-visit-form-header-subtitle">
+      Ingrese los datos de la persona o empresa representante de la visita.
+    </p>
+  </header>
+
+  <section class="new-visit-form-body flex-column">
+    <article class="new-visit-form-element-container" style="min-width: 100%">
+      <header class="new-visit-form-element-header">
+        <img
+          class="new-visit-form-element-icon"
+          src="./public/assets/img/representative.webp"
+          alt="representativeImg"
+        />
+        <h3 class="new-visit-form-element-title">Nombre</h3>
+      </header>
+      <section class="new-visit-form-element-body">
+        <input
+          type="text"
+          class="form-control px-2 py-1"
+          id="representativeName"
+          autocomplete="off"
+          name="representativeName"
+          oninput="cleanInputs(step3Container)"
+        />
+      </section>
+    </article>
+
+    <article class="new-visit-form-element-container" style="min-width: 100%">
+      <header class="new-visit-form-element-header">
+        <img
+          class="new-visit-form-element-icon"
+          src="./public/assets/img/telephone.webp"
+          alt="representativePhoneImg"
+        />
+        <h3 class="new-visit-form-element-title">Número de Teléfono</h3>
+      </header>
+      <section class="new-visit-form-element-body">
+        <input
+          type="tel"
+          class="form-control px-2 py-1"
+          id="representativePhone"
+          autocomplete="off"
+          name="representativePhone"
+          oninput="cleanInputs(step3Container)"
+        />
+      </section>
+    </article>
+  </section>
+
+  <footer class="new-visit-form-footer">
+    <button
+      type="button"
+      onclick="changeStep(2)"
+      class="general-button btn btn-secondary"
+    >
+      Atrás
+    </button>
+    <button
+      type="button"
+      onclick="validateStep3()"
+      class="general-button btn btn-success"
+    >
+      Siguiente
+    </button>
+  </footer>
+</article>

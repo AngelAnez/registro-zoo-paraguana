@@ -1,0 +1,14 @@
+<%- include('../../layout-head', {title : "Administración", css :"admin.css",
+js: "admin.js"}); %>
+
+<h2 class="title">Administración de Usuarios</h2>
+<%- include('partials/table') %> 
+<%- include('partials/cards') %> 
+
+<%- include('partials/pagination-bar') %> 
+<%- include('partials/update-password-modal') %>
+<%- include('partials/role-admin-modal') %>
+<%- include('partials/role-moderator-modal') %>
+<%- include('partials/approve-user-modal') %>
+<%- include('partials/delete-user-modal') %>
+<%- include('../../layout-foot', {messageAlert, typeAlert, showAlert}) %>

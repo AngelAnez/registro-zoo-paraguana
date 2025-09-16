@@ -1,0 +1,38 @@
+<%- include('../../layout-head', {title : "Estadísticas", css :
+"stats.css", js : "stats.js"}); %>
+
+<h2 class="title">Estadísticas</h2>
+<article class="stats">  
+    <form method="post" action="/stats" class="actions-container">
+      <%- include('../../../partials/button', {text: "Cambiar Fecha", type: "button", color: "success", icon: 'calendar-days', extraClass: 'stats-button', modalTarget: "#selectDateModal"}) %>
+      <%- include('../../../partials/button', {text: "Descargar en PDF", type: "submit", color: "primary", icon: 'download', extraClass: 'stats-button', formaction: '/reporte'}) %>
+      <%- include('partials/select-date-modal') %>
+    </form>
+
+    <div class="d-flex flex-column">
+      <section class="stats-section">
+        <%- include('partials/stats-card', {label: "Visitantes", value: totalKids+totalAdults+totalElders, imageFile: 
+        "visitors.png", imageName: "visitors-icon"}) %>
+        <%- include('partials/stats-card', {label: "Ingresos Totales", value: totalDolars+"$", imageFile: 
+        "income.png", imageName: "income-icon"}) %>
+      </section>
+  
+      <section class="chart-section">
+        <%- include('partials/chart', {title: "Distribución de Visitantes por su Edad", id: "visitsDistChart"}) %>
+        <%- include('partials/chart', {title: "Distribución de Ingresos por método de pago", id: "paymentDistChart"}) %>
+      </section>
+    </div>
+
+    <ul class="d-none">
+      <li id="kidsValue" value="<%= totalKids %>"></li>
+      <li id="adultsValue" value="<%= totalAdults %>"></li>
+      <li id="eldersValue" value="<%= totalElders %>"></li>
+      <li id="cashValue" value="<%= cash.dolars %>"></li>
+      <li id="bankTransferValue" value="<%= bankTransfer.dolars %>"></li>
+      <li id="mobilePayValue" value="<%= mobilePay.dolars %>"></li>
+      <li id="otherValue" value="<%= other.dolars %>"></li>
+    </ul>
+  </div>
+  
+
+<%- include('../../layout-foot', {messageAlert, typeAlert, showAlert}) %>

@@ -1,0 +1,53 @@
+<header class="header">
+  <article class="header-dolar-section">
+    <img
+      class="header-icon"
+      src="./public/assets/img/dolar.webp"
+      alt="dolar-icon"
+    />
+    <h2 class="header-dolar-title">
+      Tasa del Día:
+      <span
+        id="dolarToday"
+        class="text-success"
+        data-bs-toggle="tooltip"
+        data-bs-placement="right"
+        data-bs-title="Precio del Dolar en Bolívares"
+      ></span>
+    </h2>
+  </article>
+  <article class="header-user-section dropdown">
+    <button
+      id="user-name"
+      class="header-user-button"
+      type="button"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      <span class="opacity-hover"> <%= username %> </span>
+      <img
+        id="user-img"
+        class="header-icon"
+        src="./public/assets/img/parrot.png"
+        alt="profile-icon"
+      />
+    </button>
+
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="/profile">Ver Perfil</a></li>
+      <li>
+        <a class="dropdown-item fw-bold text-danger" href="/logout"
+          >Cerrar Sesión</a
+        >
+      </li>
+    </ul>
+  </article>
+
+  <button
+    class="sidebar-toggle-button"
+    data-bs-target="#sidebar"
+    data-bs-toggle="collapse"
+  >
+    <i data-lucide="menu" alt="estadisticas-icon"></i>
+  </button>
+</header>

@@ -1,17 +1,23 @@
 import { Router } from "express";
-import { renderRegistro, renderLogin, verifyUser, getLogout, userRegister } from "../controllers/auth.controller.js";
+import {
+  renderRegister,
+  renderLogin,
+  verifyUser,
+  getLogout,
+  userRegister,
+} from "../controllers/auth.controller.js";
 import { activeSession } from "../middlewares/activeSession.js";
 
-const router = Router()
+const router = Router();
 
-router.get("/registro", activeSession, renderRegistro)
+router.get("/register", activeSession, renderRegister);
 
- router.post("/registro", userRegister)
+router.post("/register", userRegister);
 
-router.get("/login", activeSession, renderLogin)
+router.get("/login", activeSession, renderLogin);
 
-router.post("/login", verifyUser)
+router.post("/login", verifyUser);
 
-router.get("/logout", getLogout)
+router.get("/logout", getLogout);
 
-export default router
+export default router;

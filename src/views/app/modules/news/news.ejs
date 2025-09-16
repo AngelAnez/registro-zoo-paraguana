@@ -1,0 +1,19 @@
+<%- include('../../layout-head', {title : "Novedades", css :"news.css", js:
+"news.js"}); %>
+
+<h2 class="title">Novedades</h2>
+
+
+<%- include('partials/navigation-bar') %>
+
+<%- include('partials/table') %>
+
+<%- include('partials/cards') %>
+
+<%- include('partials/pagination-bar') %>
+
+<%- include('partials/general-new-modal') %>
+
+<%- include('partials/delete-new-modal') %>
+
+<%- include('../../layout-foot', {messageAlert, typeAlert, showAlert}) %>

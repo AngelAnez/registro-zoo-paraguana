@@ -1,0 +1,17 @@
+<button
+  class="btn btn-<%=color%> news-cards-item-button %>"
+  type="button"
+  data-bs-toggle="modal"
+  data-bs-target="<%=target%>"
+  data-bs-_id="<%=element._id%>"
+  data-bs-date="<%= new Date(element.date_time).toLocaleDateString(); %>"
+  data-bs-time="<%= new Date(element.date_time).toLocaleTimeString(); %>"
+  data-bs-subject="<%= element.subject %>"
+  data-bs-body="<%= element.body %>"
+  data-bs-author="<%= element.author %>"
+  data-bs-action="<%=action%>"
+>
+  <% if (typeof icon !== 'undefined' && icon) { %>
+  <i data-lucide="<%= icon %>" alt="<%= icon %> icon"></i>
+  <% } %> <%=text%>
+</button>

@@ -1,0 +1,162 @@
+<article id="addNewVisitStep2" class="new-visit-form-container d-none">
+  <header class="new-visit-form-header">
+    <div class="new-visit-form-header-title">
+      <i data-lucide="dollar-sign" alt="Payment section icon"></i>
+      <h2>Pago</h2>
+    </div>
+    <p class="new-visit-form-header-subtitle">Ingrese los datos de pago.</p>
+  </header>
+
+  <section id="addNewVisitStep2Body" class="new-visit-form-body flex-wrap">
+    <article class="new-visit-form-element-container">
+      <header class="new-visit-form-element-header">
+        <img
+          class="new-visit-form-element-icon"
+          src="./public/assets/img/unitedStatesFlag.webp"
+          alt="dolarsImg"
+        />
+        <h3 class="new-visit-form-element-title">Monto en Dolares</h3>
+      </header>
+      <section class="new-visit-form-element-body relative" style="flex: 1">
+        <span
+          id="totalDolars"
+          class="form-control py-1 text-end"
+          style="padding-right: 20px"
+        ></span>
+        <span class="new-visit-form-input-icon">$</span>
+      </section>
+    </article>
+
+    <article class="new-visit-form-element-container">
+      <header class="new-visit-form-element-header">
+        <img
+          class="new-visit-form-element-icon"
+          src="./public/assets/img/venezuelaFlag.webp"
+          alt="bolivarsImg"
+        />
+        <h3 class="new-visit-form-element-title">Monto en Bolívares</h3>
+      </header>
+      <section class="new-visit-form-element-body relative" style="flex: 1">
+        <span
+          id="totalBolivars"
+          class="form-control py-1 text-end"
+          style="padding-right: 30px"
+        ></span>
+        <span class="new-visit-form-input-icon">Bs.</span>
+      </section>
+    </article>
+
+    <article class="new-visit-form-element-container">
+      <header class="new-visit-form-element-header">
+        <img
+          class="new-visit-form-element-icon"
+          src="./public/assets/img/paymentMethod.webp"
+          alt="bolivarsImg"
+        />
+        <h3 class="new-visit-form-element-title">Método de Pago</h3>
+      </header>
+      <section
+        class="new-visit-form-element-body align-items-start"
+        style="flex: 1"
+      >
+        <select
+          name="paymentMethod"
+          id="paymentMethod"
+          class="form-select py-1 ps-2"
+          onchange="dynamicPaymentMethod()"
+        >
+          <option selected value="Pago Móvil">Pago Móvil</option>
+          <option value="Transferencia">Transferencia</option>
+          <option value="Efectivo">Efectivo</option>
+          <option value="Otro">Otro</option>
+        </select>
+      </section>
+    </article>
+
+    <ul
+      id="methodSelected"
+      class="new-visit-form-element-container m-0"
+      style="min-height: 100px; min-width: 250px"
+    >
+      <li id="referenceMethod" class="new-visit-form-element-container d-flex">
+        <header class="new-visit-form-element-header">
+          <img
+            class="new-visit-form-element-icon"
+            src="./public/assets/img/message.png"
+            alt="paymentDataImg"
+          />
+          <h3 class="new-visit-form-element-title">Número de Referencia</h3>
+        </header>
+        <section class="new-visit-form-element-body" style="flex: 1">
+          <input
+            type="number"
+            id="referenceNumberOption"
+            class="form-control py-1 ps-2"
+            autocomplete="off"
+            name="paymentData"
+            oninput="cleanInputs(step2Container)"
+          />
+        </section>
+      </li>
+
+      <li id="currencyMethod" class="new-visit-form-element-container d-none">
+        <header class="new-visit-form-element-header">
+          <img
+            class="new-visit-form-element-icon"
+            src="./public/assets/img/message.png"
+            alt="paymentDataImg"
+          />
+          <h3 class="new-visit-form-element-title">Tipo de Moneda</h3>
+        </header>
+        <section class="new-visit-form-element-body" style="flex: 1">
+          <select
+            id="currencyOption"
+            name="paymentData"
+            class="form-select py-1 ps-2"
+          >
+            <option selected value="Dolar">Dolar</option>
+            <option value="Bolivar">Bolivar</option>
+          </select>
+        </section>
+      </li>
+      <li id="anotherMethod" class="new-visit-form-element-container d-none">
+        <header class="new-visit-form-element-header">
+          <img
+            class="new-visit-form-element-icon"
+            src="./public/assets/img/message.png"
+            alt="paymentDataImg"
+          />
+          <h3 class="new-visit-form-element-title">Información del Pago</h3>
+        </header>
+        <section class="new-visit-form-element-body">
+          <textarea
+            rows="2"
+            id="alternativeMethodInfo"
+            class="form-control px-2 py-1 text-start"
+            style="resize: none"
+            autocomplete="off"
+            name="paymentData"
+            oninput="cleanInputs(step2Container)"
+          ></textarea>
+        </section>
+      </li>
+    </ul>
+  </section>
+
+  <section class="new-visit-form-footer">
+    <button
+      type="button"
+      onclick="changeStep(1)"
+      class="btn btn-secondary general-button"
+    >
+      Atrás
+    </button>
+    <button
+      type="button"
+      onclick="validateStep2()"
+      class="btn btn-success general-button"
+    >
+      Siguiente
+    </button>
+  </section>
+</article>

@@ -1,0 +1,27 @@
+<%- include('../../layout-head', {title : "Historial de Visitas", css :
+"history.css", js : "history.js"}); %>
+
+  <h2 class="title">Historial de Visitas</h2>
+
+    <%- include('partials/search-visit-bar', {searchFilter}); %>
+
+    <% if (visits.length > 0) { %>
+
+    <%- include('partials/table', {searchFilter, visits}) %>
+
+    <%- include('partials/cards', {searchFilter, visits}) %>
+
+
+    <%- include('partials/pagination-bar', {pag}) %>
+
+    <% } else { %>
+      <h6 class="text-center mt-2">No se ha encontrado ninguna visita</h6>
+    <% } %>
+
+  <%- include('partials/view-visit-modal') %>
+
+  <%- include('partials/edit-visit-modal', {visits}) %>
+        
+  <%- include('partials/delete-visit-modal') %>
+    
+<%- include('../../layout-foot', {messageAlert, typeAlert, showAlert}) %>

@@ -1,0 +1,76 @@
+<article
+  class="modal fade"
+  id="selectDateModal"
+  tabindex="-1"
+  aria-hidden="true"
+>
+  <section class="modal-dialog modal-dialog-centered">
+    <section class="modal-content">
+      <header class="modal-header text-bg-success user-select-none">
+        <h1 class="modal-title fs-5">Cambiar fecha</h1>
+        <button
+          class="btn text-light p-0 opacity-hover"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          type="button"
+        >
+          <i data-lucide="x" alt="close-icon"></i>
+        </button>
+      </header>
+      <form method="post" action="/stats">
+        <section
+          class="modal-body d-flex flex-column gap-2 py-3 px-3 user-select-none"
+        >
+          <p class="text-center">
+            Seleccione la fecha de inicio y final que desea observar
+          </p>
+          <section class="d-flex flex-wrap align-items-center justify-content-center gap-4">
+            <section
+              class="d-flex align-items-center justify-content-center gap-3"
+            >
+              <label for="startDate">Desde</label>
+              <input
+                id="startDate"
+                class="form-control w-75"
+                type="date"
+                value="<%=startDate%>"
+                max="<%=today%>"
+                name="startDate"
+              />
+            </section>
+
+            <section
+              class="d-flex align-items-center justify-content-center gap-3"
+            >
+              <label for="endDate">Hasta</label>
+              <input
+                id="endDate"
+                class="form-control w-75"
+                type="date"
+                value="<%=endDate%>"
+                max="<%=today%>"
+                name="endDate"
+              />
+            </section>
+          </section>
+          <section class="modal-footer">
+            <a
+              class="btn btn-secondary general-button"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              >Cancelar</a
+            >
+            <input type="text" class="d-none" name="_id" value="" />
+            <input type="text" class="d-none" name="kids_id" value="" />
+            <input type="text" class="d-none" name="adults_id" value="" />
+            <input type="text" class="d-none" name="elders_id" value="" />
+            <input type="text" class="d-none" name="deleteVisit" value="true" />
+
+            <%- include('../../../../partials/button', {text: "Cambiar", type:
+            "submit", color: "success"}) %>
+          </section>
+        </section>
+      </form>
+    </section>
+  </section>
+</article>

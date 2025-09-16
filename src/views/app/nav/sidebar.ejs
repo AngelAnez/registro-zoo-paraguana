@@ -1,0 +1,69 @@
+<aside id="sidebar" class="relative sidebar">
+  <nav class="sidebar-container">
+    <header class="sidebar-header">
+      <i
+        class="sidebar-header-icon"
+        data-lucide="paw-print"
+        alt="logo-zoo-icon"
+      ></i>
+      <h1 class="sidebar-header-title">Zoo Paraguaná</h1>
+      <button class="sidebar-header-close-button" data-bs-target="#sidebar" data-bs-toggle="collapse">
+        <i data-lucide="x" alt="close-sidebar-icon"></i>
+      </button>
+    </header>
+
+    <ul class="sidebar-nav-list">
+      <li class="sidebar-nav-list-element opacity-hover">
+        <%-include('partials/sidebar-nav-link', {link : '/home', title :"Home",
+        icon: 'home'} ); %>
+      </li>
+      <li class="sidebar-nav-list-element opacity-hover">
+        <%-include('partials/sidebar-nav-link', {link : '/visits', title
+        :"Registrar Visitantes", icon: 'notebook-pen'} ); %>
+      </li>
+      <li class="sidebar-nav-list-element opacity-hover">
+        <%-include('partials/sidebar-nav-link', {link : '/history', title
+        :"Historial de Visitas", icon: 'calendar-days'} ); %>
+      </li>
+      <li class="sidebar-nav-list-element opacity-hover">
+        <%-include('partials/sidebar-nav-link', {link : '/stats', title
+        :"Estadísticas", icon: 'bar-chart-4'} ); %>
+      </li>
+      <li class="sidebar-nav-list-element opacity-hover">
+        <%-include('partials/sidebar-nav-link', {link : '/news', title
+        :"Novedades", icon: 'mail-plus'} ); %>
+      </li>
+      <% if (admin) { %>
+      <li class="sidebar-nav-list-element opacity-hover">
+        <%-include('partials/sidebar-nav-link', {link : '/admin', title
+        :"Administración", icon: 'user-round-cog'} ); %>
+      </li>
+      <% } %>
+      <li class="sidebar-nav-list-element opacity-hover">
+        <%-include('partials/sidebar-nav-link', {link : '/settings', title
+        :"Ajustes", icon: 'settings'} ); %>
+      </li>
+    </ul>
+
+    <footer class="sidebar-footer">
+      <ul class="sidebar-social-media-container">
+        <li>
+          <%-include('partials/social-media-icon', {link :
+          'https://www.facebook.com/zooparaguana', title :"Facebook", icon:
+          'facebook'} ); %>
+        </li>
+        <li>
+          <%-include('partials/social-media-icon', {link :
+          'https://www.instagram.com/mizooparaguana/', title :"Instagram", icon:
+          'instagram'} ); %>
+        </li>
+      </ul>
+      <ul class="sidebar-footer-section-mobile">
+        <%-include('partials/sidebar-nav-link', {link : '/profile', title
+        :"Ver Perfil", icon: 'user'} ); %>
+        <%-include('partials/sidebar-nav-link', {link : '/logout', title
+        :"Cerrar Sesión", icon: 'log-out'} ); %>
+      </ul>
+    </footer>
+  </nav>
+</aside>

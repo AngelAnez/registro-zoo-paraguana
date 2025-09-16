@@ -1,0 +1,110 @@
+.stats{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding-bottom: 1rem;
+}
+
+.actions-container{
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 0rem 2rem;
+}
+
+.stats-section {
+    display: flex;
+    justify-content: start;
+    gap: 1rem;
+    padding: 2rem 2rem;
+    flex-wrap: wrap;
+}
+
+.stats-container {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 1rem;
+    margin: 0px 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 250px;
+}
+
+.stats-header{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.stats-title{
+    font-weight: semibold;
+    margin: 0;
+    text-align: center;
+}
+
+.stats-subtitle{
+    text-align: center;
+    color: rgb(134, 134, 134);
+}
+
+.chart-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1.5rem;
+    padding: 0 2rem;
+    flex: 1;
+    height: 100%;
+}
+
+.chart-container {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 1.2rem 0px;
+    max-width: 500px;
+    width: 90%;
+}
+
+.chart-item {
+    padding: 0px 1.25rem;
+    height: 300px;
+    width: 100%;
+    margin: 0;
+}
+
+.date-picker-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 1000px) {
+
+    .stats{
+        flex-direction: column-reverse;
+    }
+
+    .stats-section{
+        padding: 1rem 0.5rem;
+        justify-content: center;
+    }
+
+    .chart-section{
+        padding: 0.5rem;
+    }
+
+    .chart-item{
+        padding: 0px 0.4rem;
+    }
+
+    .actions-container{
+        padding-top: 1rem;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,50 @@
+<article
+  class="modal fade"
+  id="deleteVisitModal"
+  tabindex="-1"
+  aria-hidden="true"
+>
+  <section class="modal-dialog modal-dialog-centered">
+    <section class="modal-content">
+      <header class="modal-header text-bg-danger user-select-none">
+        <h1 class="modal-title fs-5">Eliminar Visita</h1>
+        <button
+          class="btn text-light p-0 opacity-hover"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          type="button"
+        >
+          <i data-lucide="x" alt="close-icon"></i>
+        </button>
+      </header>
+      <form method="post">
+        <section
+          class="modal-body d-flex flex-column gap-2 py-3 px-3 user-select-none"
+        >
+          <p class="text-center m-0">
+            ¿Está seguro que desea eliminar la visita seleccionada?
+          </p>
+
+          <input type="text" class="d-none" name="_id" value="" />
+          <input type="text" class="d-none" name="kids_id" value="" />
+          <input type="text" class="d-none" name="adults_id" value="" />
+          <input type="text" class="d-none" name="elders_id" value="" />
+          <input type="text" class="d-none" name="deleteVisit" value="true" />
+          <section class="modal-footer">
+            <button
+              class="btn btn-secondary general-button"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              type="button"
+            >
+              Cancelar
+            </button>
+
+            <%- include('../../../../partials/button', {text: "Eliminar", type:
+            "submit", color: 'danger', icon: 'trash-2'}); %>
+          </section>
+        </section>
+      </form>
+    </section>
+  </section>
+</article>

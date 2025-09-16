@@ -1,0 +1,41 @@
+name: Deploy on VPS
+on: 
+    push:
+        branches: ["main"]
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v4
+              with:
+                node-version: '22'
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Deploy with SSH
+              uses: appleboy/ssh-action@v1.0.0
+              with:
+                host: ${{ secrets.SSH_HOST }}
+                port: ${{ secrets.SSH_PORT }}
+                username: ${{ secrets.SSH_USER }}
+                password: ${{ secrets.SSH_PASSWORD }}
+                script: |
+                  # Cargar el entorno de nvm
+                  export NVM_DIR="$HOME/.nvm"
+                  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+                  
+                  # Moverse a la carpeta de la aplicación
+                  cd /var/app/registro_zoo_paraguana
+                  
+                  # Hacer Git Pull para traer los últimos cambios
+                  git pull origin dev
+                  
+                  # Instalar las dependencias y reiniciar la aplicación
+                  npm install
+                  pm2 restart registro_zoo

@@ -1,0 +1,22 @@
+<nav class="navbar mb-2 user-select-none">
+  <section class="container-fluid d-flex justify-content-around">
+    <form
+      class="history-search-container"
+      role="search"
+    >
+      <input
+        class="form-control pe-5"
+        type="search"
+        aria-label="Search"
+        name="filter"
+        value="<%=searchFilter%>"
+        autocomplete="off"
+        title="Ingrese una palabra clave para realizar una búsqueda"
+        placeholder="Buscar..."
+      />
+      <button type="submit" class="history-search-button">
+        <i data-lucide="search" alt="search"></i>
+      </button>
+    </form>
+  </section>
+</nav>

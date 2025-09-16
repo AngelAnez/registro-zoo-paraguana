@@ -1,0 +1,32 @@
+<li class="admin-cards-item">
+  <header class="admin-cards-item-header">
+    <div class="admin-cards-item-icon-container">
+      <i data-lucide="user" alt="User icon"></i>
+      <span class="admin-cards-item-title"><%= user.username %></span>
+    </div>
+    <span class="admin-cards-item-secondary"> <%= user.role %></span>
+  </header>
+
+  <section class="d-flex justify-content-between align-items-center">
+    <div class="admin-cards-item-icon-container">
+      <i data-lucide="mail" alt="Email icon"></i>
+      <span><%= user.email %></span>
+    </div>
+  </section>
+
+  <footer class="admin-cards-item-footer">
+    <% if (user.role != "Por Asignar") { %> <%- include('action-button', {id:
+    '#changePasswordModal', icon: 'key-round', title: 'Cambiar Contraseña',
+    container: 'card', color: 'success', user } ) %> <% } if (user.role ==
+    "Moderador") { %> <%- include('action-button', {id: '#promoteAdminModal',
+    icon: 'shield-plus', title: 'Promover a Administrador', container: 'card',
+    color: 'primary', user } ) %> <% } if (user.role == "Administrador") { %>
+    <%- include('action-button', {id: '#returnModeratorModal', icon:
+    'shield-minus', title: 'Cambiar a Moderador', container: 'card', color:
+    'primary', user } ) %> <% } if (user.role == "Por Asignar") { %> <%-
+    include('action-button', {id: '#aceptRequestModal', icon: 'check', title:
+    'Aprobar Solicitud', container: 'card', color: 'primary', user } ) %> <% }
+    %> <%- include('action-button', {id: '#deleteUserModal', icon: 'trash-2',
+    title: 'Eliminar Usuario', container: 'card', color: 'danger', user } ) %>
+  </footer>
+</li>

@@ -1,63 +1,70 @@
-import express from "express"
-import path from "path"
-import "ejs"
+import express from "express";
+import path from "path";
+import "ejs";
 import CookieParser from "cookie-parser";
-import { DIR_APP } from "./global.js"
+import { DIR_APP } from "./global.js";
 import { pool } from "./db.js";
+import fs from "fs";
+import dotenv from "dotenv";
 
 import AuthRoutes from "./routes/auth.routes.js";
 import AdminRoutes from "./routes/admin.routes.js";
-import InicioRoutes from "./routes/inicio.routes.js"
-import PerfilRoutes from "./routes/perfil.routes.js"
-import VisitantesRoutes from "./routes/visitantes.routes.js"
-import HistorialRoutes from "./routes/historial.routes.js"
-import EstadisticasRoutes from "./routes/estadisticas.routes.js"
-import NovedadesRoutes from "./routes/novedades.routes.js"
-import AjustesRoutes from "./routes/ajustes.routes.js"
+import HomeRoutes from "./routes/home.routes.js";
+import ProfileRoutes from "./routes/profile.routes.js";
+import VisitsRoutes from "./routes/visits.routes.js";
+import HistoryRoutes from "./routes/history.routes.js";
+import StatsRoutes from "./routes/stats.routes.js";
+import NewsRoutes from "./routes/news.routes.js";
+import SettingsRoutes from "./routes/settings.routes.js";
 import ReporteRoutes from "./routes/reporte.routes.js";
 
-const app = express()
+const app = express();
 
-app.set("port", 8040)
-app.set("view engine", "ejs")
-app.set("views", path.join(DIR_APP, "views"))
+dotenv.config();
 
-/* Middlewares para formateo de datos*/ 
+app.set("port", process.env.APP_PORT);
+app.set("view engine", "ejs");
+app.set("views", path.join(DIR_APP, "views"));
+
+/* Middlewares para formateo de datos*/
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-app.use(CookieParser())
+app.use(express.urlencoded({ extended: true }));
+app.use(CookieParser());
+app.use("/css", express.static("./node_modules/bootstrap/dist/css"));
+app.use("/js", express.static("./node_modules/bootstrap/dist/js"));
+app.use("/chartjs", express.static("./node_modules/chart.js/dist"));
 
 /* Rutas del Servidor */
 
-app.get("/ping", async (req, res) => {
-    try {
-        const [result] = await pool.query(`INSERT INTO news (subject, body, author, date, time) VALUES (
-            "Novedad de Prueba", "Este mensaje solo sirve para probar si la novedad se guarda exitosamente", "AngelDavid", "2024-4-12", "6:51 PM"
-        )`)
-        res.json(result)
-    } catch (error) {
-        res.status(404).json(error.message)
-    }
-})
+app.get("/seed", async (_, res) => {
+  try {
+    const seedData = fs.readFileSync("./src/db/seed.sql", "utf8");
+    await pool.query(seedData);
+    res.send("Proceso de seeding completado exitosamente");
+  } catch (error) {
+    console.log(error);
+    res.status(404).json(error.message);
+  }
+});
 
-app.use(AuthRoutes)
-app.use(AdminRoutes)
-app.use(InicioRoutes)
-app.use(PerfilRoutes)
-app.use(VisitantesRoutes)
-app.use(HistorialRoutes)
-app.use(EstadisticasRoutes)
-app.use(NovedadesRoutes)
-app.use(AjustesRoutes)
-app.use(ReporteRoutes)
+app.use(AuthRoutes);
+app.use(AdminRoutes);
+app.use(HomeRoutes);
+app.use(ProfileRoutes);
+app.use(VisitsRoutes);
+app.use(HistoryRoutes);
+app.use(StatsRoutes);
+app.use(NewsRoutes);
+app.use(SettingsRoutes);
+app.use(ReporteRoutes);
 
 /* Archivos Estáticos*/
 
-app.use("/public", express.static(path.join(DIR_APP, "public")))
-app.use((req, res, next) => {
-    res.redirect("/login")
-})
+app.use("/public", express.static(path.join(DIR_APP, "public")));
+app.use((req, res) => {
+  res.redirect("/login");
+});
 
-app.listen(app.get("port"))
-console.log(`Server on port ${app.get("port")}`)
+app.listen(process.env.APP_PORT);
+console.log(`Server on port ${process.env.APP_PORT}`);

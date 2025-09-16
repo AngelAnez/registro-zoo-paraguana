@@ -1,0 +1,14 @@
+<article class="py-2">
+  <label for="<%= id %>" class="form-label user-select-none"
+    ><%= label %></label
+  >
+  <input
+    type="text"
+    class="form-control w-100 <% if (invalidUser) { %> is-invalid <% } %>"
+    id="<%= id %>"
+    name="<%= name %>"
+    oninput="resetValidators('<%= formType %>')"
+    required
+    autocomplete="off"
+  />
+</article>

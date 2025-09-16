@@ -1,2 +1,32 @@
+<%- include('toast', {messageAlert, typeAlert}) %>
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/chartjs/chart.umd.min.js"></script>
+
+<script src="./public/plugins/lucide/lucide.min.js" type="text/javascript"></script>
+<script>
+  lucide.createIcons();
+</script>
+
+<script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>
+
+
+<script> // Evita que los usuarios puedan retroceder con el navegador
+  if (history.forward(1)){
+    location.replace(history.forward(1))
+  }
+</script>
+
+<% if (showAlert) { %>
+<script>
+  const alertInfo = document.getElementById("alertInfo");
+  const alertInfoToast = bootstrap.Toast.getOrCreateInstance(alertInfo);
+  alertInfoToast.show();
+</script>
+<% } %>
+
 </body>
 </html>

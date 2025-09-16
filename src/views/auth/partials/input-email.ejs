@@ -1,0 +1,14 @@
+<section class="py-2">
+  <label for="<%= id %>" class="form-label user-select-none"
+    >Correo Electrónico</label
+  >
+  <input
+    type="email"
+    class="form-control w-100 <% if (invalidUser) { %> is-invalid <% } %>"
+    id="<%= id %>"
+    name="<%= name %>"
+    required
+    autocomplete="off"
+    oninput="resetValidators('<%= formType %>')"
+  />
+</section>

@@ -1,0 +1,121 @@
+:root {
+    --color-primary: #0d6efd;
+    --color-success: #198754;
+    --color-gray: #6c757d;
+    --color-subtitle: #616161;
+    --shadow-default: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.opacity-hover:hover {
+    opacity: 60%;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+img {
+    pointer-events: none;
+}
+
+.passwordIconContainer:hover {
+    opacity: 50%;
+    cursor: pointer;
+}
+
+.title {
+    font-size: clamp(20px, 3vw, 28px);
+    text-align: center;
+    padding: 1rem 0rem;
+    margin: 0;
+}
+
+.general-button {
+    min-width: 120px;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 44px;
+}
+
+.general-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.modal-list {
+    display: flex;
+    gap: 1rem;
+    padding: 0.8rem;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.modal-header {
+    justify-content: space-between;
+}
+
+.modal-section-container {
+    flex: 1;
+}
+
+.modal-list-title {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.modal-list-icon {
+    width: clamp(32px, 6vw, 44px);
+    height: clamp(32px, 6vw, 44px);
+}
+
+.modal-list-element {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.modal-list-element-label {
+    font-weight: bold;
+    padding: 0rem 0.3rem;
+    border: 0px;
+    margin: 0;
+}
+
+.modal-list-element-input {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.modal-footer {
+    display: flex;
+    padding: 0rem 1rem 1rem 1rem;
+    align-items: center;
+    gap: 0.6rem;
+    user-select: none;
+    margin-top: 1rem;
+}
+
+@media (max-width: 450px) {
+    .general-button {
+        width: 80%
+    }
+
+    .modal-list {
+        flex-direction: column;
+    }
+
+    .modal-footer {
+        flex-direction: column-reverse;
+        flex: 1;
+    }
+}

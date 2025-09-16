@@ -1,0 +1,133 @@
+.settings {
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-default);
+    border-radius: 10px 10px;
+    margin: 2rem auto;
+    width: 90%;
+    max-width: 500px;
+}
+
+.settings-header {
+    border-radius: 10px 10px 0px 0px;
+    text-align: center;
+    background-color: seagreen;
+    padding: 0.5rem 0rem;
+    color: white;
+}
+
+.settings-body {
+    background: #fff;
+    border-radius: 0px 0px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.settings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0;
+    align-items: start;
+}
+
+.settings-element {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1rem;
+    width: 100%;
+}
+
+.settings-element-title {
+    font-weight: bold;
+    margin: 0;
+}
+
+.settings-element-subtitle {
+    color: var(--color-subtitle);
+}
+
+.settings-element-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.settings-element-label span{
+    min-width: 3ch;
+}
+
+.settings-check {
+    left: -9999px;
+    position: absolute;
+}
+
+.settings-switch {
+    position: relative;
+    width: 50px;
+    height: 26px;
+    border: 1px solid #d0d4d8;
+    border-radius: 15px;
+    transition: all 0.5s;
+    cursor: pointer;
+    background-color: rgb(252, 55, 55);
+}
+
+.settings-switch::before,
+.settings-switch::after {
+    content: "";
+    position: absolute;
+}
+
+.settings-switch::before {
+    left: 1px;
+    top: 1px;
+    width: 24px;
+    height: 24px;
+    background: var(--white);
+    border-radius: 50%;
+    z-index: 1;
+    transition: transform 0.3s;
+}
+
+.settings-switch::after {
+    top: 50%;
+    right: 8px;
+    width: 12px;
+    height: 12px;
+    transform: translateY(-50%);
+    background: url("../assets/img/x.svg");
+    background-size: 12px 12px;
+}
+
+.settings-check:checked+.settings-switch {
+    background: seagreen;
+}
+
+.settings-check:checked+.settings-switch::before {
+    transform: translateX(24px);
+}
+
+.settings-check:checked+.settings-switch::after {
+    width: 18px;
+    height: 18px;
+    left: 8px;
+    background-image: url("../assets/img/check.svg");
+    background-size: 18px 18px;
+}
+
+@media (max-width: 450px) {
+    .settings {
+        margin: 1rem;
+    }
+
+    .settings-body {
+        padding: 1rem;
+    }
+
+}

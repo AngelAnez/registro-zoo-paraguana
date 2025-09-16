@@ -1,0 +1,33 @@
+<%- include('layout-head', {title : "Register", js: "login.js"} ); %>
+
+<article class="dark-container">
+  <section class="form-container">
+    <form class="auth-form" method="post" action="/register">
+      <h4 class="auth-form-title">Registrar Usuario</h4>
+
+      <%- include('partials/input-text', {label : "Nombre de Usuario",
+      id:"usernameRegister", name: 'username', formType: "Register"} ); %>
+      
+      <%- include('partials/input-password', {label : "Contraseña",
+      id:"passwordRegister", name: 'password', formType: "Register"} ); %>
+
+      <%- include('partials/input-email', {label : "Correo Electrónico",
+      id:"emailRegister", name: 'email', formType: "Register"} ); %>
+
+      <div
+        id="invalidUserText"
+        class="<% if (invalidUser) { %> is-invalid <% } %>"
+        aria-describedby="validationLoginFeedback"
+      ></div>
+
+      <button class="btn btn-success mt-4 mb-2 py-2" type="submit">
+        Regístrarse
+      </button>
+      <span class="user-select-none my-2 text-center">
+        ¿Ya tienes una cuenta? <a href="/login">Inicia Sesión</a>
+      </span>
+    </form>
+  </section>
+</article>
+
+<%- include('layout-foot', {messageAlert, typeAlert, showAlert} ); %>

@@ -1,0 +1,132 @@
+.history-search-container {
+    display: flex;
+    position: relative;
+    flex: 1;
+    padding: 0rem 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.history-search-input {
+    padding-right: 6rem;
+}
+
+.history-search-button {
+    border: 1px solid transparent;
+    background-color: transparent;
+    margin: 0;
+    position: absolute;
+    right: 1.5rem;
+    align-items: center;
+    top: 4px;
+    cursor: pointer;
+}
+
+.history-table-container {
+    width: 100%;
+    overflow-x: auto;
+    max-width: 72vw;
+    margin: 0 auto;
+}
+
+.history-table {
+    width: 100%;
+    min-width: 900px;
+}
+
+.history-cards-list {
+    display: none;
+    margin: 1rem;
+    padding: 0;
+    gap: 0.90rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.history-cards-item {
+    list-style: none;
+    background-color: white;
+    box-shadow: var(--shadow-default);
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 380px;
+}
+
+.history-cards-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.history-cards-item-icon-container {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+}
+
+.history-cards-item-title {
+    font-weight: bold;
+    font-size: large;
+}
+
+.history-cards-item-secondary {
+    color: var(--color-subtitle);
+    font-size: smaller;
+}
+
+.history-cards-item-method{
+    border-radius: 8px;
+    border: 1px solid lightgrey;
+    font-size: smaller;
+    padding: 2px 4px;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--color-subtitle);
+}
+
+.history-cards-item-method svg{
+    width: 16px;
+    height: 16px;
+}
+
+.history-cards-item-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.history-cards-item-button {
+    font-size: smaller !important;
+    display: flex !important;
+    gap: 0.25rem;
+    align-items: center;
+}
+
+.history-cards-item-button svg {
+    width: 14px;
+    height: 14px;
+}
+
+
+@media (max-width: 1100px) {
+    .history-table-container {
+        display: none;
+    }
+
+    .history-cards-list {
+        display: flex;
+    }
+}
+
+@media (max-width: 450px) {
+    .history-search-container {
+        max-width: 95vw;
+    }
+
+}

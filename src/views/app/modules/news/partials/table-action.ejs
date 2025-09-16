@@ -1,0 +1,21 @@
+<a
+  class="btn btn-link p-0"
+  data-bs-toggle="tooltip"
+  data-bs-placement="top"
+  data-bs-title="<%=tooltipTitle%>"
+>
+  <i
+    class="text-dark opacity-hover"
+    data-bs-toggle="modal"
+    data-bs-target="<%=target%>"
+    data-bs-_id="<%=element._id%>"
+    data-bs-date="<%= new Date(element.date_time).toLocaleDateString(); %>"
+    data-bs-time="<%= new Date(element.date_time).toLocaleTimeString(); %>"
+    data-bs-subject="<%= element.subject %>"
+    data-bs-body="<%= element.body %>"
+    data-bs-author="<%= element.author %>"
+    data-bs-action="<%=action%>"
+    data-lucide="<%=typeof icon != 'undefined' ? icon : ''%>"
+    alt="<%=action%>-icon"
+  ></i>
+</a>

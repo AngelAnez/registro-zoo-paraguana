@@ -1,0 +1,7 @@
+<%- include('../partials/head', {title, css:  typeof css != "undefined" ? css : undefined, js: typeof js != "undefined" ? js : undefined, nav : true}); %>
+<main class="d-flex bg-body-secondary min-vh-100">
+  <!-- Menu Lateral y Main-->
+  <%- include('nav/sidebar'); %>
+  <article class="d-flex flex-column p-0 m-0" style="flex: 1">
+    <!-- Encabezado -->
+    <%- include('nav/header'); %>

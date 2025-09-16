@@ -1,0 +1,206 @@
+<article
+  class="modal fade"
+  id="editVisitModal"
+  tabindex="-1"
+  aria-hidden="true"
+  data-bs-backdrop="static"
+>
+  <form method="post" class="modal-dialog modal-dialog-scrollable">
+    <section class="modal-content">
+      <header class="modal-header text-bg-success user-select-none">
+        <h1 class="modal-title fs-5">Información de la Visita</h1>
+        <a
+          class="btn text-light p-0 opacity-hover"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <i data-lucide="x" alt="close-icon"></i>
+        </a>
+        <input type="number" name="_id" class="visually-hidden" />
+        <input type="number" name="kids_id" class="visually-hidden" />
+        <input type="number" name="adults_id" class="visually-hidden" />
+        <input type="number" name="elders_id" class="visually-hidden" />
+      </header>
+      <section class="modal-body d-flex flex-column">
+        <ul class="modal-list">
+          <%- include('edit-visit-list-element', {title: "Fecha", name: "date",
+          readonly: true});%> <%- include('edit-visit-list-element', {title:
+          "Hora", name: "time", readonly: true});%>
+        </ul>
+
+        <div class="modal-section-container">
+          <header class="d-flex gap-2 align-items-center">
+            <img
+              class="modal-list-icon"
+              src="./public/assets/img/children.webp"
+              alt="Icono para los Niños"
+            />
+            <h2 class="modal-list-title">Niños</h2>
+          </header>
+          <ul class="modal-list">
+            <%- include('edit-visit-list-element', {title: "Niños", name:
+            "boys", readonly: false, type: 'number'});%> <%-
+            include('edit-visit-list-element', {title: "Niñas", name: "girls",
+            readonly: false, type: 'number'});%> <%-
+            include('edit-visit-list-element', {title: "Total", name:
+            "totalKids", readonly: true, type: 'number'});%>
+          </ul>
+        </div>
+
+        <div class="modal-section-container">
+          <header class="d-flex gap-2 align-items-center">
+            <img
+              class="modal-list-icon"
+              src="./public/assets/img/adults.webp"
+              alt="Icono para los Adultos"
+            />
+            <h2 class="modal-list-title">Adultos</h2>
+          </header>
+          <ul class="modal-list">
+            <%- include('edit-visit-list-element', {title: "Hombres", name:
+            "men", readonly: false, type: 'number'});%> <%-
+            include('edit-visit-list-element', {title: "Mujeres", name: "women",
+            readonly: false, type: 'number'});%> <%-
+            include('edit-visit-list-element', {title: "Total", name:
+            "totalAdults", readonly: true, type: 'number'});%>
+          </ul>
+        </div>
+
+        <div class="modal-section-container">
+          <header class="d-flex gap-2 align-items-center">
+            <img
+              class="modal-list-icon"
+              src="./public/assets/img/seniors.webp"
+              alt="Icono para los Adultos Mayores"
+            />
+            <h2 class="modal-list-title">Adultos Mayores</h2>
+          </header>
+          <ul class="modal-list">
+            <%- include('edit-visit-list-element', {title: "Hombres", name:
+            "elderMen", readonly: false, type: 'number'});%> <%-
+            include('edit-visit-list-element', {title: "Mujeres", name:
+            "elderWomen", readonly: false, type: 'number'});%> <%-
+            include('edit-visit-list-element', {title: "Total", name:
+            "totalElders", readonly: true, type: 'number'});%>
+          </ul>
+        </div>
+
+        <div class="modal-section-container">
+          <header class="d-flex gap-2 align-items-center">
+            <img
+              class="modal-list-icon"
+              src="./public/assets/img/gift.png"
+              alt="Icono para las entradas de cortesía"
+            />
+            <h2 class="modal-list-title">Entradas de Cortesía</h2>
+          </header>
+          <ul class="modal-list">
+            <%- include('edit-visit-list-element', {title: "Niños", name:
+            "courtesyKids", readonly: false, type: 'number'});%> <%-
+            include('edit-visit-list-element', {title: "Adultos", name:
+            "courtesyAdults", readonly: false, type: 'number'});%>
+          </ul>
+        </div>
+
+        <div class="modal-section-container">
+          <header class="d-flex gap-2 align-items-center">
+            <img
+              class="modal-list-icon"
+              src="./public/assets/img/paymentMethod.webp"
+              alt="Icono para los métodos de pago disponibles"
+            />
+            <h2 class="modal-list-title">Método de Pago</h2>
+          </header>
+          <ul class="modal-list">
+            <li class="modal-list-element">
+              <label class="modal-list-element-label" for="methodEditing"
+                >Método de Pago</label
+              >
+              <select
+                name="method"
+                id="methodEditing"
+                class="px-2 py-1 form-control modal-list-element-input"
+                onchange="dynamicPaymentMethod()"
+              >
+                <option>Pago Móvil</option>
+                <option>Transferencia</option>
+                <option>Efectivo</option>
+                <option>Otro</option>
+              </select>
+            </li>
+            <li class="modal-list-element" style="flex: 1">
+              <input
+                name="methodValidation"
+                id="methodValidationEditing"
+                class="modal-list-element-label"
+                for="paymentDataEditing"
+                readonly
+              />
+              <input
+                name="paymentData"
+                id="paymentDataInputEditing"
+                class="px-2 py-1 form-control d-flex modal-list-element-input"
+                style="min-width: 100%; flex: 1"
+              />
+              <select
+                name="paymentData"
+                id="paymentDataSelectEditing"
+                class="px-2 py-1 form-control d-flex modal-list-element-input"
+                style="min-width: 100%; flex: 1"
+              >
+                <option value="Dolar">Dolar</option>
+                <option value="Bolivar">Bolivar</option>
+              </select>
+            </li>
+          </ul>
+        </div>
+
+        <div class="modal-section-container">
+          <header class="d-flex gap-2 align-items-center">
+            <img
+              class="modal-list-icon"
+              src="./public/assets/img/dolar.webp"
+              alt="Icono para la tasa dolar/bolivar"
+            />
+            <h2 class="modal-list-title">Monto</h2>
+          </header>
+          <ul class="modal-list">
+            <%- include('edit-visit-list-element', {title: "Bolívares", name:
+            "totalBolivars", readonly: false, type: 'number'});%> <%-
+            include('edit-visit-list-element', {title: "Dólares", name:
+            "totalDollars", readonly: false, type: 'number'});%>
+          </ul>
+        </div>
+
+        <div class="modal-section-container">
+          <header class="d-flex gap-2 align-items-center">
+            <img
+              class="modal-list-icon"
+              src="./public/assets/img/representative.webp"
+              alt="Icono para el representante de la visita"
+            />
+            <h2 class="modal-list-title">Representante</h2>
+          </header>
+          <ul class="modal-list">
+            <%- include('edit-visit-list-element', {title: "Nombre", name:
+            "representativeName", readonly: false});%> <%-
+            include('edit-visit-list-element', {title: "Número de Teléfono",
+            name: "representativePhone", readonly: false, type: 'tel'});%>
+          </ul>
+        </div>
+      </section>
+      <footer class="modal-footer">
+        <button
+          class="btn btn-secondary general-button"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          type="button"
+        >
+          Cancelar
+        </button>
+        <%- include('../../../../partials/button', {text: "Guardar cambios",
+        type: "submit", color: 'success', icon: 'save'}); %>
+      </footer>
+    </section>
+  </form>
+</article>

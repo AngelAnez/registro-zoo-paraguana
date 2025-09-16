@@ -1,0 +1,16 @@
+<button
+  class="btn <%= container === 'card' ? 'btn-' + color + ' admin-cards-item-button general-button w-100' : 'btn-link p-0' %>"
+  data-bs-toggle="tooltip"
+  data-bs-placement="top"
+  data-bs-title="<%=title%>"
+>
+  <i
+    class="<%= container === 'table' ? 'text-dark opacity-hover' : ''%>"
+    data-bs-toggle="modal"
+    data-bs-target="<%=id%>"
+    data-bs-user="<%=user.username%>"
+    data-lucide="<%=icon%>"
+    alt="<%=title%> icon"
+  ></i>
+  <%=container === 'card' ? title : ''%>
+</button>

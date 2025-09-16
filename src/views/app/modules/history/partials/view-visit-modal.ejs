@@ -1,0 +1,182 @@
+<div
+  class="modal fade"
+  id="viewVisitModal"
+  tabindex="-1"
+  aria-hidden="true"
+  data-bs-backdrop="static"
+>
+  <article class="modal-dialog modal-dialog-scrollable">
+    <section class="modal-content">
+      <header class="modal-header text-bg-success user-select-none">
+        <h1 class="modal-title fs-5">Información de la Visita</h1>
+        <a
+          class="btn text-light p-0 opacity-hover"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <i data-lucide="x" alt="close-icon"></i>
+        </a>
+      </header>
+      <section class="modal-body d-flex flex-column">
+        <ul class="modal-list">
+          <%- include('view-visit-list-element', {title: "Fecha", name: "date",
+          readonly: true});%> <%- include('view-visit-list-element', {title:
+          "Hora", name: "time", readonly: true});%>
+        </ul>
+
+        <div class="modal-section-container">
+          <header class="d-flex gap-2 align-items-center">
+            <img
+              class="modal-list-icon"
+              src="./public/assets/img/children.webp"
+              alt="Icono para los Niños"
+            />
+            <h2 class="modal-list-title">Niños</h2>
+          </header>
+          <ul class="modal-list">
+            <%- include('view-visit-list-element', {title: "Niños", name:
+            "boys", readonly: false});%> <%- include('view-visit-list-element',
+            {title: "Niñas", name: "girls", readonly: false});%> <%-
+            include('view-visit-list-element', {title: "Total", name:
+            "totalKids", readonly: false});%>
+          </ul>
+        </div>
+
+        <div class="modal-section-container">
+          <header class="d-flex gap-2 align-items-center">
+            <img
+              class="modal-list-icon"
+              src="./public/assets/img/adults.webp"
+              alt="Icono para los Adultos"
+            />
+            <h2 class="modal-list-title">Adultos</h2>
+          </header>
+          <ul class="modal-list">
+            <%- include('view-visit-list-element', {title: "Hombres", name:
+            "men", readonly: false});%> <%- include('view-visit-list-element',
+            {title: "Mujeres", name: "women", readonly: false});%> <%-
+            include('view-visit-list-element', {title: "Total", name:
+            "totalAdults", readonly: false});%>
+          </ul>
+        </div>
+
+        <div class="modal-section-container">
+          <header class="d-flex gap-2 align-items-center">
+            <img
+              class="modal-list-icon"
+              src="./public/assets/img/seniors.webp"
+              alt="Icono para los Adultos Mayores"
+            />
+            <h2 class="modal-list-title">Adultos Mayores</h2>
+          </header>
+          <ul class="modal-list">
+            <%- include('view-visit-list-element', {title: "Hombres", name:
+            "elderMen", readonly: false});%> <%-
+            include('view-visit-list-element', {title: "Mujeres", name:
+            "elderWomen", readonly: false});%> <%-
+            include('view-visit-list-element', {title: "Total", name:
+            "totalElders", readonly: false});%>
+          </ul>
+        </div>
+
+        <div class="modal-section-container">
+          <header class="d-flex gap-2 align-items-center">
+            <img
+              class="modal-list-icon"
+              src="./public/assets/img/gift.png"
+              alt="Icono para las entradas de cortesía"
+            />
+            <h2 class="modal-list-title">Entradas de Cortesía</h2>
+          </header>
+          <ul class="modal-list">
+            <%- include('view-visit-list-element', {title: "Niños", name:
+            "courtesyKids", readonly: false});%> <%-
+            include('view-visit-list-element', {title: "Adultos", name:
+            "courtesyAdults", readonly: false});%>
+          </ul>
+        </div>
+
+        <div class="modal-section-container">
+          <header class="d-flex gap-2 align-items-center">
+            <img
+              class="modal-list-icon"
+              src="./public/assets/img/paymentMethod.webp"
+              alt="Icono para los métodos de pago disponibles"
+            />
+            <h2 class="modal-list-title">Método de Pago</h2>
+          </header>
+          <ul class="modal-list">
+            <li class="modal-list-element">
+              <label class="modal-list-element-label" for="methodView"
+                >Método de Pago</label
+              >
+              <span
+                name="method"
+                id="methodView"
+                class="px-2 py-1 form-control modal-list-element-input"
+              >
+              </span>
+            </li>
+            <li class="modal-list-element" style="flex: 1">
+              <label
+                id="methodValidationView"
+                class="modal-list-element-label"
+                for="paymentDataView"
+                readonly
+              ></label>
+              <span
+                id="paymentDataView"
+                class="px-2 py-1 form-control modal-list-element-input"
+                style="min-width: 100%; flex: 1"
+              ></span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="modal-section-container">
+          <header class="d-flex gap-2 align-items-center">
+            <img
+              class="modal-list-icon"
+              src="./public/assets/img/dolar.webp"
+              alt="Icono para la tasa dolar/bolivar"
+            />
+            <h2 class="modal-list-title">Monto</h2>
+          </header>
+          <ul class="modal-list">
+            <%- include('view-visit-list-element', {title: "Bolívares", name:
+            "totalBolivars", readonly: false});%> <%-
+            include('view-visit-list-element', {title: "Dólares", name:
+            "totalDollars", readonly: false});%>
+          </ul>
+        </div>
+
+        <div class="modal-section-container">
+          <header class="d-flex gap-2 align-items-center">
+            <img
+              class="modal-list-icon"
+              src="./public/assets/img/representative.webp"
+              alt="Icono para el representante de la visita"
+            />
+            <h2 class="modal-list-title">Representante</h2>
+          </header>
+          <ul class="modal-list">
+            <%- include('view-visit-list-element', {title: "Nombre", name:
+            "representativeName", readonly: false});%> <%-
+            include('view-visit-list-element', {title: "Número de Teléfono",
+            name: "representativePhone", readonly: false});%>
+          </ul>
+        </div>
+      </section>
+      <footer class="modal-footer">
+        <button
+          class="btn btn-secondary general-button"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          type="button"
+        >
+          Cerrar
+        </button>
+      </footer>
+    </section>
+  </article>
+</div>

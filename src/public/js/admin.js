@@ -49,7 +49,7 @@ if (modifyUserModal) modalActions(modifyUserModal, "Modificar Usuario", "form")
 
 if (promoteAdminModal) modalActions(promoteAdminModal, "Promover a Administrador", "alert")
 
-if (returnModeratorModal) modalActions(returnModeratorModal, "Retornar a Moderador", "alert")
+if (returnModeratorModal) modalActions(returnModeratorModal, "Cambiar a Moderador", "alert")
 
 if (aceptRequestModal) modalActions(aceptRequestModal, "Aprobar Solicitud", "alert")
 

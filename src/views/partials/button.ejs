@@ -1,0 +1,24 @@
+<% if (type === "link") { %>
+<a
+  href="<%=href%>"
+  class="btn btn-<%=color%> <%= typeof extraClass != 'undefined' ? extraClass : 'general-button' %> "
+>
+  <% if (typeof icon !== 'undefined' && icon) { %>
+  <i data-lucide="<%= icon %>" alt="<%= icon %> icon"></i>
+  <% } %>
+  <%=text%> 
+</a>
+<% } else { %>
+<button
+  class="btn btn-<%=color%> <%= typeof extraClass != 'undefined' ? extraClass : 'general-button' %> "
+  type="<%=type%>"
+  formaction="<%= typeof formaction != 'undefined' ? formaction : '' %>"
+  data-bs-toggle="modal"
+  data-bs-target="<%= typeof modalTarget != 'undefined' ? modalTarget : '' %>"
+>
+  <% if (typeof icon !== 'undefined' && icon) { %>
+  <i data-lucide="<%= icon %>" alt="<%= icon %> icon"></i>
+  <% } %>
+  <%=text%>
+</button>
+<% } %>

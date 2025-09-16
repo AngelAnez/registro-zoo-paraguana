@@ -1,0 +1,26 @@
+<section class="profile-card-form-element">
+  <label class="profile-card-form-element-label"><%=label %></label>
+  <div class="profile-card-form-element-body">
+    <input
+      id="<%=id %>"
+      class="form-control bg-transparent"
+      type="<%=typeof type != 'undefined' ? type : 'text' %>"
+      readonly
+      required
+      name="<%= name %>"
+      value="<%= value %>"
+    />
+    <a
+      class="opacity-hover d-flex align-items-center text-secondary"
+      onclick="toggleProfileInput('<%=id %>')"
+    >
+      <i id="<%=id %>Modify" data-lucide="pencil" alt="modifyIcon"></i>
+      <i
+        id="<%=id %>Check"
+        class="d-none"
+        data-lucide="check"
+        alt="checkIcon"
+      ></i>
+    </a>
+  </div>
+</section>

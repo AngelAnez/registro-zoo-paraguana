@@ -1,0 +1,23 @@
+<%- include('../../layout-head', {title : "Home", css : "home.css", js : ""}); %>
+
+    <section class="home">
+      <header class="home-header">
+        <h1 class="home-title">Sistema de Control de Visitas del Zoológico Paraguaná</h1>
+      </header>
+      <ul class="home-list">
+        <%- include('partials/home-nav-card', {title: 'Registrar Visita', description: 'Módulo para registrar las visitas que llegan al zoológico', icon: 'notebook-pen', href: "/visits"}) %>
+
+        <%- include('partials/home-nav-card', {title: 'Historial de Visitas', description: 'Módulo para detallar, editar y eliminar todas las visitas registradas', icon: 'calendar-days', href: "/history"}) %>
+
+        <%- include('partials/home-nav-card', {title: 'Estadísticas', description: 'Módulo para conocer las estadísticas del sistema en relación a la distribución de visitantes y métodos de pago', icon: 'bar-chart-4', href: "/stats"}) %>
+
+        <%- include('partials/home-nav-card', {title: 'Novedades', description: 'Módulo para crear y observar novedades ocurridas en el zoológico', icon: 'mail-plus', href: "/news"}) %>
+
+        <%- include('partials/home-nav-card', {title: 'Ajustes', description: 'Módulo para cambiar las configuraciones del sistema, como los precios de las entradas', icon: 'settings', href: "/settings"}) %>
+
+      </ul>
+      <footer class="home-footer">Creado con &#128154 por Angel Añez</footer>
+      <div class="position-absolute text-bg-dark bg-opacity-75 w-100 h-100"></div>
+    </section>
+    
+<%- include('../../layout-foot', {messageAlert, typeAlert, showAlert}) %>

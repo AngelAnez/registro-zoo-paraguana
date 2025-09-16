@@ -1,0 +1,72 @@
+<article id="addNewVisitStep4" class="new-visit-form-container d-none">
+  <header class="new-visit-form-header">
+    <div class="new-visit-form-header-title">
+      <i data-lucide="check" alt="Confirmation section icon"></i>
+      <h2>Confirmación</h2>
+    </div>
+    <p class="new-visit-form-header-subtitle">
+      Verifique los datos ingresados.
+    </p>
+  </header>
+
+  <ul class="new-visit-form-body flex-wrap p-0 gap-2">
+    <li class="new-visit-form-element-container">
+      <header class="new-visit-form-element-header">
+        <h3 class="new-visit-form-element-title">Fecha y Hora</h3>
+      </header>
+      <section class="new-visit-form-element-body">
+        <span class="px-2 py-1 form-control" id="datetimeInvoice"></span>
+        <input type="text" name="date_time" class="d-none" id="datetimeInput" />
+      </section>
+    </li>
+
+    <%-include('form-confirmation-element', {title : 'Total Niños', id : "kidsInvoice"} ); %>
+    <%-include('form-confirmation-element', {title : 'Total Adultos', id : "adultsInvoice"} ); %>
+    <%-include('form-confirmation-element', {title : 'Total Adultos Mayores', id: "eldersInvoice"} ); %>
+    <%-include('form-confirmation-element', {title : 'Representante', id : "representativeInvoice"} ); %>
+    <%-include('form-confirmation-element', {title : 'Método de Pago', id : "methodInvoice"} ); %>
+
+    <li class="new-visit-form-element-container">
+      <header class="new-visit-form-element-header">
+        <h3 id="extraInfoTitle" class="new-visit-form-element-title">
+          Número de Referencia
+        </h3>
+      </header>
+      <section class="new-visit-form-element-body">
+        <span
+          class="px-2 py-1 form-control"
+          id="extraInfoInvoice"
+          style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap"
+        >
+        </span>
+      </section>
+    </li>
+
+    <li class="new-visit-form-element-container">
+      <header class="new-visit-form-element-header">
+        <h3 class="new-visit-form-element-title">Monto</h3>
+      </header>
+      <section class="new-visit-form-element-body">
+        <span
+          class="px-2 py-1 form-control text-success fw-bold"
+          id="totalInvoice"
+          style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap"
+        ></span>
+      </section>
+    </li>
+  </ul>
+  <input type="text" name="totalDollars" class="d-none" id="dollarsInput" />
+  <input type="text" name="totalBolivars" class="d-none" id="bolivarsInput" />
+  <footer class="new-visit-form-footer">
+    <button
+      type="button"
+      onclick="changeStep(3)"
+      class="general-button btn btn-secondary"
+    >
+      Atrás
+    </button>
+    <button type="submit" class="general-button btn btn-success">
+      Finalizar
+    </button>
+  </footer>
+</article>
