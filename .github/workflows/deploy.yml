@@ -1,7 +1,7 @@
 name: Deploy on VPS
 on: 
     push:
-        branches: ["dev"]
+        branches: ["main"]
 
 jobs:
     deploy:
